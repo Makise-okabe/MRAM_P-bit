@@ -1,0 +1,71 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[a4paper,margin=24mm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,array,longtable,tabularx}
+\usepackage{xcolor,enumitem,fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+\definecolor{NUSBlue}{HTML}{003D7C}
+\definecolor{Accent}{HTML}{12627A}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\setlength{\emergencystretch}{3em}
+\setlength{\headheight}{14pt}
+\renewcommand{\arraystretch}{1.12}
+\setlist{itemsep=0.25em,topsep=0.3em}
+\fancyhf{}
+\fancyhead[L]{\small MRAM FYP: Research Pathfinding}
+\fancyhead[R]{\small Working draft}
+\fancyfoot[C]{\thepage}
+\pagestyle{fancy}
+\hypersetup{pdftitle={MRAM FYP: Research Pathfinding for a 256 x 256 Array},pdfauthor={Du Yanzhang}}
+\newcommand{\target}{\(256\times256\)}
+\newcommand{\status}[1]{\textbf{Status:} #1}
+\begin{document}
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+\centering\vspace*{14mm}
+{\color{NUSBlue}\rule{\linewidth}{1pt}\par}
+\vspace{13mm}
+{\LARGE\bfseries Research Pathfinding and Experimental Plan for a \(256\times256\) MRAM Compute-in-Memory Array\par}
+\vspace{10mm}
+{\Large Research report: pathfinding and validation\par}
+\vspace{18mm}
+{\Large Du Yanzhang\par}
+\vspace{4mm}
+Department of Electrical and Computer Engineering\\National University of Singapore
+\vfill
+\begin{tabular}{rl}
+Supervisor: & Prof. Fong Xuanyao Kelvin\\
+Date: & 4 November 2026\\
+Phase: & Candidate development and bounded screening\\
+Evidence: & Literature, software and a constructed model\\
+Target circuit results: & Not yet available in this phase
+\end{tabular}
+\par\vspace{10mm}
+\begin{minipage}{0.93\linewidth}\small
+This draft preserves the precision--nonideality motivation while reopening the choice of
+technical contribution. It does not select a winning method, claim a validated target
+macro or certify originality. The official CA2 rubric has not been supplied; this document
+is a maintained research draft rather than a submission-ready assessment.
+\end{minipage}
+\vfill{\color{Accent}\rule{\linewidth}{1pt}}
+\end{titlepage}
+\pagenumbering{roman}
+\hypersetup{pageanchor=true}
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+\input{report/sections/01_problem}
+\input{report/sections/02_prior_work}
+\input{report/sections/03_methods}
+\input{report/sections/04_architecture}
+\input{report/sections/05_experiments}
+\input{report/sections/06_progress}
+\input{report/sections/07_next_steps}
+\input{report/sections/08_new_array_reset}
+\clearpage
+\bibliographystyle{unsrt}
+\bibliography{references}
+\end{document}

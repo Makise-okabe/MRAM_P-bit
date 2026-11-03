@@ -1,0 +1,18 @@
+\section{Fresh \(256\times256\) Physical Array Reconstruction (E02)}
+\subsection{Target and evidence reset}
+The target is a physical \(256\times256\) STT-MRAM compute-in-memory array with 65,536 binary-MTJ positions. A 256-by-256 software weight matrix is not a physically implemented array. All new target electrical read-current distributions, sensing-reference calibration, decoding models and layout/parasitic validation must be generated afresh. Retired small-cell and eight-cell readout trials are historical records only and do not establish target-array performance.
+
+\subsection{Construction and preflight}
+\begin{enumerate}
+\item Audit the authorized GF 22FDX MTJ and access-transistor models, ports, safe read/write bias and design rules; justify the selected 1T1MTJ or 2T1MTJ implementation.
+\item Construct repeatable physical tiles with verified DRC/LVS and representative BL, SL and WL parasitic extraction.
+\item Define the 256-row/256-column hierarchy: distributed wire lengths and loads, selected/unselected devices, read drivers, ADC/reference, column sharing and read parallelism.
+\item Perform \emph{new} KCL, headroom, current and settling preflights using sparse, medium, dense and spatial read masks before fitting statistical error laws.
+\item Verify a model against independent held-out target-circuit patterns and ADC decisions near thresholds, preserving fixed device mismatch within virtual chips and keeping temporal noise separate.
+\end{enumerate}
+Physical isolation of subarrays must be implemented explicitly; a logical row grouping does not shorten a bitline. A hierarchical, PEX-informed circuit model must not be described as a fully extracted 256-by-256 macro.
+
+\subsection{Candidate methods and current limits}
+E01 may evaluate real neural activation traces as software workload evidence without target circuit parameters. The F3/E03 covariance-aware mapping hypothesis requires newly validated \emph{decoded} error covariance after calibrated reads; the existing E03M witness is a constructed mathematical example only. E09's optional Ising investigation remains distinct; stable nonvolatile MTJs are not assumed to be stochastic p-bits. No F1--F7 method has passed all novelty and physical gates.
+
+\textbf{As of 4 November 2026:} no freshly extracted target-array readout or new 256-by-256 physical array result is claimed.

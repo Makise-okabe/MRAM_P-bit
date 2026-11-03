@@ -1,0 +1,80 @@
+\section{Related work and candidate gaps}
+
+\subsection{Mapping, activity and conversion}
+
+VARA's CAR algorithm groups co-zero input dimensions and applies corresponding weight
+permutations \cite{S01}. DIB-CIM adjusts activated input blocks and ADC resolution
+\cite{S02}. HINT and other sparsity-aware sensing designs further constrain a generic
+input-aware MRAM contribution \cite{S03,S04,S28}. Weight splitting and operational
+parallelism have also been optimized jointly \cite{S05}.
+
+Crafton et al. model ADC-code probabilities from device statistics, profile each binary
+VMM and optimize a bit-significance-dependent parallelism LUT under an aggregate MAE
+constraint \cite{S31}. Their explicit weighted marginal approximation is a close
+comparison for any proposed cross-cycle error score; bit significance alone is not new.
+
+These papers make ordinary grouping, sparsity-aware conversion and read parallelism
+necessary comparators. The residual F3 question is whether a \emph{target-circuit-dependent}
+grouping condition and constrained mapping produce a useful advantage after the
+comparators are tuned. The implemented CAR-style comparator follows v1's grouping rule,
+not its complete training or system architecture. The latest revision and DIB-CIM's full
+implementation remain access gaps.
+
+\subsection{Physical mapping, calibration and correction}
+
+Physical mapping combined with ADC calibration is a close alternative \cite{S06}.
+Dyn-A-Map targets unreliable regions through fault-aware mapping \cite{S07}; its fault
+model must be distinguished from nominal analog distortion. Statistical error compensation
+in MRAM addresses column mismatch and wire-induced nonlinearity \cite{S29}. A candidate
+must therefore outperform more than an uncalibrated fixed-reference circuit. The full
+correction implementation is needed before claiming a faithful reproduction.
+
+Ordinary complement reconstruction has a matching public disclosure lead \cite{S20}.
+Activity-based bus inversion is also established \cite{S21}. The residual F2 question
+concerns a cheap position-dependent electrical decision, its physical validity and
+implementation overhead. Original-document verification and a focused encoding prior-art
+comparison remain necessary.
+
+\subsection{Reliability estimation and decision-directed computation}
+
+Calibrated hardware models \cite{S08}, precision analysis \cite{S09}, semi-analytical
+fault propagation \cite{S10} and probability-region bounds \cite{S11} constrain F1.
+DeepVigor+'s single-bit floating-point model is not automatically the same as simultaneous
+correlated analog errors. Small-Noise has no public preprint \cite{S22}, so its project
+title is an overlap warning rather than proof of method equivalence.
+
+Zhang et al. explicitly use channel shuffling to randomize deterministic column errors
+when composing larger computations \cite{S08}. Thus decorrelation is already a mitigation;
+the F3 refinement must beat ordinary shuffling at matched placement/routing and read cost,
+including an equal offline search budget, rather than claim that correlations matter.
+
+Mixed precision \cite{S12}, speculative slicing and recovery \cite{S13}, double-reference
+recompute \cite{S14} and confidence stopping \cite{S30} constrain F4. The intended gap
+must be a specific inexpensive analog-MRAM bound and refinement implementation. Generic
+interval separation or selective precision is insufficient. Claimed preprint bounds
+require independent checking before being used for our hardware.
+
+\subsection{Limits, alternatives and applications}
+
+Intrinsic analog precision limits are established \cite{S15}. ADC architecture models
+can support initial cost sensitivity \cite{S16}, while digital MRAM supplies a credible
+alternative family \cite{S17}. F5 needs a predictive, validated crossover rule or feasible
+hybrid. F6 needs a circuit-specific identifiability result and an economical extra
+observable, rather than a restatement that analog noise limits precision.
+
+Ising device precision and adaptive stochastic-computing precision are existing topics
+\cite{S18,S19}. Snowball explicitly initializes fields from row-major bit planes and
+updates them incrementally from column-major planes \cite{S32}; the pipelined p-computer
+also uses initialized, flip-updated fields \cite{S33}. These are mandatory baselines.
+F7 consequently requires a separate sampling-method comparison. Earlier
+sparsity-aware architectures \cite{S26} and expert routing \cite{S27} are context and
+application mechanisms. Tail reliability and selective mitigation are also existing
+themes \cite{S25}.
+
+\subsection{Access limits and consequences}
+
+The evidence register has 33 primary-paper, institutional, author-project or disclosure
+records. Some methods were inspected only through selected passages; several recent
+implementations remain abstract-only. No cross-paper ranking of headline efficiency is
+made. A novelty pass requires complete inspection of the closest applicable implementation,
+not merely a new title, a different memory technology or a missing search result.
