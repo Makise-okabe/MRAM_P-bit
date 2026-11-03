@@ -1,0 +1,33 @@
+{
+  "source_type": "user_uploaded_external_research_discussion",
+  "title": "MRAM CIM - Field Survey and Self-Evaluated Research Direction",
+  "original_filename": "MRAM CIM — Field Survey and Self-Evaluated Research Direction (2)(2).pdf",
+  "sha256": "330e976bfb383cd117d7e57f6d42c865519f397ad005c319257f5f69b4816102",
+  "page_count": 46,
+  "document_header_date": "2026-10-29",
+  "review_date": "2026-11-03",
+  "latest_revision_identified": 14,
+  "source_library_file_id": "libfile_9cb44d322fbc819196bf5a2f7d01441c",
+  "source_retention": "User-provided original retained in the conversation; identified here by hash rather than copied into the active report.",
+  "review_access": "Text of all 46 pages; rendered selected tables and algorithm pages.",
+  "demonstration_status": "Externally reported illustrative-model outcomes; implementation and raw results not independently reproduced.",
+  "target_evidence_status": "Not target-array calibration, validation or task evidence.",
+  "reading_depth_policy": "Original reviewer's depth labels are not adopted as our source verification.",
+  "primary_checks": [
+    {
+      "doi": "10.1109/JXCDC.2023.3258431",
+      "access": "Author PDF; relevant derivation in Section II and architecture/abstract checked, not full end-to-end reading.",
+      "url": "https://nanocad.ee.ucla.edu/wp-content/papercite-data/pdf/j73.pdf"
+    },
+    {
+      "doi": "10.1109/JXCDC.2024.3381888",
+      "access": "Institutional abstract and metadata; full derivation not checked.",
+      "url": "https://experts.illinois.edu/en/publications/energy-accuracy-trade-offs-for-resistive-in-memory-computing-arch/"
+    },
+    {
+      "arxiv": "2006.03117v2",
+      "access": "Primary abstract and metadata; attempted PDF/HTML retrieval unavailable.",
+      "url": "https://arxiv.org/abs/2006.03117"
+    }
+  ]
+}
