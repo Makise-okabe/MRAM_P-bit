@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "experiment_id": "E03Q_20261104_finite_adc_constructed",
+  "date_local": "2026-11-04",
+  "evidence_class": "CONSTRUCTED_NORMALIZED_MODEL_ONLY",
+  "physical_validation": false,
+  "source": {
+    "repository_path": "experiments/e03q_finite_adc_pilot.py",
+    "sha256": "9afd60c36bb260eb7fb3914e84bf494615474c3741a04f677c2a64ccdae8410c",
+    "git_blob_sha": "e53514e224ef23d727ac49a54e44e59fe0f03c00"
+  },
+  "result_full_sha256": "0541221d31a3cff41ea78b3ab936535b993447a09d02c7ba310217048cfa758a",
+  "test_command": "OPENBLAS_NUM_THREADS=1 python3 experiments/e03q_finite_adc_pilot.py --out experiments/runs/E03Q_new/finite_adc.json --cal-samples 65536 --eval-samples 131072",
+  "params": {
+    "weight_seed": 4107,
+    "weight_matrix_sha256": "df70720341e42841b45dfdeef05ce0be30db1da03583c5fecba5ca91b457b452",
+    "column": 0,
+    "layout": [
+      256,
+      256
+    ],
+    "group_rows": 64,
+    "read_cycles": 8,
+    "active_rows_per_read": 16,
+    "normalized_currents": [
+      1,
+      2
+    ],
+    "gaussian_cell_current_cv": 0.03,
+    "group_calibration": "oracle full-group mismatch",
+    "adc": "uniform midrise current ADC then nearest quantized nominal reference, lower-count tie",
+    "adc_range_normalized": [
+      16,
+      32
+    ],
+    "bits": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "phase_candidates_LSB": [
+      -0.25,
+      0,
+      0.25
+    ],
+    "calibration_chips": 65536,
+    "evaluation_chips": 131072,
+    "calibration_seed": 20261110,
+    "evaluation_seed": 20261111
+  },
+  "results": [
+    {
+      "mode": "ideal_midpoint",
+      "A_mse": 0.068687,
+      "B_mse": 0.048462,
+      "B_relative_improvement_pct": 29.446,
+      "paired_MSE_diff_ci95": [
+        0.01604,
+        0.02441
+      ]
+    },
+    {
+      "mode": "fixed_6bit_phase0",
+      "A_mse": 2.261963,
+      "B_mse": 1.917,
+      "B_relative_improvement_pct": 15.251,
+      "paired_MSE_diff_ci95": [
+        0.31833,
+        0.3716
+      ]
+    },
+    {
+      "mode": "calibrated_6bit",
+      "A_mse": 0.122276,
+      "B_mse": 0.087631,
+      "B_relative_improvement_pct": 28.333,
+      "paired_MSE_diff_ci95": [
+        0.02906,
+        0.04023
+      ]
+    },
+    {
+      "mode": "calibrated_7bit",
+      "A_mse": 0.08152,
+      "B_mse": 0.057892,
+      "B_relative_improvement_pct": 28.985,
+      "paired_MSE_diff_ci95": [
+        0.01909,
+        0.02817
+      ]
+    }
+  ],
+  "interpretation": "ADC phase strongly affects decoded errors; covariance effect in this constructed example remains after this particular bounded phase tuning. No demonstration of task-level improvement or target hardware.",
+  "uncertainty": "paired normal-approx chip-level CI, independent chip draws, not a device-variation inference for actual MRAM process",
+  "limitations": [
+    "one selected column of the constructed 256x256 fixture only",
+    "oracle full-group correction",
+    "no real ADC circuitry or GF device models",
+    "no electrical interconnect or shared periphery",
+    "no actual 256x256 physical array",
+    "no end-to-end inference, timing, area or energy",
+    "baselines do not yet include channel shuffling, CAR or best-of-random"
+  ]
+}
