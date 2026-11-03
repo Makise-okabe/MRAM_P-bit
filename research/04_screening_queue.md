@@ -1,5 +1,36 @@
 # Bounded screening queue and elimination decisions
 
+## 4 November follow-up (ADR-0004, after newer 17-page draft)
+
+F3 is the **first bounded intervention** under the original proposal's
+precision/nonideality objective, not a certified novel final contribution.
+F7 Ising stays as an alternative pending E02 and its own fair digital
+incremental baseline.
+
+**E03Q constructed-model finite ADC diagnostic is executed.** One predeclared
+column of the 256x256 E03M fixture was tested with an explicit midrise ADC,
+calibration/holdout chip separation and paired persistent variation. Decoder
+alignment matters materially; a finite-ADC mapping difference persists
+under the limited 3-phase calibration tested. This does **not** validate the
+target physical readout or the usefulness of a deployable mapper.
+See \`experiments/e03q_finite_adc_pilot.py\` and
+\`research/experiments/2026-11-04-E03Q-finite-adc-screen.md\`.
+
+**E01:** the independently trained digits256 data pilot is exploratory;
+the frozen original FYP network trace is still missing.
+**E02:** no new GF 22FDX 256x256 transistor-level/PEX target array or
+validated decoder yet. Target circuit model and readout details remain
+the physical gate before E03 map optimization or Ising E09B testing.
+
+**Comparator additions:** fixed random **and** best-of-random at equal
+offline search budget; adapted channel shuffling; CAR, zero-rate,
+balancing and calibrated ADC/adaptive blocks. Reconstructed MSE is a
+search surrogate: final task results must report clean-reference flips
+and ground-truth error separately.
+
+---
+
+
 4 November 2026 (Singapore). Implements ADR-0003; no final core selected.
 
 ## Research question for the next stage
