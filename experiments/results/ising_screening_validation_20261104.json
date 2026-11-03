@@ -1,0 +1,29 @@
+{
+  "date_singapore": "2026-11-04",
+  "verified_utc": "2026-11-03T18:50:56.911166+00:00",
+  "unit_tests_passed": 16,
+  "new_ising_tests": 6,
+  "exact_ising_trajectory_cases": 8,
+  "target_kernel_preflight": "BLOCKED_TARGET_KERNEL",
+  "expected_preflight_exit_code": 2,
+  "target_noise_study_implemented": false,
+  "target_circuit_results": false,
+  "fresh_frozen_success_result_established": false,
+  "report": {
+    "pages": 16,
+    "external_urls": 33,
+    "sha256": "13ea7e1042c7db15ae82e5b131e3eb8f6b344d50364afbfeb3254c1f3e953666",
+    "compile": "fresh isolated latexmk build; passed",
+    "undefined_citations": false,
+    "overfull_boxes": false,
+    "visual_review": "16 pages inspected; final changed pages re-rendered for inspection"
+  },
+  "checks": {
+    "exact_small_graph_targets": true,
+    "energy_cut_identity": true,
+    "full_incremental_trajectory_parity": true,
+    "cache_parity_every_update": true,
+    "beta_zero_heatbath": true,
+    "restart_probability_boundary_cases": true
+  }
+}
