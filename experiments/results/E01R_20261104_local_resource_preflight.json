@@ -1,0 +1,54 @@
+{
+  "experiment_id": "E01R",
+  "evidence_class": "local_resource_inventory_only",
+  "command": "bash scripts/run_first_experiment.sh --audit-only --legacy-root AUDITED_SOURCE_COPY --out NEW_RUN",
+  "observed_exit_code": 2,
+  "expected_exit_code": 2,
+  "status": "MISSING_RESOURCES",
+  "resource_receipt": {
+    "schema_version": 1,
+    "evidence_class": "resource_inventory",
+    "resources": {
+      "checkpoint": {
+        "filename": "fp32_checkpoint.pt",
+        "present": false,
+        "sha256": null
+      },
+      "quantization": {
+        "filename": "frozen_quantization.json",
+        "present": false,
+        "sha256": null
+      },
+      "splits": {
+        "filename": "split_indices.npz",
+        "present": false,
+        "sha256": null
+      },
+      "golden_source": {
+        "filename": "mnist_precision_stage4a.py",
+        "present": true,
+        "sha256": "6ad9c85cbe71e60a4eaccf0b0b09cf44815fdd40cc8d789e5927893a28d3c04b"
+      },
+      "train_images": {
+        "filename": "train-images-idx3-ubyte",
+        "present": false,
+        "sha256": null
+      },
+      "train_labels": {
+        "filename": "train-labels-idx1-ubyte",
+        "present": false,
+        "sha256": null
+      }
+    },
+    "ready_for_neural_export": false,
+    "spectre_on_path": false,
+    "ocean_on_path": false,
+    "physical_validation": false,
+    "electrical_results_read": false,
+    "student_mtj_declarations": [],
+    "circuit_status": "SOURCE_INVENTORY_ONLY_FRESH_E02_REQUIRED",
+    "note": "No PDK/netlist/current/ADC data are included; no circuit run is performed."
+  },
+  "actual_NUS_files_inspected": false,
+  "note": "The local audited neural source is present; NUS-local checkpoint/quantizer/splits/dataset are not mounted. This is not a real workload run."
+}

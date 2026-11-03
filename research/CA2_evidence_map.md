@@ -44,6 +44,11 @@ untraceable numbers into prose. A failed candidate is reported as rejected, not 
 
 ## Revision-15 consolidation and first Ising controls
 
+The [resource audit and executable first-run protocol](experiments/2026-11-04-resource-audit-and-first-run.md)
+record which legacy neural assets can be reused and which electrical evidence stays
+excluded. E01R verifies runner readiness with 27 software tests and the expected local
+missing-resource preflight. The actual frozen-MNIST E01 and physical E02 remain unrun.
+
 The [bounded queue](04_screening_queue.md), ADR-0003 and [source review](reviews/2026-11-04-claude-revision15.md) record why Ising is retained conditionally. E09A checks exact references and the cache-drift control; E09B/C remain unrun target studies. Preserve the distinction between external toy claims, software identities and a new transferable contribution.
 
 The subsequently attached 48-page survey is identified by the

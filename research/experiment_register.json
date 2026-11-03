@@ -20,14 +20,19 @@
     {
       "id": "E01",
       "title": "Workload structure and fair mapping comparators",
-      "status": "implemented_waiting_real_inputs",
+      "status": "automated_NUS_runner_ready_not_executed",
       "prerequisites": [
         "Real trace bundle",
         "Model/quantization hashes",
         "Disjoint calibration/evaluation IDs"
       ],
-      "artifacts": [],
-      "note": "Run on one representative layer; no hardware metrics.",
+      "artifacts": [
+        "START_HERE.md",
+        "experiments/nus_first_run.py",
+        "experiments/frozen_mnist.py",
+        "experiments/config/frozen_mnist_source.json"
+      ],
+      "note": "Reuse the documented frozen MNIST weights/quantizer/saved parents. First run: W4A8 FC1 all four row blocks, 128 CAL and 256 previously inspected DEV parents, all packed weight planes. Actual NUS/golden-forward/primary workload run still pending; exploratory digits is separate.",
       "physical_results_available": false,
       "acceptance_budgets": null
     },
@@ -203,11 +208,44 @@
       "note": "Start with a bounded small-graph pilot, not fifty graphs. Count initialization, coupling access, transpose storage and refresh.",
       "physical_results_available": false,
       "acceptance_budgets": null
+    },
+    {
+      "id": "E01R",
+      "title": "Frozen-MNIST runner and resource-readiness verification",
+      "status": "completed_software_readiness_only",
+      "prerequisites": [
+        "Audited Stage4A neural source and resource record"
+      ],
+      "artifacts": [
+        "experiments/results/E01R_20261104_unit_tests.txt",
+        "experiments/results/E01R_20261104_validation.json",
+        "research/experiments/2026-11-04-resource-audit-and-first-run.md"
+      ],
+      "note": "27 software tests pass, including end-to-end file/packet integration with the external NUS loader stubbed. Local resource preflight exits 2 as expected. No real MNIST checkpoint/golden or circuit run here.",
+      "physical_results_available": false,
+      "acceptance_budgets": null
+    },
+    {
+      "id": "E03Q",
+      "title": "Finite ADC sensitivity of the normalized covariance fixture",
+      "status": "existing_constructed_model_record_preserved",
+      "prerequisites": [
+        "Declared normalized model and oracle-like group calibration"
+      ],
+      "artifacts": [
+        "experiments/e03q_finite_adc_pilot.py",
+        "experiments/results/E03Q_20261104_finite_adc_summary.json",
+        "research/experiments/2026-11-04-E03Q-finite-adc-screen.md",
+        "research/experiments/2026-11-04-E03Q-independent-reproduction-audit.md"
+      ],
+      "note": "Existing public-repository record at c2e4b396; preserved during the resource audit, not rerun or independently checked by the NUS-runner work. Not target-device, real ADC or end-to-end task evidence.",
+      "physical_results_available": false,
+      "acceptance_budgets": null
     }
   ],
   "screening_priority": [
     "F3_decoded_covariance_mapping",
     "F7a_persistence_and_field_operator_diagnostic"
   ],
-  "latest_decision_record": "research/decisions/ADR-0003-bounded-ising-screen.md"
+  "latest_decision_record": "research/decisions/ADR-0004-F3-decoder-screen.md"
 }

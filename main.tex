@@ -54,7 +54,7 @@ marking rubric has not been supplied.
 \end{titlepage}
 \pagenumbering{roman}
 \hypersetup{pageanchor=true}
-\tableofcontents
+{\small\setlength{\parskip}{0pt}\tableofcontents}
 \clearpage
 \pagenumbering{arabic}
 \input{report/sections/01_problem}
@@ -66,7 +66,6 @@ marking rubric has not been supplied.
 \input{report/sections/07_next_steps}
 \appendix
 \input{report/sections/08_new_array_reset}
-\clearpage
 \bibliographystyle{unsrt}
 \bibliography{references}
 \end{document}

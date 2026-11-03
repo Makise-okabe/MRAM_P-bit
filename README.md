@@ -6,6 +6,11 @@
 
 ## Research structure
 
+**First NUS experiment:** follow [START_HERE.md](START_HERE.md). The tested one-command
+runner reuses your documented frozen MNIST checkpoint and W4A8 quantizer, exports every
+FC1 row block and runs the real-workload mapping screen. The real NUS run remains
+pending; local checks do not establish target-array or MNIST results.
+
 - `main.tex`, `references.bib`, `report/sections/` — **new Overleaf-ready LaTeX working report**. Compile `main.tex` with pdfLaTeX + BibTeX or latexmk.
 - `research/` — research scope, method cards F1–F7, novelty review, literature register, decisions, logbook and experiment gates.
 - `experiments/` — software-only verification, synthetic covariance probe and conditional Ising-reference checks. No claims of a measured 256×256 macro.

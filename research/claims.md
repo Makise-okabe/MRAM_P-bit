@@ -9,7 +9,7 @@
 | C005 | Grouping degrades target reliability | Hypothesis; E02/E03 not run | Must survive calibration and architecture-specific validation |
 | C006 | A proposed mapper/controller saves energy | Not established | Read counts/proxies cannot establish energy |
 | C007 | Any candidate is original or the strongest topic | Not established | Exact closest-method comparison and demonstration needed |
-| C008 | New arithmetic and metadata tools pass their checks | `experiments/results/engineering_verification.json` and test transcript | Engineering evidence only |
+| C008 | New arithmetic and metadata tools pass their checks | `experiments/results/engineering_verification.json`, test transcript and E01R validation | Engineering evidence only |
 | C009 | Fresh report is a completed CA2 submission | Not established | Official rubric, physical results and final contribution missing |
 | C010 | GitHub update synchronizes Overleaf | Not established | Requires the particular project's synchronization action |
 | C011 | Equal read counts and marginal decoded-error laws can conceal different reconstructed MSE under persistent variation | E03M constructed normalized example; `novelty/2026-11-04-covariance-mapping.md` | Mathematical/illustrative result, not target-array, task or energy evidence |

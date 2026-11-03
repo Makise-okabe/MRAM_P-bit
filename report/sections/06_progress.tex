@@ -148,6 +148,29 @@ The target-kernel preflight remains blocked by missing response and temporal-noi
 evidence, and the scientific adapter is not implemented. Curated evidence is under
 \path{experiments/results/E09A_20261104_reference.json}.
 
+\subsection{E01R: resource audit and executable NUS handoff}
+
+The archived neural software identifies a reusable 784--128--64--10 MNIST model,
+frozen W4A8 quantizer, saved split indices and raw dataset locations. Their current
+binary presence and hashes require checking on NUS. The new runner automates those
+checks and verifies its export against the original, source-pinned PyTorch quantizer.
+It does not retrain, alter calibration or import retired electrical results.
+
+The first protocol uses 128 saved calibration parents and 256 previously inspected
+validation parents, explicitly labelled development. All four FC1 row blocks and all
+four weight planes are exported. Each block packs 128 outputs and four weight bits
+into two prospective \target{} binary position maps; eight arrays are needed across
+the layer. The final block uses 16 rows and has 240 padding rows. These are capacity
+and address maps, not physical validation. Parent-image/activation-bit identities,
+signed reconstruction and one common resident mapping across the planes are retained.
+
+Twenty-seven software tests pass, including eleven new export/resource checks and
+an integration fixture whose external NUS loader is stubbed. The local resource CLI
+correctly reports the unavailable NUS checkpoint/data and exits 2. No actual frozen-
+MNIST golden-forward run, primary E01 workload result or fresh target circuit run has
+been completed here. The ready command and return-packet protocol are in
+\path{START_HERE.md}; E01 remains pending user execution in the authorized environment.
+
 \subsection{How results enter CA2}
 
 Each meaningful run records its hypothesis, code revision, command, source hashes,

@@ -1,5 +1,11 @@
 # Running the first experiments
 
+The [NUS first-run instructions](../START_HERE.md) now automate the frozen-MNIST export
+and baseline screen. Run `bash scripts/run_first_experiment.sh`; no manual NPZ authoring
+is needed for the documented Stage4A resource layout. Use `--audit-only` for a resource
+receipt. This exporter additionally checks parent membership and preserves per-image
+activation-bit associations. Real NUS/golden-forward execution is still pending.
+
 The tools need Python and NumPy. No Spectre installation, licensed model or neural-network
 checkpoint is included. Run commands from the repository root.
 

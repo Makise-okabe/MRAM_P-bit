@@ -79,6 +79,11 @@ quality claim. Either still needs a strong practical comparison.
 
 ## First commands
 
+For the existing frozen NUS MNIST model, use the automated
+[first-run package](../START_HERE.md). It exports the saved model/splits and runs E01
+after a golden-forward check; the lower-level commands below remain available for
+other explicitly prepared trace bundles. No manual export is required for that model.
+
 On NUS, an optional separate checkout preserves the existing working tree. From the
 existing repository, choose a new directory name if the example already exists:
 
