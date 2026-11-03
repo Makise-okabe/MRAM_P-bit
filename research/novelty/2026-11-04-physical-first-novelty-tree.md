@@ -51,3 +51,50 @@ Any failed candidate remains failed; do not rescue it by attaching Ising or an e
 - Snowball and pipelined Ising p-computers (2026) for exact incremental-field baselines.
 
 None is considered defeated without access to the relevant method sections. This document proposes **research hypotheses**, not research results.
+
+
+## H0 refinement: location-dependent cumulative-current footprint (new *hypothesis*, not new law)
+
+For a \emph{simplified one-ended resistive bitline} with a segment resistance
+r_l and positive selected-cell conductance g_i, define the current remaining
+downstream of segment l in the ideal (zero-line-resistance) circuit:
+
+    J_l = Vread * sum_{i>=l} a_i g_i.
+
+Linearizing the voltage drop caused by a small BL resistance gives an
+approximate reduction in total sensed current:
+
+    DeltaI ~= Vread * sum_l r_l (sum_{i>=l} a_i g_i)^2.
+
+If the g_i were equal, this becomes proportional to a mask-only spatial
+footprint Phi(a) = sum_l r_l (sum_{i>=l} a_i)^2.
+
+At *the same* total active count and equal P/AP composition, Phi may differ
+substantially. This is a physically motivated variable not captured by
+activity count alone. It does NOT capture access-device nonlinearity,
+distributed/floating SL parasitics, WL delay, varying bitcell conductance,
+sensing feedback or coupled columns. It must be derived/check against the
+actual authorized topology, not imposed as its behaviour.
+
+Possible distinct *method* (only if physical evidence supports it):
+precompute or cheaply estimate spatial footprint from the activated-row
+bitmap and use it, with a small calibrated LUT, to choose between a direct
+single read, a dynamically partitioned read, and supported ADC/reference
+settings. The controller must not cheaply access the unknown exact dot
+product. Optimize across real readout cost, metadata and decoding errors.
+
+**Critical competitors:** DIB-CIM (activity and ADC choices), JSSC 2025
+Roy et al. SEC (BL/SL correction), Nature Communications 2023
+hardware-aware IR-drop modeling, row-aware calibration, and a joint tuned
+SEC+DIB baseline. IR-drop location effects and cumulative-wire-current
+models are old physics. Only a new, economical, verified controller or
+nontrivial predictive bound that changes a physical decision could earn
+novelty.
+
+Falsifier: equal-count spatial effects are negligible, the footprint is a
+poor held-out predictor with the actual 2T1MTJ/local-SL topology, the
+controller overhead dominates, or the tuned correction/adaptive baseline
+matches its quality/cost frontier.
+
+Further reference:
+https://www.nature.com/articles/s41467-023-40770-4
