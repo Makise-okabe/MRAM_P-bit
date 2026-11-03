@@ -16,6 +16,22 @@
 
 256 physical rows × 256 columns = 65,536 binary MTJ positions. The new E02 phase requires a **fresh** authorized physical read model: validated cell, BL/SL/WL interconnect, drivers, sensing, calibration, persistent mismatch and held-out circuit checks. No retired small-cell measurements are carried into the target model. A 256×256 numerical array is not physical extraction; physical sectors require real isolation.
 
+
+## 4 November update: revised CA2 and first new pilot
+
+The uploaded 17-page CA2 revision restores the original proposal title and establishes
+one **primary bounded development candidate**, F3 covariance-aware mapping, with F7
+Ising retained conditionally. This is not an accepted novelty claim.
+
+- **E01 exploratory**: separate digit-data 256-wide activation screen; frozen original FYP workload still missing.
+- **E03M**: constructed covariance counterexample, not hardware.
+- **E03Q newly executed**: finite-ADC/threshold-placement sensitivity on the same constructed fixture, with separate calibration and held-out chips; see [protocol and results](research/experiments/2026-11-04-E03Q-finite-adc-screen.md), [script](experiments/e03q_finite_adc_pilot.py) and [summary](experiments/results/E03Q_20261104_finite_adc_summary.json).
+- **E02 next physical gate**: independently rebuild/characterize the target 256×256 GF 22FDX readout in the authorized NUS environment. Retired eight-cell read measurements must never calibrate the new array.
+
+The **Overleaf report source** includes the revised research hierarchy and an E03Q
+result subsection. GitHub Actions regenerates
+\`report/MRAM_Pathfinding_Report.pdf\` and \`report/MRAM_Overleaf_Project.zip\`.
+
 ## Evidence policy
 
 Separate exact arithmetic, software workload structure, constructed statistical examples, new target-circuit simulations, extracted layout and measured silicon. Report only the evidence actually obtained. E03M is a mathematical construction; E09A is reference verification. F3 is a candidate, and the Ising F7 branch remains open.
