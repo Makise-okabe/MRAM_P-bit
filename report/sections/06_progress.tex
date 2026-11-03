@@ -25,9 +25,9 @@ under \texttt{experiments/results/}.
 \begin{tabularx}{\linewidth}{@{}p{0.43\linewidth}X@{}}\toprule
 Evidence & Current status / permissible interpretation\\\midrule
 E00 arithmetic and metadata tests & Passed software checks; no physical or task-level conclusion.\\
-E01 real workload screen & Implemented; waiting for a provenance-complete trace bundle.\\
+E01 real workload screen & Exploratory independent digits256 screen recorded; frozen FYP model traces remain pending.\\
 E02 target circuit/model & Contract/preflight and protocol prepared; physical inputs and validation missing.\\
-E03--E08 target intervention comparisons & Protocols prepared; target runs not performed.\\
+E03--E08 target intervention comparisons & E03Q constructed ADC sensitivity run; no target physical intervention performed.\\
 E09 Ising alternative & Held as a separate optional application, prerequisites unresolved.\\
 Novelty / useful hardware improvement & Not established for any candidate.\\\bottomrule
 \end{tabularx}
@@ -80,6 +80,56 @@ The result motivates a bounded prior-art and target pair-covariance check under 
 It does not complete E03 or change the open final-topic decision. The curated record is
 \path{experiments/results/E03M_20261104_covariance.json}; the method and proof are in
 \path{research/novelty/2026-11-04-covariance-mapping.md}.
+
+\subsection{E03Q: finite-ADC sensitivity (constructed-model pilot)}
+
+A new E03Q software experiment extends the separate mathematical E03M fixture without
+using any retired small-array measurements or foundry parameters. A \(256\times256\)
+binary-weight \emph{bookkeeping} fixture retains four prospective 64-row groups,
+two input bit cycles and one predeclared output column. Each read has 16 selected
+rows with eight MTJs of each nominal current state. Manufacturing variation is
+independent Gaussian with assumed 3\% cell-current coefficient of variation and
+persists across both cycles. The same 131,072 independent evaluation-chip assignments
+are paired across mappings; 65,536 separate chips select ADC-offset settings.
+A shared, oracle-like full-group mismatch correction is inherited from E03M
+and is not asserted physically feasible.
+
+The finite ADC is a declared uniform \emph{midrise} quantizer on [16,32] normalized
+current units followed by nearest quantized nominal references, lower-count tie-break
+and clipping. Four through seven bits and phase offsets of
+$-0.25$, 0 and $+0.25$ LSB are examined. The offset selected on calibration chips
+is frozen before the independent evaluation.
+
+\begin{table}[htbp]\centering\small
+\begin{tabular}{@{}lrrr@{}}\toprule
+Constructed decoder & Mapping A MSE & Mapping B MSE & Relative decrease (\%)\\\midrule
+Ideal midpoint & 0.068687 & 0.048462 & 29.4\\
+Fixed 6-bit ADC & 2.261963 & 1.917000 & 15.3\\
+Tuned 6-bit ADC & 0.122276 & 0.087631 & 28.3\\
+Tuned 7-bit ADC & 0.081520 & 0.057892 & 29.0\\\bottomrule
+\end{tabular}
+\caption{E03Q held-out, one-column Monte Carlo. Normalized integer-output MSE;
+no circuit, inference or energy result.}
+\end{table}
+
+The paired difference (A minus B) for the tuned 6-bit setting is 0.03465,
+with an approximate chip-level 95\% interval [0.02906,0.04023] under independent
+chip sampling. The fixed 4- and 5-bit operating points exhibit strong
+threshold-alignment artefacts, illustrating how calibration can dominate the
+comparison. The mappings have identical marginal Gaussian current laws by
+construction; their finite-sample empirical read-error frequencies are not exactly
+identical. This is a useful decoder-sensitivity check, but not a new MRAM mechanism
+or evidence of a useful trained mapper. All model inputs and output hashes are
+registered with the E03Q pilot.
+
+\subsection{External task-level leads and reproduction boundary}
+
+The latest externally supplied draft mentions neural mapping and noisy-Ising
+results from another discussion. Their raw outputs and source implementations were
+not independently reproduced here. They remain unverified external leads; no
+claimed agreement in outcome establishes a shared mechanism. Likewise, an
+incremental cached-field Ising error is not the same operator as full analog
+field recomputation.
 
 \subsection{E09A follow-up: exact Ising controls}
 
