@@ -1,0 +1,39 @@
+name: Build Overleaf-compatible report PDF
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'main.tex'
+      - 'references.bib'
+      - 'report/sections/**'
+      - '.github/workflows/build-report.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+      - name: Compile LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+          args: -pdf -interaction=nonstopmode -halt-on-error -file-line-error
+      - name: Publish PDF to report folder
+        run: |
+          mkdir -p report
+          cp main.pdf report/MRAM_Pathfinding_Report.pdf
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add report/MRAM_Pathfinding_Report.pdf
+          if ! git diff --cached --quiet; then
+            git commit -m "report: update compiled Overleaf PDF [skip ci]"
+            git push
+          fi
+      - name: Upload compiled PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: MRAM_Pathfinding_Report
+          path: main.pdf
