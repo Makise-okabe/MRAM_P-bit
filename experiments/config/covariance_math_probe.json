@@ -1,0 +1,22 @@
+{
+  "evidence_class": "illustrative_model_and_mathematical_verification",
+  "target_circuit_validated": false,
+  "purpose": "Test whether two mappings with equal read counts, activities and marginal decoded-error distributions can differ in reconstructed arithmetic error after group calibration.",
+  "rows": 256,
+  "columns": 256,
+  "group_rows": 64,
+  "activation_bits_used": [0, 1],
+  "normalized_cell_current_low": 1.0,
+  "normalized_cell_current_high": 2.0,
+  "assumed_cell_current_cv": 0.03,
+  "weight_seed": 4107,
+  "sampling_seeds": [20261104, 20261105, 20261106],
+  "samples_per_seed": 131072,
+  "batch_samples": 8192,
+  "monte_carlo_column": 0,
+  "calibration": "Both policies receive the true full-group current deviation. Test conditional-mean subtraction and full-group gain normalization separately.",
+  "decoder": "Ideal nominal midpoint count decoder, clipped to feasible 0..active_rows; no extra ADC quantization or misplaced references.",
+  "physics_exclusions": ["foundry characterization", "wire and driver models", "shared references or supply noise", "temporal noise", "energy measurement", "neural inference"],
+  "parameter_policy": "Constructed normalized example, not fitted to any retired trial or GF result; freeze before first run.",
+  "cost_claim": "Equal executed vector-read counts only; no energy or hardware benefit established."
+}

@@ -1,0 +1,13 @@
+{
+  "evidence_class": "workload_trace",
+  "dataset": null,
+  "model_sha256": null,
+  "quantization_sha256": null,
+  "layer": null,
+  "input_bitplane": null,
+  "weight_bitplane": null,
+  "source_export_command": null,
+  "split_purpose": "development",
+  "previously_inspected": true,
+  "notes": "Populate every provenance field. NPZ keys: X_cal[n,256], X_eval[n,256], W[256,256], cal_ids[n], eval_ids[n]. IDs must be disjoint and unique. Explain padding and channel mapping. No pickle objects."
+}

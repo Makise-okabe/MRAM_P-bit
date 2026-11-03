@@ -1,0 +1,21 @@
+{
+  "physical_rows": 256,
+  "physical_columns": 256,
+  "target_model_validated": false,
+  "field_operator": null,
+  "field_error_units": "target_integer_coupling_units",
+  "response_model_sha256": null,
+  "target_validation_artifact_sha256": null,
+  "coupling_encoding_sha256": null,
+  "calibration_policy_sha256": null,
+  "persistent_variation_source_sha256": null,
+  "temporal_noise_source_sha256": null,
+  "fixed_state_marginal_audit_sha256": null,
+  "notes": [
+    "Specify full-field analog recomputation versus incremental coefficient reads; they are different physical operators.",
+    "Define signed bit-plane capacity, transpose/dual-layout cost, initialization and refresh costs.",
+    "Persistent variation is fixed per chip; temporal noise needs a justified amplitude, spectrum/correlation and sampling interval.",
+    "Identical fixed-state marginals do not imply equal on-trajectory error rates under adaptive sampling.",
+    "This is an unresolved contract, not a model generator or a target response adapter."
+  ]
+}
