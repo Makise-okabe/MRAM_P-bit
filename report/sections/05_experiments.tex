@@ -53,6 +53,31 @@ The preflight currently reports missing model fields. No unverified transistor p
 ordering, target netlist generator or new Spectre execution is claimed by this reset.
 The target model must be connected to actual authorized circuit sources before running.
 
+\subsection{E03Q: finite-ADC decoder sensitivity}
+
+Before claiming a covariance-aware mapping advantage, specify the entire sensed-current
+transfer: input quantity and units, ADC full-scale and endpoints, bit depth, midrise or
+midtread code convention, reference calibration, saturation and clipping, and ties.
+Use nearest-\emph{quantized}-reference decoding rather than treating an ADC name as
+a complete electrical specification. Compare ideal midpoint decoding, fixed finite
+conversion and equally budgeted reference/full-scale tuning with persistent chip
+identities paired across both mappings.
+
+The constructed E03M fixture permits a diagnostic software-only E03Q extension while
+the actual E02 circuit remains unresolved. Its nominal active read has 16 selected
+cells with eight low- and eight high-current MTJs; current units are dimensionless.
+The pilot assumes a midrise ADC over [16,32], 4--7 output bits, and offsets
+$-0.25,0,+0.25$ LSB. Calibration selects a phase using independent chip assignments;
+the evaluation set is held out. These settings are explicitly \emph{illustrative}, not
+GF 22FDX reference, ADC or timing specifications.
+
+Test matched read counts, marginal error laws, decoded pair covariance and reconstructed
+MSE; separately report signed-error tails. If marginal laws are not demonstrably matched,
+the MSE gap cannot be attributed solely to covariance. Full task evaluation must
+add fixed-random, equal-budget best-of-random, shuffling, CAR, balancing, adaptive-block
+and calibrated sensing baselines. A reduced MSE is a first screening result, not an
+inference-failure or hardware-cost claim.
+
 \subsection{Fair comparisons and stopping}
 
 The revision-15 follow-up divides Ising screening into E09A exact software controls,
