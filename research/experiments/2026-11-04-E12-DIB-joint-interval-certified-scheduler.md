@@ -33,6 +33,11 @@ E12D: concatenate all 784 real FC1 rows using four E01 256-row blocks (last 240 
 ## Reproduce / source
 Code + numerical results + user-originated frozen E01 packet bundled as conversation download E12_DIB_novelty_candidate_package.zip (SHA256 7382f66a1217560431c7afc2b4631e7163ad1e7ac08032de6ccc2cf5209a5845). Main Python e12d_full_fc1_interval_scheduler.py SHA256 17b817bb90823f1629846f48cc9f638433b473cc014a3a6065e536d9be68c67f. **The ZIP and code were not uploaded to GitHub in this commit.** Avoid placing the E01 user's model bitplanes on a public repository without authorization.
 
+## CRITICAL IMPLEMENTATION CAVEAT — per-output conversions versus shared wordlines
+The E12D algorithm currently reorders **logical per-output binary partial-count conversions** independently for each of 128 output channels. A physical 256x256 MRAM macro has **shared wordline activity across columns**. The output-dependent schedule therefore cannot directly cut wordline activations or array-read latency unless we add per-column readout gating, buffers or physical sectors. The headline 17.396% is **not a reduction in measured global reads, WL pulses, energy or latency**. At best it indicates an ideal opportunity to skip per-output ADC conversions, with substantial extra controller costs. A new shared-WL schedule and realistic ADC conversion/wordline accounting are required before claiming deployable benefit.
+
+The downloadable ZIP README was amended accordingly. Updated ZIP SHA256: 43fa40d53ee021b6fafdc964625cb3a92d37514fd25e9f69c4b062b4c9938c05. The earlier ZIP hash in the first record refers to an earlier version of the README, not changed scientific data.
+
 ## Gates before academic novelty / FYP selection
 1. Inspect actual full DIB 14-page method via NUS library and BLC ReLU early-termination rule; reject originality if equivalent decision exists.
 2. Re-run full FC1 with actual model bias, then classification and later layers.
