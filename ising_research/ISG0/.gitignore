@@ -1,0 +1,9 @@
+# Independent ISG sandbox generated files only
+__pycache__/
+*.pyc
+*.log
+results/
+*.raw
+*.psf
+*.dspf
+*.scs
