@@ -66,6 +66,13 @@ Rather than require one tree per 33 distinct k-values, cluster the integer k=0..
 
 **Novelty is NOT certified.** The more defensible, testable gap is: an **exact, joint m/k-conditioned MAC-count reference tree with provable worst-case comparison depth and resource-constrained reference-bank grouping, instantiated for MRAM CIM**. Must inspect prior exact operand-conditioned ADC before asserting no equivalent work.
 
+
+### Concrete opposite-decision witness versus Algorithm 1 input-only policy
+Hold the input active-row count fixed at **m=8** for B=32. Then:
+- With weight-bit ones **k=8**, the hypergeometric count distribution lies on n=0..8; the **depth-cap-6** optimal first threshold is **n<=1**.
+- With weight-bit ones **k=24**, the allowed counts also lie n=0..8 but the hypergeometric distribution is shifted toward high intersections; the cap-6 optimal first threshold is **n<=6**.
+DIB's *supplied WL block-size Algorithm 1*, given the same input statistics and same settings, receives no k input and therefore cannot distinguish these two instances in its B_final decision. This demonstrates an algorithmically **different controller decision**, NOT a proof that the separate unpublished-to-us DIB DR-ADC cannot use weight statistics or that the proposed rule is publication-novel.
+
 ## Mandatory next Gate: physical implementation, not another generic synthetic sweep
 1. Check whether NUS-accessible intended GF NFET+student-MTJ **multirow** sense read produces monotone and non-overlapping count-current levels across position and mismatch; E11E verified only a constructed passive ladder, not this.
 2. Determine real ADC architecture: if every column cannot choose its own threshold independently and a single global reference is shared, per-column E15 tree benefits may incur serialization and disappear. A true matched DIB hardware comparison needs the missing full paper.
