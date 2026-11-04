@@ -38,6 +38,17 @@ The E12D algorithm currently reorders **logical per-output binary partial-count 
 
 The downloadable ZIP README was amended accordingly. Updated ZIP SHA256: 43fa40d53ee021b6fafdc964625cb3a92d37514fd25e9f69c4b062b4c9938c05. The earlier ZIP hash in the first record refers to an earlier version of the README, not changed scientific data.
 
+## E12E shared-wordline scheduling test (executed, independent DEV)
+To avoid assuming that 128 columns can independently reorder WL pulses, E12E forces **one global scheduling order for all 128 output channels for each input**. The joint priority is summed expected upper-bound tightening across the outputs. Channels may stop converting their own output when certified; the shared WL may still need to activate for other channels.
+
+On 256 independent DEV parents with 17,965,231 eligible logical output-count conversions:
+- Shared sign/MSB-first: 15,588,026 conversions (13.232% skipped).
+- Shared coefficient-magnitude-first: 15,143,450 (15.707% skipped).
+- **Shared joint-interval priority: 14,942,396 (16.826% skipped)**.
+- Advantage of joint over shared magnitude: **201,054 per-output conversions, +1.119 percentage points**, paired parent bootstrap 95% [1.076, 1.166] percentage points. Over sign/MSB: +645,630, +3.594pp [3.519, 3.673].
+- This does NOT establish saved physical WL activations, ADC energy, latency, implemented gating, or actual network accuracy.
+- Companion Python file e12e_shared_wordline_scheduler.py and E12E JSON are now in the conversation ZIP. ZIP updated SHA256: 70b31400f344f90d1540eed27ee616235ddebfd600eda0f61e448a1b4086bea3. Earlier hashes in the note describe earlier README/package revisions; numerical E12A-D outputs are unchanged.
+
 ## Gates before academic novelty / FYP selection
 1. Inspect actual full DIB 14-page method via NUS library and BLC ReLU early-termination rule; reject originality if equivalent decision exists.
 2. Re-run full FC1 with actual model bias, then classification and later layers.
