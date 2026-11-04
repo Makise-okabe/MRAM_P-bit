@@ -1,5 +1,11 @@
 # Post-E20: calibration and independence-baseline audit
 
+**Scope update, 5 November:** [ADR-0006](../decisions/ADR-0006-coupled-precision-failure-boundary-primary.md)
+archives CAMP as an alternative and adopts coupled-precision failure boundaries.
+The historical recommendation below does not override that user decision.
+The [NanoCiM full text has now been reviewed](../reviews/2026-11-05-NanoCiM-fulltext-CAMP-and-primary-scope.md);
+its specific rule differs from CAMP, while global novelty remains open.
+
 **Executed software research, 4 November 2026. No new Spectre, GF target, PEX,
 full-network accuracy, hardware cost or novelty result.** E15/E20 remain retired
 as principal novelty claims. CAMP-light remains a conditional investigation.

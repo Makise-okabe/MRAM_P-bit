@@ -79,3 +79,17 @@ numerical receipt. It does limit broad robustness claims. The new decoded-MSE
 selection objective fails against continuous-MSE selection and is not promoted.
 E23 remains pending; raw current droop is only an initial necessary gate and
 cannot substitute for matched post-calibration decoded-count/task comparison.
+
+
+## 5 November scope and full-text update
+
+[ADR-0006](../decisions/ADR-0006-coupled-precision-failure-boundary-primary.md)
+now archives this mapping alternative. The [complete NanoCiM review](../reviews/2026-11-05-NanoCiM-fulltext-CAMP-and-primary-scope.md)
+resolves the earlier full-text access gate: Eq.5 is a weight-overlap edge score
+for adjacency/TSP, without an explicit CAL input-coactivation matrix or CAMP's
+all-pair shared-wire position kernel. That specific difference is supported;
+useful superiority and publication novelty remain unproved. Table V's random
+mapping beats TSP at its reported dataset point, reinforcing the required
+strong controls. Do not restart the older CAMP-E23 microgate on this basis.
+The active E22/E23 labels in ADR-0006 refer to the separate coupled-precision
+pilot and boundary-predictor sequence, not the historical CAMP experiments.

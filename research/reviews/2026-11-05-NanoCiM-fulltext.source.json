@@ -1,0 +1,28 @@
+{
+  "review_date_Singapore": "2026-11-05",
+  "access": "user-supplied full licensed PDF; private local reading, no PDF/text/figure redistribution",
+  "DOI": "10.1109/TCASAI.2026.3661436",
+  "source_pdf_sha256": "70ab47f9b2a4864cd7bc2cce5286452dfdac04ddbd2ba00efc24ff6f80eeab5e",
+  "source_pdf_pages": 13,
+  "printed_pages": "190-202",
+  "full_text_read": true,
+  "visually_verified_pdf_pages": [
+    6,
+    7,
+    8,
+    10,
+    11
+  ],
+  "key_evidence": {
+    "mapping": "PDF pp.6-8, Section IV-A/B, equations 3-5, Figs.11-12",
+    "input_interface": "PDF pp.7-9, Section V, Figs.13-14",
+    "quantization": "PDF p.9, Section VI-A, input/weight/output 2/4/4 bits",
+    "results": "PDF p.10 Table V; p.11 Section VII identifies full-dataset MLP result",
+    "limitations": "TSP solver/route-cut specifics absent; no universal novelty or own experimental performance follows"
+  },
+  "review_sha256": "ef9cacd35eb21ec4f564a44d369a01140462f6bb9189ea96b4d82e2fff2d2078",
+  "active_scope_reference": "research/decisions/ADR-0006-coupled-precision-failure-boundary-primary.md",
+  "main_snapshot_read": "b19a4a00d92811413dfec700cff682eb11bd3569",
+  "new_circuit_or_task_experiment": false,
+  "licensed_source_committed": false
+}
