@@ -1,3 +1,10 @@
+# STATUS OVERRIDE — E24 COMPLETED ON NUS, 2026-11-05
+This document preserves the original pre-registered protocol. **The E24 GF run has finished**: 3,168 successful nominal GF NFET+student static MTJ DC circuit cases on 792 distinct masks (264 new CAL and 528 new DEV reused across four assumed R settings). Correcting the inferred Q transfer result at R5, pooled seven-bit wrong/528: raw **124**, near-transfer **59**, centroid-transfer **26**, **Q-transfer 7**. At newly interpolated R4 the figures are 86,33,12,**1**. Importantly, transferred Q still fails at high m=24, R5 on **7/108** DEV, with two sampled adjacent ranges overlapping. Frozen coefficients are old E22 m16 CAL, but EVERY method uses NEW per-m/per-R CAL reference centroids and ADC window; this is NOT end-to-end calibration-free transfer. [Read completed evidence](2026-11-05-E24-COMPLETE-cross-activity-GF-Q-transfer.md).
+
+No extracted GF interconnect, physical ADC, actual 256×256 2T1MTJ array, MTJ mismatch or neural inference proven.
+
+---
+
 # E24 preregistered: cross-activity transfer of GF-current suffix-load correction
 **Date:** 2026-11-05. **Status: SCRIPT PREPARED AND MOCK-TESTED, BUT NUS GF SPECTRE E24 NOT RUN.** Current script is supplied in the ChatGPT conversation as `e24_activity_transfer_gf.py` and `E24_activity_transfer_package.zip` (archive SHA256 `55e30b372c22eed815d24f6fe03f435f3ff73d45eaf50cf40e18238d15f7c548`); the script is **not** yet a tracked file in this GitHub repo. Source SHA256: `da8925f9c59162b157ebd1270832c27ef7d67bdac4b7260d86669bba2b60ce3b`. Source passed Python3.6 grammar parsing, local module selftest and separately generated end-to-end mock complete-data analysis; these are **NOT** NUS Spectre results.
 
