@@ -226,16 +226,22 @@ def evaluate(data):
         for b in (0,4,5,6,7):
             for policy in ('raw','offset_only','offset_near'):
                 wrong=0; abs_err=0
+                sat_low=0; sat_high=0
                 for x in dev:
                     s=x['I']
                     if policy!='raw':s-=offset
                     if policy=='offset_near':s-=slope*(x['near']-fmean)
+                    if b>0:
+                        sat_low += (s < low)
+                        sat_high += (s >= high)
                     guess=predict(s,levels,b,low,high)
                     wrong+=(guess!=x['n'])
                     abs_err+=abs(guess-x['n'])
                 errs['%s_b%s'%(policy,b)]={'wrong':wrong,'total':len(dev),
                     'error_rate':wrong/float(len(dev)),
-                    'count_MAE':abs_err/float(len(dev))}
+                    'count_MAE':abs_err/float(len(dev)),
+                    'saturated_low':sat_low if b>0 else None,
+                    'saturated_high':sat_high if b>0 else None}
         # Adjacent count range overlaps; descriptive, not probability.
         spans={}
         for n in range(17):
@@ -257,6 +263,9 @@ def evaluate(data):
             print('  ',pol,'continuous/4/5/6/7-bit ERR:',
                   ' '.join('%d/%d'%(errs['%s_b%d'%(pol,b)]['wrong'],len(dev))
                            for b in (0,4,5,6,7)))
+            q=errs['%s_b5'%pol]
+            print('     ADC INPUT SATURATION low=%d high=%d of %d'%(
+                  q['saturated_low'],q['saturated_high'],len(dev)))
     output['cautions']=[
        'Full-scale and nominal count levels learned on CAL at assumed R0 only.',
        'The ADC is a mathematical uniform quantizer, not Spectre ADC circuitry.',
@@ -278,7 +287,10 @@ def selftest():
     for b in (6,7):
         lo=levels[0]-.5e-6;hi=levels[-1]+.5e-6
         assert all(predict(t,levels,b,lo,hi)==n for n,t in enumerate(levels))
-    print('E22_SELFTEST_PASS: 17 count masks, CAL DEV separation, bit quantizer. NOT Spectre.')
+    for test_i in (lo-1e-6,lo,levels[4],levels[10],hi,hi+1e-6):
+        for b in (4,5,6):
+            assert ADC(test_i,b,lo,hi)==ADC(test_i,b+1,lo,hi)//2
+    print('E22_SELFTEST_PASS: 17 count masks, CAL DEV, nested quantizer. NOT Spectre.')
 
 def main():
     ap=argparse.ArgumentParser(description=__doc__)
