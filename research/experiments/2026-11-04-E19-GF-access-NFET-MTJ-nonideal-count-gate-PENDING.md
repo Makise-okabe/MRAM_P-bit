@@ -31,3 +31,13 @@ python3 -u experiments/e19_gf_nfet_mtj_nonideal_count_gate.py run \
   --chunk-size 16 --vread .05 --vwl .8 --timeout-sec 240
 ```
 All generated decks, original PDK includes and raw data remain private under `~/mram_private/E02_256x256/E19`. Only summary numbers should be pasted back; do not upload private model files.
+
+
+## NUS run 1 — aborted before Spectre (student log, 2026-11-04)
+
+- Original script SHA256: `1656e467139c2cd1ce9f1ceaf7673cb57cc3adbe78433f35022eb17793b2451b`.
+- NUS Python 3.6.8; E19_SELFTEST passes, GF simulator and custom MTJ SHA available, probe discovers 80 templates. Auto-selected local historical source `simulations/CIM1_A2_MOS_PAIRING/CELL_E2_TOPOLOGY_01/R100_C50__C1_1T_W80__P/input.scs`.
+- **Failure** `E19_ERROR: Cannot read .../input.scs: 'str' object has no attribute 'read_text'`. Root cause: `choose_template` returned `parse_template(p)['source']` string; `parse_template` then passed string to `read_text`, which expected `Path`.
+- Shell stopped at this command due to `set -e`. **The 4+4 and 12+12 CAL/DEV Spectre studies DID NOT RUN.** No read current, threshold errors, line-R/PEX or E15 conclusion.
+- Corrective helper committed at `experiments/e19_patch_runner_v2.py`, GitHub commit `7920b2a83acef91fb0c18f32d8b126b199a293c1`. It requires the exact original SHA256; writes a separate untracked `e19_gf_nfet_mtj_nonideal_count_gate_v2.py` SHA256 `b6bec40bc234fac406d191229146354a5fe47c6969fb6db6a672e607ddf83e54`, preserving the original. Also strengthens the local selftest to call `choose_template` with an explicit mock path. Verified with Python3.6-syntax parser and an isolated end-to-end mock preflight. **NUS Spectre still pending**.
+- Next run: `git pull`; `python3 experiments/e19_patch_runner_v2.py`; then `python3 experiments/e19_gf_nfet_mtj_nonideal_count_gate_v2.py run ...`. Treat any new simulator failure as separate, not as a physically measured null.
