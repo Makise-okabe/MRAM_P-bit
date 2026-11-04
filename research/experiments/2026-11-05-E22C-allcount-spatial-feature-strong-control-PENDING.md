@@ -1,3 +1,8 @@
+# STATUS OVERRIDE — E22C COMPLETED (2026-11-05)
+The experiment below was run successfully on NUS using GF currents already produced in E22. **Observed at assumed 5Ω/segment, 7-bit mathematical ADC, 204 previously inspected DEV masks:** raw 60, near 25, centroid 5, suffixQ **0** wrong; corrected adjacent-count interval overlaps 14/16, 9/16, 1/16, 0/16 respectively. [Read actual completed E22C result](2026-11-05-E22C-COMPLETE-suffixQ-GF-current-spatial-ablation.md). This is a positive *retrospective development* result, not a publication novelty certification. The next stronger gate is independent fresh GF masks and unobserved R4: [E23D executable](../../experiments/e23d_freshmask_q_generalization.py).
+
+---
+
 # E22C — Pre-registered cheap spatial-calibration control after successful E22B audit
 **2026-11-05: Prepared; NUS execution PENDING.** Do NOT invent any E22C GF result.
 
