@@ -92,3 +92,48 @@ energy saving, or innovation.
 Return the NUS console log (or the private E24A JSON with current paths
 redacted). The next decision is whether to stop the ADC-edge hypothesis,
 or design a more discriminating multi-count physical experiment.
+
+## User-executed E24A outcome: INVALID ADC RANGE (2026-11-04)
+
+The user ran the two specified private E19 JSON files on NUS Singularity.
+Self-test PASS. Across **each** of assumed R=0,1,5 ohm/segment, both
+28uA and 29uA full-scale ranges, and every width from 3 through 8 bits,
+**all 8/8 and 24/24 DEV samples were saturated** respectively.
+Midpoint, CAL-fitted, and inherited decoders all scored 4/8 and 12/24 errors
+respectively (balanced adjacent classes). These values **are not evidence
+for or against ADC precision non-monotonicity**, because the fixed E03-style
+ranges are inappropriate for E19 current values. Saturation direction was
+not printed in the condensed console log; do not infer it from totals.
+
+NUS user log E24A output (private, not checked into GitHub):
+`~/mram_private/E02_256x256/E24A/E24A_20261104T160655_15/e24a_results.json`.
+The committed E24B replacement performs **CAL-only**, per-run/per-resistance
+range selection and includes saturation checks. E24B has **not yet been run
+on actual E19 data**; there is no positive ADC-coupling evidence.
+
+### E24B rerun (existing E19 files; no new Spectre)
+
+~~~bash
+set -euo pipefail
+cd "$HOME/MRAM_Path_Finding"
+git pull --ff-only
+python3 -m py_compile experiments/e24b_e19_calrange_nested_adc_falsifier.py
+python3 experiments/e24b_e19_calrange_nested_adc_falsifier.py --selftest
+OUT="$HOME/mram_private/E02_256x256/E24B/E24B_$(date -u +%Y%m%dT%H%M%S)_$$"
+mkdir -p "$OUT"
+python3 -u experiments/e24b_e19_calrange_nested_adc_falsifier.py \
+  "$HOME/mram_private/E02_256x256/E19/E19_GF_NFET_MRAM_20261104T144120_179/e19_results.json" \
+  "$HOME/mram_private/E02_256x256/E19/E19_GF_NFET_MRAM_20261104T144132_384/e19_results.json" \
+  --bits 3,4,5,6,7,8 \
+  --cal-scales 1.5,2.0,3.0 \
+  --cal-margins 0.15,0.25,0.35 \
+  --out "$OUT/e24b_results.json" | tee "$OUT/e24b_console.log"
+echo "E24B_OUTPUT_DIR=$OUT"
+~~~
+
+E24B calibrates each ADC offset from CAL minimum minus 0.15, 0.25,
+or 0.35 times the CAL span, and full scale from 1.5, 2.0, or 3.0
+CAL spans. These nine predeclared combinations never depend on DEV ranges.
+If DEV clipping persists for some combinations, report it explicitly and do
+not claim non-monotonicity from those configurations. Same E19 narrow counts,
+assumed R, previously inspected DEV, no actual ADC or full-array PEX.
