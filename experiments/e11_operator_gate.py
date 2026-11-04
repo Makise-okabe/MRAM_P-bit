@@ -166,11 +166,13 @@ def analyze(path,out):
 
 def main():
     ap=argparse.ArgumentParser(description=__doc__)
-    sub=ap.add_subparsers(dest='mode',required=True)
+    sub=ap.add_subparsers(dest='mode')  # Python 3.6: required= introduced in 3.7
     a=sub.add_parser('audit');a.add_argument('--out',type=Path,required=True)
     t=sub.add_parser('template');t.add_argument('--out',type=Path,required=True)
     e=sub.add_parser('analyze');e.add_argument('--csv',type=Path,required=True);e.add_argument('--out',type=Path,required=True)
     args=ap.parse_args()
+    if args.mode is None:
+        ap.error('Choose one of: audit, template, analyze')
     if args.mode=='audit':audit(args.out)
     elif args.mode=='template':template(args.out)
     else:analyze(args.csv,args.out)
