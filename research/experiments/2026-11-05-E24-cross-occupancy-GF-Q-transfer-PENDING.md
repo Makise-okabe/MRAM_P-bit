@@ -37,3 +37,10 @@ test -f "$RESULT"
 python3 -u experiments/e24_activity_transfer_gf.py analyze --fresh "$RESULT" --out ~/mram_private/E02_256x256/E24/E24_cross_activity_$(date +%Y%m%d_%H%M%S).json
 ```
 No PDK, licensed decks, raw current traces or private per-mask arrays should be committed publicly.
+
+
+## Extra local preflight verification (still NOT NUS GF result)
+- The downloaded E24 source passed Python3.6 AST grammar parsing and `selftest`.
+- An independently generated **full artificial E22 training JSON + fresh E24 test JSON** exercised all 4 activity scenarios ×4 assumed Rs, CAL-only slope training, interval correction, quantizer and report writes, producing `E24_MOCK_END_TO_END_PASS` for the constructed linear-Q channel. The synthetic 7bit channel was NOT forced to score zero: real ADC quantization can lose information even with an analytically exact analog correction. This prevents inappropriate selftest assumptions.
+- An E19 netlist-generation mock generated **32 hvtnfet and 32 student MTJ branches, exactly m=8 active WLs, k=16 P states, and 32 assumed 3Ω wire segments**, checked as text. No foundry PDK or actual Spectre invoked.
+- E24 script SHA256 remains `da8925f9c59162b157ebd1270832c27ef7d67bdac4b7260d86669bba2b60ce3b`. These checks improve runner integrity but cannot establish NUS circuit behavior or transfer performance.
