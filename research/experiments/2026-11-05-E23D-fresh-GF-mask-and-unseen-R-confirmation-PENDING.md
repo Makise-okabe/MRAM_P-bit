@@ -1,3 +1,10 @@
+# STATUS OVERRIDE — E23D COMPLETED ON NUS (2026-11-05)
+The frozen protocol below is **not pending**. The user executed all 2,448 GF compact-model Spectre DC cases on 408 genuinely new spatial masks ×6 assumed resistances. The old E22 CAL fit was frozen; R4 was **interpolated** from old R3/R5, without fitting on R4. At assumed R5, 7bit wrong/408 raw=111, near=55, centroid=9, suffixQ=**0**; at unseen R4 raw=79, near=34, centroid=2, suffixQ=**0**. [Completed full E23D result](2026-11-05-E23D-COMPLETE-fresh-mask-GF-Q-validation.md).
+
+No actual GF 256×256 interconnect extraction, ADC hardware, mismatched MTJs, variable m/k or full-network task has been demonstrated. E24 cross-activity validation is the next experiment; E23D is positive evidence for one nominal 32-row constructed network, not novelty certification.
+
+---
+
 # E23D PRE-REGISTERED fresh GF-mask confirmation of E22C Q correction
 **Date:** 2026-11-05. **State:** CODE COMMITTED, no new NUS run or scientific output yet. Please do not report E23D as passed.
 
