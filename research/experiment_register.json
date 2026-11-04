@@ -241,6 +241,25 @@
       "note": "Existing public-repository record at c2e4b396; preserved during the resource audit, not rerun or independently checked by the NUS-runner work. Not target-device, real ADC or end-to-end task evidence.",
       "physical_results_available": false,
       "acceptance_budgets": null
+    },
+    {
+      "id": "POST_E20_CALIBRATION_AUDIT",
+      "title": "Correct independent Bernoulli moments and audit calibration-aware mapping objectives",
+      "status": "completed_constructed_model_only_no_novelty_pass",
+      "prerequisites": [
+        "Frozen E01 private packet",
+        "E22 private source/result package"
+      ],
+      "artifacts": [
+        "research/experiments/2026-11-04-post-E20-calibration-and-CAMP-independence-audit.md",
+        "experiments/postcal_mapping_audit_v3.py",
+        "experiments/camp_independence_ablation_audit.py",
+        "experiments/results/post_e20_calibration_audit_summary.json",
+        "experiments/results/camp_independence_audit_summary.json"
+      ],
+      "note": "Correct C_ii=p_i, not p_i^2; frozen E22D six MSE/count outcomes exactly reproduced. CAMP-light retains 10.31%/11.49% DEV block-MSE gain vs corrected independent light for zero-rate/CAR and loses in original grouping. Separate monolithic assumed-column finite-ADC/strong-calibration screen shows only 0.54% CAMP vs joint-sort gain at R5 with descriptive interval spanning zero; proposed decoded-MSE selector loses to continuous-MSE selector. Retain CAMP for one bounded physics/prior-art gate only. No GF/PEX/inference/cost/novelty result.",
+      "physical_results_available": false,
+      "acceptance_budgets": null
     }
   ],
   "screening_priority": [
