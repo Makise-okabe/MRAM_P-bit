@@ -63,3 +63,26 @@ If `DeltaI_count` is ill-defined under shared loading, report the full condition
 Falsify a spatial mechanism if matched read patterns collapse under proper full-array geometry and practical calibration, or if differences are much smaller than new target ADC/thermal/temporal uncertainty. If the mechanism survives, compare against **per-column affine**, **row-weighted / SEC-style** correction, **ADC reference tuning**, and simple shuffling before proposing a new circuit or mapping method.
 
 **No post-hoc novelty certification:** downstream F3 is a distinct cross-cycle decoded covariance problem, not automatically explained by within-cycle spatial dispersion. The Ising F7 branch remains possible but is not part of this run.
+
+## Proposed first interaction control (4 November follow-up; not executed)
+
+See the [physical-first proposal assessment](../reviews/2026-11-04-spatial-footprint-and-interaction-probe.md).
+After the new unit-cell/interface and declared array-model gates, add a bounded
+single-row/pair diagnostic before a broad positional sweep:
+
+    C_ij = I_{i,j} - I_i - I_j + I_0.
+
+This vanishes for an additive fixed-row response, including position-dependent gains.
+Use the same analog sensing observable, initialization, waveform, calibration and
+sample rule. Start from Z0, four single-row cases (near P/AP, far P/AP), and four
+matched P/AP pairs (near/near, far/far and both near/far state assignments): nine masks.
+The entire declared array and background states remain present. Match composition
+across every conducting column, not only the observed column.
+
+Compare common-sample and settled residuals, numerical convergence and a declared
+wire-resistance/periphery control. A nonzero residual alone can reflect count-only
+nonlinearity or driver/sensor effects. Require relevant pair-dependent residuals after
+practical calibration, then compare cheaper count/centroid descriptors, longer fixed
+sampling, reference tuning and the applicable SEC/adaptive-read combination. This is
+a proposed discriminator, not a new mathematical technique, controller implementation
+or claimed MRAM result; all original E02 physical-validation gates remain in force.
