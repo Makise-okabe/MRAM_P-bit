@@ -1,3 +1,13 @@
+# CURRENT EXPERIMENT UPDATE — 2026-11-05
+
+**E22–E22C executed on NUS:** 1,530 GF access-NFET/static-MTJ DC circuit cases with assumed (NOT PEX) BL wire resistance; 17 count classes. The E22 frozen-reference failure was mostly a calibration artifact; E22B per-R CAL ADC and near repair left 25/204 errors at assumed 5Ω/segment, 7bit mathematical ADC. **E22C improves this on the same previously inspected DEV data:** per-R CAL suffix-load Q correction leaves **0/204 errors at 5Ω**, versus near **25/204**, centroid **5/204**, raw **60/204**; no adjacent sampled overlaps after Q correction. This is a positive development result, **not independently confirmed or novel yet**.
+
+**Immediate priority: E23D new GF mask confirmation** (code/pre-registration in [E23D](experiments/2026-11-05-E23D-fresh-GF-mask-and-unseen-R-confirmation-PENDING.md)). It freezes all Q/centroid/near coefficients, count centroids and ADC reference calibration on OLD E22 CAL only, uses 24 NEW DEV masks ×17 counts=408 fresh masks across assumed R=0/1/2/3/**4**/5Ω = 2,448 new GF DC cases, including R4 previously unobserved and interpolated without CAL. Requires NUS execution; **not yet a measured E23D result**. Still m=k16; multi-occupancy, fixed-chip variation, geometry/PEX, physical ADC and full-network inference follow after independent screen.
+
+Original research direction remains coupled precision and physical non-idealities. Ising and generic physical mapper remain archived alternatives. Any narrower suffixQ invention claim must survive full prior art and strong physically credible control costs.
+
+---
+
 # ACTIVE PRIORITY OVERRIDE — 2026-11-05 (user decision)
 **Primary FYP direction now frozen:** *Characterizing Reliability and Failure Regimes of Memory-Centric Neural Inference Under Coupled Precision and Hardware Non-Idealities*. See [ADR-0006](decisions/ADR-0006-coupled-precision-failure-boundary-primary.md) and [pending E22](experiments/2026-11-05-E22-coupled-precision-17count-GF-PENDING.md).
 
