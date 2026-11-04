@@ -178,3 +178,15 @@ Full actual-results archive: [E22 results and validity audit](experiments/2026-1
 - **Do NOT claim that more ADC bits intrinsically worsen hardware inference:** nested ADC quantization preserves low-bit information. Larger errors from high-resolution specific *frozen reference decoder* indicate mismatched codebook/classifier choices. 4bit has fewer than 17 codes and necessarily merges some count levels.
 - Strong refutation needed **without new Spectre**: committed [E22B executable](../experiments/e22b_decoder_calibration_falsifier.py) and [preregistered audit](experiments/2026-11-05-E22B-CAL-only-decoder-falsifier-PENDING.md) compare per-R CAL count centroids, fixed ADC code→count LUT, reprogrammed ADC fullscale plus LUT, post-ADC near correction, and sampled adjacent-count separability. **E22B awaiting student's run; no result known.**
 - Current primary FYP hypothesis remains coupled precision×physical nonidealities failure-boundary predictor; any originality/design-guidance claim must survive strong CAL-only reconfiguration baselines, and only real GF transistor compact model with explicitly assumed R has been tested so far.
+
+
+## E25CS — incremental decoded-error placement (5 November 2026)
+
+Implemented CS-informed QAP initialization, direct decoded-W4A8-MSE row swaps, sparse dependency filtering and a transfer-matrix segment-tree circuit oracle. [Protocol](protocols/E25CS-incremental-decoded-error-placement.md) and [executed discovery record](experiments/2026-11-05-E25CS-incremental-decoded-error-discovery.md).
+
+**Executed constructed-model result:** first256 FC1 rows/eight outputs, 128 CAL (64 calibration fit/64 swap selection), 256 previously inspected DEV, same group memberships/reads and per-group centroid calibration. At assumed R5, decoded-MSE vs CAMP-light DEV MSE: zero-rate19802.732 vs23279.458 (14.93% lower), CAR20432.028 vs23582.553 (13.36% lower). Continued Q with same candidate stream:23179.291 and22555.159. Full/sparse/tree implementations choose exactly matching swaps and mappings. Correct Bernoulli independent-activation diagonal retained.
+
+**Required negatives:** count errors increase; R1 can worsen and CAR R10 worsens. Training only eight outputs and testing all128/all four FC1 row blocks yields decoded132738.042 vs CAMP116609.516, approximately13.83% WORSE. Full128-output search remains prepared, not executed here. Existing DEV is exploratory; no physical or network reliability advantage is established. Timings fluctuate with host load; no stable speedup/energy claim. Actual frozen checkpoint absent locally: neural results BLOCKED, not fabricated. All128-output NUS search plus optional hash-checked network propagation is bundled with existing E22C/E23A current diagnostics.
+
+**Evidence boundary:** exact passive linear ladder with assumed shunts/wires, NOT GF MOS/256x256 PEX/actual ADC. No invented graph, segment-tree or general mapping novelty claim; NanoCiM/fast-circuit-solver comparison and target validation remain open. E24B terminal audit confirms no CAL-fit precision regression in the24-DEV confirmation; small-run regressions are avoided by inherited coarse decisions.
+

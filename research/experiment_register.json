@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_date": "2026-11-04",
+  "updated_date": "2026-11-05",
   "decision_record": "research/decisions/ADR-0001-research-reset.md",
   "selected_core_method": null,
   "experiments": [
@@ -239,6 +239,27 @@
         "research/experiments/2026-11-04-E03Q-independent-reproduction-audit.md"
       ],
       "note": "Existing public-repository record at c2e4b396; preserved during the resource audit, not rerun or independently checked by the NUS-runner work. Not target-device, real ADC or end-to-end task evidence.",
+      "physical_results_available": false,
+      "acceptance_budgets": null
+    },
+    {
+      "id": "E25CS",
+      "title": "Incremental exact passive-circuit oracle and decoded-error within-group placement",
+      "status": "executed_partial_model_screen_full_output_and_task_pending",
+      "prerequisites": [
+        "Frozen E01 packet",
+        "E22 CAMP baseline",
+        "Independent final holdout and target readout validation remain outstanding"
+      ],
+      "artifacts": [
+        "experiments/e25_incremental_adc_mapping.py",
+        "scripts/run_e25cs_batch.sh",
+        "research/protocols/E25CS-incremental-decoded-error-placement.md",
+        "research/experiments/2026-11-05-E25CS-incremental-decoded-error-discovery.md",
+        "experiments/results/E25CS_20261105_exploratory_summary.json",
+        "experiments/results/E24B_20261105_terminal_audit.json"
+      ],
+      "note": "Partial 8-output model MSE improves at R5, but 8-output fitness fails transfer to full128-output evaluation; no GF E25CS or actual network result. NUS all128-output search and optional frozen-network propagation prepared. Existing full E22 GF data remains a separate calibration mechanism study.",
       "physical_results_available": false,
       "acceptance_budgets": null
     }

@@ -1,0 +1,139 @@
+{
+  "evidence": "CONSTRUCTED SOFTWARE BENCHMARK, NOT HARDWARE",
+  "results": [
+    {
+      "rows": 32,
+      "events": 1024,
+      "proposals": 96,
+      "backend": "full",
+      "setup_seconds": 0.0007245870001497678,
+      "query_seconds": 0.038242278998950496,
+      "total_seconds": 0.038966865999100264,
+      "cache_bytes": 0,
+      "checksum": 33.629918136981935
+    },
+    {
+      "rows": 32,
+      "events": 1024,
+      "proposals": 96,
+      "backend": "sparse",
+      "setup_seconds": 0.00033812100082286634,
+      "query_seconds": 0.018108323998603737,
+      "total_seconds": 0.018446444999426603,
+      "cache_bytes": 0,
+      "checksum": 33.629918136981935
+    },
+    {
+      "rows": 32,
+      "events": 1024,
+      "proposals": 96,
+      "backend": "segment",
+      "setup_seconds": 0.003071438000915805,
+      "query_seconds": 0.02774514900011127,
+      "total_seconds": 0.030816587001027074,
+      "cache_bytes": 2064384,
+      "checksum": 33.62991813698194
+    },
+    {
+      "rows": 64,
+      "events": 1024,
+      "proposals": 96,
+      "backend": "full",
+      "setup_seconds": 0.0007946459991217125,
+      "query_seconds": 0.04920519599909312,
+      "total_seconds": 0.04999984199821483,
+      "cache_bytes": 0,
+      "checksum": 63.4623991780072
+    },
+    {
+      "rows": 64,
+      "events": 1024,
+      "proposals": 96,
+      "backend": "sparse",
+      "setup_seconds": 0.0008934569996199571,
+      "query_seconds": 0.03475846800211002,
+      "total_seconds": 0.03565192500172998,
+      "cache_bytes": 0,
+      "checksum": 63.4623991780072
+    },
+    {
+      "rows": 64,
+      "events": 1024,
+      "proposals": 96,
+      "backend": "segment",
+      "setup_seconds": 0.00775686199995107,
+      "query_seconds": 0.03856070599795203,
+      "total_seconds": 0.0463175679979031,
+      "cache_bytes": 4161536,
+      "checksum": 63.4623991780072
+    },
+    {
+      "rows": 128,
+      "events": 1024,
+      "proposals": 96,
+      "backend": "full",
+      "setup_seconds": 0.002339115999347996,
+      "query_seconds": 0.11872216799747548,
+      "total_seconds": 0.12106128399682348,
+      "cache_bytes": 0,
+      "checksum": 105.94615672390002
+    },
+    {
+      "rows": 128,
+      "events": 1024,
+      "proposals": 96,
+      "backend": "sparse",
+      "setup_seconds": 0.0014135829987935722,
+      "query_seconds": 0.07215384200026165,
+      "total_seconds": 0.07356742499905522,
+      "cache_bytes": 0,
+      "checksum": 105.94615672390002
+    },
+    {
+      "rows": 128,
+      "events": 1024,
+      "proposals": 96,
+      "backend": "segment",
+      "setup_seconds": 0.0108915499986324,
+      "query_seconds": 0.04282803400201374,
+      "total_seconds": 0.05371958400064614,
+      "cache_bytes": 8355840,
+      "checksum": 105.94615672390002
+    },
+    {
+      "rows": 256,
+      "events": 1024,
+      "proposals": 96,
+      "backend": "full",
+      "setup_seconds": 0.004167664999840781,
+      "query_seconds": 0.24193630299851066,
+      "total_seconds": 0.24610396799835144,
+      "cache_bytes": 0,
+      "checksum": 137.94097081610676
+    },
+    {
+      "rows": 256,
+      "events": 1024,
+      "proposals": 96,
+      "backend": "sparse",
+      "setup_seconds": 0.0028670350002357736,
+      "query_seconds": 0.13059004200113122,
+      "total_seconds": 0.133457077001367,
+      "cache_bytes": 0,
+      "checksum": 137.94097081610676
+    },
+    {
+      "rows": 256,
+      "events": 1024,
+      "proposals": 96,
+      "backend": "segment",
+      "setup_seconds": 0.02364141499856487,
+      "query_seconds": 0.04767641500075115,
+      "total_seconds": 0.07131782999931602,
+      "cache_bytes": 16744448,
+      "checksum": 137.94097081610673
+    }
+  ],
+  "source_sha256": "d751f0ec13e2bf60714f0273e2c77db2ee32601b01cdab3da4e9c529dbc430eb",
+  "timing_caveat": "Single illustrative microbenchmark on synthetic p_zero=0.8, not a hardware or representative-workload speedup claim."
+}
