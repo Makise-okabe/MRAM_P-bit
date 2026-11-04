@@ -47,7 +47,9 @@ untraceable numbers into prose. A failed candidate is reported as rejected, not 
 The [resource audit and executable first-run protocol](experiments/2026-11-04-resource-audit-and-first-run.md)
 record which legacy neural assets can be reused and which electrical evidence stays
 excluded. E01R verifies runner readiness with 27 software tests and the expected local
-missing-resource preflight. The actual frozen-MNIST E01 and physical E02 remain unrun.
+missing-resource preflight. The later [E01 workload audit](experiments/2026-11-04-E01-frozen-MNIST-workload-audit.md)
+records the user-executed frozen-MNIST run. It adds workload/ideal-arithmetic evidence,
+not target circuit, noisy task or energy results. E02 target validation remains open.
 
 The [bounded queue](04_screening_queue.md), ADR-0003 and [source review](reviews/2026-11-04-claude-revision15.md) record why Ising is retained conditionally. E09A checks exact references and the cache-drift control; E09B/C remain unrun target studies. Preserve the distinction between external toy claims, software identities and a new transferable contribution.
 
@@ -66,3 +68,17 @@ RC in the shared target model and distinguish static loading, settling, persiste
 mismatch and temporal noise. The eventual CA2 method claim requires one distinct
 implemented intervention plus a useful strong-baseline comparison; characterized
 distributions alone do not satisfy the user's chosen method/design objective.
+
+## Scope-presentation correction — ADR-0005
+
+[ADR-0005](decisions/ADR-0005-one-mapping-study-and-supporting-tools.md) explicitly
+corrects the unrecorded promotion of spatial read control into a replacement
+top-level candidate. Present the three original discussion topics consistently:
+mapping as the main method, failure prediction as its validated supporting tool,
+and Ising as optional. A controller is a gated extension of the mapping study.
+Preserve the earlier narrative as history; do not imply supervisor approval.
+
+The [replacement WhatsApp text](communications/2026-11-04-prof-fong-mapping-focus-draft.md)
+is a draft, not a sent message. The suggested 10-30% matched-failure read-saving
+range is not accepted as a target-array forecast. E01 conventional CAR/sorting
+counts do not establish that outcome or a new method's incremental gain.

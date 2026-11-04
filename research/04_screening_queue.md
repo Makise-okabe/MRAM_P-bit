@@ -1,5 +1,15 @@
 # Bounded screening queue and elimination decisions
 
+## Current organization — ADR-0005
+
+One main mapping study (F3), a validated supporting predictor (F1), and optional
+Ising work (F7). Spatial H1/E02-A is the physical gate; runtime split-read control
+is a conditional extension within F3, not a new top-level candidate. The E01
+workload screen is completed; E02 target electrical validity remains the next gate.
+Do not turn skipped-read counts into matched-failure or energy improvements.
+[Decision and corrected communication](decisions/ADR-0005-one-mapping-study-and-supporting-tools.md).
+
+
 ## 4 November follow-up (ADR-0004, after newer 17-page draft)
 
 F3 is the **first bounded intervention** under the original proposal's
@@ -16,8 +26,10 @@ target physical readout or the usefulness of a deployable mapper.
 See \`experiments/e03q_finite_adc_pilot.py\` and
 \`research/experiments/2026-11-04-E03Q-finite-adc-screen.md\`.
 
-**E01:** the independently trained digits256 data pilot is exploratory;
-the frozen original FYP network trace is still missing.
+**E01 update:** the frozen-MNIST workload run is now user-executed and audited in
+[the E01 record](experiments/2026-11-04-E01-frozen-MNIST-workload-audit.md).
+It measures prospective reads/activity, with no target decoded-error samples or
+noisy inference failure. The independent digits256 pilot remains exploratory.
 **E02:** no new GF 22FDX 256x256 transistor-level/PEX target array or
 validated decoder yet. Target circuit model and readout details remain
 the physical gate before E03 map optimization or Ising E09B testing.
@@ -65,7 +77,7 @@ automatically rescue a failed method by adding an Ising chapter.
 | Step | Experiment / concrete question | Ready state and output | Eliminate or narrow when |
 |---|---|---|---|
 | 0 | E00, E03M and E09A: arithmetic, covariance witness, exact Ising reference and cache controls | Completed software/constructed evidence only | Any arithmetic or identity check fails |
-| 1 | E01: real-trace occupancy, skipping and mapping opportunity | Tool implemented; actual frozen trace bundle needed | Claimed savings come only from inactive-feature packing, or no useful mapping opportunity remains |
+| 1 | E01: real-trace occupancy, skipping and mapping opportunity | Frozen-MNIST workload packet audited; no electrical response or noisy task result | Claimed savings come only from inactive-feature packing, or no useful mapping opportunity remains |
 | 2 | E02: meaningful physical read operation on 256x256 storage | NUS model/port/topology/readout inputs needed | Bias/headroom/settling invalid, or a response model cannot be validated |
 | 3a | E03 pair probe: matched activity/count, varied overlap, calibrated decoded covariance | Requires E02, then paired target cases | Calibration or a simple shuffle removes the effect; continuous-error reasoning already explains it |
 | 3b | E09B: fixed-state marginal audit and full-versus-cached field errors | Requires E02 and temporal-noise provenance | Apparent 'fresh worse' comes from mismatched marginals, cached drift, initialization or another known operator difference |
@@ -73,7 +85,7 @@ automatically rescue a failed method by adding an Ising chapter.
 | 4b | E09C: small, exact-target solver pilot | Conditional target adapter not implemented | Only generic coupling sensitivity is observed, a simple reset/digital baseline suffices, or hardware costs dominate |
 | 5 | Scope decision with evidence and Prof Fong | Choose one main contribution and at most one backup/companion | A common story alone is the justification |
 
-E01's absence of a skipping benefit does not alone disprove the equal-read-count
+E01 skipping results do not alone establish or disprove the equal-read-count
 covariance mechanism. Distinguish a failed sparsity claim from a surviving arithmetic-
 quality claim. Either still needs a strong practical comparison.
 

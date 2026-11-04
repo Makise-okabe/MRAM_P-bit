@@ -1,5 +1,12 @@
 # Parasitics and candidate deliverable contracts
 
+> Later 4 November clarification: [ADR-0005](../decisions/ADR-0005-one-mapping-study-and-supporting-tools.md)
+> corrects the presentation below. The original three discussion topics are mapping,
+> failure prediction and Ising. Spatial read control is a conditional extension of
+> the mapping study; the predictor is its supporting tool. The original numbered
+> screens below remain a dated technical discussion, not a replacement shortlist.
+
+
 Date: 4 November 2026 (Singapore).
 Status: proposed outcome contracts for the existing three screens, not a final topic selection, an executed result, or a novelty pass.
 

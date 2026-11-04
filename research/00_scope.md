@@ -14,6 +14,16 @@ The original proposal's subject remains precision, hardware nonidealities and re
 memory-centric inference. New interventions extend that objective; they are proposals
 for discussion, not independently confirmed supervisor approvals.
 
+## Current working organization (4 November, ADR-0005)
+
+The three discussion topics remain mapping, failure prediction and Ising. F3 is the
+main bounded method investigation; F1 supplies a validated scoring/evaluation tool;
+F7 remains optional. Spatial H1/E02-A is a physical mechanism screen. A split-read
+controller is a conditional extension of the same mapping study, gated on residual
+target effects after calibration and longer sensing. It is not a replacement
+top-level candidate. See [ADR-0005](decisions/ADR-0005-one-mapping-study-and-supporting-tools.md).
+No novelty, numerical improvement or supervisor endorsement is inferred.
+
 ## Physical and computational contract
 
 - Target **physical** storage: 256 rows x 256 columns = 65,536 MTJ positions.

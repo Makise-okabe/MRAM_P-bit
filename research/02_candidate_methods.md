@@ -3,6 +3,15 @@
 These are explicit development targets. None is certified new or demonstrated effective.
 Source IDs refer to [the evidence register](literature/evidence.json).
 
+## Active hierarchy — ADR-0005
+
+F3 mapping is the main bounded intervention. F1 is its supporting scorer/evaluation
+tool; F7 is optional. The family cards below preserve the broader research history
+and are not seven concurrent projects. Spatial H1/E02-A checks support the same
+physical foundation. Add runtime split-read control only as a gated F3 extension,
+after practical correction and longer sensing leave a useful residual.
+See [ADR-0005](decisions/ADR-0005-one-mapping-study-and-supporting-tools.md).
+
 ## F1. Event-aware inference-failure estimation
 
 **Problem/value.** Repeated full perturbed-network evaluations can make new operating
