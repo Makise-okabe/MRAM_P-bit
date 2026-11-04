@@ -56,7 +56,7 @@ Rather than require one tree per 33 distinct k-values, cluster the integer k=0..
 | 16 | 36,442,681 | 2,976 | 6 |
 | 33 | 36,312,243 | 5,456 | 6 |
 
-**4-bank** beats CAL-optimal input-only (41,310,333) by **9.279%** on held-out DEV; 256-parent paired bootstrap CI **[9.040%,9.509%]**, all 256 input parents benefit. It needs only 1,088 tree nodes versus 5,456 for unrestricted 33-bank codebooks; this is not a full memory/area count. A 4-bank physical implementation would still require metadata/selection, DAC threshold routing, and possibly parallel comparators; the software uses exact k to bypass deterministically known n, so calling it a pure 2-bit k-metadata controller would be **false**.
+**Four k-codebook banks mean four classes of controller decision trees, NOT four analog reference voltage levels.** A physically variable threshold for each branch may still require a multi-code DAC/reference generator per concurrently converting column, or cause serious shared-reference serialization.\n\n**4-bank** beats CAL-optimal input-only (41,310,333) by **9.279%** on held-out DEV; 256-parent paired bootstrap CI **[9.040%,9.509%]**, all 256 input parents benefit. It needs only 1,088 tree nodes versus 5,456 for unrestricted 33-bank codebooks; this is not a full memory/area count. A 4-bank physical implementation would still require metadata/selection, DAC threshold routing, and possibly parallel comparators; the software uses exact k to bypass deterministically known n, so calling it a pure 2-bit k-metadata controller would be **false**.
 
 ## Difficult prior art, and the precise originality claim to investigate
 - DIB-CIM 2026: input-driven WL block size and DR-ADC (full ADC method not yet audited).
