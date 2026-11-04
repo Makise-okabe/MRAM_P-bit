@@ -50,3 +50,28 @@ python3 -u experiments/e20_mask_suffix_gf_calibration.py \
  --out "$HOME/mram_private/E02_256x256/E19/E20_GATED_CORRECTION.json"
 ```
 Only paste terminal summary; no proprietary PDK or mask decks should be shared publicly.
+
+
+## NUS E20 completed run — decision (user terminal, 2026-11-04)
+
+**Source evidence:** student executed existing E19 Spectre-current JSON through GitHub `experiments/e20_mask_suffix_gf_calibration.py`; no additional Spectre solver run in E20. Script `E20_SELFTEST_PASS`. Input activation mask only used for spatial predictors, CAL labels fit coefficients, DEV labels score independent outcomes. Two NUS E19 archives, each evaluated at *assumed* wire segment R=0,1,5Ω.
+
+| Assumed R/segment | DEV cases first / confirmation | Raw midpoint wrong | Near/far wrong | Centroid wrong | SuffixQ wrong | Raw DEV current overlap |
+|---|---|---|---|---|---|---|
+| 0Ω | 8 / 24 | 0 / 0 | 0 / 0 | 0 / 0 | 0 / 0 | 0 |
+| 1Ω | 8 / 24 | 0 / 0 | 0 / 0 | 0 / 0 | 0 / 0 | 0 |
+| **5Ω** | **8 / 24** | **2 / 2** | **0 / 0** | **0 / 0** | **0 / 0** | **0.311722µA / 0.201222µA** |
+
+The corrected DEV current-range overlap was reported as **0** for near/far, centroid, and suffixQ in both 5Ω experiments. At 5Ω the fitted current-vs-position coefficients were:
+- first run (CAL 8): near_count +2.62e-7 A/count, centroid -2.169e-8 A/index, suffixQ -1.561e-9 A/unitQ;
+- confirmation (CAL 24): near_count +3.764e-7 A/count, centroid -2.192e-8 A/index, suffixQ -1.296e-9 A/unitQ.
+These are data-fit parameters, not process constants. Sample size still small (0/24 not proof of zero BER), two runs have distinct seeds but same synthetic wiring design; fixed m=k=16, n=7/8, nominal static P/AP only.
+
+**Decision under pre-registered go/no-go:** **RETIRE the special suffixQ repair and E15 + E20 as PRIMARY FYP novelty**. Reason: the strong simpler input-only near/far-count and centroid baselines also eliminate all observed 5Ω DEV misclassifications, so no unique held-out task gain from suffixQ, while E15's ideal-only conversion saving is small and hardware uncosted. Do **not** claim the physical repair failed: the CAL spatial repair works for tested nominal GF NFET + static MTJ currents under assumed R. Do not claim the independent E15 ideal ADC algorithm was disproven: its 8.8838% ideal comparator-saving hypothesis remains a supplementary analytical result, not an established real energy benefit.
+
+**Important DIB overlap:** near/far input-position imbalance is conceptually similar to DIB's I3D spatial input distribution detector; generic geometric compensation and IR-drop correction are prior-art-rich. The demonstrated repair is useful engineering but does **not** prove a new algorithm.
+
+**CA2 conclusion:** E19 uncovered an input-placement-dependent count-current ambiguity; E19C showed CAL threshold shift alone cannot fix it, while a deferred/abstaining policy leaves many unresolved cases; E20 shows CAL-only input-position correction remedies tested current-overlap at no additional sense event, but the *simplest* near/far/centroid corrections match the sophisticated suffixQ algorithm. Explicitly archive as negative-novelty result, rather than concealing it or cherry-picking earlier passive-ladder E20 toy win.
+
+**Private E20 output:** `~/mram_private/E02_256x256/E19/E20_mask_correction_results.json`. No licensed PDK or private mask-level currents uploaded.
+
