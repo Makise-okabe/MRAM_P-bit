@@ -1,3 +1,8 @@
+# SUPERSEDED STATUS — E22B COMPLETED ON NUS (2026-11-05)
+The experiment described below has now been executed successfully. **Do not read this historical preregistration as a current pending result.** See the [actual E22B result report](2026-11-05-E22B-COMPLETE-strong-calibration-and-analog-overlap.md): at assumed R5, CAL-programmed ADC range + near correction gives 7bit **25/204** wrong and 9/16 sampled near-corrected adjacent boundaries overlap; at R2 7bit 0/204 and at R3 3/204. E22C simple-geometry correction ablation is the next pending strong control.
+
+---
+
 # E22B — Frozen CAL-only recalibration falsifier after E22 completed NUS GF simulation
 **Date:** 2026-11-05. **Status:** executable committed; **NO actual E22B result until run on the user's NUS E22 JSON**. The previous E22 raw/offset/near results are [recorded separately](2026-11-05-E22-GF-fullcount-ACTUAL-results-and-decoder-audit.md).
 
