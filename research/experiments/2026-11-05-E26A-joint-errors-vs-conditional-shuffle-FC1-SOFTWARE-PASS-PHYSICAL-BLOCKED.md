@@ -1,3 +1,25 @@
+# NUS EXECUTION CONFIRMED — 2026-11-05
+
+**User's actual NUS Singularity output** confirms E26A `selftest`, `preflight` and `demo` all finished. Frozen E01 packet SHA256 `400f094606615d73bfd90a0f32f7ef5d2ab0825bac67de1f3727c703c49f704a`; true 256 MNIST development parents × 128 FC1 outputs, packed-array signed-bitplane reconstruction exactly equals direct dot; reported signed weight range -7..5. This is **real E01 arithmetic, not MRAM current simulation**.
+
+The user-executed *synthetic* demo (NO GF currents, PEX, physical MTJ correlation or real classifier):
+| Metric | Intentionally coherent synthetic | Conditional-shuffled synthetic (8 repeat mean) |
+|---|---:|---:|
+| FC1 MAE | 259.21875 | 259.21875 |
+| FC1 RMSE | 637.4699993 | 555.8694880 |
+| FC1 max absolute integer error | 3072 | 2304 |
+| Images with any FC1 error | 0.234375 | 0.99560546875 |
+| Nonzero FC1 output fraction | 0.18609619140625 | 0.23238754272460938 |
+| ReLU gate flip fraction | 0.02178955078125 | 0.022308349609375 |
+
+`E26A_SHUFFLE_EFFECTIVE_CHANGED 8819.25`. Private report path: `~/mram_private/E26/E26A_SYNTHETIC_CONTROL.json`. **Do not label these differences a physical discovery**: the demo explicitly constructs a common latent error event across images and shuffles it to test code behavior.
+
+**Blocking physical evidence**: complete actual correlated count-error tensor from same fixed-chip actual 2T1MTJ parallel read, across columns, groups, bitplanes and parents; 32-row manually assumed-R E24 single-column data is insufficient. **Blocking task evidence:** E01 packet alone contains FC1, not downstream FC2/FC3/logits/held-out final test.
+
+**Immediate next action:** readonly NUS file-discovery for true extracted 4×4 2T1MTJ DSPF and original complete frozen W4A8 checkpoint; validate one multiple-column parallel-read pilot before scaling. Do not generate fabricated correlated arrays or infer physical covariance from E26A mock demo.
+
+---
+
 # E26A — Joint physical MRAM count errors versus conditional-marginal shuffle (first executable gate)
 
 **Date:** 2026-11-05. **Status:** E01 real-workload **software reconstruction and synthetic comparison completed locally**. **Physical joint-error hypothesis UNTESTED — blocking missing physically coupled 2T1MTJ multi-column read-error tensor. Full MNIST classification UNTESTED — E01 packet is FC1 only.**
