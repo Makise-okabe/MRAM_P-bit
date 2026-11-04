@@ -82,3 +82,16 @@ The [replacement WhatsApp text](communications/2026-11-04-prof-fong-mapping-focu
 is a draft, not a sent message. The suggested 10-30% matched-failure read-saving
 range is not accepted as a target-array forecast. E01 conventional CAR/sorting
 counts do not establish that outcome or a new method's incremental gain.
+
+
+## 2026-11-04 late-stage DIB prior-art pathfinding update (E13–E15)
+
+**Do not overwrite older failures with the new positive candidate.** Full provenance: [E13–E15 record](experiments/2026-11-04-E13-E15-DIB-conditional-ADC-discovery.md).
+
+- **E13 rejected:** CAL-selected output-certificate-adaptive common-WL schedule skipped only 0.03987 percentage points more logical output-count conversions on independent DEV than the static E12 joint schedule (7,162 extra skipped / 17,965,231 eligible). Additional runtime scheduling and certification overhead makes this an unconvincing standalone contribution. ReLU early termination is established prior art; zero-bias FC1 only.
+- **E14 mathematical candidate:** operand-conditioned threshold tree for exact AND-popcount, based on m active input bits and k stored weight ones. Held-out DEV ideal-comparator decisions 36,558,784 versus 41,310,333 for CAL-optimal input-only threshold tree (11.502% reduction), with all 6,545 legal count leaves separately audited. Unconstrained tree can require nine comparator decisions in worst case; depth cap5 gives 36,972,994 vs 45,032,056 for same-max-depth balanced joint baseline.
+- **E15 hardware-aware algorithm candidate:** a limited-bank (four k-groups) threshold-tree controller capped at six decisions per count uses 37,477,206 DEV ideal comparison decisions vs 41,310,333 trained input-only baseline (9.279% fewer; paired parent-bootstrap 95% CI 9.040–9.509%). Four-bank tree has 1,088 internal threshold nodes across all m vs 5,456 for full 33-bank version. Nodes are not physical area.
+- **Prior art caveat:** DIB-CIM 2026 (user-provided LEBD/I3D Algorithm 1 adjusts WL size and the abstract describes DR-ADC), probability-based hybrid CIM ADC 2023, and entropy-coded threshold-tree ADC patent 2020. Distinctness from the DIB screenshot is not sufficient to certify external novelty. Must inspect full DIB DR-ADC algorithm and closest patents before claiming original method.
+- **Hardware caveat:** each k-conditioned tree needs programmable reference selection; if physical ADC references are shared across all columns, per-column comparator savings may disappear or induce serialization. No NUS multirow GF NFET+custom MTJ ADC kernel, noise, voltage references, DAC settling, area, or total energy/latency measured. Do not compare percent ideal comparisons with DIB's published percent latency.
+- **Research-choice status:** E15 is a *specific algorithm to propose* to Prof Fong for targeted hardware feasibility and novelty review, NOT an approved direction or proven physical advantage.
+
