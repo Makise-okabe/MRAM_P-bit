@@ -1,3 +1,10 @@
+# ACTIVE PRIORITY OVERRIDE — 2026-11-05 (user decision)
+**Primary FYP direction now frozen:** *Characterizing Reliability and Failure Regimes of Memory-Centric Neural Inference Under Coupled Precision and Hardware Non-Idealities*. See [ADR-0006](decisions/ADR-0006-coupled-precision-failure-boundary-primary.md) and [pending E22](experiments/2026-11-05-E22-coupled-precision-17count-GF-PENDING.md).
+
+The older sections below are historic scope/evidence contracts from Nov 3–4. Any statement that F3 mapping is the **current leading algorithm route** is superseded. Physical-aware mapping and Ising are archived alternatives; they are not the present primary FYP. Immediate E22 GF read-current × mathematical ADC precision pilot, then E23 held-out failure-boundary prediction versus strong margin and near/far baselines, then E24 variability/PEX and E25 task-level validation. No E22 physical result exists until user runs it in NUS Singularity.
+
+---
+
 # Active scope and evidence contract
 
 Decision: 3 November 2026, at the user's request. The user authorized archiving the
