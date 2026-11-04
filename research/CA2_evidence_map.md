@@ -55,3 +55,14 @@ The subsequently attached 48-page survey is identified by the
 [revision-15 source receipt](reviews/2026-11-04-claude-revision15.source.json). Its new
 opening synthesis matches the previously reviewed excerpt; this improves source access
 without changing the experimental evidence or candidate decision.
+
+## Intended artifacts and parasitic-model role
+
+The [4 November candidate outcome contracts](reviews/2026-11-04-parasitics-and-candidate-deliverables.md)
+define proposed finished deliverables and rejection conditions for the existing three
+screens: spatial read control, F3 static mapping and conditional F7 field maintenance.
+This is a planning/research-design record, not experimental evidence. Include distributed
+RC in the shared target model and distinguish static loading, settling, persistent
+mismatch and temporal noise. The eventual CA2 method claim requires one distinct
+implemented intervention plus a useful strong-baseline comparison; characterized
+distributions alone do not satisfy the user's chosen method/design objective.
