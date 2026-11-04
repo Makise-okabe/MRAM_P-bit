@@ -1,3 +1,8 @@
+# STATUS — RETIRED AS CORE NOVELTY (2026-11-05)
+User relayed Prof Kelvin Fong's advice to avoid sensing/read-margin research due to heavy prior art. The candidate below is too close to ADC-threshold sensing-margin prediction and reference/precision optimization, so it **must not remain the proposed core novelty**. Preserve as historical rejected reasoning and an optional circuit-level measurement tool. See [ADR-0008](../decisions/ADR-0008-deprioritize-read-margin-novelty-focus-on-computational-failure.md) for a more distinct, still-unvalidated system-level research hypothesis about correlated signed-bitplane errors and neural inference. **No new core algorithm has been demonstrated or approved.**
+
+---
+
 # Novelty hypothesis N1 — Calibration-budgeted, decision-boundary-aware physical failure predictor
 **Prepared 2026-11-05. STATUS: candidate only; NOT invented, validated, approved or claimed novel.**
 **Main FYP:** Characterizing Reliability and Failure Regimes of Memory-Centric Neural Inference Under Coupled Precision and Hardware Non-Idealities.
