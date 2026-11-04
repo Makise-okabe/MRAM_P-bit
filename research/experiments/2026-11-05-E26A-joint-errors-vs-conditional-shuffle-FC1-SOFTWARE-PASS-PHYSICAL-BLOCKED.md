@@ -1,3 +1,9 @@
+## Reproducibility update: executable now tracked
+Exact source `experiments/e26a_joint_error_gate.py` has now been committed to public `main` (SHA-256 `3fa6042e2ae91c76c6d08794c4acd10969b4da0d4ce619d2a912c8b3b407d714`; commit `5fa48f68b561a28c60315212561a3645fa114ed2`). Older notes below saying source is available only in the chat ZIP are now superseded. Still NO physical joint 2T1MTJ data.
+
+## Additional null-model scientific caveat
+The existing shuffle conditions on **exact (m, ideal n)** per read lane only. This preserves those conditional empirical marginal errors but **does not preserve dependence on finer spatial input position (e.g. suffixQ, centroid), weight/MTJ geometry or fixed-chip state**. A physically observed joint-vs-shuffled difference could reflect these omitted single-read covariates, not specifically intrinsic cross-column/bitplane covariance. Before any scientific claim, compare against stronger **position-conditioned** and fixed-chip controls and run an adequately powered multiple-column extracted pilot. A synthetic-demo difference is not evidence for any of these mechanisms.
+
 # NUS EXECUTION CONFIRMED — 2026-11-05
 
 **User's actual NUS Singularity output** confirms E26A `selftest`, `preflight` and `demo` all finished. Frozen E01 packet SHA256 `400f094606615d73bfd90a0f32f7ef5d2ab0825bac67de1f3727c703c49f704a`; true 256 MNIST development parents × 128 FC1 outputs, packed-array signed-bitplane reconstruction exactly equals direct dot; reported signed weight range -7..5. This is **real E01 arithmetic, not MRAM current simulation**.
