@@ -82,3 +82,21 @@ The [replacement WhatsApp text](communications/2026-11-04-prof-fong-mapping-focu
 is a draft, not a sent message. The suggested 10-30% matched-failure read-saving
 range is not accepted as a target-array forecast. E01 conventional CAR/sorting
 counts do not establish that outcome or a new method's incremental gain.
+
+
+## Decoder-event candidate evaluation — mathematical prototype only
+
+The [DIB audit and specific method](novelty/2026-11-04-decoder-event-risk-mapping-audit.md)
+propose screening resident row swaps using the probability mass of changed ADC
+events, with localized class-risk evaluation for survivors. The probability bound
+is an elementary coupling result; the proposed contribution is its specific
+decoder-event construction and economical integration in mapping search.
+
+Permitted evidence: implemented scalar-factor sweep, independent closed-form/MC
+checks, 60 full-versus-localized arithmetic checks, a two-map moment-ranking
+counterexample, and a safe 71/81 candidate-pruning demonstration.
+Limitations that must accompany those facts: strongest moment scorer matches
+the map in the held-out synthetic screen; optimized rebuilding removes the cached
+speed headline; bound overhead makes the small pruning test slower; no MNIST or
+target circuit run and no full DIB method access. No novelty/performance pass.
+

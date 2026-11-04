@@ -241,6 +241,25 @@
       "note": "Existing public-repository record at c2e4b396; preserved during the resource audit, not rerun or independently checked by the NUS-runner work. Not target-device, real ADC or end-to-end task evidence.",
       "physical_results_available": false,
       "acceptance_budgets": null
+    },
+    {
+      "id": "F3_DECODER_EVENT_PROBE_20261104",
+      "title": "Conditional decoder-event risk and influence-bound row-swap screening",
+      "status": "executed_mathematical_prototype_no_novelty_or_task_pass",
+      "prerequisites": [
+        "Declared scalar persistent row-response model",
+        "Fixed affine output head and exact legal count bounds"
+      ],
+      "artifacts": [
+        "research/protocols/decoder-event-risk-mapping.md",
+        "research/software/decoder_event_mapping_probe.py",
+        "research/software/archive/decoder_event_mapping_probe_rebuild_3204b30a.py",
+        "experiments/results/decoder_event_probe_20261104_influence/results.json",
+        "research/novelty/2026-11-04-decoder-event-risk-mapping-audit.md"
+      ],
+      "note": "Two-map exact-risk versus Gaussian-moment ranking counterexample; event and Gaussian selectors match in the synthetic held-out search; 60 arithmetic checks pass. Influence screening skips 71/81 safely but bound overhead makes it slower in the tiny fixture. Optimized full rebuilding eliminates the earlier cached-table speed claim. DIB full text inaccessible; no MNIST or target circuit run.",
+      "physical_results_available": false,
+      "acceptance_budgets": null
     }
   ],
   "screening_priority": [
@@ -249,3 +268,4 @@
   ],
   "latest_decision_record": "research/decisions/ADR-0004-F3-decoder-screen.md"
 }
+

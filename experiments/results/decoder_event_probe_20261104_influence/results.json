@@ -1,0 +1,248 @@
+{
+  "evidence_class": "conditional mathematical and illustrative-model verification",
+  "novelty_pass": false,
+  "competitive_task_pass": false,
+  "DIB_full_text_access": false,
+  "DIB_reproduced": false,
+  "fixture_A": {
+    "physical_row_positions": 256,
+    "active_rows": 128,
+    "column_popcounts": [
+      128,
+      128
+    ],
+    "ideal_selected_counts": [
+      64,
+      64
+    ],
+    "factor_support": [
+      -2,
+      2
+    ],
+    "max_absolute_cell_gain_change": 0.04375,
+    "zero_and_full_calibration_residual_slope": [
+      2.3592239273284576e-16,
+      5.134781488891349e-16
+    ],
+    "normalized_read_slopes": [
+      0.3000000000000002,
+      -0.29999999999999993
+    ],
+    "calibration_scope": "zero/full-column affine gain-offset control only",
+    "not_validated": [
+      "MOSFET",
+      "wire RC",
+      "ADC circuit",
+      "MNIST"
+    ]
+  },
+  "fixture_B": {
+    "physical_row_positions": 256,
+    "active_rows": 128,
+    "column_popcounts": [
+      128,
+      128
+    ],
+    "ideal_selected_counts": [
+      64,
+      64
+    ],
+    "factor_support": [
+      -2,
+      2
+    ],
+    "max_absolute_cell_gain_change": 0.04375,
+    "zero_and_full_calibration_residual_slope": [
+      2.914335439641036e-16,
+      1.2906342661267445e-15
+    ],
+    "normalized_read_slopes": [
+      0.8,
+      0.6000000000000013
+    ],
+    "calibration_scope": "zero/full-column affine gain-offset control only",
+    "not_validated": [
+      "MOSFET",
+      "wire RC",
+      "ADC circuit",
+      "MNIST"
+    ]
+  },
+  "A": {
+    "failure_probability": 0.02623386825317752,
+    "margin_mean": [
+      0.5000000000000001
+    ],
+    "margin_second_moment": [
+      0.45987094602541917
+    ],
+    "margin_error_MSE": [
+      0.20987094602541917
+    ],
+    "margin_variance": [
+      0.20987094602541906
+    ],
+    "event_count": 4,
+    "read_count": 2,
+    "Gaussian_exact_moment_surrogate": 0.13754298781380248,
+    "failure_intervals": [
+      [
+        -2.0,
+        -1.666666666666667
+      ],
+      [
+        -1.666666666666667,
+        -1.6666666666666654
+      ]
+    ],
+    "sum_of_output_MSE": 0.10493547301270975
+  },
+  "B": {
+    "failure_probability": 0.07470235475727456,
+    "margin_mean": [
+      0.5
+    ],
+    "margin_second_moment": [
+      0.39940470951454915
+    ],
+    "margin_error_MSE": [
+      0.14940470951454915
+    ],
+    "margin_variance": [
+      0.14940470951454915
+    ],
+    "event_count": 6,
+    "read_count": 2,
+    "Gaussian_exact_moment_surrogate": 0.0979080629543676,
+    "failure_intervals": [
+      [
+        -2.0,
+        -1.875
+      ],
+      [
+        -0.8333333333333315,
+        -0.625
+      ]
+    ],
+    "sum_of_output_MSE": 0.9340020090248228
+  },
+  "direct_persistent_factor_MC": {
+    "A": {
+      "draws": 200000,
+      "failure_fraction": 0.026295,
+      "exact_probability": 0.02623386825317752
+    },
+    "B": {
+      "draws": 200000,
+      "failure_fraction": 0.07452,
+      "exact_probability": 0.07470235475727456
+    }
+  },
+  "incremental_update_checks": 60,
+  "max_incremental_probability_difference": 0.0,
+  "honest_comparator_outcome": "Exact-risk and ordinary output-MSE both choose A; Gaussian exact-margin-moment score chooses B. This is not a defeat of every baseline.",
+  "timing": {
+    "scope": "local synthetic cache-update microbenchmark; not MC or task superiority",
+    "reads": 320,
+    "competing_margins": 9,
+    "changed_reads": 4,
+    "candidates": 50,
+    "median_full_rebuild_seconds": 0.004086730497874669,
+    "median_vectorized_full_score_seconds": 0.0005160309992788825,
+    "median_cached_update_seconds": 0.0005553880000661593,
+    "full_over_update_ratio": 7.358334168883459,
+    "vectorized_full_over_update_ratio": 0.9291360260167875,
+    "maximum_risk_difference": 0.0,
+    "excluded": "physical fitting, factor selection, full MNIST, outer-factor samples, mapping search"
+  },
+  "row_mapping_screen": {
+    "evidence_class": "synthetic boundary-conditioned binary two-class head",
+    "not_MNIST": true,
+    "CAL_parents": 64,
+    "DEV_parents": 128,
+    "CAL_seed": 602,
+    "DEV_seed": 603,
+    "search": "two greedy iterations, all 28 mirrored atom swaps per iteration",
+    "read_budget": "one nonempty vector read / two column conversions per parent; identical for every map",
+    "full_calibration": "zero/full-column affine control has zero factor slope",
+    "input_density_comparator": "activity and bit significance unchanged by every map; not a DIB reproduction",
+    "methods": {
+      "event_risk": {
+        "atom_order": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "candidate_evaluations": 57,
+        "CAL_exact_failure_probability": 0.002631849593664136,
+        "DEV_exact_failure_probability": 0.005805386203830168,
+        "CAL_Gaussian_margin_score": 0.0011422825355172752,
+        "CAL_exact_output_MSE": 0.032994454684689256
+      },
+      "Gaussian_exact_margin_moments": {
+        "atom_order": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "candidate_evaluations": 57,
+        "CAL_exact_failure_probability": 0.002631849593664136,
+        "DEV_exact_failure_probability": 0.005805386203830168,
+        "CAL_Gaussian_margin_score": 0.0011422825355172752,
+        "CAL_exact_output_MSE": 0.032994454684689256
+      },
+      "exact_output_MSE": {
+        "atom_order": [
+          2,
+          3,
+          0,
+          1,
+          4,
+          5,
+          6,
+          7
+        ],
+        "candidate_evaluations": 57,
+        "CAL_exact_failure_probability": 0.005586606834250573,
+        "DEV_exact_failure_probability": 0.012640936175959096,
+        "CAL_Gaussian_margin_score": 0.005619903068335816,
+        "CAL_exact_output_MSE": 0.015895036924986162
+      }
+    },
+    "CAL_sha256": "b7e4805f30efd05f7b628e8727a5fa40145696565f7e0767a8500aedf2a2388e",
+    "DEV_sha256": "3b65ca7da44cc39a26a831b8d0ba41ac5dc74d7767da81884dc2a9916bd09321",
+    "limitation": "same synthetic one-factor model supplies CAL and DEV physics; no chip-model mismatch, transient noise, neural hidden layers or physical cost included"
+  },
+  "influence_pruning_screen": {
+    "scope": "constructed influence-bound falsifier; scalar persistent factor; not a general task win",
+    "candidate_count": 81,
+    "candidate_composition": "one alternative initial permutation plus 80 random distinct-weight mirrored single-row swaps",
+    "order": "decreasing influence bound, without seeing candidate risk",
+    "pruned_without_classification_risk_evaluation": 71,
+    "localized_risk_evaluations": 10,
+    "selected_name": "alternate_initial_map_A",
+    "selected_failure_probability": 0.026233868253177514,
+    "exhaustive_selected_name": "alternate_initial_map_A",
+    "exhaustive_failure_probability": 0.02623386825317752,
+    "bound_computation_seconds": 0.016775952997704735,
+    "localized_score_seconds": 0.0032341440019081347,
+    "total_bound_and_score_seconds": 0.02001009699961287,
+    "vectorized_exhaustive_seconds": 0.010461162997671636,
+    "speedup_including_all_bound_cost": 0.5227942172331311,
+    "old_cache_setup_excluded": true,
+    "all_skipped_candidates_checked_after_selection": true,
+    "visited_old_intervals": 62
+  },
+  "source_sha256": "134a85464e530a98663fc5e74cc5100d6d19f12fb98d758a0f15679943b415af",
+  "numpy_version": "2.3.5"
+}
