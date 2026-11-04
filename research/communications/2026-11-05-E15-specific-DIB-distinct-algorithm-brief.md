@@ -1,3 +1,12 @@
+# STATUS OVERRIDE — 2026-11-04: E15/E20 RETIRED AS PRIMARY NOVELTY
+**This brief is superseded by completed NUS E19/E19C/E20 evidence. Do not present E15 as our selected FYP algorithm.** The remaining text is archival documentation of a formerly provisional hypothesis.
+
+The GF hvtnfet + student static MTJ shared-wire model (32 branches, assumed R=5Ω/segment, **not extracted GF PEX**) exhibited adjacent n=7/8 current overlap. Original CAL-midpoint and CAL-optimized single threshold left 2/8 and 2/24 DEV errors; deferral withheld 3/8 and 5/24 decisions. E20 CAL-trained input-position correction fixed these samples without rereading, **but near/far active count, simple centroid, and suffixQ all gave 0/8 and 0/24**. No distinctive advantage for suffixQ; no unique MRAM algorithm established. E15's 8.88% reduction in ideal comparisons remains a valid analytical comparison, but without real hardware ADC energy/time savings and amid prior probability-based ADC work. **Retire E15+E20 as primary novelty**, keep as CA2 research/falsification evidence.
+
+Read [completed E20 result](../experiments/2026-11-04-E20-suffix-load-rescue-or-retire-E15.md) and [CA2 evidence](../CA2_evidence_map.md). Best discussion framing: report the tested hypotheses, observed geometry-induced readout ambiguity, simple correction sufficiency, and state that **original contribution selection is still open**. Do not ask supervisor to supply the novelty.
+
+---
+
 # Prof Fong — 5 Nov 2026: specific algorithm hypothesis AFTER DIB Algorithm 1 audit
 
 ## Working research title
