@@ -169,3 +169,63 @@ The user chose to **retain the submitted original FYP scope** rather than pivot 
 - **Immediate E22 is PENDING**, not a completed result: [E22 preregistration](experiments/2026-11-05-E22-coupled-precision-17count-GF-PENDING.md), executable `experiments/e22_gf_precision_regime.py`. Extends E19 from n7/8 to all n=0..16 at m=k16, R0/1/2/3/5Ω *assumed* per segment; 6 CAL+12 DEV independent masks/count (1530 paired GF DC simulations), then offline uniform ADC 4/5/6/7 bits with fixed R0 CAL fullscale, continuous nearest-count comparator and CAL-only offset/near-far controls. No foundry PEX, actual ADC or task result can be inferred in advance.
 - **E23** will fit a boundary-risk model from CAL circuit data and test held-out DEV compared with simple ADC margins and additive noise/current-shift models, not just draw a heatmap. **E24** will require geometrically justified/extracted RC and fixed per-chip MTJ spread, while **E25** requires the full trained network and biases for genuine MNIST classification.
 - CA2 must keep the prior E15/E20 novelty rejection, Ising and mapping pilot failures as reasoning that led to this adopted direction.
+
+
+## Post-E20 independence correction and stronger-baseline audit
+
+Detailed [executed software audit](experiments/2026-11-04-post-E20-calibration-and-CAMP-independence-audit.md).
+This supplements, rather than erases, E22's original positive and negative cases.
+
+- **Mathematical correction:** independent binary second moments have C_ii=p_i;
+  the previous outer(p,p) ablation used p_i^2 and did not isolate inter-row
+  correlation cleanly. Complete five-row enumeration verifies the corrected law.
+- **Reproduction and survival in E22's declared model:** exactly reproduced all
+  six frozen E22D baseline/CAMP MSE and wrong-count outcomes. Matched seven-swap
+  optimizer with corrected independent moments gives zero-rate 28,440.44 versus
+  CAMP-light 25,508.23 (10.31% lower) and CAR 28,601.66 versus 25,316.25 (11.49%
+  lower). Original grouping remains negative: 489.24 versus 537.80 (9.93% worse).
+  These are constructed passive-ladder partial-block arithmetic outcomes only.
+- **More demanding separate model:** on an assumed monolithic 256-node column,
+  AP/P=100/200 microSiemens, ideal 8-bit ADC and common bounded five-coefficient
+  CAL residual correction, R5 joint-sort MSE=30,184.68 and CAMP=30,021.13. The
+  0.54% difference has a descriptive paired-parent interval spanning zero.
+  Multiple model conditions changed; this is not a calibration-only ablation.
+- **New objective rejected:** same-pool CAL decoded-W4A8-MSE selector scores
+  30,376.41 at R5 versus continuous-MSE selector 30,021.13; at R1, 576.59 versus
+  284.86. No incremental benefit demonstrated. All selection uses CAL only.
+- **Integrity:** initial prototype failed zero-wire decoding because CAL-unexcited
+  groups acquired an arbitrary zero fit, and initially omitted A8 weighting.
+  It supplies no positive evidence. Corrected runs pass zero-wire invariance,
+  full signed W4A8 arithmetic, group/read conservation and independent dense KCL.
+- **Disposition:** retain CAMP-light for closest-method novelty review and one
+  bounded GF falsifier; no selected core method, hardware gain, final-test claim
+  or novelty pass. Generic mapping with calibration is occupied by Wang 2024
+  and DATE 2026; NanoCiM full TSP/activation-statistics comparison remains open.
+  An E23 raw-current improvement would not establish post-calibration decoded
+  count or task improvement.
+
+
+## 2026-11-05 NanoCiM full text read; preserve ADR-0006 primary scope
+
+[Full method review](reviews/2026-11-05-NanoCiM-fulltext-CAMP-and-primary-scope.md),
+[source receipt](reviews/2026-11-05-NanoCiM-fulltext.source.json). The complete
+13-page user-provided PDF has now been read; the earlier abstract-only access
+caveat is superseded. No licensed PDF, extracted article or figures are public.
+
+- NanoCiM Eq.5 is sqrt(weight-row inner product); its TSP puts low-overlap rows
+  adjacent. The stated rule does not use the CAMP input-coactivation matrix or
+  all-pair shared-wire-length position kernel. This is a precise method
+  difference, not publication-level novelty or evidence of useful superiority.
+- Row permutation with matching input permutation, pairwise weight-aware
+  spatial mapping and IR-drop mitigation are established. ReRAM-to-MRAM
+  substitution and fixed-group restriction do not certify a contribution.
+- Table V reports 83.1% Random versus 79.9% TSP MNIST accuracy at the stated
+  condition; full-dataset outcomes and selected-digit examples are separate.
+- NanoCiM fixes input/weight/output at 2/4/4 bits and studies physical
+  nonidealities; the broad precision/nonideality subject is not new. It does
+  not supply the proposed systematic ADC/spatial-mask failure-boundary
+  experiment or held-out predictor comparison.
+- **Scope:** ADR-0006 governs. CAMP and Ising stay archived; do not read the
+  historical post-E20 recommendation as a reversal of the user's adopted
+  primary route. Continue the current coupled-precision E22 pilot, not the
+  older CAMP-E23 probe. No new physical/task result or predictor novelty pass.

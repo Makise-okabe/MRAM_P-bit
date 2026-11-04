@@ -58,3 +58,38 @@ Run instructions are in the private package README. If R0 null fails, debug the 
 
 ## CA2 disposition
 **E21 rejected. E22 CAMP-light retained strictly as a promising, mathematically specific, cheap offline placement hypothesis with a ~10% held-out *constructed passive-ladder signed arithmetic MSE* improvement at fixed read count; physical/GF and actual neural inference gates open.** The full correlated-weight variant has no convincing payoff over the simpler light variant. Do not treat exploratory results as independent physical confirmation or hide original-mapping and R10 negative conditions.
+
+
+## Later post-E20 audit: corrected independent moments and protocol sensitivity
+See the [executed audit](2026-11-04-post-E20-calibration-and-CAMP-independence-audit.md).
+The earlier independent-activation outer-product ablation used C_ii=p_i^2;
+for binary variables the correct diagonal is p_i. Do not use that original
+ablation alone to attribute benefits to pairwise inter-row coactivation.
+
+A matched corrected ablation exactly reproduces the six frozen E22D results,
+then retains CAMP-light benefit over correct independent-light moments under
+zero-rate (28,440.44 -> 25,508.23 MSE, 10.31%) and CAR (28,601.66 -> 25,316.25,
+11.49%) grouping, while original grouping remains worse (489.24 -> 537.80).
+
+A separate monolithic assumed-column/finite-ADC/more-flexible-calibration screen
+reduces the R5 CAMP vs joint-sort difference to 0.54%, with a descriptive paired
+parent interval spanning zero. Several electrical/calibration conditions changed,
+so this does not identify calibration as the sole cause or contradict E22D's
+numerical receipt. It does limit broad robustness claims. The new decoded-MSE
+selection objective fails against continuous-MSE selection and is not promoted.
+E23 remains pending; raw current droop is only an initial necessary gate and
+cannot substitute for matched post-calibration decoded-count/task comparison.
+
+
+## 5 November scope and full-text update
+
+[ADR-0006](../decisions/ADR-0006-coupled-precision-failure-boundary-primary.md)
+now archives this mapping alternative. The [complete NanoCiM review](../reviews/2026-11-05-NanoCiM-fulltext-CAMP-and-primary-scope.md)
+resolves the earlier full-text access gate: Eq.5 is a weight-overlap edge score
+for adjacency/TSP, without an explicit CAL input-coactivation matrix or CAMP's
+all-pair shared-wire position kernel. That specific difference is supported;
+useful superiority and publication novelty remain unproved. Table V's random
+mapping beats TSP at its reported dataset point, reinforcing the required
+strong controls. Do not restart the older CAMP-E23 microgate on this basis.
+The active E22/E23 labels in ADR-0006 refer to the separate coupled-precision
+pilot and boundary-predictor sequence, not the historical CAMP experiments.

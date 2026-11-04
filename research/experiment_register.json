@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_date": "2026-11-04",
+  "updated_date": "2026-11-05",
   "decision_record": "research/decisions/ADR-0001-research-reset.md",
   "selected_core_method": null,
   "experiments": [
@@ -241,11 +241,50 @@
       "note": "Existing public-repository record at c2e4b396; preserved during the resource audit, not rerun or independently checked by the NUS-runner work. Not target-device, real ADC or end-to-end task evidence.",
       "physical_results_available": false,
       "acceptance_budgets": null
+    },
+    {
+      "id": "POST_E20_CALIBRATION_AUDIT",
+      "title": "Correct independent Bernoulli moments and audit calibration-aware mapping objectives",
+      "status": "completed_constructed_model_only_no_novelty_pass",
+      "prerequisites": [
+        "Frozen E01 private packet",
+        "E22 private source/result package"
+      ],
+      "artifacts": [
+        "research/experiments/2026-11-04-post-E20-calibration-and-CAMP-independence-audit.md",
+        "experiments/postcal_mapping_audit_v3.py",
+        "experiments/camp_independence_ablation_audit.py",
+        "experiments/results/post_e20_calibration_audit_summary.json",
+        "experiments/results/camp_independence_audit_summary.json"
+      ],
+      "note": "Correct C_ii=p_i, not p_i^2; frozen E22D six MSE/count outcomes exactly reproduced. CAMP-light retains 10.31%/11.49% DEV block-MSE gain vs corrected independent light for zero-rate/CAR and loses in original grouping. Separate monolithic assumed-column finite-ADC/strong-calibration screen shows only 0.54% CAMP vs joint-sort gain at R5 with descriptive interval spanning zero; proposed decoded-MSE selector loses to continuous-MSE selector. Retain CAMP for one bounded physics/prior-art gate only. No GF/PEX/inference/cost/novelty result.",
+      "physical_results_available": false,
+      "acceptance_budgets": null
+    },
+    {
+      "id": "NR_NANOCIM_FULLTEXT",
+      "title": "NanoCiM complete supplied-paper method and scope review",
+      "category": "literature_review_not_experiment",
+      "status": "completed_read_only_no_novelty_certification",
+      "prerequisites": [
+        "User-supplied complete 13-page NanoCiM PDF"
+      ],
+      "artifacts": [
+        "research/reviews/2026-11-05-NanoCiM-fulltext-CAMP-and-primary-scope.md",
+        "research/reviews/2026-11-05-NanoCiM-fulltext.source.json"
+      ],
+      "note": "Section IV-A equation 5 uses sqrt(weight-row inner product), not Euclidean distance or CAL input coactivation; its adjacency/TSP rule differs from CAMP's coactivation/shared-wire objective. This is a specific-method difference only. Table V Random=83.1%, TSP=79.9% reinforces random-map controls. No new circuit/task experiment. CAMP remains archived under adopted ADR-0006; continue the current coupled-precision E22 pilot.",
+      "physical_results_available": false,
+      "acceptance_budgets": null
     }
   ],
   "screening_priority": [
+    "coupled_precision_failure_boundaries_E22_E25"
+  ],
+  "latest_decision_record": "research/decisions/ADR-0006-coupled-precision-failure-boundary-primary.md",
+  "archived_screening_priority": [
     "F3_decoded_covariance_mapping",
     "F7a_persistence_and_field_operator_diagnostic"
   ],
-  "latest_decision_record": "research/decisions/ADR-0004-F3-decoder-screen.md"
+  "active_scope_record": "research/decisions/ADR-0006-coupled-precision-failure-boundary-primary.md"
 }
