@@ -82,3 +82,8 @@ The [replacement WhatsApp text](communications/2026-11-04-prof-fong-mapping-focu
 is a draft, not a sent message. The suggested 10-30% matched-failure read-saving
 range is not accepted as a target-array forecast. E01 conventional CAR/sorting
 counts do not establish that outcome or a new method's incremental gain.
+
+
+## Prospective Ising method: read-channel controller
+
+The [4 November proposal](novelty/2026-11-04-ising-read-channel-controller-proposal.md) records a concrete one-/two-stage decision compilation, its information limits, closest methods and falsifiers. Evidence class: research design plus elementary finite-channel algebra; no target read validation, controller advantage, novelty pass or supervisor approval. Basic noise correction is prior art, and a calibrated LUT/channel-aware sequential baseline may subsume the proposal. Only a distinct physically useful method surviving those comparisons could enter the CA2 contribution statement. This adds a prospective method to the user's Ising discovery priority and does not alter the historical F3/F1 scope decisions.
