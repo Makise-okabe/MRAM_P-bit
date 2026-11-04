@@ -12,7 +12,7 @@ D1: is the low-read-count mapping also the low-error mapping? D2: does retaining
 - Joint score: full reconstructed first-block arithmetic MSE from directly simulated noisy CAL; marginal-only proxy: summed coefficient-weighted individual per-read count-error squares. Neither is an efficient neural failure predictor. Cross-cycle moments are implicit in full reconstructed MSE, but covariance itself is not an original algorithm.
 
 ## Results
-Full E01 group32 all-eight-array read total is not used here. These per-array first-block read counts are: original 7919; dead-packed 6658? (do not quote without reconfirmation); zero sorted 5478; CAR 5468; activity balanced 14824; random 14078. The underlying E01 E01 data, not this synthetic screen, establish the read counts.
+Full E01 group32 all-eight-array read total is not used here. These per-array first-block read counts are: original 7919; dead-packed 7173; zero sorted 5478; CAR 5468; activity balanced 14824; random 14078. The underlying E01 E01 data, not this synthetic screen, establish the read counts.
 
 Held-out mean squared reconstructed arithmetic error for 8 FC1 output channels in selected block:
 
