@@ -1,3 +1,6 @@
+## NEW: ready-to-pull read-only audit
+A minimal user-runnable discovery script is now committed at [`experiments/e26b_pex_discovery.sh`](../../experiments/e26b_pex_discovery.sh) (commit `3936ab9562db3398a8c8f74cb5709b92b67867b5`). Run `bash experiments/e26b_pex_discovery.sh` after `git pull --ff-only`. It reports file checksums, rough structural counts, existing R1/R2/MC result filenames and checkpoint hashes. **It does not execute Spectre, inspect actual currents or prove correlation.** A separate optional extended local Python auditor exists for richer structural metadata. Previous statement below that no audit code is tracked refers only to the extended Python auditor.
+
 # E26B — Actual GF 2T1MTJ 4×4 PEX discovered, existing four-BL CIM pilot found
 
 **Date:** 2026-11-05. **Status:** NUS FILE DISCOVERY COMPLETED; physical joint-error measurements NOT YET EXAMINED OR EXECUTED. Do not claim correlation from file names.
