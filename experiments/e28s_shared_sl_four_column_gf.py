@@ -133,9 +133,11 @@ def rewire(raw,group_by_case,ohms,expected_rows=4,expected_sources=28):
         if mi and model=="vsource":
             ident=int(mi.group(1))
             if ident in source_by_case:die("duplicate VC source "+str(ident))
-            if len(terminals)!=2 or terminals[1]!="0":
-                die("VC source is not (BL 0) at case "+str(ident))
-            source_by_case[ident]=terminals[0]
+            if len(terminals)!=2 or (terminals[0]=="0")==(terminals[1]=="0"):
+                die("VC source must have exactly one grounded terminal at case "+str(ident))
+            # VC may be a current-sensing return or a BL supply; orientation
+            # is a model property, NOT assumed from the sign of source current.
+            source_by_case[ident]=terminals[1] if terminals[0]=="0" else terminals[0]
         if model=="hvtnfet":
             if len(terminals)!=4:die("GF NFET must have exactly 4 terminals")
             # Conducting path connects D and S, NOT gate or bulk.
@@ -172,6 +174,8 @@ def rewire(raw,group_by_case,ohms,expected_rows=4,expected_sources=28):
         for pos in pins:
             if ns[pos]=="0":
                 return_contacts[ix].append((e,pos))
+    contacts_per_case={str(ix):len(return_contacts[ix]) for ix in sorted(expected)}
+    print("E28S_ORIGINAL_RETURN_CONTACT_COUNTS",contacts_per_case,flush=True)
     for ix in sorted(expected):
         devices=per_case[ix]
         if sum(k=="fet" for e,k in devices)!=expected_rows or sum(k=="mtj" for e,k in devices)!=expected_rows:
