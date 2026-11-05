@@ -1,3 +1,13 @@
+## Evidence-scope correction (5 Nov 2026) — E31 0/36 does not settle target 256×256 CIM
+
+The user correctly challenged any implication that the **complete target MRAM-CIM array has too few errors**. [ADR-0011](decisions/ADR-0011-E31-not-whole-256x256-workload-activity-and-physical-gates.md) documents the correction: E31 simulated **256 physical rows ×4 simultaneous columns but only m=24 WLs active**, C0 n∈{11,12,13}, one nominal GF NFET + static student MTJ P/AP configuration, assumed BL 0.25Ω/segment and shared SL 0.25Ω; no 1T1 PEX, physical ADC, mismatch, read transient or inference. Frozen Q corrected all 36 C0 nominal DEV masks, but **global 15/36 wrong**, so this is a **success of an uncosted particular correction**, not a whole-macro error verdict. `36` are distinct read masks, not independent physical chips.
+
+**E01 already shows a wider real neural activity regime** for candidate software read grouping: CAR m max **32** in 32-row groups, **63** in 64-row groups and **110** in 128-row groups. Their reported mean m among nonempty reads were 8.708,15.282,25.190; no full 256-group per-plane histogram previously archived. These are software scheduled group populations, NOT measured simultaneously activated physical WLs. This is a major missing regime relative to E31 fixed 24. [E35A frozen E01 packet inventory](../experiments/e35a_frozen_e01_activity_audit.py) is a read-only packet SHA gated software audit; not yet executed on NUS. Full higher-m GF experiments require extending and auditing E30's 16/24/32-only generator, legal read bias, justified PEX and meaningful ADC range. Array **width** alone only changes per-column error if a shared coupling/driver/supply/SL structure is actually connected.
+
+**Immediate test queue:** E33 ideal ADC bit-depth and E34 four GF-column CAL generalization are committed but have no user NUS results; E35A packet activity audit also pending. **Physical evidence gate E32** remains 1T1 CMOS+BL/WL/SL actual layout and RC extraction. N2/recovery remains a candidate. Roy–Shanbhag JxCDC 2024 and Roy et al JSSC 2025 22nm MRAM work already study BL/SL nonlinearities, current-mirror/ADC mismatch and statistical error compensation; generic spatial Q correction must not be represented as standalone novelty. Hardware cost of input-Q extraction, calibration, ADC and digital replacement still unmeasured.
+
+---
+
 # CA2 writing map
 
 This is a traceable working structure. Confirm the official CA2 rubric and required
