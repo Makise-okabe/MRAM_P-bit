@@ -1,3 +1,10 @@
+# DECISION UPDATE — 2026-11-05: USER SELECTED 1T1MTJ
+
+**User explicitly chose: "ok we continue 1t1mtj".** Freeze **a student-built GF-access-NFET + authorized MTJ 1T1MTJ analog current-summing CIM prototype** as current FYP investigation baseline, not the old foundry-style 2T1 local-floating-SL physical layout. Supervisor's acceptance and availability of layout-qualified 1T1 macro remain unverified. This is an architectural research choice, **not** evidence GF offers a production-ready 1T1 foundry macro. Target system remains up to 256×256 sites built hierarchically from a physically verified smaller prototype.
+
+**Immediate next step:** [E27A](../../experiments/e27a_1t1_cim_preflight.py), selftest + NUS model provenance and private 4×4 matched P/AP mask generation. There is **no new 1T1MTJ PEX** until physical implementation and DRC/LVS/xACT pass. Do not run additional assumed-wire broad sweeps or claim correlated physical count errors.
+
+---
 # ADR-0009 — Do not substitute historical 2T1MTJ PEX for a new 1T1MTJ CIM target
 
 **2026-11-05 | Architecture clarification raised by user. STATUS: architecture decision pending formal scope confirmation with Prof Fong, but E26B's 2T1MTJ-to-target substitution is explicitly disallowed.** The current research README does not actually freeze a 1T1MTJ or 2T1MTJ physical CIM cell. The user flags the difference and questions the unsupported assumption that the old 2T1MTJ is our new primary array.
