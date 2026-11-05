@@ -275,7 +275,7 @@ def main():
     out.mkdir(parents=True,exist_ok=True)
     path=out/"E33_ADC_SWEEP.json"
     if path.exists():fail("Refusing overwrite "+str(path))
-    path.write_text(json.dumps(report,indent=2,sort_keys=True)+"\n")
+    path.write_text(json.dumps(report,indent=2,sort_keys=True)+"\n", encoding="utf-8")
     md=out/"E33_FOR_PROF_FONG.md"
     table=["# E33 — ADC precision vs calibrated 256-row read errors",
            "",
@@ -312,7 +312,7 @@ def main():
        "Sources are private on NUS, and this summary contains NO licensed model"
        " or netlist content.",
        ""]
-    md.write_text("\n".join(table))
+    md.write_text("\n".join(table), encoding="utf-8")
     print("E33_FIXED_ADC_FULLSCALE_uA",low,high)
     print("E33_OUTPUT_JSON",path)
     print("E33_PROF_BRIEF",md)
