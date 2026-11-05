@@ -52,3 +52,23 @@ A complete actual per-case joint vector of multi-column read currents + calibrat
 - **GO:** 1T1 supported with verified actual PEX shared path and measurable physically relevant nonlinearity; produce multi-column error kernel and begin compute-level algorithm ablations against strong controls.
 - **NO-GO:** illegal parallel read, unrepresentative 1T1 layout/periphery, negligible physical effect, or lack of device variation; document falsification rather than fake results.
 - **Scope:** the new algorithm must reduce signed multibit / neural inference errors at equal compute/energy/latency or calibration cost, not simply improve P/AP read margin.
+
+## E27A USER-EXECUTED PASS; E27B/C BATCH PREPARED (2026-11-05)
+
+**Actual NUS E27A result:** user ran \`e27a_1t1_cim_preflight.py\`:
+- Selftest PASS for 10 4×4 masks with matched near/far P/AP composition.
+- Student static MTJ model 376 bytes, SHA256 \`1d22984b7be5135c07bb5e392d73aa53e1ad42b7c4bdc6d2fc11bb3f313b9a88\`.
+- Frozen E24 existing data 1,054,271 bytes, SHA256 \`0b8519fcc69bf77466d36f85fd70424675f5ce2b38a62e56b64074db3d6b8dc8\`.
+- Existing NUS E19 1T1-like single-column \`input.scs\` 58,998 bytes, SHA256 \`e3841c4954a300e213a0d3d924d5ae40b2a0a799b57a32d54daf3fb43cf47c45\`, identical in two preexisting NUS MC_CURRENT_REAL runs.
+- Private E27A frozen case manifest \`~/mram_private/E27_1T1/E27A_1T1_4x4_preflight_manifest.json\` and matched masks CSV.
+- **No Spectre, new 1T1 PEX or GF correlation** was executed in E27A; these claims remain explicitly BLOCKED.
+
+**New one-shot bounded electrical next batch:** [\`experiments/run_e27bc_nus.sh\`](../../experiments/run_e27bc_nus.sh). Run \`git pull --ff-only\` and \`bash experiments/run_e27bc_nus.sh\` on NUS. Prerequisites:
+- [\`e27c_1t1_physical_handoff_audit.py\`](../../experiments/e27c_1t1_physical_handoff_audit.py) is read only: student VerilogA module/port names, exact source and historical deck file hashes, instance metadata (not foundry contents), local layout candidates.
+- [\`e27b_1t1_reference_gf_spectre.py\`](../../experiments/e27b_1t1_reference_gf_spectre.py) is a **16-case nominal GF NFET + student static MTJ single-column** matched-m=2, k=2, n=1 Spectre reference, using **four independent 4-row circuits** (one per conceptual column) and an ASSUMED 0Ω per-segment wire. It relies on exact local E19 v2 generator SHA \`b6bec40bc234fac406d191229146354a5fe47c6969fb6db6a672e607ddf83e54\` and frozen model sha above, then checks real raw Spectre outputs, all 16 source currents, and private results with hash. This is a schematic **zero-resistor null-control**, **NOT a simultaneous 4-column read**, NOT a physically extracted 1T1 4×4, and NOT a correlation test. No other assumed-R sweep or margin-optimization is run.
+- 0.05V Vread / 0.8V Vwl are **historical screening biases** from E22 contract, not independently verified safe READ/retention operating conditions for new layout; validate before any physical prototype claim.
+- If local E19 v2 generator is absent, script prints a blocker and runs no Spectre. A Spectre failure should be investigated in private log, not converted into a physical conclusion. **Neither E27B nor E27C has been user-executed as of this note.**
+
+**Physical next step after batch:** build single 1T1MTJ cell and 4×4 macro with defined one-NFET-in-series wiring, shared WL and column BL/SL; independently verify read polarity, P/AP control, selected/unselected source/bitline terminations; DRC/LVS/xACT **new 1T1** and extract actual RC; matched two-row and four-column PEX current vector at synchronized sample time. Only those actual currents can advance physical error-correlation E26A.
+
+**IMPORTANT zero-signal gate:** At assumed R0, if selected P/AP count is identical, the ideal-wire nominal currents may be identical. This is expected and not failure of code. The intended purpose is to verify genuine GF transistor currents and the 1T1-like independent-column reference, not to generate fake spatial effects.
