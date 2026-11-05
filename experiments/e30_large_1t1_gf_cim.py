@@ -64,8 +64,8 @@ def specs(rows=256,cols=4,m=24,seed=20261105):
     if region_len>rows//2:
         raise ValueError("Need near/far spatially separated candidate pools")
     regions={
-        "NEAR":list(range(region_len)),
-        "FAR":list(range(rows-region_len,rows)),
+        "ROW_LO":list(range(region_len)),
+        "ROW_HI":list(range(rows-region_len,rows)),
         "DISTRIBUTED":[int(i*rows/region_len)+(i%2) for i in range(region_len)]
     }
     if any(len(v)!=len(set(v)) or min(v)<0 or max(v)>=rows for v in regions.values()):
@@ -260,6 +260,7 @@ def main():
        "physical_shared_WL_network":False,
        "NOT_FULL_1T1_256x256_EXTRACTED":True,
        "assumed_bl_R_per_segment_ohms":args.segment_ohms,
+       "row_lo_hi_names":"indices only: electrical near/far order not verified",
        "assumed_sl_shared_return_ohms":args.return_ohms,
        "screening_bias_V":{"read":0.05,"WL":0.8},
        "runtime_weight_map_random_seed":args.seed,
