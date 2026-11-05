@@ -11,7 +11,7 @@ fixed. Only the verified existing GF E19 one-FET + static MTJ generator is used.
 No PDK/model source text is printed or committed. All decks/results stay in
 ~/mram_private/E28_1T1/. No guessed topology: rewrite is blocked unless exactly
 one safe 0-return per branch is located and all 4 branches per case are found.
-Python >=3.7, stdlib only.
+Python >=3.6, stdlib only.
 """
 from __future__ import print_function
 import argparse
