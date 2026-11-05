@@ -3,8 +3,9 @@
 
 User-selected 1T1 architecture. Each simulated cell has one real GF access
 NFET (compact model) plus a student-owned static 2-terminal MTJ model.
-A column contains ALL rows, active or not. Each scenario drives the SAME
-wordline-active row set in every column; stored P/AP weights remain resident.
+A column contains ALL rows, active or not. Each scenario applies the SAME row-activation mask across columns via
+separately ideal-gate-driven NFETs (NOT a real shared-WL RC network);
+stored P/AP weights remain resident.
 4 or 16 columns are jointly simulated with an intentionally ASSUMED shared
 source-return impedance, and compared to independent ground.
 
@@ -139,10 +140,11 @@ def verified_e19():
 def chunked(lst,n):
     for i in range(0,len(lst),n):yield lst[i:i+n]
 
-def make_deck(work,rows,m,chunk,rseg,e19,template,model):
+def make_deck(work,rows,m,chunk,rseg,e19,template,model,args):
     work.mkdir(mode=0o700)
-    opts=argparse.Namespace(rows=rows,m=m,k=rows//2,
-                            vread=0.05,vwl=0.8)
+    opts=argparse.Namespace(**vars(args))
+    opts.rows=rows;opts.m=m;opts.k=rows//2
+    opts.vread=0.05;opts.vwl=0.8
     path=Path(e19.make_deck(work,chunk,rseg,template,model,opts))
     if not path.is_file():die("E19 did not create netlist")
     return path.read_text(),sha(path)
@@ -196,9 +198,10 @@ def score_C0(scenarios,records,arm):
     if len(centres)!=3:die("need 3 CAL count classes in C0")
     means=list(centres.values())
     increasing=means[0]<means[-1]
-    if not all((means[i]<means[i+1] if increasing else means[i]>means[i+1])
-               for i in range(2)):
-        die("CAL centroids not strictly ordered at "+arm)
+    ordered=all((means[i]<means[i+1] if increasing else means[i]>means[i+1])
+               for i in range(2))
+    if not ordered:
+        print("E30_CAL_NONMONOTONIC_COUNT_LEVELS",arm,flush=True)
     err=[]
     for r in dev:
         pred=nearest(r["I"],centres)
@@ -206,6 +209,7 @@ def score_C0(scenarios,records,arm):
                     "true_n":r["n"],"decoded_n":pred,
                     "count_error":pred-r["n"],"I_uA":r["I"]*1e6})
     return {"CAL_centroids_uA":{str(k):v*1e6 for k,v in centres.items()},
+            "CAL_strictly_monotonic":ordered,
             "DEV_wrong":sum(x["count_error"]!=0 for x in err),
             "DEV_total":len(err),"DEV_cases":err}
 
@@ -253,6 +257,7 @@ def main():
        "student_static_MTJ":True,
        "model_mismatch_or_read_disturb":False,
        "shared_real_multi_column_Spectre":True,
+       "physical_shared_WL_network":False,
        "NOT_FULL_1T1_256x256_EXTRACTED":True,
        "assumed_bl_R_per_segment_ohms":args.segment_ohms,
        "assumed_sl_shared_return_ohms":args.return_ohms,
@@ -289,7 +294,7 @@ def main():
         for arm,rseg,shared in modes:
             generated=part/("_gen_"+arm)
             raw,sourcehash=make_deck(generated,args.rows,args.active,chunk,
-                                     rseg,e19,template,model)
+                                     rseg,e19,template,model,args)
             topology=None
             if shared:
                 groups={x["id"]:x["scenario_id"] for x in chunk}
