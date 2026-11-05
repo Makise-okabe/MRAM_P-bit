@@ -1,9 +1,9 @@
-# Independent Overleaf setup
+# Overleaf source of truth — current M0 scope (6 Nov 2026)
 
-A complete expanded 6-page research proposal and code bundle is in `MRAM_Pbit_Overleaf_20261105.zip` from the 5 November 2026 ChatGPT handoff.
+Use the GitHub **default main** of Makise-okabe/MRAM_P-bit. The current main.tex contains the locked device-aware H1/H2/H3 question, not the preliminary November 5 proposal. Do not import older ZIP bundles, former Overleaf branches, or previous project versions.
 
-1. Overleaf -> **New Project** -> **Upload Project**.
-2. Upload the ZIP; name the project `FYP — MRAM P-Bit / Low-Precision Coupling`.
-3. Choose `main.tex` and pdfLaTeX.
-4. Verify references, author and supervisor before sharing.
-5. Overleaf and GitHub are not automatically synchronized; this branch contains a concise independent starter and the downloadable ZIP contains the expanded report.
+To create a separate Overleaf project from current GitHub: Overleaf -> New Project -> Import from GitHub -> choose Makise-okabe/MRAM_P-bit. Confirm the title in main.tex begins 'Coupling Precision and Scale Granularity for Nonideal MRAM-Based p-Bit Systems'. Compile with pdfLaTeX.
+
+Overleaf imports a snapshot of a branch; new GitHub changes do NOT automatically update a previously imported project. If Overleaf created its own 'overleaf-...' branch, that branch is not proof the report is synced to main. Re-import intentionally or use an explicitly configured bidirectional integration before depending on synchronization.
+
+The previous p-bit proposal is archived in Git history; it must not replace today's research roadmap. Full hypotheses, M0 evidence gates and milestone rules live under docs/.
