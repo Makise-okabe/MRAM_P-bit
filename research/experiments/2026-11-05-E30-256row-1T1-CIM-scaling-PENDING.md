@@ -1,3 +1,11 @@
+# E30P NUS VERIFIED — 2026-11-05 11:27 SGT; NEXT = E31 FROZEN-CAL NEW-MASK TEST
+
+User executed [`e30p_offline_strong_baselines.py`](../../experiments/e30p_offline_strong_baselines.py), no new Spectre, on actual E30 GF-current private source SHA256 `f5646f0248207df56f7b9c0bb53fb126fa6200bc42f5a7ba3e881df1204aeb52`. E30P private result `~/mram_private/E30_1T1/E30_256x4_20261105T031022Z_866/E30P_baselines_20261105_112745.json`. E30P printed **global 0/9, 6/9, 6/9** for ideal, assumed BL, assumed BL+SL. **All three stronger CAL-only references (area offset, per-area count bank, input-mask Q) produced 0/9 DEV for every arm**. Input-Q direction chosen on CAL only: prefix for ideal, suffix for assumed BL arms. No extra run has been made to validate recovery/cross-bitplane errors.
+
+Same-count n12 low-row vs high-row current delta `9.485555790824165µA`, 5.1687402993 nominal ideal count-step equivalents; shared-SL extra C0 current max shift `230.88539148437803nA`. CAL shared-SL area offsets (µA): ROW_LO `+4.244794550775694`, ROW_HI `-5.215347147225979`, DISTRIBUTED `+0.9705525964502945`. These are **user-run, physically constructed GF-transistor simulated currents at assumed 0.25Ω/BL segment and 0.25Ω shared return, NOT 1T1 extracted PEX**. One CAL and one DEV pattern per (area,count), a single nominal device map; 0/9 does not certify a BER. Naive 6/9 is NOT a residual that N2 selective digital recomputation must fix. **Decision:** keep physical-array scope 1T1; freeze all E30 CAL and run [E31](2026-11-05-E31-frozen-cal-256row-generalization-PENDING.md) on fresh same-state 256-row masks including unseen spatial families; do not re-use DEV to retune Q.
+
+---
+
 # E30 — ACTUAL NUS GF RESULT: LARGE SPATIAL READ DISTORTION; GLOBAL CAL 6/9 WRONG, SIMPLE SPATIAL CAL 0/9 (2026-11-05)
 
 **USER-RUN COMPLETE:** E30 256 rows ×4 jointly simulated columns, 24 active rows/column, 18 scenarios. 3 electrical arms ×9 chunks (each chunk 2 scenarios×4 columns), all 27 Spectre arm/chunks finished. Actual user-pasted log and private NUS JSON:
