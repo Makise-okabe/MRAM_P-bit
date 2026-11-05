@@ -1,3 +1,34 @@
+# E31 — USER EXECUTED ON NUS: FROZEN INPUT-Q GENERALIZES 0/36, OOD 0/18 (2026-11-05)
+
+**STATUS: COMPLETE for the declared single-chip nominal GF compact-NFET + student static MTJ, ASSUMED-INTERCONNECT DC model.** Executed repo SHA `44647ff1215aaa94be4ce004136a8a5a147e546e`. Actual NUS private result `~/mram_private/E31_1T1/E31_256x4_20261105T033721Z_2792/E31_RESULTS.json`; user-supplied NUS terminal log shows all 18 chunks × three electrical arms finished (54 Spectre jobs), 36 fresh DEV scenarios, each 256 rows ×4 joint read columns, 24 active logical rows per column. E30 original frozen CAL input hash `f5646f0248207df56f7b9c0bb53fb126fa6200bc42f5a7ba3e881df1204aeb52`. Resident weight state map held fixed. **No new CAL or coefficient fitting on E31 DEV.**
+
+**E31 held-out results**, true count n=11/12/13 (fixed m=24), 18 fresh scenarios in familiar input-mask families and 18 unfamiliar family patterns:
+
+| Read arm and DEV group | Pooled global count errors | CAL area offset | CAL area/count bank | CAL-only input Q |
+|---|---:|---:|---:|---:|
+| Ideal wire, all 36 | 0/36 | 0/36 | 0/36 | 0/36 |
+| Assumed BL R, seen spatial masks (18) | **9/18** | 0/18 | 0/18 | **0/18** |
+| Assumed BL R, unseen spatial masks (18) | **6/18** | 6/18 (GLOBAL fallback) | 6/18 (GLOBAL fallback) | **0/18** |
+| Assumed BL R, all (36) | **15/36** | 6/36 | 6/36 | **0/36** |
+| Assumed BL R + shared SL, seen (18) | **9/18** | 0/18 | 0/18 | **0/18** |
+| Assumed BL R + shared SL, unseen (18) | **6/18** | 6/18 (GLOBAL fallback) | 6/18 (GLOBAL fallback) | **0/18** |
+| Assumed BL R + shared SL, all (36) | **15/36** | 6/36 | 6/36 | **0/36** |
+
+**Interpretation:** Frozen input-mask Q captured a large **predictable** positional bias under the exact constructed 256-stage BL ladder, including genuinely new input-row distribution families. Coefficient selected on original nine E30 CAL masks with no DEV tuning. A simple spatially informed decoder was more robust than a global count reference and better than categorical area models that necessarily fallback to global for unseen areas. E31 strengthens E30P's earlier 0/9 CAL-Q result to **0/36**, but it does **not** establish a physical 1T1MTJ bit-error rate or intrinsic algorithm novelty. The remaining algorithm N2 *selective digital recovery* is not presently justified by post-Q discrete count failures (none in this tested model). This is a meaningful negative **residual-error** finding, not a negative finding about MRAM feasibility.
+
+**Evidence limits / generalization boundaries:**
+- Same frozen nominal chip weight map and static MTJ, **no CMOS/MTJ process/mismatch variation, temporal switching/read disturb, 7-bit/other ADC model, noise, or real sense-path timing**.
+- Only one row activity `m=24`, target C0 count classes `n=11,12,13` and four simulated columns; not 256×256 total, not all W4A8 activation cycles or signed planes.
+- Both 0.25 Ω BL *per row segment* and 0.25 Ω lumped common-SL resistor **assumed**, not measured from new 1T1MTJ PEX or geometry. 36 input masks are not 36 independent physical chips. Q calibration cost and runtime mask-feature cost not measured.
+- The E31 area policies' 6/18 OOD mistakes use a preregistered **global fallback** for unknown regimes; don't interpret them as the best possible continuous spatial baseline. Q is a reasonable strong comparator, not proven new.
+- A zero-error 36-mask run does not prove zero failure probability for unsampled activity or layout/device conditions.
+
+**DECISION:** Freeze and archive E30/E30P/E31 as a completed **constructed-GF nominal spatial-Q mechanism/generic-calibration result**; do not enlarge assumed BL R or repeat input-mask synthetic controls to provoke errors. **Next milestone must be physically anchored 1T1 interconnect** (at least GF CMOS+metal routing geometry extracted and matched to the student static MTJ external model, clearly labeled as wire PEX rather than full physical MTJ qualification). Audit actual 1T1 cell layout/BEOL access; implement 256-row representative BL and shared SL/WL conductors using permitted GF 22FDX extraction; compare extracted segment R/C against present assumed .25Ω, then re-run 256-row scenarios. No historical local-floating-SL 2T1 DSPF substitution. If physical regime supports residual errors **after Q**, obtain aligned W4A8 bitplane traces and test N2 matched cost. Without residual, no digital recovery novelty.
+
+This heading supersedes the previous PENDING status and any older proposed immediate E31 actions below.
+
+---
+
 # E31 — Frozen CAL, unseen 256-row masks: does strong Q correction actually generalize?
 **Date:** 2026-11-05. **Status: executable committed; not yet user-run.**
 
