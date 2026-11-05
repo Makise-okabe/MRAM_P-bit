@@ -1,3 +1,5 @@
+> **Active update — 5 Nov 2026:** The user selected a **new 1T1MTJ analog CIM prototype** as the current physical research architecture. Its fresh 1T1 4×4 layout/PEX is **not built yet**; the earlier extracted 4×4 GF local-floating-SL **2T1MTJ** is historical, not interchangeable. [Architecture decision](research/decisions/ADR-0009-architecture-gate-1T1MTJ-vs-legacy-2T1MTJ-PEX.md) · [E27 physical protocol](research/experiments/2026-11-05-E27-1T1MTJ-physical-CIM-pilot-PENDING.md) · [E27A NUS preflight](experiments/e27a_1t1_cim_preflight.py). E24 1T1-like GF-access-NFET read-current tests were already executed with **assumed wire R** (not PEX); E26A FC1 E01 arithmetic checks passed, physical joint-error test still blocked. Algorithm-level signed multibit mitigation, not ADC margin, is the proposed novelty focus. Supervisor architecture approval remains unverified. Historical status text below may be stale.
+
 # MRAM Path Finding
 
 **NUS ECE FYP research workspace** — 256 × 256 STT-MRAM compute-in-memory architecture, sensing reliability, inference, and conditional Ising-machine research.
