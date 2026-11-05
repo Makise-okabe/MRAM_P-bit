@@ -256,7 +256,7 @@ def main():
     dest=out/"E34_RESULTS.json"
     summary=out/"E34_FOR_PROF_FONG.md"
     if dest.exists() or summary.exists():die("Refuse overwrite existing result")
-    dest.write_text(json.dumps(report,indent=2,sort_keys=True)+"\n")
+    dest.write_text(json.dumps(report,indent=2,sort_keys=True)+"\n", encoding="utf-8")
     lines=["# E34 — Real GF currents: does C0 calibration generalize across all 4 columns?",
            "",
            "**Status:** POSTPROCESSING of NUS actual GF Spectre currents (E30/E31)."
@@ -281,7 +281,7 @@ def main():
         " Do not claim a failure predictor/recovery novelty until actual 1T1 geometry"
         " and signed bitplane mapping are verified.",
         ""]
-    summary.write_text("\n".join(lines))
+    summary.write_text("\n".join(lines), encoding="utf-8")
     print("E34_RESULT_JSON",dest)
     print("E34_PROF_SUMMARY",summary)
     print("E34_FOUR_COLUMNS_NOT_SIGNED_PLANES_NO_PEX")
