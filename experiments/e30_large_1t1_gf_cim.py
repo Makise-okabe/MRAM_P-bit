@@ -314,6 +314,7 @@ def main():
             if topology:meta["shared_return_topology_validation"]=topology
             meta["n_cells_in_deck"]=len(chunk)*args.rows
             manifest["results"].setdefault(arm,{"provenance":[]})["provenance"].append(meta)
+            manifest["results"][arm]["currents_by_scenario_A"]=output[arm]
             print("E30_SPECTRE_DONE",arm,"PART",part_num,"CELL_DEVICES",len(chunk)*args.rows,
                   "CURRENT_uA_MIN_MAX",
                   [round(min(vals)*1e6,6),round(max(vals)*1e6,6)],flush=True)
