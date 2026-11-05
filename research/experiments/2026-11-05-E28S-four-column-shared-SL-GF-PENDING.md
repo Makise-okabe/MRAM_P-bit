@@ -1,3 +1,27 @@
+# E28S — NUS USER EXECUTED: COUPLING OBSERVED; NO COUNT ERRORS; PHYSICAL GATE BLOCKED
+
+**Status as of 2026-11-05 NUS Singularity: E28S COMPLETE for its explicitly assumed shared-return DC model.** Not a physical 1T1MTJ PEX result; not a Monte Carlo chip covariance measurement, and no complete W4A8 inference was executed.
+
+Source commit `fa1050f9bb6c1882a297291c4ca53079ac19fd69`. Private actual result `~/mram_private/E28_1T1/E28S_20261105T022326Z_507/E28S_RESULTS.json`. User-run successful. 28 branch cases / 7 four-column joint scenarios, same E19 verified GF transistor and student static MTJ, independent baseline vs common-return scenario resistors **assumed** R=0.01,5,20 Ω. All 112 return-device ground terminals rewired into seven distinct shared source-line networks; model output reports PASS for topology check and fixed-C0 input/current baseline. NUS actual cell-template `c009843e00b22797853bf19116cebf8278db276b66c30a3181c3527e8e36dab6`, generator `b6bec40bc234fac406d191229146354a5fe47c6969fb6db6a672e607ddf83e54`, MTJ `1d22984b7be5135c07bb5e392d73aa53e1ad42b7c4bdc6d2fc11bb3f313b9a88`.
+
+**User-observed Spectre results:**
+
+| Assumed shared return | C0 current neighbor HIGH minus LOW | Maximum absolute individual read-current shift vs independent ground | Offline nearest-mean count errors | Max abs continuous signed-W4 MAC error |
+|---|---:|---:|---:|---:|
+| 0.01 Ω | −0.019983656 nA | 0.089593634 nA | 0/28 | 0.0000574063 |
+| 5 Ω | −9.917109381 nA | 44.603743566 nA | 0/28 | 0.0285791713 |
+| 20 Ω | −38.790493029 nA | 176.133942753 nA | 0/28 | 0.1128517791 |
+
+Independent GF nominal current min `6.95946438 µA`, max `10.6298193 µA`; with counts 0,1,2 an approximate adjacent count level step is `1.83517746 µA`. At 20Ω, C0's neighbor-induced 38.79 nA is ~2.11% of this step, and ~0.44% of the fixed C0 `8.79464185 µA` baseline. The largest absolute branch-current shift 176.13 nA is ~9.60% of one count step (although count decoder remained correct across these selected cases).
+
+**Interpretation:** A physically motivated but *constructed* shared source-line return produces real GF-compact-transistor simulated coupled currents. This is deterministic shared-node interaction, NOT a statistical cross-column covariance distribution. Under the explicitly assumed parameters and seven scenario patterns, no discrete decoded count errors or toy signed-W4 integer MAC errors were observed; continuous, *offline interpolated* MAC deviations are nonzero but no physical ADC/read-margin crossing and NO neural inference result have been demonstrated.
+
+**Decision / research gate:** RETIRE additional large shared-return-R sweeps under assumed geometry as primary novelty route. The present 4-row mechanism is too weak to cause tested integer errors, and 20Ω is not justified by 1T1 layout PEX. Do NOT extrapolate to larger arrays or imply actual GF wire R. Reprioritize **new physically grounded 1T1MTJ interconnect extraction / representation**, legal multiple-WL mixed-state 4×4 read, and actual R/C (or rigorously documented geometry-based bound). Re-test the *same paired masks* with actual physical path. Only after obtaining measured meaningful count errors should E26A full signed-W4A8 inference be attempted. E24 high-fan-in/assumed BL5Ω showed 7/528 Q residual but cannot be called a physically extracted failure.
+
+**Fail-safe interpretation:** Zero count errors in 28 chosen branch cases does NOT prove zero failure probability, particularly without variation or workload representativeness. Nor does a nonzero continuous MAC distortion by itself establish useful algorithm novelty.
+
+---
+
 # 2026-11-05 E27B actual null control; E28S four-column GF electrical-coupling experiment
 
 ## Why reset the immediate experiment
