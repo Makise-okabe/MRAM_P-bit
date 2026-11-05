@@ -330,6 +330,12 @@ def execute(args):
     print("E28S_RUN INDEPENDENT baseline",flush=True)
     baseline,ih,dh=run_spectre(independent_deck,work/"independent",e19,args.timeout_sec)
     provenance["raw_current_by_arm"]["independent"]={"currents_A":baseline,"dc_sha256":ih,"deck_sha256":dh}
+    # C0's *entire* active mask and P/AP state are unchanged across the
+    # NEAR_LOW / MID / HIGH / MIX scenario family. Reject any baseline drift.
+    base_c0=[baseline[4*j] for j in range(5)]
+    if max(base_c0)-min(base_c0)>max(1e-14,abs(base_c0[0])*1e-7):
+        die("independent C0 current differs despite identical C0 states/mask")
+    print("E28S_C0_FIXED_INPUT_NULL_PASS",base_c0,flush=True)
     print("E28S_INDEPENDENT_DONE min_uA {:.9g} max_uA {:.9g}".format(
         1e6*min(baseline),1e6*max(baseline)),flush=True)
     for resistance in SHARED_OHMS:
