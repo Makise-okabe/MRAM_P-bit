@@ -1,3 +1,9 @@
+# CURRENT SCALE-UP EXPERIMENT — 2026-11-05
+
+**E30 is now the next NUS run, not another 4×4/ideal-wire selftest.** The user pointed out correctly that E28S 4-row m2 with 0/28 wrong counts cannot falsify 256×256 CIM reliability or N2 recovery. We have committed [E30](experiments/2026-11-05-E30-256row-1T1-CIM-scaling-PENDING.md) to simulate a **256-row ×4-column 1T1-like GF NFET + student MTJ constructed read array** with 1,024 cells per four-column case, matched shared input masks, persistent P/AP maps, 18 CAL/DEV cases and jointly solved shared-SL return. An optional 256×16 extension and 256×256 generate-only gate are defined. **The circuit's BL and shared-return R are ASSUMED, not physical 1T1 PEX**, and output is not full-network inference. E30 has not yet been run by user. Existing E28S deterministic shared-return GF effect observed without count errors; E29A cancellation-aware recovery remains synthetic/algorithm candidate without matched-cost physical advantage. No old 2T1MTJ DSPF is used.
+
+---
+
 # ACTIVE ARCHITECTURE / EVIDENCE OVERRIDE — 2026-11-05
 
 **User chose 1T1MTJ analog CIM as the new physical prototype.** See [ADR-0009](decisions/ADR-0009-architecture-gate-1T1MTJ-vs-legacy-2T1MTJ-PEX.md) and [E27](experiments/2026-11-05-E27-1T1MTJ-physical-CIM-pilot-PENDING.md). Earlier legacy 4×4 local-floating-SL **2T1MTJ PEX is NOT the new 1T1 PEX**. E19–E24 used GF access NFET + static MTJ with **assumed** wire resistors, not physical 1T1 layout. E24 NUS DONE: at assumed 5Ω / mathematical 7bit, Q-transfer 7/528 vs centroid26/528 and raw124/528; it is a mechanism screen, not a novel read-margin method.
