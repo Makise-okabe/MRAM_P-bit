@@ -18,5 +18,5 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Independent tiny MaxCut smoke test
         run: python experiments/m0_reference.py --family maxcut --size 8 --records 100 --output results/ci_maxcut
-      - name: Independent tiny TSP smoke test
-        run: python experiments/m0_reference.py --family tsp --size 3 --records 100 --output results/ci_tsp
+      - name: Independent complex BPSK MIMO mapping and smoke test
+        run: python experiments/m0_mimo_reference.py --tx 4 --rx 4 --snr-db 10 --records 100 --output results/ci_mimo4x4
