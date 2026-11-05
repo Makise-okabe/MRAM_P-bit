@@ -1,3 +1,28 @@
+# E33 — NUS NUMERICAL RESULTS OBSERVED; MARKDOWN EXPORT FAILED UNDER ASCII (2026-11-05)
+
+**Evidence status: E33 numerical experiment COMPLETED in the user-posted NUS terminal output, but one-shot E33+E34 workflow NOT fully completed.** Execution source commit `4232c90e6c5013f610245240b00e7ebb926daeba`. Frozen private E30 source SHA `f5646f0248207df56f7b9c0bb53fb126fa6200bc42f5a7ba3e881df1204aeb52`, private E31 source SHA `78657894903388fe35bef51002786331e8935c916436eaf58ac28b273c69e023`. First run directory `~/mram_private/E33_E34_OFFLINE/20261105T041013Z_6504/`. All 3 circuit arms × 8 predeclared bit depths produced E33 numeric outputs before the export error. The code writes `E33_ADC_SWEEP.json` **before** trying `E33_FOR_PROF_FONG.md`, so the numeric JSON should remain privately present (verify on NUS; no direct access from this chat). Python 3.6 NUS ASCII default text encoding rejected the Unicode em dash in the Markdown title: `UnicodeEncodeError: 'ascii' codec can't encode character '\\u2014'`. **This is a FILE EXPORT failure, not an ADC/circuit computation failure.** E34 DID NOT BEGIN (bash set -e).
+
+**Actual user-run printed E33 numerical results, 36 new E31 DEV masks, 9 original E30 CAL masks, same `n=11,12,13`, fixed hypothetical fullscale from original ideal E30 CAL and uniform mid-rise ADC. Bit-depth columns below are decoder WRONG counts/36.**
+
+| ADC bits | Ideal wire: Global / Q | Assumed BL, independent SL: Global / Q / mean-row / half-row | Assumed BL + shared SL: Global / Q / mean-row / half-row | LSB µA |
+|---:|---|---|---|---:|
+| 4 | 12 / 12 | 19 / 19 / 9 / 9 | 19 / 20 / 8 / 8 | 3.303319 |
+| 5 | 0 / 0 | 16 / 2 / 9 / 7 | 15 / 3 / 8 / 6 | 1.651660 |
+| 6 | 0 / 0 | 16 / 0 / 10 / 12 | 15 / 0 / 10 / 11 | 0.825830 |
+| 7 | 0 / 0 | 16 / 0 / 10 / 10 | 15 / 0 / 9 / 10 | 0.412915 |
+| 8 | 0 / 0 | 16 / 0 / 9 / 10 | 16 / 0 / 9 / 10 | 0.206457 |
+| 9 | 0 / 0 | 15 / 0 / 10 / 10 | 15 / 0 / 10 / 10 | 0.103229 |
+| 10 | 0 / 0 | 15 / 0 / 10 / 10 | 15 / 0 / 10 / 11 | 0.051614 |
+| 12 | 0 / 0 | 15 / 0 / 10 / 10 | 15 / 0 / 10 / 11 | 0.012904 |
+
+All 24 arm×bit depth cases report **0 clipped DEV observations** under the fixed hypothetical fullscale. Nominal ideal-wire one-step count separation was previously ~1.835 µA. At 4 bits, the 3.303 µA ideal-ADC LSB exceeds one nominal count step, so numerical count aliasing is unsurprising even for ideal wiring (12/36 errors). At 5 bits (LSB ~1.652 µA), assumed BL+SL Q has **3/36** residual count errors and assumed BL independent-SL Q **2/36**; at **6–12 bits Q has 0/36** for both assumed-BL arms. On the same tested data and model, continuous mean-row and far-half spatial feature baselines remain at 8–12 errors/36 for 6–12 bits in assumed-R arms, indicating the calibrated nonlinear position-Q feature does more than those **specific linear** spatial controls. This is not a hardware energy/bit-cost result and does not prove novelty against more advanced low-cost spatial calibration.
+
+**Critical limits:** These ADC errors are **mathematical quantization effects on previously solved GF Spectre currents**, not actual physical ADC or new NUS Spectre simulations. BL/SL resistors remain **ASSUMED**, not 1T1 PEX; only C0 count classes 11/12/13 and m=24; no chip/device variation, noise, settling, ADC circuit, actual full 256×256 or signed W4A8 neural inference. Do not say “actual 5-bit ADC has 3/36 errors” or “actual hardware requires 6 bits”; the ADC range is an extrapolated choice, and converter cost/headroom is unknown. No nonzero post-Q decoded count errors persist beyond 5 bits in this constructed model.
+
+**Fix committed:** `experiments/e33_adc_precision_frozen_gf.py` and `experiments/e34_four_column_gf_generalization.py` explicitly use UTF-8 when writing output JSON and Markdown. No numerical E33 algorithm/baseline altered. Re-run NUS `git pull --ff-only && bash experiments/run_e33_e34_nus.sh` to regenerate clean professor exports and complete E34. NO new Spectre. Mark E34 as pending until actual user log.
+
+---
+
 # E33 — Frozen-CAL ADC precision and failure-boundary screen on E30/E31 GF currents
 
 **Date:** 2026-11-05 SGT. **Status:** CODE COMMITTED, USER NUS RUN PENDING. **Original research direction:** F1 inference-failure prediction; F3 mapping remains a conditional intervention; F7 Ising paused (ADR-0010).
