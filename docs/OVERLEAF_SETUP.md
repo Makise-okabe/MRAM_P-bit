@@ -1,9 +1,11 @@
-# Overleaf source of truth — current M0 scope (6 Nov 2026)
+# Overleaf source of truth — BPSK MIMO low-order FP scope
 
-Use the GitHub **default main** of Makise-okabe/MRAM_P-bit. The current main.tex contains the locked device-aware H1/H2/H3 question, not the preliminary November 5 proposal. Do not import older ZIP bundles, former Overleaf branches, or previous project versions.
+GitHub default main is the authoritative FYP report source. Its main.tex title should read:
 
-To create a separate Overleaf project from current GitHub: Overleaf -> New Project -> Import from GitHub -> choose Makise-okabe/MRAM_P-bit. Confirm the title in main.tex begins 'Coupling Precision and Scale Granularity for Nonideal MRAM-Based p-Bit Systems'. Compile with pdfLaTeX.
+**Device-Aware Low-Order Floating-Point Coupling for MRAM-Based p-Bit Ising Machines**.
 
-Overleaf imports a snapshot of a branch; new GitHub changes do NOT automatically update a previously imported project. If Overleaf created its own 'overleaf-...' branch, that branch is not proof the report is synced to main. Re-import intentionally or use an explicitly configured bidirectional integration before depending on synchronization.
+The application benchmark is complex BPSK MIMO detection only. FP4/FP6/FP8 coupling, device nonideality and hardware scale/accumulation are the research objects. Prior TSP/graph application code is stored on archive/pre-mimo-benchmark-20261106, not main.
 
-The previous p-bit proposal is archived in Git history; it must not replace today's research roadmap. Full hypotheses, M0 evidence gates and milestone rules live under docs/.
+To create a new independent Overleaf project: New Project -> Import from GitHub -> select Makise-okabe/MRAM_P-bit (default main). Choose main.tex and pdfLaTeX.
+
+Overleaf import creates a snapshot; already created projects do not automatically refresh when GitHub main changes. Do not accidentally sync an old Overleaf-specific branch or upload November 5 starter ZIP.
