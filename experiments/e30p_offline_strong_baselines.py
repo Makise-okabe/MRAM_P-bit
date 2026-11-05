@@ -59,8 +59,6 @@ def rows_for_arm(manifest,arm):
 
 def calibrated_models(cal):
     # Three global current levels: only CAL ideal n may label count classes.
-    global_c={n:next(x["current_uA"] for x in cal if x["n"]==n and x["area"]=="ROW_LO")
-              for n in COUNTS}
     global_c={n:statistics.mean(x["current_uA"] for x in cal if x["n"]==n)
               for n in COUNTS}
     area_offset={a:statistics.mean(x["current_uA"]-global_c[x["n"]]
