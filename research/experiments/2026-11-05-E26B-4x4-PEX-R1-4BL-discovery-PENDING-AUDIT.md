@@ -1,3 +1,9 @@
+# ARCHITECTURE CORRECTION — 2026-11-05
+
+**Do NOT advance existing R1/MC1 2T1MTJ PEX as physical validation of a new 1T1MTJ CIM target.** The user highlighted the topology mismatch. The historical 4×4 array is GF local-floating-SL **2T1MTJ**, whereas E19–E24 used a constructed **single-access-NFET/static-MTJ 1T1-like** ladder. Distinct cell access path, source-line connectivity and layout parasitics require a **new 1T1MTJ physical extraction** if that is the primary architecture. This R1 file inventory remains historical information, not a substitute. Pause any new R1 circuit work pending architecture confirmation. See [ADR-0009](../decisions/ADR-0009-architecture-gate-1T1MTJ-vs-legacy-2T1MTJ-PEX.md).
+
+---
+
 ## NEW: ready-to-pull read-only audit
 A minimal user-runnable discovery script is now committed at [`experiments/e26b_pex_discovery.sh`](../../experiments/e26b_pex_discovery.sh) (commit `3936ab9562db3398a8c8f74cb5709b92b67867b5`). Run `bash experiments/e26b_pex_discovery.sh` after `git pull --ff-only`. It reports file checksums, rough structural counts, existing R1/R2/MC result filenames and checkpoint hashes. **It does not execute Spectre, inspect actual currents or prove correlation.** A separate optional extended local Python auditor exists for richer structural metadata. Previous statement below that no audit code is tracked refers only to the extended Python auditor.
 
