@@ -1,41 +1,52 @@
 \documentclass[11pt,a4paper]{article}
-\usepackage[margin=0.95in]{geometry}
+\usepackage[margin=24mm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern,amsmath,amssymb,booktabs,tabularx,hyperref}
-\title{Low-Precision Coupling Architectures\\for Non-Ideal MRAM-Based p-Bit Networks}
-\author{Du Yanzhang\\NUS Electrical and Computer Engineering\\Supervisor: Prof. Kelvin Fong}
-\date{5 November 2026 --- FYP research working draft}
+\hypersetup{colorlinks=true,urlcolor=blue,citecolor=blue}
+\title{Coupling Precision and Scale Granularity for\\Nonideal MRAM-Based p-Bit Systems}
+\author{Du Yanzhang\\National University of Singapore\\Supervisor: Prof. Kelvin Fong}
+\date{Research scope and M0 protocol --- 6 November 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
-This proposal investigates how integer, fixed-point, low-bit floating-point, and shared-exponent representations affect the computational quality and numerical hardware cost of networks of stochastic magnetic p-bits. The research will quantify numerical errors separately from device-response nonidealities, beginning with exact small-network reference calculations and extending to device-aware macro analysis. This is a preliminary study plan, not a claim of completed results.
+This preliminary report studies how coupling precision and scale granularity should be chosen to maintain optimization performance at lower implementation cost in nonideal MRAM p-bit systems. The candidate contribution is a device-aware configuration rule and a coupling macro. Floating point is a candidate, not an assumed winner. All previous computational results are excluded from the new evidence base.
 \end{abstract}
-\section{Background and motivation}
-A probabilistic bit is a binary stochastic variable with a controllable probability response. Coupled p-bit networks can encode optimization and probabilistic logic problems \cite{camsari2017}. A usable system also requires stored coupling coefficients, field arithmetic, and a physically suitable stochastic element. Quantizing interactions can alter the energy landscape; additional floating-point complexity may offset gains from compact storage.
-\section{Research question}
-\emph{How can low-precision coupling representations reduce hardware cost while preserving optimization and sampling quality in non-ideal MRAM-based p-bit networks?}
-\section{Mathematical model}
-For $s_i\in\{-1,+1\}$, a symmetric coupling matrix $J_{ij}=J_{ji}$ and $J_{ii}=0$, define
+\section{Locked research question}
+\emph{How should coupling precision and scale granularity be chosen for nonideal MRAM p-bit systems to preserve useful optimization performance at lower implementation cost?}
+\section{Reference mathematical model}
+An ideal p-bit network uses binary variables with input-controlled stochastic response \cite{camsari2017}. For symmetric $J_{ij}=J_{ji}$ and $J_{ii}=0$:
 \begin{align}
-E(\mathbf{s})&=-\sum_{i<j}J_{ij}s_i s_j-\sum_i h_i s_i,\\
-H_i&=h_i+\sum_{j\ne i}J_{ij}s_j,\\
-P(s_i=+1\mid\mathbf{s}_{-i})&=[1+\exp(-2\beta H_i)]^{-1}.
+E(\mathbf{s}) &= C-\sum_{i<j}J_{ij}s_is_j-\sum_i h_i s_i,\\
+H_i &= h_i+\sum_{j\ne i}J_{ij}s_j,\\
+P(s_i=+1\mid\mathbf{s}_{-i}) &= \left[1+\exp(-2\beta H_i)\right]^{-1}.
 \end{align}
-Asynchronous single-spin updates form the ideal equilibrium reference. Physical response functions may depart from the sigmoid through offset, gain, asymmetry, finite contrast, temporal correlations, or mismatch.
-\section{Comparison candidates}
-Baselines include an FP32/FP64 software reference, tuned fixed-point integer encodings, custom minifloats, standard FP8 \cite{ocp2023fp8}, and shared-scale low-bit encodings \cite{ocp2023mx}. Coefficient size alone is insufficient: storage metadata, exponent alignment, accumulation width, scheduling, and conversion must be accounted for.
-\section{Experiment sequence}
-\begin{enumerate}
-\item \textbf{P00:} Verify literature and physical stochastic operating mode. No earlier hardware measurements will be transferred.
-\item \textbf{P01:} Exact enumeration of 8--16 spin weighted-Ising systems; validate energy formula, probability updates and reproducibility.
-\item \textbf{P02:} Quantize couplings; optimize integer scaling; evaluate energy gaps against the original Hamiltonian, ground-state success, update count and distribution divergence.
-\item \textbf{P03:} Test parametric device-response distortions, then establish physically validated device behavior if authorized models permit.
-\item \textbf{P04--P05:} Specify the coupling-arithmetic macro and resource model; test scaling and held-out problem families.
-\end{enumerate}
-\section{Fairness and evidence}
-The main comparisons must hold target problems, seeds or independent replicate protocol, update budgets, annealing schedules, scale-tuning budgets, and storage conventions fixed. Symmetry and zero diagonal must be preserved. Derived software behavior, device response fitting, transistor-level circuits, extracted parasitics, and silicon measurements are separate evidence levels. No area, energy, yield, speedup or novelty result is asserted before it is measured and compared.
-\section{Decision gate}
-Proceed beyond P02 only if a representative domain shows a robust quality--resource advantage over optimized fixed point, or a well-characterized failure regime motivates a new testable architecture. A negative result is acceptable and will be reported.
-\bibliographystyle{plain}
-\bibliography{references}
+This asynchronous Gibbs model is mathematical reference software, not a validated MTJ device or physical circuit.
+\section{Locked hypotheses}
+\begin{description}
+\item[H1: Device-dependent useful precision.] Does minimum sufficient coupling precision change with the type and severity of p-bit nonideality? Define an absolute task-quality floor.
+\item[H2: Scale granularity.] When do per-element exponents justify their storage and arithmetic cost compared with optimized global, row, tile, or block scales? Preserve symmetric effective couplings.
+\item[H3: Size dependence.] Within weighted Max-Cut and constrained TSP, determine precision versus size without assuming any particular trend.
+\end{description}
+\section{Fair comparisons}
+Compare high-precision reference, optimized scaled integers, shared-scale block floating point, and precisely defined per-element low-bit float. Count scales, metadata, exponent alignment, accumulation, bandwidth and replica overhead. Assess both $J$ and $h$ quantization; isolated $J$-only analysis is explicitly labeled. Keep local-field updates and ideal replica exchanges consistent with the quantized Hamiltonian. Score all outputs against the original task, with validity required for TSP \cite{lucas2014}.
+\section{Milestones M0--M5}
+\begin{center}\small
+\begin{tabularx}{\linewidth}{@{}lX@{}}\toprule
+Stage & Completion requirement\\\midrule
+M0 & Exact small-network reference, seeded independent benchmarks and credible response-model provenance.\\
+M1 & Joint format and nonideality comparison with tuned scaled integers, paired instance-level uncertainty.\\
+M2 & Device-aware selection rule and coupling-macro specification with full analytical cost.\\
+M3 & Bit-accurate 64--128-spin tile, synthesis-backed area and timing comparison.\\
+M4 & Held-out instances, device populations and supported scaling limits.\\
+M5 & Final architecture, configuration rules and reproducible report.\\\bottomrule
+\end{tabularx}
+\end{center}
+\section{Evaluation and evidence}
+Primary: time-to-target on the original objective, counting all update, exchange, selection and feasibility overhead. Secondary: original-task objective gap, target-hit probability, validity, ideal small-$N$ distribution check and verified implementation cost. Software update counts do not establish hardware latency or energy. Independent instances are the primary statistical unit; solver seeds are nested. An unvalidated behavioral sigmoid does not constitute physical MRAM evidence. All older CIM, sensing-margin, TSP pilot and assistant-generated nonideality results are excluded.
+\section{Project schedule}
+Fourteen active working weeks and two weeks buffer, reduced capacity around exams. Aim for M1/M2 for CA3. FPGA deployment is optional. A well-supported integer-favoring configuration rule can be a valid outcome.
+\begin{thebibliography}{9}
+\bibitem{camsari2017} K. Y. Camsari, R. Faria, B. M. Sutton and S. Datta, ``Stochastic p-Bits for Invertible Logic,'' \emph{Physical Review X} 7, 031014 (2017), DOI: 10.1103/PhysRevX.7.031014.
+\bibitem{lucas2014} A. Lucas, ``Ising formulations of many NP problems,'' \emph{Frontiers in Physics} 2, 5 (2014), DOI: 10.3389/fphy.2014.00005.
+\end{thebibliography}
 \end{document}
