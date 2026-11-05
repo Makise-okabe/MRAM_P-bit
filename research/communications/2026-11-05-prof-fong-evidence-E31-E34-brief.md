@@ -1,3 +1,19 @@
+# CORRECTION FOR PROF FONG — 2026-11-05, AFTER E31; NO WHOLE-MACRO LOW-ERROR CONCLUSION
+
+**Do NOT say “MRAM has too little error” or “we should drop recovery because Q gets 0/36”.** We have **not** demonstrated reliability of the target 256×256 macro. E31's “256” is **row depth**; only 4 columns were jointly circuit-solved, 24/256 rows active, n11–13 in C0, one nominal fixed resident P/AP distribution, GF compact NFET + static student MTJ, **ASSUMED** 0.25Ω/segment BL and 0.25Ω common SL, ideal row-gate and continuous DC measurement. Global decoder **15/36 wrong** (hypothetical BL resistance); frozen CAL-Q **0/36** (a *particular* corrected nominal regime). No physical 1T1 PEX or realistic ADC/variation/timing; the 36 samples are input masks, not independent chips.
+
+The existing **real frozen E01 W4A8 workload** (software grouping, not confirmed physical simultaneous WLs) already reports CAR active-row maxima **32** for 32-row groups, **63** for 64-row groups and **110** for 128-row groups (and means 8.708, 15.282, 25.190 among nonempty reads). Therefore **m=24 is not a universal operating point**. The user is right to insist on wider activity ranges and full 256x256 electrical sharing. Load and width are not interchangeable: additional columns only change a given read through physically modeled shared return, supply, wordline, sensing, coupling and drivers.
+
+**Immediate runnable diagnostics** are E33 mathematical ADC precision plus E34 all-four-column existing GF read vectors (`bash experiments/run_e33_e34_nus.sh`) and E35A frozen E01 packet activity schema/histogram audit (source [E35A](../../experiments/e35a_frozen_e01_activity_audit.py), not yet user run). **E32 extracted 1T1-specific metal R/C is the binding physical milestone**. High-m GF test generator / width scaling needs a new preregistered model and is NOT already implemented. Q-feature, ADC, calibration and digital-recompute costs must be counted before declaring “cheap”. MRAM-CIM prior work already includes statistical BL/SL error compensation and ADC offset correction, e.g. [Roy et al JSSC 2025](https://doi.org/10.1109/JSSC.2024.3442013) and [Roy–Shanbhag JxCDC 2024](https://doi.org/10.1109/JXCDC.2024.3381888). Simply correcting row position is not automatically novel.
+
+**Suggested short speaking paragraph:**
+
+> “My earlier 256-row, four-column GF-transistor simulation found substantial position-dependent decoding errors under assumed wiring, but a Q-based calibration trained on only nine patterns corrected 36 new C0 masks. That does not mean the full 256-by-256 MRAM-CIM system is reliable or does not need advanced algorithms: only 24 rows were active, with three target counts, and no real ADC, mismatch, timing or physical wire extraction. In fact, the frozen neural workload has candidate read-group activities reaching 63 and 110 simultaneous logical active rows, so we have not examined the full operating range. I am now testing converter quantization and cross-column calibration, auditing true workload activity, and advancing physical 1T1 interconnect extraction. The contribution question remains whether *physically justified post-calibration signed neural-computation failures* can be predicted and mitigated better than strong calibration or conventional equal-cost correction.”
+
+[Full decision and evidence boundaries](../decisions/ADR-0011-E31-not-whole-256x256-workload-activity-and-physical-gates.md).
+
+---
+
 # Prof Fong meeting brief — 1T1MTJ MRAM-CIM research pathfinding (5 Nov 2026)
 
 **Prepared before E33/E34 user execution.** A transparent narrative for the three ORIGINAL directions, completed NUS evidence, negative controls, exact next experiments, and missing novelty proof. The complete NUS Spectre and licensed PDK files remain private; only safe, high-level evidence goes in this public research repo.
