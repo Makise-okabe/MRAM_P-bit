@@ -1,3 +1,31 @@
+# E30 — ACTUAL NUS GF RESULT: LARGE SPATIAL READ DISTORTION; GLOBAL CAL 6/9 WRONG, SIMPLE SPATIAL CAL 0/9 (2026-11-05)
+
+**USER-RUN COMPLETE:** E30 256 rows ×4 jointly simulated columns, 24 active rows/column, 18 scenarios. 3 electrical arms ×9 chunks (each chunk 2 scenarios×4 columns), all 27 Spectre arm/chunks finished. Actual user-pasted log and private NUS JSON:
+`~/mram_private/E30_1T1/E30_256x4_20261105T031022Z_866/E30_RESULTS.json`. Commit executed `b3669959e41b2eb570d0660d04e779bd553f2736`. Models: GF access NFET and student-owned static 2-terminal MTJ, **NOT physically extracted 1T1MTJ PEX**. Assumed BL R=0.25 Ω **per one of 256 row segments** and shared-return SL R=0.25 Ω for 4 columns. This is an **illustrative and potentially unrealistic** wire model; no external/intertile geometry justification. The physical 1T1 array is not built.
+
+**User's printed C0 CAL-mean current centroids (µA):**
+
+| arm | n=11 | n=12 | n=13 | Global-centroid DEV errors |
+|---|---:|---:|---:|---:|
+| ideal independent | 103.7021897605 | 105.5373672392 | 107.3725447180 | **0/9** |
+| distributed 0.25Ω BL, independent SL | 98.4242217964 | 100.0857531608 | 101.8269034114 | **6/9** |
+| distributed 0.25Ω BL, shared 0.25Ω return SL | 98.2203891120 | 99.8818957677 | 101.6192408179 | **6/9** |
+
+**Important CAL-only reanalysis from the exact numbers in the pasted NUS run log, independently recomputed in the chat (NOT a new NUS simulation):**
+- Under shared-SL condition, **the nine held-out DEV cases are all classified correctly (0/9) if using per-spatial-group CAL references**, with groups `ROW_LO`, `ROW_HI`, `DISTRIBUTED`. This uses 9 CAL points for 9 area×count centres (one per stratum); **overfit risk**.
+- Also **0/9 for simpler CAL-only additive area-offset correction**, using shared global count centres plus three CAL-learned offsets; each area offset is averaged across its three count classes. On the same user-pasted currents, the offsets are: `ROW_LO:+4.24479455 µA`, `ROW_HI:-5.21534715 µA`, `DISTRIBUTED:+0.97055260 µA`. Same 0/9 for distributed BL and independent return (`+4.26204, -5.23655, +0.97450 µA`).
+- The six global mistakes under shared-SL arise in known positions: `ROW_LO n11→n13, n12→n13; ROW_HI n12→n11, n13→n11; DISTRIBUTED n11→n12, n12→n13`. These are dominant **input-position bias** failures, rather than evidence of intrinsic bitplane covariances or recovery novelty.
+- Same *ideal count n12* CAL current `ROW_LO=104.04971794µA` versus `ROW_HI=94.56416215µA`, a difference **9.48555579µA**. The no-R ideal one-count step from `n11→n12` is ~**1.83517748µA**; thus the spatial shift equals about **5.17 ideal count steps**. This strong position-dependence is a result of the **assumed** 256-stage 0.25Ω ladder; cannot claim realistic geometry without extraction.
+- The shared-return increment is ~0.18–0.23µA per printed C0 case, **much smaller than the ~9.49µA near/far same-count BL effect**; adding that return did not change 6/9 global decoder mistakes on the tested samples. Does not rule out a common-mode effect at other fan-ins/columns.
+
+**Critical inference:** 6/9 is a **global-current decoder mismatch across spatial groups in this constructed model**, NOT a 66.7% MRAM physical BER, NOT an independently drawn-chip trial and NOT a sign-aware four-plane recovery use case. Only 1 CAL and 1 DEV mask per spatial group×count class, from a single nominal chip/weight map. We should not now apply a recovery algorithm to those mistakes without comparing simple position/Q correction, much stronger baselines and actual geometry.
+
+**Next immediate work: zero-new-Spectre OFFLINE E30P analysis of the already existing JSON**, code [`experiments/e30p_offline_strong_baselines.py`](../../experiments/e30p_offline_strong_baselines.py). It compares global vs CAL additive area offsets vs per-area count reference bank vs a continuous CAL-trained `Q` input-mask position statistic (two possible row orientations selected by CAL SSE only). Run on NUS private E30 JSON to validate the independently calculated 0/9, and report whether a lower-complexity input-Q correction can remove errors. **E30P was not run on NUS when this note was written.** No additional GF Spectre simulations or artificial R increases are justified before this benchmark.
+
+**Next larger physical gate:** User wants 256-row and eventually 256×256; E30 achieved the 256-row length, but only 4 columns. A follow-on 256×16 control could test column-loading scale, but would still require assumed resistor values; preferably obtain real BL/SL geometry from a new 1T1 layout and validate wiring/ADC before large run. Need statistically adequate CAL/DEV mask repetitions and eventually fixed-chip mismatch for reliability estimates; four signed bitplanes are not automatically four simultaneously coupled columns or a full W4A8 result.
+
+---
+
 # E30 — Scale 1T1MTJ CIM to 256 rows before judging recovery
 
 **Created 2026-11-05. Status: executable code committed; NUS user has NOT yet executed E30.** The user correctly noted that four-row, m=2 ideal/low-impedance tests are inappropriate for rejecting large-array count errors, especially when the intended CIM hardware has 256 physical rows. Small arrays *can* have read/ADC/mismatch errors, but E28S's 0/28 errors cannot be extrapolated to a 256×256 target.
