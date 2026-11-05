@@ -25,11 +25,11 @@ This asynchronous Gibbs model is mathematical reference software, not a validate
 \begin{description}
 \item[H1: Device-dependent useful precision.] Does minimum sufficient coupling precision change with the type and severity of p-bit nonideality? Define an absolute task-quality floor.
 \item[H2: Scale granularity.] When do per-element exponents justify their storage and arithmetic cost compared with optimized global, row, tile, or block scales? Preserve symmetric effective couplings.
-\item[H3: Size dependence.] Within weighted Max-Cut and constrained TSP, determine precision versus size without assuming any particular trend.
+\item[H3: Size dependence.] Within controlled weighted Max-Cut, balanced graph partitioning and held-out signed spin-glass families, determine precision versus size without assuming a trend.
 \end{description}
 \section{Fair comparisons}
-Compare high-precision reference, optimized scaled integers, shared-scale block floating point, and precisely defined per-element low-bit float. Count scales, metadata, exponent alignment, accumulation, bandwidth and replica overhead. Assess both $J$ and $h$ quantization; isolated $J$-only analysis is explicitly labeled. Keep local-field updates and ideal replica exchanges consistent with the quantized Hamiltonian. Score all outputs against the original task, with validity required for TSP \cite{lucas2014}.
-\section{Milestones M0--M5}
+Compare high-precision reference, optimized scaled integers, shared-scale block floating point, and precisely defined per-element low-bit float. Count scales, metadata, exponent alignment, accumulation, bandwidth and replica overhead. Assess both $J$ and $h$ quantization; isolated $J$-only analysis is explicitly labeled. Keep local-field updates and ideal replica exchanges consistent with the quantized Hamiltonian. Score all outputs against the original task, requiring exact balance for the constrained graph-partition family. TSP appears only in separate small-network mathematical mapping checks \cite{lucas2014}.
+\section{Benchmark scope}\nThe primary benchmark is weighted Max-Cut across deliberately controlled graph structure and within-row coefficient dynamic range. Balanced graph partitioning/minimum bisection tests the interaction of objective weights with cardinality penalties; signed spin-glass instances provide held-out structural controls. The existing TSP solver diagnostics remain as tests only and cannot supply H1/H2/H3 empirical evidence or performance claims. The research question, device-aware precision hypotheses, format baselines and macro milestones are unchanged.\n\section{Milestones M0--M5}
 \begin{center}\small
 \begin{tabularx}{\linewidth}{@{}lX@{}}\toprule
 Stage & Completion requirement\\\midrule

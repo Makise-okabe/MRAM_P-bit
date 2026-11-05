@@ -21,3 +21,6 @@ python3 experiments/m0_parallel_tempering.py --family tsp --size 4 --burnin 1000
 python3 experiments/m0_parallel_tempering.py --family maxcut --size 8 --burnin 1000 --collect 2000 --output results/m0_pt_maxcut8_seed20261107
 ```
 Outputs are non-overwriting directories, with SHA256. Future statistical comparison must pair seeds and independently generated instances and include same-budget non-PT controls. No predetermined PT winner.
+
+## Active FYP benchmark rule (6 November reset)
+Keep all TSP code and corresponding user-run results only as historical M0 mathematical mapping and mixing diagnostics. It is not an application benchmark or evidence for H1/H2/H3. Formal experiments now use weighted Max-Cut, balanced graph partitioning (to be implemented), and held-out signed spin-glass controls. No PT solver finding alone is a device-aware coupling contribution.
