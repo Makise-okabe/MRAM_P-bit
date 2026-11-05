@@ -262,8 +262,19 @@ def reconstruct_counts(ideal,paired,rows):
     for i,p in enumerate(rows):
         target=paired[i]
         guess=min(ref,key=lambda n:abs(target-ref[n]))
+        # Continuous *software* interpolation/extrapolation of GF current to
+        # count. This exposes sub-code compute distortion even when every
+        # nearest-count decision stays correct (not an implemented ADC).
+        ascending=ref[2]>ref[0]
+        use_lower=(target<=ref[1]) if ascending else (target>=ref[1])
+        if use_lower:
+            continuous=(target-ref[0])/(ref[1]-ref[0])
+        else:
+            continuous=1.0+(target-ref[1])/(ref[2]-ref[1])
         out.append({"case":p["scenario"],"column":p["column"],"n_true":p["true_n"],
                     "n_decoded":guess,"n_error":guess-p["true_n"],
+                    "continuous_count_estimate":continuous,
+                    "continuous_count_error":continuous-p["true_n"],
                     "I_independent_A":ideal[i],"I_coupled_A":target,
                     "delta_nA":1e9*(target-ideal[i])})
     signed=[]
@@ -272,7 +283,8 @@ def reconstruct_counts(ideal,paired,rows):
         signed.append({"scenario":SCENARIOS[j][0],
             "ideal_W4_sum":sum(SIGNED_W4_COEFF[c]*r["n_true"] for c,r in enumerate(q)),
             "decoded_W4_sum":sum(SIGNED_W4_COEFF[c]*r["n_decoded"] for c,r in enumerate(q)),
-            "signed_W4_MAC_error":sum(SIGNED_W4_COEFF[c]*r["n_error"] for c,r in enumerate(q))})
+            "signed_W4_MAC_error":sum(SIGNED_W4_COEFF[c]*r["n_error"] for c,r in enumerate(q)),
+            "signed_W4_continuous_MAC_error":sum(SIGNED_W4_COEFF[c]*r["continuous_count_error"] for c,r in enumerate(q))})
     return out,signed,ref
 
 def execute(args):
@@ -341,7 +353,9 @@ def execute(args):
             "C0_NEIGHBOR_HIGH_MINUS_LOW_nA",near_neighbor_influence,
             "MAX_DELTA_nA",1e9*delta,
             "COUNT_WRONG",sum(z["n_error"]!=0 for z in reconstructed),
-            "W4_TOY_MAC_ERRORS",[x["signed_W4_MAC_error"] for x in signed],flush=True)
+            "W4_TOY_MAC_ERRORS",[x["signed_W4_MAC_error"] for x in signed],
+            "MAX_ABS_CONTINUOUS_W4_ERROR",max(abs(x["signed_W4_continuous_MAC_error"]) for x in signed),
+            flush=True)
     provenance["status"]="FINISHED"
     final=work/"E28S_RESULTS.json"
     final.write_text(json.dumps(provenance,indent=2,sort_keys=True)+"\n")
