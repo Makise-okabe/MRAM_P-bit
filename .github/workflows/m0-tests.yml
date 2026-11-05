@@ -18,3 +18,5 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Standalone BPSK MIMO smoke test
         run: python experiments/m0_mimo_reference.py --tx 4 --rx 4 --snr-db 10 --records 100 --output results/ci_mimo4x4
+      - name: Independent-frame BER/ML smoke test
+        run: python experiments/m0_mimo_batch.py --tx 3 --rx 3 --snrs 0,10 --frames 2 --burnin 30 --records 10 --thin 2 --output results/ci_mimo_batch
