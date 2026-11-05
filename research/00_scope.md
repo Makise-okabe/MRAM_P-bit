@@ -1,3 +1,11 @@
+# IMMEDIATE USER EXECUTION — E33 + E34, WHILE E32 PHYSICAL EXTRACTION REMAINS GATING (2026-11-05)
+
+**Two preregistered offline experiments have been committed but have NOT been executed on NUS:** [E33 ideal ADC precision vs calibrated count errors](experiments/2026-11-05-E33-frozen-GF-ADC-precision-PENDING.md) and [E34 all-four-column generalization](experiments/2026-11-05-E34-four-column-calibration-generalization-PENDING.md). Both reuse actual previously executed E30/E31 GF Spectre 256x4 current vectors with **assumed** BL/SL R and the original frozen nine E30 CAL cases; no new Spectre, physical ADC, PEX, chip variation or signed neural accuracy can be claimed. Run `bash experiments/run_e33_e34_nus.sh` after `git pull --ff-only`, then record actual results in GitHub. [Prof Fong evidence talk track](communications/2026-11-05-prof-fong-evidence-E31-E34-brief.md) aligns mapping (reserved), inference-failure prediction (main) and Ising (paused) without inventing new research directions.
+
+**Separately E32 remains the binding NEXT PHYSICAL step:** create/validate a real 1T1-specific GF metal BL/WL/SL extraction, do not substitute historical 2T1 PEX, and compare actual extracted R/C against E30/E31 hypothetical .25Ω segment. E33/E34 are quick software evidence-gap checks, not substitutes for physical model credibility.
+
+---
+
 # THREE ORIGINAL RESEARCH DIRECTIONS — CURRENT HIERARCHY (2026-11-05)
 
 See [ADR-0010](decisions/ADR-0010-three-direction-hierarchy-after-E31.md). For the selected **1T1MTJ MRAM-CIM research-pathfinding** problem: **F1 inference-failure prediction / failure-boundary characterization is primary; F3 reliability-aware mapping is a conditional mitigation candidate; F7 MRAM Ising is paused as a separate alternative.** Q correction, N2 selective digital recomputation, ADC control and individual experiments are *methods/supporting gates*, not replacement top-level research directions. The user **already completed E31** on actual GF NFET + static MTJ constructed circuitry (frozen CAL-Q 0/36, global 15/36 under assumed BL R; not PEX), so E31 must never be described as pending. [E32 physical 1T1 interconnect](experiments/2026-11-05-E32-1T1-physical-interconnect-extraction-NEXT.md) is the next milestone. Direction selection does not establish algorithm originality, physical failure rates or neural accuracy.
