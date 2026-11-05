@@ -1,3 +1,13 @@
+# ACTIVE ARCHITECTURE / EVIDENCE OVERRIDE — 2026-11-05
+
+**User chose 1T1MTJ analog CIM as the new physical prototype.** See [ADR-0009](decisions/ADR-0009-architecture-gate-1T1MTJ-vs-legacy-2T1MTJ-PEX.md) and [E27](experiments/2026-11-05-E27-1T1MTJ-physical-CIM-pilot-PENDING.md). Earlier legacy 4×4 local-floating-SL **2T1MTJ PEX is NOT the new 1T1 PEX**. E19–E24 used GF access NFET + static MTJ with **assumed** wire resistors, not physical 1T1 layout. E24 NUS DONE: at assumed 5Ω / mathematical 7bit, Q-transfer 7/528 vs centroid26/528 and raw124/528; it is a mechanism screen, not a novel read-margin method.
+
+**E26A software comparison DONE** on 256 actual E01 development MNIST parents, FC1 reconstructed exactly; synthetic shuffled-vs-joint demonstration only, **no physical error covariance nor full-network accuracy measured**. Current E27A is a student-built new 1T1 PEX prerequisite, not an assertion GF provides a qualified 1T1 macro. **Original research focus:** algorithm-level mitigation of physically justified signed multibit neural computation errors at cost-matched baselines, *not* sensing/read margin optimization. Prof Fong architecture signoff not recorded.
+
+**Supersedes old dated notes below** about E23D pending, 2T1 being the active target, or E22 being the next experiment.
+
+---
+
 # CURRENT EXPERIMENT UPDATE — 2026-11-05
 
 **E22–E22C executed on NUS:** 1,530 GF access-NFET/static-MTJ DC circuit cases with assumed (NOT PEX) BL wire resistance; 17 count classes. The E22 frozen-reference failure was mostly a calibration artifact; E22B per-R CAL ADC and near repair left 25/204 errors at assumed 5Ω/segment, 7bit mathematical ADC. **E22C improves this on the same previously inspected DEV data:** per-R CAL suffix-load Q correction leaves **0/204 errors at 5Ω**, versus near **25/204**, centroid **5/204**, raw **60/204**; no adjacent sampled overlaps after Q correction. This is a positive development result, **not independently confirmed or novel yet**.
