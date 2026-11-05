@@ -1,10 +1,9 @@
-# Overleaf import
+# Independent Overleaf setup
 
-1. Download **Code → Download ZIP** from [MRAM_Path_Finding](https://github.com/Makise-okabe/MRAM_Path_Finding).
-2. Go to https://www.overleaf.com, choose **New Project → Upload Project**, and select that ZIP.
-3. In Overleaf Menu set **Main document** to `main.tex` and **Compiler** to `pdfLaTeX`.
-4. Bibliography is `references.bib` (BibTeX). Compile twice if citations are unresolved.
+A complete expanded 6-page research proposal and code bundle is in `MRAM_Pbit_Overleaf_20261105.zip` from the 5 November 2026 ChatGPT handoff.
 
-Local compile: `latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex`.
-
-The GitHub repository is public. Do not upload restricted PDK models/netlists or credentials. GitHub source import is Overleaf-ready; it does not itself create a separate Overleaf cloud project or guarantee synchronization.
+1. Overleaf -> **New Project** -> **Upload Project**.
+2. Upload the ZIP; name the project `FYP — MRAM P-Bit / Low-Precision Coupling`.
+3. Choose `main.tex` and pdfLaTeX.
+4. Verify references, author and supervisor before sharing.
+5. Overleaf and GitHub are not automatically synchronized; this branch contains a concise independent starter and the downloadable ZIP contains the expanded report.

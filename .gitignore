@@ -1,37 +1,16 @@
-# Local and Overleaf build intermediates
+__pycache__/
+*.pyc
 *.aux
+*.log
 *.bbl
 *.blg
-*.fls
-*.fdb_latexmk
-*.log
 *.out
 *.toc
-*.synctex.gz
-*.lof
-*.lot
-*.run.xml
-*.bcf
-/main.pdf
-
-# Python/local experimental work
-__pycache__/
-*.py[cod]
-.venv/
-venv/
-.pytest_cache/
-experiments/local_inputs/
-experiments/runs/*/
-!experiments/runs/README.md
-
-# PDK/security
+*.pdf
+*.zip
+results/
+private/
 *.scs
+*.cdl
 *.dspf
 *.spef
-*.gds
-*.oas
-*.cdl
-*.key
-*.pem
-.env
-.env.*

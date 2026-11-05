@@ -1,71 +1,41 @@
 \documentclass[11pt,a4paper]{article}
+\usepackage[margin=0.95in]{geometry}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern,microtype}
-\usepackage[a4paper,margin=24mm]{geometry}
-\usepackage{amsmath,amssymb,booktabs,array,longtable,tabularx}
-\usepackage{xcolor,enumitem,fancyhdr}
-\usepackage[hidelinks]{hyperref}
-\usepackage{xurl}
-\definecolor{NUSBlue}{HTML}{003D7C}
-\definecolor{Accent}{HTML}{12627A}
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0.5em}
-\setlength{\emergencystretch}{3em}
-\setlength{\headheight}{14pt}
-\renewcommand{\arraystretch}{1.12}
-\setlist{itemsep=0.25em,topsep=0.3em}
-\fancyhf{}
-\fancyhead[L]{\small MRAM FYP: Research Pathfinding}
-\fancyhead[R]{\small Working draft}
-\fancyfoot[C]{\thepage}
-\pagestyle{fancy}
-\hypersetup{pdftitle={MRAM FYP: Research Pathfinding for a 256 x 256 Array},pdfauthor={Du Yanzhang}}
-\newcommand{\target}{\(256\times256\)}
-\newcommand{\status}[1]{\textbf{Status:} #1}
+\usepackage{lmodern,amsmath,amssymb,booktabs,tabularx,hyperref}
+\title{Low-Precision Coupling Architectures\\for Non-Ideal MRAM-Based p-Bit Networks}
+\author{Du Yanzhang\\NUS Electrical and Computer Engineering\\Supervisor: Prof. Kelvin Fong}
+\date{5 November 2026 --- FYP research working draft}
 \begin{document}
-\hypersetup{pageanchor=false}
-\begin{titlepage}
-\centering\vspace*{14mm}
-{\color{NUSBlue}\rule{\linewidth}{1pt}\par}
-\vspace{13mm}
-{\LARGE\bfseries Characterizing Reliability and Failure Regimes of\\Memory-Centric Neural Inference Under Coupled\\Precision and Hardware Non-Idealities\par}
-\vspace{10mm}
-{\Large \(256\times256\) MRAM pathfinding: covariance-aware mapping\par}
-\vspace{18mm}
-{\Large Du Yanzhang\par}
-\vspace{4mm}
-Department of Electrical and Computer Engineering\\National University of Singapore
-\vfill
-\begin{tabular}{rl}
-Supervisor: & Prof. Fong Xuanyao Kelvin\\
-Date: & 4 November 2026\\
-Phase: & Candidate development and bounded screening\\
-Evidence: & Literature, software and a constructed model\\
-Target circuit results: & Not yet available in this phase
-\end{tabular}
-\par\vspace{10mm}
-\begin{minipage}{0.93\linewidth}\small
-This working draft retains the original precision--nonideality objective. Covariance-aware mapping
-(F3) is the next bounded intervention under investigation; Ising (F7) remains a conditional
-alternative. Neither physical validation nor novelty is established. The official CA2
-marking rubric has not been supplied.
-\end{minipage}
-\vfill{\color{Accent}\rule{\linewidth}{1pt}}
-\end{titlepage}
-\pagenumbering{roman}
-\hypersetup{pageanchor=true}
-{\small\setlength{\parskip}{0pt}\tableofcontents}
-\clearpage
-\pagenumbering{arabic}
-\input{report/sections/01_problem}
-\input{report/sections/02_prior_work}
-\input{report/sections/03_methods}
-\input{report/sections/04_architecture}
-\input{report/sections/05_experiments}
-\input{report/sections/06_progress}
-\input{report/sections/07_next_steps}
-\appendix
-\input{report/sections/08_new_array_reset}
-\bibliographystyle{unsrt}
+\maketitle
+\begin{abstract}
+This proposal investigates how integer, fixed-point, low-bit floating-point, and shared-exponent representations affect the computational quality and numerical hardware cost of networks of stochastic magnetic p-bits. The research will quantify numerical errors separately from device-response nonidealities, beginning with exact small-network reference calculations and extending to device-aware macro analysis. This is a preliminary study plan, not a claim of completed results.
+\end{abstract}
+\section{Background and motivation}
+A probabilistic bit is a binary stochastic variable with a controllable probability response. Coupled p-bit networks can encode optimization and probabilistic logic problems \cite{camsari2017}. A usable system also requires stored coupling coefficients, field arithmetic, and a physically suitable stochastic element. Quantizing interactions can alter the energy landscape; additional floating-point complexity may offset gains from compact storage.
+\section{Research question}
+\emph{How can low-precision coupling representations reduce hardware cost while preserving optimization and sampling quality in non-ideal MRAM-based p-bit networks?}
+\section{Mathematical model}
+For $s_i\in\{-1,+1\}$, a symmetric coupling matrix $J_{ij}=J_{ji}$ and $J_{ii}=0$, define
+\begin{align}
+E(\mathbf{s})&=-\sum_{i<j}J_{ij}s_i s_j-\sum_i h_i s_i,\\
+H_i&=h_i+\sum_{j\ne i}J_{ij}s_j,\\
+P(s_i=+1\mid\mathbf{s}_{-i})&=[1+\exp(-2\beta H_i)]^{-1}.
+\end{align}
+Asynchronous single-spin updates form the ideal equilibrium reference. Physical response functions may depart from the sigmoid through offset, gain, asymmetry, finite contrast, temporal correlations, or mismatch.
+\section{Comparison candidates}
+Baselines include an FP32/FP64 software reference, tuned fixed-point integer encodings, custom minifloats, standard FP8 \cite{ocp2023fp8}, and shared-scale low-bit encodings \cite{ocp2023mx}. Coefficient size alone is insufficient: storage metadata, exponent alignment, accumulation width, scheduling, and conversion must be accounted for.
+\section{Experiment sequence}
+\begin{enumerate}
+\item \textbf{P00:} Verify literature and physical stochastic operating mode. No earlier hardware measurements will be transferred.
+\item \textbf{P01:} Exact enumeration of 8--16 spin weighted-Ising systems; validate energy formula, probability updates and reproducibility.
+\item \textbf{P02:} Quantize couplings; optimize integer scaling; evaluate energy gaps against the original Hamiltonian, ground-state success, update count and distribution divergence.
+\item \textbf{P03:} Test parametric device-response distortions, then establish physically validated device behavior if authorized models permit.
+\item \textbf{P04--P05:} Specify the coupling-arithmetic macro and resource model; test scaling and held-out problem families.
+\end{enumerate}
+\section{Fairness and evidence}
+The main comparisons must hold target problems, seeds or independent replicate protocol, update budgets, annealing schedules, scale-tuning budgets, and storage conventions fixed. Symmetry and zero diagonal must be preserved. Derived software behavior, device response fitting, transistor-level circuits, extracted parasitics, and silicon measurements are separate evidence levels. No area, energy, yield, speedup or novelty result is asserted before it is measured and compared.
+\section{Decision gate}
+Proceed beyond P02 only if a representative domain shows a robust quality--resource advantage over optimized fixed point, or a well-characterized failure regime motivates a new testable architecture. A negative result is acceptable and will be reported.
+\bibliographystyle{plain}
 \bibliography{references}
 \end{document}
