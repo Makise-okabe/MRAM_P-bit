@@ -54,12 +54,10 @@ def selftest():
     print('E27B_SELFTEST_PASS: 16 matched m2/k2/n1 cases, four INDEPENDENT column circuits')
     print('E27B_NO_PEX_NO_PARALLEL_4COL_NO_VARIATION_NO_CORRELATION')
 
-def run(args):
-    selftest()
-    if not shutil.which('spectre'):
-        die('Spectre unavailable in authorized NUS shell')
+def validated_inputs(args):
+    """Use the verified E19 source discovery, not a previously generated E19 deck."""
     if args.vread!=0.05 or args.vwl!=0.8:
-        die('Only frozen historical 0.05V read, 0.8V WL allowed until topology/bias review')
+        die('Only frozen historical 0.05V read, 0.8V WL allowed for nominal screen')
     try:
         import e19_gf_nfet_mtj_nonideal_count_gate_v2 as e19
     except ImportError:
@@ -70,8 +68,31 @@ def run(args):
     model=Path.home()/e19.MODEL_REL
     if not model.is_file() or sha(model)!=MODEL_SHA or e19.MODEL_SHA!=MODEL_SHA:
         die('student MTJ source SHA mismatch, do not substitute')
-    template_source=e19.choose_template(args.template)
-    template=e19.parse_template(template_source)
+    try:
+        template_source=e19.choose_template(args.template)
+        template=e19.parse_template(template_source)
+    except (OSError,ValueError,KeyError,TypeError,RuntimeError,SystemExit) as exc:
+        die('verified E19 template discovery/parser rejected candidate: '+str(exc)[:350])
+    template_source=Path(template_source).resolve()
+    if not template_source.is_file():
+        die('selected template is not a file')
+    print('E27B_TEMPLATE_SELECTED',template_source,flush=True)
+    print('E27B_TEMPLATE_SHA256',sha(template_source),flush=True)
+    print('E27B_VERIFIED_E19_SHA256',sha(source),flush=True)
+    print('E27B_VERIFIED_MTJ_SHA256',sha(model),flush=True)
+    return e19,source,model,template_source,template
+
+def preflight(args):
+    selftest()
+    validated_inputs(args)
+    print('E27B_PREFLIGHT_PASS: verified original E19 generator and single-cell template',flush=True)
+    print('E27B_PREFLIGHT_NO_SPECTRE_NO_PEX',flush=True)
+
+def run(args):
+    selftest()
+    e19,source,model,template_source,template=validated_inputs(args)
+    if not shutil.which('spectre'):
+        die('Spectre unavailable in authorized NUS shell')
     base=Path(args.private).expanduser().resolve()
     base.mkdir(parents=True,exist_ok=True)
     wd=base/('E27B_GF_R0_'+datetime.datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')+'_'+str(os.getpid()))
@@ -130,14 +151,14 @@ def run(args):
 
 def main():
     ap=argparse.ArgumentParser()
-    ap.add_argument('mode',choices=('selftest','run'))
+    ap.add_argument('mode',choices=('selftest','preflight','run'))
     ap.add_argument('--template',default=None)
     ap.add_argument('--private',default=str(Path.home()/'mram_private/E27_1T1/E27B'))
     ap.add_argument('--vread',type=float,default=0.05)
     ap.add_argument('--vwl',type=float,default=0.8)
     ap.add_argument('--timeout-sec',type=int,default=240)
     a=ap.parse_args()
-    selftest() if a.mode=='selftest' else run(a)
+    selftest() if a.mode=='selftest' else (preflight(a) if a.mode=='preflight' else run(a))
 
 if __name__=='__main__':
     main()
