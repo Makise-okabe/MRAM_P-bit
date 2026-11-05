@@ -23,7 +23,7 @@
 | **E34 PENDING** | Reanalyze the four actual simultaneously solved GF read columns from E30/E31, not just C0, using nine E30 CAL per column | Test column-specific Q/mean-row/near-far linear calibration on **144 E31 column-read observations**, including n extrapolation | Four columns are NOT the four signed-W4 bitplanes; not 144 independent chips |
 | **E32 PHYSICAL PENDING** | Actual new 1T1-specific GF CMOS+BL/WL/SL metal routing and extracted RC; external static MTJ model if necessary | Establish if 0.25Ω/segment and other modeled effects are *physical* under the selected 1T1 architecture | Must not borrow old 2T1 local-floating-SL PEX as 1T1; DRC/LVS/xACT support must be checked |
 
-**NUS source E30 frozen SHA256:** \`f5646f0248207df56f7b9c0bb53fb126fa6200bc42f5a7ba3e881df1204aeb52\`. Actual E31 private file \`~/mram_private/E31_1T1/E31_256x4_20261105T033721Z_2792/E31_RESULTS.json\`. C0 Q 0/36 from original CAL is a **nominal constructed-model generalization**, not an empirical BER confidence interval.
+**NUS source E30 frozen SHA256:** `f5646f0248207df56f7b9c0bb53fb126fa6200bc42f5a7ba3e881df1204aeb52`. Actual E31 private file `~/mram_private/E31_1T1/E31_256x4_20261105T033721Z_2792/E31_RESULTS.json`. C0 Q 0/36 from original CAL is a **nominal constructed-model generalization**, not an empirical BER confidence interval.
 
 ## 3. Precise causal story
 
@@ -55,10 +55,10 @@
 
 ## 6. Immediate NUS command and evidence workflow
 
-\`\`\`bash
+```bash
 cd ~/MRAM_Path_Finding
 git pull --ff-only
 bash experiments/run_e33_e34_nus.sh
-\`\`\`
+```
 
-Each script is committed before experiment execution, so the outcomes cannot be retroactively chosen. The runner creates private, timestamped \`E33_ADC_SWEEP.json\`, \`E34_RESULTS.json\`, two sanitized \`E33_FOR_PROF_FONG.md\` / \`E34_FOR_PROF_FONG.md\` files, and logs; **actual results are NOT yet known**. Paste the safe outputs back into the chat, and update this public evidence log with exact counts/hashes and a decision. Do not upload foundry decks, device model contents, confidential layout files or private library credentials to public GitHub.
+Each script is committed before experiment execution, so the outcomes cannot be retroactively chosen. The runner creates private, timestamped `E33_ADC_SWEEP.json`, `E34_RESULTS.json`, two sanitized `E33_FOR_PROF_FONG.md` / `E34_FOR_PROF_FONG.md` files, and logs; **actual results are NOT yet known**. Paste the safe outputs back into the chat, and update this public evidence log with exact counts/hashes and a decision. Do not upload foundry decks, device model contents, confidential layout files or private library credentials to public GitHub.
