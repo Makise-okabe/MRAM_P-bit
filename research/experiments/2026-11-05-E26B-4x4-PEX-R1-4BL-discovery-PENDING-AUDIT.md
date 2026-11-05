@@ -31,3 +31,23 @@ A generic metadata-only audit script `e26b_existing_pex_audit.py` was created an
 
 ## Research impact
 This is a meaningful milestone: it removes the *file discovery* blocker in E26A's physical gate. It does NOT yet remove the *joint error tensor* blocker. The strongest realistic next path is to reuse R1 4-BL reader if and only if the actual existing topology/stimulus matches intended 2T1MTJ parallel compute read. No new margin circuit or invented algorithm needed yet.
+
+
+## E26B NUS audit result confirmed (2026-11-05 09:04 Singapore)
+The user's **executed** `experiments/e26b_pex_discovery.sh` succeeded after resolving a safe local untracked-E26A file conflict by backing it up. **NO Spectre run**, only file inventory.
+
+**Main 4×4 GF xACT DSPF:** `~/mram_fyp/cadence/calibre/xact/M047_GF_4x4_TILE_TEST_PEX/M047_GF_4x4_TILE_TEST.pex.dspf`, SHA256 `ca249d4486248cc318f1b4a97a885e7c33d22d28452f8de68b67baa462d49436`, 122969 bytes, 1 subckt, roughly 406 R and 1468 C component lines (regex approximations, **not** total resistance/capacitance). Regex output `WL_TOKEN_LINES=0` **does not demonstrate no wordlines**; likely WLL/WLR pin naming is outside `WL([_<digit)` matches. Require exact top-level pin audit.
+
+**Original four-BL read experiment:** `~/mram_fyp/cadence/manual_cross5_runs/M047_READ_CIM_PILOT/R1_4BL_SIMULTANEOUS_READ/pex_R1_4BL_read.scs`, SHA256 `e6d833de5bd485e7e7022a2e4d9446c349ae91809e4c53710d718449c1f62230`. This directory ALREADY has `R1_IDEAL_currents.csv`, `R1_PEX_currents.csv`, `R1_current_comparison.csv`, `R1_final_summary.txt` and `RUN_IDEAL/RUN_PEX/spectre.log`. Such names are **not yet inspected numerical evidence** of actual simultaneous 4BL or multirow CIM. Inspect stimulus and summary next before any new run.
+
+**Important reuse integrity:** R1 init-P 4×4 DSPF = R2 init-P = MC1 init-P by exact SHA256 `c623dd1b5e909c2b96c6d6b88b0e235298b96598825ae6075238bc62f2761f7b` and identical 123225 bytes, 406 R /1468 C line approximations; MC1 init-AP differs `a15f4802c6a7f99a3685842053639984e0e887c912e2fd9be91f3a4edace92fe`. Original canonical xACT DSPF differs from init-P by SHA and size. **Do not assume the differences are only initial MTJ state** without comparing parsed structural invariants.
+
+**User already has extensive P/AP variability data** under `MC1_CONTROLLED_READ_MARGIN_MC`: `MC1_FORMAL100_paired_1600.csv`, `MC1_FORMAL100_by_location.csv`, `MC1_FORMAL100_analysis.txt`, and independent prior 5-run /80-pair data. Need inspect whether 1600 rows are paired same-chip P/AP across 16 locations, and whether any simultaneous 4BL vector was obtained under same random draw. These remain **unverified interpretations** until schema/provenance reviewed.
+
+**Possible full-network checkpoint candidates found (SHA only, NOT identified as frozen E01):**
+- fp32 v2 `971f875242d266e5a5c61dd32af287230a9e0265114eeac3114b64ea5632efaa`
+- fp32 v3 15 epoch `455662670e868006c0b3d375f850336fc82f036190a493ea236f2b349034d485`
+- stage7b 1epoch pilot W4A8 `788cc1ef7d7ad35395c159385d18574283fd0e07077cbf9a513574bd53e6e095`.
+Do not equate model by checkpoint name alone. Frozen E01 bitplane packet still lacks FC2/FC3/bias adapter.
+
+**NEXT READ-ONLY EXTRACTION:** [`experiments/e26b_existing_results_inventory.py`](../../experiments/e26b_existing_results_inventory.py) commit `6d0c43771342542a48ae22aacad87931bf4de2a6` discovers R1 summary/current-comparison CSV schema, R1 deck stimulus, MC1 FORMAL100 summary and columns, E01 manifest model provenance without changing PDK/PEX or running Spectre. User has not yet executed this script. A successful inventory will help decide a small 4×4 physical multiple-column probe; does **not** by itself satisfy the joint count-error tensor needed for E26A.
