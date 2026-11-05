@@ -1,4 +1,4 @@
-name: M0 mathematical reference tests
+name: M0 BPSK MIMO and generic Ising verification
 on:
   push:
     branches: [main, 'research/m0-*']
@@ -14,9 +14,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Unit tests
+      - name: Generic Ising and complex MIMO mathematical tests
         run: python -m unittest discover -s tests -v
-      - name: Independent tiny MaxCut smoke test
-        run: python experiments/m0_reference.py --family maxcut --size 8 --records 100 --output results/ci_maxcut
-      - name: Independent complex BPSK MIMO mapping and smoke test
+      - name: Standalone BPSK MIMO smoke test
         run: python experiments/m0_mimo_reference.py --tx 4 --rx 4 --snr-db 10 --records 100 --output results/ci_mimo4x4

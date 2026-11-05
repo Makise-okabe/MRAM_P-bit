@@ -6,7 +6,7 @@ import tempfile
 import unittest
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"experiments"))
-import m0_reference as core
+import m0_ising_math as core
 import m0_mimo_reference as mimo
 
 

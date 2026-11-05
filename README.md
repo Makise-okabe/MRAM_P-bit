@@ -2,7 +2,7 @@
 
 **Research core:** custom **low-order floating-point FP4/FP6/FP8 coupling** and per-edge/row/tile exponent scale granularity for nonideal MRAM p-bits. Build a bit-true coupling macro and synthesis-backed cost comparison; optimized scaled integers and block floating point are mandatory fair baselines.
 
-**Application:** complex **BPSK MIMO detection** only. It is a benchmark of device-aware coupling quality and hardware cost, **not** an attempt to invent a MIMO detector. Older TSP/Max-Cut/partition/Ising pilot performance results are NOT part of active evidence. Keep only tiny exact Ising tests for mathematical verification; older work remains archived.
+**Application:** complex **BPSK MIMO detection** only. It is a benchmark of device-aware coupling quality and hardware cost, **not** an attempt to invent a MIMO detector. Older TSP/Max-Cut/partition/Ising pilot results are excluded. Old task-specific scripts/tests are **removed from the active tree**, but fully preserved on archive/pre-mimo-benchmark-20261106. Active code uses generic exact Ising mathematics and fresh complex BPSK MIMO.
 
 **Question (unchanged):** How should coupling precision and scale granularity be chosen for nonideal MRAM p-bit systems to preserve useful optimization performance at lower implementation cost?
 

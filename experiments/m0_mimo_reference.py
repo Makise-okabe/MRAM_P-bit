@@ -13,7 +13,7 @@ import math
 from pathlib import Path
 import random
 
-import m0_reference as core
+import m0_ising_math as core
 
 
 def frame(tx=4, rx=4, snr_db=10.0, seed=20261106):
@@ -148,7 +148,7 @@ def write_output(instance, result, directory):
     hashes={p.name:hashlib.sha256(p.read_bytes()).hexdigest()
             for p in directory.glob("mimo_*")}
     hashes["source_m0_mimo_reference.py"]=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
-    hashes["source_m0_reference.py"]=hashlib.sha256(Path(core.__file__).read_bytes()).hexdigest()
+    hashes["source_m0_ising_math.py"]=hashlib.sha256(Path(core.__file__).read_bytes()).hexdigest()
     (directory/"SHA256SUMS.json").write_text(json.dumps(hashes,sort_keys=True,indent=2)+"\n")
     return public
 
