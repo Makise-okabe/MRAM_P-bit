@@ -11,22 +11,22 @@ E30/E30P/E31 produced **real Spectre GF access-NFET + student static-MTJ** curre
 **E34 asks:** Can a low-cost, CAL-only spatial readout model correct all four physically distinct resident-weight columns in the *already-solved joint GF-current data*, including count classes not represented in each column's nine calibration samples?
 
 ## User-provided frozen electrical evidence
-- E30 nominal 256 physical row ×4 column GF model, 18 masks (9 CAL and 9 original DEV). Actual private result SHA256 \`f5646f0248207df56f7b9c0bb53fb126fa6200bc42f5a7ba3e881df1204aeb52\`, path \`~/mram_private/E30_1T1/E30_256x4_20261105T031022Z_866/E30_RESULTS.json\`.
-- E31 36 fresh DEV masks, including 18 familiar families and 18 unfamiliar input-mask families, same P/AP weight map. Private result \`~/mram_private/E31_1T1/E31_256x4_20261105T033721Z_2792/E31_RESULTS.json\`. Original frozen E30 calibration confirmed.
+- E30 nominal 256 physical row ×4 column GF model, 18 masks (9 CAL and 9 original DEV). Actual private result SHA256 `f5646f0248207df56f7b9c0bb53fb126fa6200bc42f5a7ba3e881df1204aeb52`, path `~/mram_private/E30_1T1/E30_256x4_20261105T031022Z_866/E30_RESULTS.json`.
+- E31 36 fresh DEV masks, including 18 familiar families and 18 unfamiliar input-mask families, same P/AP weight map. Private result `~/mram_private/E31_1T1/E31_256x4_20261105T033721Z_2792/E31_RESULTS.json`. Original frozen E30 calibration confirmed.
 - Actual device current vectors use GF compact NFET models with the student's **static resistor MTJ** P/AP behavioral state; both BL/SL R values are **ASSUMED**, not physically extracted GF 1T1 wiring. No physical ADC, independent chip variation, timing, signed W4 bitplane mapping, or full neural inference.
 
 ## Exact E34 method
 
-Runnable [\`experiments/e34_four_column_gf_generalization.py\`](../../experiments/e34_four_column_gf_generalization.py), included in [\`experiments/run_e33_e34_nus.sh\`](../../experiments/run_e33_e34_nus.sh).
+Runnable [`experiments/e34_four_column_gf_generalization.py`](../../experiments/e34_four_column_gf_generalization.py), included in [`experiments/run_e33_e34_nus.sh`](../../experiments/run_e33_e34_nus.sh).
 
-1. Recover four distinct **permanently resident P-state row sets** from E30's \`source_profiles\`. Verify exactly 128 P rows per column and that each set stays identical across every E30 electrical case. Check the reported E30 \`true_n\` equals \`|WL_active ∩ P_rows|\` for every physical/conceptual column. Verify E31's 36 new masks do not duplicate the original E30 mask set.
+1. Recover four distinct **permanently resident P-state row sets** from E30's `source_profiles`. Verify exactly 128 P rows per column and that each set stays identical across every E30 electrical case. Check the reported E30 `true_n` equals `|WL_active ∩ P_rows|` for every physical/conceptual column. Verify E31's 36 new masks do not duplicate the original E30 mask set.
 2. Derive **only offline CAL labels** for the four columns from the 9 E30 CAL active masks and known resident P/AP weights. Compute *held-out evaluation labels* for the E31 masks separately; the predictor NEVER sees true n at runtime.
 3. Compare (identical 9 CAL per column, per arm):
-   - \`GLOBAL_LINEAR\`: fit \`I = a + b*n\`, 2 coefficients;
-   - \`MEAN_ROW_LINEAR\`: \`I = a + b*n + c*(mean active row index)\`, 3 coefficients;
-   - \`FAR_HALF_LINEAR\`: replace spatial feature with fraction of active rows in indices 128–255, 3 coefficients;
-   - \`Q_CAL_SELECTED\`: \`I = a+b*n+c*Q\`, choose prefix or suffix spatial Q **only on 9 CAL currents** using residual SSE, 3 continuous coefficients plus orientation bit.
-4. Runtime decoder observes the sensed current, known active-WL mask (and its low-cost scalar spatial feature) and saved CAL coefficients. It tests integer candidate counts \`0..m=24\` and takes the closest predicted current; it does **NOT** read the actual count/MTJ state at runtime for free.
+   - `GLOBAL_LINEAR`: fit `I = a + b*n`, 2 coefficients;
+   - `MEAN_ROW_LINEAR`: `I = a + b*n + c*(mean active row index)`, 3 coefficients;
+   - `FAR_HALF_LINEAR`: replace spatial feature with fraction of active rows in indices 128–255, 3 coefficients;
+   - `Q_CAL_SELECTED`: `I = a+b*n+c*Q`, choose prefix or suffix spatial Q **only on 9 CAL currents** using residual SSE, 3 continuous coefficients plus orientation bit.
+4. Runtime decoder observes the sensed current, known active-WL mask (and its low-cost scalar spatial feature) and saved CAL coefficients. It tests integer candidate counts `0..m=24` and takes the closest predicted current; it does **NOT** read the actual count/MTJ state at runtime for free.
 5. DEV results by physical column (36 per column), including **true n range, CAL n coverage and n extrapolation frequency**, and across all four columns (144 column-read decisions, **not 144 independent chips**), broken down by seen/OOD mask families. Evaluate all three electrical arms: ideal independent, assumed BL R independent, assumed BL+shared-SL.
 
 ## How to interpret
@@ -38,9 +38,9 @@ Runnable [\`experiments/e34_four_column_gf_generalization.py\`](../../experiment
 - Only one nominal chip, one resident-weight map and m=24; no 1T1 PEX or ADC; shared-source R hypothetical. E32 new physical 1T1 wire geometry remains necessary.
 
 ## Run on NUS
-\`\`\`bash
+```bash
 cd ~/MRAM_Path_Finding
 git pull --ff-only
 bash experiments/run_e33_e34_nus.sh
-\`\`\`
-Results under \`~/mram_private/E33_E34_OFFLINE/<timestamp>/E34/\`, with \`E34_RESULTS.json\` (complete private data) and \`E34_FOR_PROF_FONG.md\` (sanitized experiment summary). Nothing above asserts E34 has already passed or returned numeric results.
+```
+Results under `~/mram_private/E33_E34_OFFLINE/<timestamp>/E34/`, with `E34_RESULTS.json` (complete private data) and `E34_FOR_PROF_FONG.md` (sanitized experiment summary). Nothing above asserts E34 has already passed or returned numeric results.
