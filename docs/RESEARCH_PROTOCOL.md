@@ -1,25 +1,9 @@
-# P-Bit Experiment Protocol — v0.1
+# New evidence protocol v1 (2026-11-06)
 
-## Hypotheses (not findings)
-H1. Low-bit floating point can retain small interactions in selected high-dynamic-range problems where a globally scaled integer code loses them.
-H2. A real p-bit's probability transfer curve changes how field quantization affects the computation.
-H3. Exponent alignment and scaling hardware can erase numerical storage savings.
+Tier E0 exact theory/enumeration; E1 seeded algorithmic instance simulation; E2 explicitly illustrative behavioral response; E3 sourced validated device curves; E4 authorized circuit simulation; E5 synthesis/extraction/silicon. Label each claim by its tier.
+Independent problem instance is the statistical unit; solver seeds nested. Predeclare calibration/held-out membership, quality floor and time-to-target conditions. Save original and quantized J+h, scale/codebook, energy constant, problem objective, RNG seeds, beta/PT schedule, source/config/input/output hashes, per-trial hit and validity, all update and swap counts.
+All formats use same task instances and budget. Ideal local updates and PT exchange must use consistent quantized Hamiltonian. Only original task is scored. Validate symmetry, zero diagonal and correct QUBO/Ising conversion.
+Paired trials: both/INT-only/FP-only/neither with paired uncertainty and cluster bootstrap by independent instance. No noninferiority claim without explicit equivalence tolerance and CI. Device nonideal models with unverified parameters are E2 only.
+No software-update count is physical latency or energy. A flatter precision curve after task quality collapses is a failure, not a saving.
 
-## Predeclared gates
-P00: full-text prior-art audit; validate stochastic device model and provenance.
-P01: exact energy enumeration, symmetry, independent seeds, Gibbs correctness at N<=16.
-P02: match total budget; compare FP32/64 reference, optimized fixed-point, small floating-point, and shared exponent.
-P03: ideal vs behavioral response; treat physically validated device data as a separate class.
-P04: bit-true coefficient store, sign-select, scale/exponent alignment, accumulator, scheduler.
-P05: scale and held-out instances without post-hoc cherry-picking.
-
-## Metrics
-Original Hamiltonian ground-state energy gap; solution hit probability; attempted updates to reach a target; distribution divergence for enumerated systems; coefficient/bias/scaling bits; effective bandwidth; accumulator width; implementation-backed power/area/latency only when established.
-
-## Evidence guardrails
-- Distinguish mathematical, seeded software, behavioral response, device simulation, extracted circuit, and physical measurements.
-- All energy gaps use the **unquantized original** J.
-- Use asynchronous single-spin updates for an equilibrium Boltzmann baseline.
-- Never infer physical area/energy from arbitrary software operations.
-- Stop or redirect if tuned integer arithmetic matches float at lower cost.
-- No historical device calibration, data, reports, or foundry material imported.
+Old CIM/TSP/previous assistant-pilot results are excluded by instruction. M0 acceptance is documented separately.
