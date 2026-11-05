@@ -58,7 +58,8 @@ class MIMOTests(unittest.TestCase):
             public=mimo.write_output(inst,a,path)
             self.assertEqual(public["recorded_samples"],20)
             self.assertTrue((path/"SHA256SUMS.json").exists())
-            self.assertEqual(len(list(__import__("csv").DictReader((path/"mimo_samples.csv").open()))),20)
+            with (path/"mimo_samples.csv").open(newline="", encoding="utf-8") as handle:
+                self.assertEqual(len(list(__import__("csv").DictReader(handle))),20)
             with self.assertRaises(FileExistsError):
                 mimo.write_output(inst,a,path)
 
