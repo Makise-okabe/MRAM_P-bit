@@ -3,13 +3,13 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern,amsmath,amssymb,booktabs,tabularx,hyperref}
 \hypersetup{colorlinks=true,urlcolor=blue,citecolor=blue}
-\title{Coupling Precision and Scale Granularity for\\Nonideal MRAM-Based p-Bit Systems}
+\title{Device-Aware Low-Order Floating-Point Coupling\\for MRAM-Based p-Bit Ising Machines}
 \author{Du Yanzhang\\National University of Singapore\\Supervisor: Prof. Kelvin Fong}
 \date{Research scope and M0 protocol --- 6 November 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
-This preliminary report studies how coupling precision and scale granularity should be chosen to maintain optimization performance at lower implementation cost in nonideal MRAM p-bit systems. The candidate contribution is a device-aware configuration rule and a coupling macro. Floating point is a candidate, not an assumed winner. All previous computational results are excluded from the new evidence base.
+This proposal develops low-order floating-point coupling formats (FP4, FP6, FP8) with configurable exponent scale granularity for nonideal MRAM p-bit systems, and evaluates their quality-cost tradeoff on independent BPSK MIMO detection. The design target is a device-aware low-order floating-point coupling architecture, supported by a configuration rule, bit-true macro and synthesis. Optimized scaled integer and block-floating formats are mandatory cost-matched controls; no FP superiority is assumed. All previous computational results are excluded from the new evidence base.
 \end{abstract}
 \section{Locked research question}
 \emph{How should coupling precision and scale granularity be chosen for nonideal MRAM p-bit systems to preserve useful optimization performance at lower implementation cost?}
@@ -25,28 +25,28 @@ This asynchronous Gibbs model is mathematical reference software, not a validate
 \begin{description}
 \item[H1: Device-dependent useful precision.] Does minimum sufficient coupling precision change with the type and severity of p-bit nonideality? Define an absolute task-quality floor.
 \item[H2: Scale granularity.] When do per-element exponents justify their storage and arithmetic cost compared with optimized global, row, tile, or block scales? Preserve symmetric effective couplings.
-\item[H3: Size dependence.] Within controlled weighted Max-Cut, balanced graph partitioning and held-out signed spin-glass families, determine precision versus size without assuming a trend.
+\item[H3: Size dependence.] Across BPSK MIMO channel dimensions, antenna ratios, SNR and conditioning, determine useful precision requirements without assuming a trend.
 \end{description}
 \section{Fair comparisons}
-Compare high-precision reference, optimized scaled integers, shared-scale block floating point, and precisely defined per-element low-bit float. Count scales, metadata, exponent alignment, accumulation, bandwidth and replica overhead. Assess both $J$ and $h$ quantization; isolated $J$-only analysis is explicitly labeled. Keep local-field updates and ideal replica exchanges consistent with the quantized Hamiltonian. Score all outputs against the original task, requiring exact balance for the constrained graph-partition family. TSP appears only in separate small-network mathematical mapping checks \cite{lucas2014}.
-\section{Benchmark scope}\nThe primary benchmark is weighted Max-Cut across deliberately controlled graph structure and within-row coefficient dynamic range. Balanced graph partitioning/minimum bisection tests the interaction of objective weights with cardinality penalties; signed spin-glass instances provide held-out structural controls. The existing TSP solver diagnostics remain as tests only and cannot supply H1/H2/H3 empirical evidence or performance claims. The research question, device-aware precision hypotheses, format baselines and macro milestones are unchanged.\n\section{Milestones M0--M5}
+Compare high-precision reference, optimized scaled integers, shared-scale block floating point, and precisely defined per-element low-bit float. Count scales, metadata, exponent alignment, accumulation, bandwidth and replica overhead. Assess both $J$ and $h$ quantization; isolated $J$-only analysis is explicitly labeled. Keep local-field updates and ideal replica exchanges consistent with the quantized Hamiltonian. Score all outputs against the unquantized BPSK MIMO ML objective; report BER against transmitted symbols separately. The core design targets FP4 (E2M1), FP6 (E3M2), FP8 (E4M3) coupling and exponent handling. Historical TSP and graph benchmarks are removed from formal application evaluation.
+\section{BPSK MIMO benchmark}\nFor complex-baseband BPSK, $\mathbf{y}=\mathbf{H}\mathbf{x}+\mathbf{n}$, $x_i\in\{-1,+1\}$, and maximum likelihood detection minimizes $R(\mathbf{s})=\|\mathbf{y}-\mathbf{H}\mathbf{s}\|_2^2$. With $G=\Re(\mathbf{H}^{\mathrm H}\mathbf{H})$ and $b=\Re(\mathbf{H}^{\mathrm H}\mathbf{y})$, set $J_{ij}=-2G_{ij}$ for $i\ne j$, $h_i=2b_i$, and $C=\|\mathbf{y}\|_2^2+\sum_iG_{ii}$, so the Ising energy equals the original ML residual. Small cases are exhaustively checked; larger systems have no assumed exact oracle. Prior work already studies finite-precision MIMO Ising couplings \cite{singh2022}; our novelty is the device-aware low-order FP coupling macro.\n\section{Milestones M0--M5}
 \begin{center}\small
 \begin{tabularx}{\linewidth}{@{}lX@{}}\toprule
 Stage & Completion requirement\\\midrule
-M0 & Exact small-network reference, seeded independent benchmarks and credible response-model provenance.\\
-M1 & Joint format and nonideality comparison with tuned scaled integers, paired instance-level uncertainty.\\
+M0 & Exact MIMO-to-Ising reference, seeded BPSK channels, BER and nonideal p-bit response-model provenance.\\
+M1 & FP4/FP6/FP8 versus tuned scaled integers and BFP under device response, paired uncertainty.\\
 M2 & Device-aware selection rule and coupling-macro specification with full analytical cost.\\
 M3 & Bit-accurate 64--128-spin tile, synthesis-backed area and timing comparison.\\
-M4 & Held-out instances, device populations and supported scaling limits.\\
+M4 & Held-out BPSK MIMO instances, device populations and supported scaling limits.\\
 M5 & Final architecture, configuration rules and reproducible report.\\\bottomrule
 \end{tabularx}
 \end{center}
 \section{Evaluation and evidence}
-Primary: time-to-target on the original objective, counting all update, exchange, selection and feasibility overhead. Secondary: original-task objective gap, target-hit probability, validity, ideal small-$N$ distribution check and verified implementation cost. Software update counts do not establish hardware latency or energy. Independent instances are the primary statistical unit; solver seeds are nested. An unvalidated behavioral sigmoid does not constitute physical MRAM evidence. All older CIM, sensing-margin, TSP pilot and assistant-generated nonideality results are excluded.
+Primary: time-to-target on the original ML objective, counting all updates, exchanges and selection. Report bit-error rate against transmitted BPSK symbols versus SNR separately. Secondary: original-task objective gap, target-hit probability, validity, ideal small-$N$ distribution check and verified implementation cost. Software update counts do not establish hardware latency or energy. Independent instances are the primary statistical unit; solver seeds are nested. An unvalidated behavioral sigmoid does not constitute physical MRAM evidence. All older CIM, sensing-margin, TSP pilot and assistant-generated nonideality results are excluded.
 \section{Project schedule}
 Fourteen active working weeks and two weeks buffer, reduced capacity around exams. Aim for M1/M2 for CA3. FPGA deployment is optional. A well-supported integer-favoring configuration rule can be a valid outcome.
 \begin{thebibliography}{9}
 \bibitem{camsari2017} K. Y. Camsari, R. Faria, B. M. Sutton and S. Datta, ``Stochastic p-Bits for Invertible Logic,'' \emph{Physical Review X} 7, 031014 (2017), DOI: 10.1103/PhysRevX.7.031014.
-\bibitem{lucas2014} A. Lucas, ``Ising formulations of many NP problems,'' \emph{Frontiers in Physics} 2, 5 (2014), DOI: 10.3389/fphy.2014.00005.
+\bibitem{singh2022} A. K. Singh et al., ``Ising Machines' Dynamics and Regularization for Near-Optimal MIMO Detection,'' \emph{IEEE Transactions on Wireless Communications} 21, 11080--11094 (2022), DOI 10.1109/TWC.2022.3189604.
 \end{thebibliography}
 \end{document}
