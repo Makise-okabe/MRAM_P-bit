@@ -72,3 +72,28 @@ A complete actual per-case joint vector of multi-column read currents + calibrat
 **Physical next step after batch:** build single 1T1MTJ cell and 4×4 macro with defined one-NFET-in-series wiring, shared WL and column BL/SL; independently verify read polarity, P/AP control, selected/unselected source/bitline terminations; DRC/LVS/xACT **new 1T1** and extract actual RC; matched two-row and four-column PEX current vector at synchronized sample time. Only those actual currents can advance physical error-correlation E26A.
 
 **IMPORTANT zero-signal gate:** At assumed R0, if selected P/AP count is identical, the ideal-wire nominal currents may be identical. This is expected and not failure of code. The intended purpose is to verify genuine GF transistor currents and the 1T1-like independent-column reference, not to generate fake spatial effects.
+
+
+## E27B/C user-run — C PASS, B template pre-Spectre BLOCKED; verified runner fix committed (2026-11-05)
+
+**Observed NUS output**, frozen main SHA \`4a460104d82cc320ad4204e6bf7506315dd8e95f\`:
+- E27A and E27B mock selftests PASS.
+- E27C actual student MTJ SHA match true; actual prior 58,998-byte Spectre deck SHA match true; verified local E19 v2 generator SHA match true.
+- Student static Verilog-A module \`mtj_read_v0(top,bottom)\`, parameter names \`rp,tmr,p_state\`.
+- Prior generated \`input.scs\` contained **144 GF \`hvtnfet\` and 144 \`mtj_read_v0\` instances**, 18 R elements and 37 voltage sources, i.e. a multi-case generated test deck, not a suitable E19 original single-cell **template**. Counts from deck parser are metadata, not proof of individual device bias/perimeter or a new 1T1 physical macro.
+- Actual historical Cadence directory \`~/mram_fyp/cadence/CIM1_SINGLE_CELL/Yanzhang_CIM/tb_CIM1_1T1MTJ/schematic\` exists; it is a prospective schematic/testbench resource, **not** a demonstrated 4×4 1T1 layout PEX.
+- E27B script attempted passing the 144-instance old \`input.scs\` as an explicit E19 template and failed with \`E19_ERROR: Template has no mtj_read_v0 instance with two terminals\` **BEFORE any Spectre workdir or electrical solve**. NO numerical current results, circuit failure or physical outcome have been measured in E27B yet.
+
+**Root cause:** The ChatGPT-authored E27B wrapper passed the wrong class of source deck to verified E19 \`parse_template\`. E19 generator has earlier valid use with its built-in default template selection. **Correction committed to main:** [\`e27b_1t1_reference_gf_spectre.py\`](../../experiments/e27b_1t1_reference_gf_spectre.py) now has independent \`preflight\` mode that uses \`e19.choose_template(None)\`, verifies its parse and prints selected template path + hash; [\`run_e27bc_nus.sh\`](../../experiments/run_e27bc_nus.sh) no longer passes the invalid prior generated \`input.scs\` as \`--template\`, and runs preflight first. If no valid original template is found, **STOP safely**, inspect a summary of \`choose_template\` without bypassing hash/model checks or editing the proprietary deck.
+
+**Next on NUS:**
+\`\`\`bash
+cd "$HOME/MRAM_Path_Finding"
+git pull --ff-only
+python3 -m py_compile experiments/e27b_1t1_reference_gf_spectre.py
+python3 experiments/e27b_1t1_reference_gf_spectre.py preflight
+python3 experiments/e27b_1t1_reference_gf_spectre.py run --timeout-sec 240
+\`\`\`
+\`run\` is still an intentionally limited, independent 4-row 16-case ideal wire (R=0) GF NFET + static MTJ reference at historical 0.05V / 0.8V, not a new 4×4 PEX or joint four-column measurement. Historical bias is a screening assumption only and requires read-safety review.
+
+No extra assumed-R sweep or physical correlation is justified by E27C file discovery alone.
