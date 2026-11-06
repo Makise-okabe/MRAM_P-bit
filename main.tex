@@ -138,9 +138,9 @@ response. Each representation used 5000 attempted asynchronous
 single-spin updates and three paired random seeds per graph.
 The output was the earliest lowest-\emph{represented}-energy
 visited configuration; the evaluation score was always the
-\emph{original source-weighted cut}. The original optimum has not
-been loaded and the unquantized 64-bit software reference is itself
-a finite-budget stochastic algorithm, not an optimum oracle.
+\emph{original source-weighted cut}. Published optimum reference values were imported after
+this initial three-seed pilot; the unquantized software solver
+remains a finite-budget stochastic baseline, not an optimum oracle.
 
 \begin{table}[htbp]\centering\small
 \begin{tabular}{@{}lrrrr@{}}\toprule
@@ -174,6 +174,63 @@ zeroed edge \emph{counts} and discarded original absolute
 weight \emph{mass} has also been added. The published-table
 interpretation must await the corrected and multi-graph run.
 
+\section{Bounded FP64 solver-quality calibration (NUS, completed)}
+A separate reference-only run tested an \emph{unquantized}
+Ising model against published original-weight Biq Mac
+optimal cut values. The four already observed graphs
+were used as \emph{calibration}, not held-out data.
+Each graph had six paired stochastic seeds at
+5000, 20000 and 50000 attempted asynchronous updates,
+with either a fixed $\beta_G$ or a linear schedule
+$\beta(t)=\beta_G[0.5+1.5\,t/(U-1)]$.
+This yielded $4\times 6\times 3\times 2=144$ NUS
+solver runs. Original graph SHA256 values were
+checked before consulting source-matched published
+optima~\cite{NewBiqMac2026}.
+
+The metric is mean positive optimality gap,
+$100(C^\star-C_{\mathrm{returned}})/C^\star$,
+averaged first across six seeds within each graph
+and then equally across four \emph{graphs}:
+\begin{table}[htbp]\centering\small
+\begin{tabular}{@{}lrrr@{}}\toprule
+FP64 Gibbs schedule & 5000 updates & 20000 updates & 50000 updates\\\midrule
+Fixed $\beta_G$ & 10.039\% & 6.890\% & 5.402\%\\
+Linear 0.5--2.0$\beta_G$ & 5.502\% & 3.704\% & \textbf{2.343\%}\\\bottomrule
+\end{tabular}
+\caption{NUS reference-only quality-versus-budget calibration.
+Each cell averages four original graphs equally;
+six paired seeds are nested within each graph.}
+\label{tab:fp64-budget}
+\end{table}
+The 50000-update linear profile yielded graph-specific
+mean gaps of 1.101\% (\texttt{w01}), 0.396\%
+(\texttt{pw01}), 2.728\% (\texttt{t2g10}) and
+5.146\% (\texttt{ising2.5}). The dense
+\texttt{ising2.5} graph \emph{favoured fixed}
+over linear at 50000 updates (4.341\% versus
+5.146\%). The uniform linear schedule is selected
+by the \emph{aggregate}, not by universal
+instance-level superiority.
+
+The predeclared choice is the \emph{smallest}
+budget within 1.0 absolute percentage point of
+the best equal-graph mean gap, with a tie favouring
+fixed beta. Linear 20000 had 3.704\% mean gap,
+more than 1.0 point above the minimum 2.343\%.
+Thus the first multi-format precision comparison
+shall use \textbf{linear 50000 attempted updates}
+with that beta schedule frozen across all formats.
+
+This is the \emph{largest tested} budget,
+not evidence of convergence, optimum attainment,
+or a physically realized annealing circuit.
+The schedule's control hardware and device-time
+cost must be included in later architectures.
+The original 84-run, fixed-5000 format pilot
+remains a separate historical baseline with its
+documented INT6 source-scale erratum.
+
 \section{Current status}
 The official ten-graph Biq Mac source audit passed on NUS:
 eight 100-node Mac/rudy small-integer graphs and two 100-node
@@ -181,15 +238,17 @@ Mac/ising wide-range graphs. For the latter, the verified source
 nonzero absolute weights range from 460 to 294541 in
 \texttt{t2g10\_5555} (200 edges) and from 1 to 239752 in
 \texttt{ising2.5-100\_5555} (4950 edges).
-A naive globally fullscale signed INT6 quantizer rounds 4657 of 4950
-nonzero edges in the dense graph to zero; this is a source weight
+A naive globally fullscale signed INT6 quantizer rounds 4657 of the
+4881 originally nonzero dense-graph edges to zero (4950 raw edges); this is a source weight
 characteristic, not a demonstrated Max-Cut quality loss.
 A first four-source FP6/INT6/BFP6 ideal-Gibbs pilot completed
 84 solver runs with the represented-energy output policy.
 A small-integer INT6 scale-search fairness correction was then
 identified and repaired; corrected solver verification is pending.
-There is no measured stochastic-MTJ response, loaded certified
-Max-Cut optimum or Max-Cut-specific mapped-area claim.
+Published source-matched original-weight Max-Cut optimum
+references are now imported, and the 144-run FP64 quality gate
+is complete. There is no measured stochastic-MTJ response
+or Max-Cut-specific mapped-area claim.
 The previous MIMO-oriented report is preserved at
 \texttt{docs/archive/MAIN\_MIMO\_PRE\_MAXCUT\_20261106.tex}.
 \end{document}
