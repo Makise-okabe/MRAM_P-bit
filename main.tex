@@ -441,6 +441,37 @@ it remains a software-model diagnostic, not a stochastic
 MTJ voltage-response validation. The two device populations
 do not create 40 independent channel frames, and all
 nonideal responses remain synthetic E2.
+\subsection{M2: bit-true row verification and first mapped-area comparison}
+At NUS, a SystemVerilog cycle-serial local-field datapath
+passed 84/84 independent Python-versus-Icarus bit-true row vectors
+at 16, 64, and 128 spins for the three frozen formats.
+The datapath is a \emph{single} serial row engine and does not
+include coefficient memory, stochastic MTJs, a DAC, or the
+best-of-visited-energy state-retention controller.
+Under Yosys 0.69 with the public Nangate45 typical
+standard-cell Liberty and consistent mapping procedure,
+the reported pre-placement mapped cell areas for
+the 128-spin row were 8132.418 library-area units
+for mixed finite FP4-$J$/FP6-$h$, 7597.758 for matched
+INT4-$J$/INT6-$h$, and 2401.980 for BFP6.
+Thus mixed FP used 7.04\% more digital-row area than
+matched INT, while BFP6 used 70.46\% less than mixed FP,
+under this one architecture. The BFP implementation uses
+binary exponent shifts, whereas FP/INT use general fixed
+global-scale multipliers; the comparison reflects both
+representations and scale implementation, not the
+coefficient codebook alone. At 128 spins the corresponding
+unique symmetric coefficient-and-scale storage requirements
+are 33,344 bits for mixed FP/INT and 49,552 bits for BFP6,
+none of which was included in the synthesized row area.
+No critical-path timing, memory/peripheral area, p-bit
+device power or GF22FDX cell mapping has been measured.
+The numeric H2 experiment used arbitrary real frozen
+scales, whereas hardware FP/INT uses Q12.20 scale words;
+their quality equivalence remains to be tested. Therefore
+this is a mapped digital-row comparison only, not a
+complete MRAM accelerator efficiency or physical-novelty claim.
+
 \section{Project schedule}
 Fourteen active working weeks and two weeks buffer, reduced capacity around exams. Aim for M1/M2 for CA3. FPGA deployment is optional. A well-supported integer-favoring configuration rule can be a valid outcome.
 \begin{thebibliography}{9}
