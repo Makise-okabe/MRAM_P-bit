@@ -8,6 +8,8 @@
 
 H1 device-dependent useful precision; H2 exponent/scale granularity; H3 conditional scaling with antenna dimensions and SNR. **M0–M5 unchanged.** Floating-point is the design target, not a required performance winner.
 
+See [Architecture and CIM boundary](docs/ARCHITECTURE_CIM_SCOPE.md): **64–128-spin low-order FP coupling tile and RTL/synthesis remain in scope**, but true MRAM-CIM requires actual array-integrated computation; our software currently demonstrates neither a fabricated p-bit array nor a CIM macro.
+
 Read: [Locked roadmap](docs/ROADMAP_LOCKED_2026-11-06.md), [MIMO protocol](docs/M0_MIMO_BENCHMARK.md), [M0 acceptance](docs/M0_ACCEPTANCE.md), [evidence rules](docs/RESEARCH_PROTOCOL.md).
 
 **M0:** independently seeded complex channel/AWGN, exact state-wise ML-to-Ising validation, correct ML vs BER semantics and sampler/reference checks. M1: device-nonideality x FP4/6/8 vs optimized integer/BFP. M2: precision/scale configuration and macro cost. M3: bit-true RTL+synthesis. M4: held-out larger MIMO. M5: report.
