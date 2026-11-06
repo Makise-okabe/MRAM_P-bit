@@ -131,6 +131,49 @@ M4 & Held-out signed-weight/density/size and device-model tests.\\
 M5 & Qualified final design rules, limitations, and report.\\\bottomrule
 \end{tabularx}
 \end{center}
+\section{Preliminary E1 ideal-response solver pilot (NUS, 7 November 2026)}
+Four original 100-vertex Mac graphs were evaluated using a
+\emph{mathematical ideal Gibbs update}, not measured stochastic-MTJ
+response. Each representation used 5000 attempted asynchronous
+single-spin updates and three paired random seeds per graph.
+The output was the earliest lowest-\emph{represented}-energy
+visited configuration; the evaluation score was always the
+\emph{original source-weighted cut}. The original optimum has not
+been loaded and the unquantized 64-bit software reference is itself
+a finite-budget stochastic algorithm, not an optimum oracle.
+
+\begin{table}[htbp]\centering\small
+\begin{tabular}{@{}lrrrr@{}}\toprule
+Original graph & Reference & FP6-MSE & INT6-MSE & BFP6-MSE\\\midrule
+w01\_100.0 & 567.67 & 562.67 & 571.67 & 567.67\\
+pw01\_100.0 & 1921.00 & 1933.33 & 1946.00 & 1921.00\\
+t2g10\_5555 & 5185275 & 5069377 & 5193320 & 5187966\\
+ising2.5-100\_5555 & 2301758 & 2274156 & 2313755 & 2281519\\\bottomrule
+\end{tabular}
+\caption{First original-cut mean from 3 paired solver seeds per
+graph, each with 5000 attempted updates; E1 ideal mathematical software
+pilot only. Do not infer format superiority or MRAM-device performance.}
+\end{table}
+
+On the dense broad-range graph, FP6 had lower relative absolute
+coupling error (7.03\%) than INT6 (16.44\%), yet lower mean returned
+original cut in this tiny pilot; this illustrates that coefficient
+reconstruction error need not predict the returned finite-time
+optimization state. INT6 also exceeded the finite-budget reference
+mean in some cases, which does \emph{not} mean that it surpassed the
+unknown true maximum cut.
+
+\textbf{Known fairness erratum:} the original source-only MSE
+scale search for INT6 omitted unit scale even on integer graphs
+whose $[-10,10]$ weights fit exactly in signed INT6. The pilot
+table preserves the \emph{original} 84-run evidence before
+the corrected INT6 exact-unit candidate. The fixed implementation
+is on the research branch, but the required corrected paired
+seed experiment has not yet been reported. Separate measurement of
+zeroed edge \emph{counts} and discarded original absolute
+weight \emph{mass} has also been added. The published-table
+interpretation must await the corrected and multi-graph run.
+
 \section{Current status}
 The official ten-graph Biq Mac source audit passed on NUS:
 eight 100-node Mac/rudy small-integer graphs and two 100-node
@@ -141,9 +184,10 @@ nonzero absolute weights range from 460 to 294541 in
 A naive globally fullscale signed INT6 quantizer rounds 4657 of 4950
 nonzero edges in the dense graph to zero; this is a source weight
 characteristic, not a demonstrated Max-Cut quality loss.
-A preliminary global-scale FP6/INT6/BFP6 ideal-Gibbs pilot has been
-authored and unit-tested with a represented-energy output policy;
-its source-graph solver run is still pending.
+A first four-source FP6/INT6/BFP6 ideal-Gibbs pilot completed
+84 solver runs with the represented-energy output policy.
+A small-integer INT6 scale-search fairness correction was then
+identified and repaired; corrected solver verification is pending.
 There is no measured stochastic-MTJ response, loaded certified
 Max-Cut optimum or Max-Cut-specific mapped-area claim.
 The previous MIMO-oriented report is preserved at
