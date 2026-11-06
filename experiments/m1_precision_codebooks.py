@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import math
 import struct
+from functools import lru_cache
 
 from experiments.m1_coupling_formats import fp_positive_levels
 
@@ -40,6 +41,7 @@ def cast_binary32(x: float) -> float:
     return q
 
 
+@lru_cache(maxsize=None)
 def levels(width: int) -> tuple[float, ...]:
     if width not in WIDTHS:
         raise ValueError(f"unsupported FP width {width}")
