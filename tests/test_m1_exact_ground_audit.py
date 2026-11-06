@@ -12,11 +12,17 @@ import m1_exact_ground_audit as audit
 class GroundAuditTests(unittest.TestCase):
     def test_unrounded_fp32_historical_compatibility(self):
         ins=mimo.frame(tx=3,rx=3,snr_db=5,seed=12)
-        a=audit.quantized_minima(ins,"fp32",tile=2)
+        a=audit.quantized_minima(ins,"fp32",tile=2,legacy_fp32=True)
         b=formats.quantize_couplings(ins["J"],ins["h"],"fp64_ref",tile=2)
         self.assertEqual(a["quant"]["J"],b["J"])
         self.assertEqual(a["quant"]["h"],b["h"])
         self.assertEqual(len(a["minima"])>=1,True)
+
+    def test_true_fp32_current_mode_differs_from_original(self):
+        ins=mimo.frame(tx=3,rx=3,snr_db=5,seed=12)
+        rounded=audit.quantized_minima(ins,"fp32",tile=2)
+        unrounded=audit.quantized_minima(ins,"fp32",tile=2,legacy_fp32=True)
+        self.assertNotEqual(rounded["quant"]["J"],unrounded["quant"]["J"])
 
     def test_exact_audit_recovers_pilot_state_and_ground(self):
         ins=mimo.frame(tx=3,rx=3,snr_db=0,seed=12)
