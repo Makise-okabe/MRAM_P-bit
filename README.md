@@ -1,5 +1,7 @@
 # STT-MRAM p-bit FYP — Biq Mac Weighted Max-Cut
 
+**Mandatory decision gate:** [FYP Decision Feedback Loop](docs/FYP_DECISION_FEEDBACK_LOOP.md). Every research step must have explicit FYP alignment, evidence level, prior-art check, smallest falsifiable test and STOP condition; return to the gate after observing results. This requirement applies across future project sessions.
+
 ## Active benchmark
 Original **Biq Mac Library / Mac weighted Max-Cut**, 100-spin calibration graphs. The problem maps as `J_ij=J_ji=-w_ij`, `J_ii=0`, `h_i=0`. The research compares 4/5/6/8-bit FP/INT/BFP couplings under a consistent p-bit solver, then separately evaluates physical device response and real hardware cost.
 
@@ -18,3 +20,6 @@ Original **Biq Mac Library / Mac weighted Max-Cut**, 100-spin calibration graphs
 - `docs/M1_GLOBAL_PRECISION_FREEZE_20261107.md`: frozen codebooks, seeds, +1pp criterion.
 
 Authoritative FYP report: https://github.com/Makise-okabe/MRAM_FYP_Overleaf . The active repository contains **no alternative application scripts**. Older history remains recoverable in Git history without being part of this active worktree.
+
+## Next bounded gate (only mathematical transfer preflight)
+A 2026 experimental STT-MTJ Ising p-bit paper reports a nominal sigmoid example, and already demonstrates Biq Mac Max-Cut; it is a close prior-art collision. [STT-MTJ transfer preflight](experiments/m2_stt_pbit_transfer_preflight.py) validates only the algebraic conditional-field-to-voltage map with explicitly passed, provenance-dependent nonideal parameters; it is NOT device-characterized E3 or a new 936-run sweep. See the decision feedback protocol for STOP/GO and novelty warning.
