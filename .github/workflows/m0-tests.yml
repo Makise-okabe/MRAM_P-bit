@@ -24,3 +24,6 @@ jobs:
         run: python experiments/m1_pbit_screen.py --tx 3 --rx 3 --snrs 0 --frames 2 --burnin 25 --records 6 --thin 2 --formats fp32,fp4,int4,bfp4 --responses ideal,offset015 --output results/ci_m1_screen
       - name: Exact Ising original-versus-quantized objective audit
         run: python experiments/m1_exact_ground_audit.py --runs results/ci_m1_screen/m1_paired_runs.csv --frames results/ci_m1_screen/m1_frames.jsonl --tile 4 --output results/ci_m1_exact_audit
+
+      - name: M1B frozen scale global/tile pairing smoke test
+        run: python experiments/m1_calibrated_scale_gate.py --tx 3 --rx 3 --snrs 0 --cal-frames 2 --heldout-frames 2 --formats fp4,int4,bfp4 --granularities global,tile --tile 2 --output results/ci_m1b_gate
