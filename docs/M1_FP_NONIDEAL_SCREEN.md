@@ -82,3 +82,29 @@ python3 experiments/m1_exact_ground_audit.py \\
 ```
 
 Enumerates all 256 Ising states in each saved 8-spin case; verifies the selected state's logged quantized energy against reconstructed J,h; computes whether (1) the original ML state is a quantized Hamiltonian minimizer and (2) the returned selected state is quantized-optimal. These diagnose **representation distortion vs sampling failure**. The original ML optimum can be lost in the quantized Hamiltonian even if a lucky finite-budget sample finds it. Conversely a chosen quantized minimum need not solve original ML. Log all caveats, avoid claiming causal MRAM nonideality or area/power. Do not alter or overwrite the original NUS saved pilot.
+
+## M1 exact quantized-ground audit — completed on NUS (6 November 2026)
+
+**Input:** user's saved original 8x8 MIMO pilot frames/CSV. Command used `--legacy-unrounded-fp32`, preserving the old mislabeled unrounded-double reference. **Output:** `results/m1_exact_ground_20261106T015525Z_3625599`. Original files were not overwritten. No new p-bit simulation or physical measurement; E0/E1/E2 analysis only.
+
+**Main finding:** every reported selected state was a ground-state minimizer of its *own quantized Hamiltonian*: `selected-quant-min=12/12` for all 80 format × response × SNR combinations (10 format labels × 4 response models × 2 SNRs). These are highly correlated observations, not 960 independent frames.
+
+Original ML state **preserved within quantized ground-state set**:
+
+| Format | 0 dB | 5 dB |
+|---|---:|---:|
+| FP4 | 10/12 | 10/12 |
+| INT4 | 11/12 | 12/12 |
+| BFP4 | 11/12 | 11/12 |
+| FP6, FP8, INT6, INT8, BFP6, BFP8 | 12/12 | 12/12 |
+| historical `fp32` = unrounded double value reference | 12/12 | 12/12 |
+
+The original ML preservation numbers repeat across response models because those models alter the **sampling probability** but **not the quantized coefficients**.
+
+**Representation error versus sampler error:**
+- FP4 at both SNRs lost the original ML optimum from the quantized ground-state set in 2/12 frames each. INT4 lost it in 1/12 at 0 dB and 0/12 at 5 dB. This is a coefficient-landscape effect, not a failure to minimize the quantized energy.
+- BFP4 (0 and 5 dB) retained the original ML state in 11/12 sets yet achieved 10/12 original ML hits with ideal response (contrast090 BFP4 0 dB had only 9/12). BFP6 at 5 dB retained 12/12 but achieved 11/12 original ML hits. Because the selected solutions all minimize the quantized energy, this indicates **degenerate quantized minima with unequal original residuals** (or ties at the numerical energy tolerance), not failure to reach the quantized minimum.
+- No response model caused the final selection to miss the quantized ground under the tested 1,000-update best-of-samples budget. Some models changed best-recorded checkpoint indices, which **are not** time-to-target.
+- Hence H1 (device-dependent useful precision) has NOT been demonstrated; H2 (floating-point exponent/scale granularity value) is NOT isolated, H3 not studied; the MRAM response models remain synthetic E2.
+
+**Next required scientific gate:** use existing `format_exact_minima.csv` to quantify ground-state multiplicity and margin/degeneracy, then compare FP versus tuned INT at **the same global/tile scale granularity and full hardware metadata cost**. Follow with finite-budget, multi-seed p-bit dynamics under a physically justified stochastic MRAM transfer curve. The architecture remains a 64–128-spin low-order FP coupling array; BPSK MIMO remains the sole application benchmark.
