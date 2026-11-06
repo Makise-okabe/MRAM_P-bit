@@ -48,3 +48,10 @@ This file is the durable cross-chat record of the user's direct instruction:
 
 ### Reminder for future assistant sessions
 Consult this file and the latest actual experimental result before suggesting a new step. Record one new GO/STOP decision and the outcome after every experimental gate. If the next suggestion fails any five-question check, stop it.
+
+## Feedback closure — STT-MTJ nominal transfer preflight, 7 Nov 2026
+- **Observed:** `experiments/m2_stt_pbit_transfer_preflight.py` and `tests/test_m2_stt_pbit_transfer_preflight.py` authored; GitHub Actions run 42288072400 PASS, including all 5 tests: literature slope/midpoint identity, nominal `sigmoid(2βH)` parity, monotonicity, required explicit residual parameters and invalid-input rejection.
+- **Interpretation:** nominal voltage mapping is algebraically consistent, but is exactly equivalent to ideal Gibbs. This proves NO Max-Cut quality improvement, NO residual mismatch, and NO device-characterized switching response. The published representative sigmoid does not provide a 100-device residual distribution.
+- **Hole detector:** Repeating 936 Max-Cut runs under the perfectly calibrated nominal transfer would reproduce ideal stochastic results, adding no scientific information and wasting NUS compute. STOP that sweep. Do not invent per-device residual distributions and call them E3.
+- **Next evidence dependency:** source explicit post-calibration device-specific residuals, or define an openly labeled E2 sensitivity envelope with documented parameter provenance. Then design ONE economical paired representation×response comparison, accounting for pulse reset/perturb and physical time. First assess 2026 250-STT-MTJ BiqMac prior art before novelty claims.
+- **Decision:** GO literature-grounded mathematical interface only (completed); HOLD E2/E3 full graph resimulation until physical residuals or a defensible E2 assumptions envelope are established.
