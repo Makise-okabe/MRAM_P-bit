@@ -11,9 +11,10 @@ import m1_calibrated_scale_gate as g
 class CalibratedScaleTests(unittest.TestCase):
     def test_scales_fixed_across_heldout_and_grouping_matched(self):
         ca=g.frames_for(3,4,[0.0,5.0],2,100)
-        scales=g.calibrate(ca,["fp4","int4","bfp4"],["global","tile"],2)
+        scales=g.calibrate(ca,["fp4","fp4_fn","fp6_fn","int4","bfp4"],["global","tile"],2)
         self.assertEqual(set(scales[("fp4","global")]),set(scales[("int4","global")]))
         self.assertEqual(set(scales[("fp4","tile")]),set(scales[("int4","tile")]))
+        self.assertEqual(set(scales[("fp4_fn","tile")]),set(scales[("fp6_fn","tile")]))
         self.assertGreater(len(scales[("fp4","tile")]),len(scales[("fp4","global")]))
         a=mimo.frame(3,4,7,1000)
         b=mimo.frame(3,4,-3,1001)
@@ -35,6 +36,17 @@ class CalibratedScaleTests(unittest.TestCase):
         self.assertTrue(all(r["quantized_ground_degeneracy"]>=1 for r in rows))
         with self.assertRaisesRegex(ValueError,"overlap"):
             g.run(**dict(opts,held_seed=11))
+
+    def test_finite_fp_formats_in_heldout_gate(self):
+        opts=dict(tx=3,rx=3,snrs=[0.0],cal_frames=2,held_frames=2,
+                  cal_seed=10000,held_seed=20000,
+                  formats=["fp4_fn","fp6_fn","int4"],granularities=["global","tile"],tile=2)
+        rows,summary,scales,cal,held=g.run(**opts)
+        self.assertEqual(len(rows),12)
+        self.assertEqual(len(summary),6)
+        a=next(r for r in rows if r["format"]=="fp4_fn" and r["granularity"]=="global")
+        self.assertEqual(a["coefficient_bits"],4*(3*2//2+3))
+        self.assertTrue(all(r["original_ml_preserved"] in (0,1) for r in rows))
 
     def test_ground_comparison_oracle(self):
         frame=mimo.frame(3,3,3,201)
