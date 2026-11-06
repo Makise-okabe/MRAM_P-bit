@@ -406,6 +406,41 @@ and probability of \emph{returning} one at a
 fixed update budget. Synthetic contrast/mismatch
 responses are E2 illustrations pending device sourcing.
 
+\subsection{H1: exact eight-spin Markov chain, first NUS result}
+An exact random-scan p-bit chain was evaluated on the
+$2\times2$ complex 16-QAM (eight-spin) benchmark at 12~dB,
+using 20 held-out channels and two illustrative device
+populations, four previously frozen coupling representations,
+and $β=1$. The E2 response variants were an ideal sigmoid,
+contrast-$0.90$ response, and heterogeneous static gain/offset.
+The exact transition dynamics model verified the ideal Gibbs
+stationary distribution; all recorded aggregate cases converged.
+At 500 attempted updates, mixed FP4-$J$/FP6-$h$ reached
+an original-ML residual-gap target ($\delta=0.05$) at least
+once with probability $0.9713$, but its probability of
+\emph{being} in that target at the fixed observation time
+was only $0.0507$; expected Gray BER was $0.3834$.
+Matched mixed INT achieved $0.9709$, $0.0521$, and
+$0.3825$; BFP6 achieved $0.9752$, $0.0522$, and $0.3811$;
+uniform FP6 achieved $0.9761$, $0.0526$, and $0.3818$.
+These results show that visiting a good state and returning
+one at a fixed time are different objectives. Neither the
+higher precision benefit nor a device-dependent useful
+precision rule was established in this small test.
+
+Importantly, $\beta=1$ was an arbitrary illustrative
+operating point. With the generator's complex AWGN variance
+$\sigma_n^2=(N_t/N_r)10^{-\mathrm{SNR}/10}$, a Gibbs sampler
+matching the AWGN posterior $\propto\exp[-R(s)/\sigma_n^2]$
+at 12~dB in square MIMO requires
+$\beta=1/\sigma_n^2\approx15.85$. Thus, poor fixed-time
+quality at $\beta=1$ should not be interpreted as an
+intrinsic precision plateau. A single predeclared
+posterior-consistent operating-point comparison is needed;
+it remains a software-model diagnostic, not a stochastic
+MTJ voltage-response validation. The two device populations
+do not create 40 independent channel frames, and all
+nonideal responses remain synthetic E2.
 \section{Project schedule}
 Fourteen active working weeks and two weeks buffer, reduced capacity around exams. Aim for M1/M2 for CA3. FPGA deployment is optional. A well-supported integer-favoring configuration rule can be a valid outcome.
 \begin{thebibliography}{9}
