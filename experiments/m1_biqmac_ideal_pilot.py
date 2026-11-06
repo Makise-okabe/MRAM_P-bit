@@ -35,6 +35,12 @@ def select_scale(values, fmt, policy):
     if vmax == 0:
         return 1.0
     if policy == "mse":
+        # Essential fair INT control: a shared unit scale represents every
+        # small signed INTEGER exactly if all weights fit signed INT range.
+        # The historical heuristic grid around maxabs/qmax omitted 1.0.
+        # This check uses source coefficients only, not solver/optimum data.
+        if fmt == "int6" and vmax <= 31 and all(v == round(v) for v in values):
+            return 1.0
         scale, _ = tune_scale(values, fmt)
         return scale
     if policy != "fullscale":
