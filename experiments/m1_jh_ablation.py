@@ -97,8 +97,12 @@ def read_m1b(path):
         frames=[json.loads(line) for line in f if line.strip()]
     if not frames:
         raise ValueError("missing heldout MIMO frames")
+    held_seed=conf.get("heldout_seed",conf.get("held_seed"))
+    held_frames=conf.get("heldout_frames",conf.get("held_frames"))
+    if held_seed is None or held_frames is None:
+        raise ValueError("M1B manifest missing heldout seed or frame count")
     if set(range(conf["cal_seed"],conf["cal_seed"]+conf["cal_frames"])) & \
-       set(range(conf["held_seed"],conf["held_seed"]+conf["heldout_frames"])):
+       set(range(held_seed,held_seed+held_frames)):
         raise ValueError("CAL/HELD seed overlap")
     return frames,frozen,conf
 
