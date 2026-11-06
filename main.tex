@@ -189,6 +189,28 @@ must control scale granularity, energy degeneracy and finite-budget
 search, while separately establishing a physically sourced
 stochastic MRAM p-bit response. No FP superiority, CIM implementation,
 hardware energy or novelty claim follows from this small software pilot.
+\subsection{Planned finite-only floating-point and $J$/$h$ sensitivity gate}
+To separate representation-induced objective changes from stochastic
+sampling, the next experiment considers the finite-only FP4 E2M1 and
+FP6 E3M2 \emph{element formats} standardized by OCP \cite{ocpmx2023}.
+Finite-only E2M1 supports magnitudes $0,0.5,1,1.5,2,3,4,6$;
+historical FP4 (kept for reproducibility) only reaches magnitude $3$.
+The format itself is established prior art, and its adoption is not
+equivalent to a complete MX block-scaled or bit-exact circuit.
+
+New FP and integer coupling scales are calibrated only on disjoint
+training BPSK MIMO frames, then frozen for held-out frames, with
+identical global/tile grouping. J-only and h-only quantization are
+\emph{unquantized-opposite oracle diagnostics}, while mixed FP4-J/FP6-h
+is compared against equally mixed INT4-J/INT6-h with all coefficient
+and scale storage counted. Upgrading the $N$ bias coefficients from
+four to six bits adds $2N$ nominal coefficient bits (256 at $N=128$),
+before decoding, accumulation, control logic and other overhead.
+
+All these comparisons are \emph{planned} and have no new measured NUS
+outcomes. Later H1 must measure finite-budget original-task performance
+under physically sourced stochastic MRAM p-bit characteristics;
+M2/M3 must implement bit-true exponent/scale paths and RTL synthesis.
 \section{Project schedule}
 Fourteen active working weeks and two weeks buffer, reduced capacity around exams. Aim for M1/M2 for CA3. FPGA deployment is optional. A well-supported integer-favoring configuration rule can be a valid outcome.
 \begin{thebibliography}{9}
@@ -196,5 +218,6 @@ Fourteen active working weeks and two weeks buffer, reduced capacity around exam
 \bibitem{singh2022} A. K. Singh et al., ``Ising Machines' Dynamics and Regularization for Near-Optimal MIMO Detection,'' \emph{IEEE Transactions on Wireless Communications} 21, 11080--11094 (2022), DOI 10.1109/TWC.2022.3189604.
 \bibitem{hybrid2026} ``Intrinsic annealing in a hybrid memristor-magnetic tunnel junction Ising machine,'' \emph{Nature Communications} (2026), DOI: 10.1038/s41467-026-71844-8.
 \bibitem{vcma2024} ``In-Memory Neural Stochastic Differential Equations with Probabilistic Differential Pair Achieved by In-Situ P-Bit Using CMOS Integrated Voltage-Controlled Magnetic Tunnel Junctions,'' \emph{IEDM} (2024), DOI: 10.1109/IEDM50854.2024.10873318.
+\bibitem{ocpmx2023} Open Compute Project, ``OCP Microscaling Formats (MX) Specification,'' Version 1.0, Sep. 2023, Secs. 5.3.2--5.3.3, \url{https://www.opencompute.org/documents/ocp-microscaling-formats-mx-v1-0-spec-final-pdf}.
 \end{thebibliography}
 \end{document}
