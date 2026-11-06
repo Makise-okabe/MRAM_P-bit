@@ -28,6 +28,9 @@ Build and evaluate **LOW-ORDER FLOATING-POINT COUPLING** representations in noni
 - Preserve effective symmetric J, zero diagonal and a coherent J+h implementation; J-only quantization is an explicitly labeled ablation.
 - Count coefficient/bias storage, scales/exponent metadata, sign multiply/select, exponent alignment, accumulation and overflow, memory bandwidth, replicas, swaps, routing and scheduling. Full bit-true simulation in M3 followed by synthesis-backed resources and timing. Software update counts are not watts or seconds.
 
+## Coupling array and CIM boundary (M2–M3)
+The project still targets an **array-based probabilistic Ising architecture**, with a logical N×N symmetric J and N biases h for N BPSK MIMO spins. In M2–M3 retain the **64–128-spin low-order FP coupling tile**, bit-true exponent/scale alignment and local-field accumulation, p-bit interface, and synthesis-backed cost. The earlier 256×256 conventional MRAM-CIM bitcell array is NOT a required rebuild and its static-MTJ observations are not valid stochastic p-bit response evidence. A coupling tile with SRAM/register storage and separate arithmetic is a digital p-bit accelerator; MRAM-backed near-memory coupling and true in-array CIM are architectural candidates only after explicit weight storage, sign/exponent encoding and computation placement are specified. See docs/ARCHITECTURE_CIM_SCOPE.md. This adds clarity, not a new research direction or benchmark.
+
 ## Evidence guardrails
 E0 exact math; E1 independent seeded software; E2 illustrative nonideal p-bit response; E3 sourced validated stochastic p-bit response; E4 authorized circuit; E5 bit-true/synthesis or hardware. Device response assumptions cannot be relabeled physical results. No prior ADC/CIM, TSP pilot, past assistant nonideality pilots or parasitic-return measurements may be recycled. Parasitic shared-line coupling is a separate out-of-scope proposal.
 
