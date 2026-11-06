@@ -28,9 +28,12 @@ Prior MIMO, TSP, CIM/ADC and older Max-Cut pilots remain historical evidence onl
 M0–M5 remain the research stages: mapping/reference, joint representation–response evaluation, design rule and cost specification, bit-true/synthesized hardware, held-out scaling, final report. The planned 64–128-spin coupling hardware remains in scope; neither fabricated stochastic MTJs nor a GF22FDX implementation are claimed. No new format search, toolchain expansion or simulation was introduced by this decision.
 
 ## First M0 weighted Max-Cut code gate (draft)
-The current code migration is on branch research/m0-biqmac-maxcut-20261106 and documented in [M0 source protocol](docs/M0_BIQMAC_SOURCE_PROTOCOL.md). Its source-audit tests are **not yet NUS-executed**. Original graph optimum references and Max-Cut solver quality are still absent; earlier MIMO scripts remain preserved as historical only.
+The current code migration is on branch research/m0-biqmac-maxcut-20261106 and documented in [M0 source protocol](docs/M0_BIQMAC_SOURCE_PROTOCOL.md). Its source-audit tests were NUS-executed: **8/8 official Mac/rudy plus 2/2 Mac/ising source graphs PASS** at E0 (hashes and source weight distributions recorded in Draft PR #19). Original graph optimum references and Max-Cut solver quality are still absent; earlier MIMO scripts remain preserved as historical only.
 
 
 ## New locked benchmark contrast: LOW versus WIDE original edge-weight range
 
 Retain `Mac/rudy` 100-node small-integer graphs as **low-range controls**. Add two **unmodified official `Mac/ising` 100-node wide-range calibration examples, `t2g10_5555` (200 edges; 460 to 294541 in |weight|) and `ising2.5-100_5555` (4950 edges; includes |weight|=1 and -101237). Do not mistake the name `ising` for a non-Max-Cut source: these are official **Mac** graph inputs. `scripts/m0_fetch_biqmac_wide.sh` downloads and exactly validates these sources; `experiments/biqmac_weight_audit.py` generates SHA256/weight-distribution and simple descriptive INT6 fullscale diagnostics. All reports remain E0; no solver or FP improvement claim. See [M0 source protocol](docs/M0_BIQMAC_SOURCE_PROTOCOL.md).
+
+## M1 E1 preliminary solver (draft)
+[First paired ideal-Gibbs weighted Max-Cut pilot](docs/M1_BIQMAC_IDEAL_PILOT.md) now has a reproducible script, and its tiny-graph checks passed CI. The actual four official-graph solver run is **pending NUS execution**. It is 6-bit FP6/INT6/BFP6 global scale only, with ideal Gibbs response, paired update streams and a best-represented-energy returned state; no real device, benchmark optimum or ASIC result.
