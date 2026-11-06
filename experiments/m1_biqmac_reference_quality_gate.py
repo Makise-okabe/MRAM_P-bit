@@ -162,6 +162,34 @@ def examine(graphs, references_path, budgets, schedules, seeds, base_seed, out):
         writer = csv.DictWriter(fp, fieldnames=list(summaries[0]))
         writer.writeheader()
         writer.writerows(summaries)
+    # Predeclared operating-point rule: average the original-cut optimum
+    # gap in percentage points with one equal vote per CALIBRATION graph.
+    # Choose the lowest attempted-update budget within 1.0 percentage point
+    # of the best observed equal-graph mean gap; break ties toward a fixed
+    # schedule (less control complexity). This does NOT require 1% gap.
+    ngraphs = len(graphs)
+    aggregate = []
+    for sch in schedules:
+        for budget in budgets:
+            matching = [r for r in summaries if r["schedule"] == sch and r["updates"] == budget]
+            if len(matching) != ngraphs:
+                raise AssertionError("unequal graph coverage in operating-point decision")
+            aggregate.append({"schedule": sch, "updates": budget,
+                              "mean_equal_graph_gap_pct": sum(r["mean_gap_pct"] for r in matching) / ngraphs})
+    best_observed = min(x["mean_equal_graph_gap_pct"] for x in aggregate)
+    viable = [x for x in aggregate if x["mean_equal_graph_gap_pct"] <= best_observed + 1.0 + 1e-12]
+    selected = min(viable, key=lambda x: (x["updates"], x["schedule"] != "fixed"))
+    policy = {
+        "rule": "min budget within 1.0 absolute percentage point of best equal-graph mean published-optimum gap, tie fixed",
+        "is_optimum_gap_requirement": False,
+        "calibration_graph_count": ngraphs,
+        "configurations": aggregate,
+        "best_observed_mean_gap_pct": best_observed,
+        "selected": selected,
+        "future_freeze": "Check this CALIBRATION result then freeze schedule/budget for FP/INT/BFP and held-out graphs; do not reselect on their scores.",
+        "status": "CALIBRATION_RECOMMENDATION_NOT_HELDOUT"
+    }
+    (out / "operating_point_recommendation.json").write_text(json.dumps(policy, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     manifest = {
         "status": "REFERENCE_QUALITY_PROBE_COMPLETE",
         "source": str(references_path),
@@ -184,6 +212,7 @@ def examine(graphs, references_path, budgets, schedules, seeds, base_seed, out):
               f"mean_gap={r['mean_gap_pct']:.3f}% "
               f"range=[{r['min_gap_pct']:.3f},{r['max_gap_pct']:.3f}] "
               f"mean_flips={r['mean_flips']:.1f}", flush=True)
+    print("PREDECLARED CALIBRATION OPERATING POINT:", selected["schedule"], selected["updates"], "updates", f"mean gap {selected['mean_equal_graph_gap_pct']:.3f}%")
     print("REFERENCE QUALITY PROBE COMPLETE: ", out, len(rows), "calibration solver runs")
     return rows, summaries
 
