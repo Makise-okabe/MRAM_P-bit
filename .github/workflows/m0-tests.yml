@@ -21,6 +21,8 @@ jobs:
         run: python -m py_compile experiments/biqmac_maxcut.py experiments/biqmac_weight_audit.py
       - name: Exact signed weighted-cut and Ising consistency tests
         run: python -m unittest discover -s tests -p 'test_biqmac*py' -v
+      - name: M1 bounded ideal Max-Cut solver mathematical invariants
+        run: python -m unittest discover -s tests -p 'test_m1_biqmac_ideal_pilot.py' -v
 
 # Older MIMO source/tests are intentionally preserved as historical research.
 # This ACTIVE benchmark CI does not run MIMO, quantization sweeps or devices.
