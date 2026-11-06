@@ -1,3 +1,6 @@
+
+> **Standing user instruction — mandatory before every new scientific decision:** apply [the FYP Decision Feedback Loop](FYP_DECISION_FEEDBACK_LOOP.md). Every decision must state its FYP-relevance, evidence tier, closest prior art, minimum experiment, stopping condition, and a post-result GO / WITHIN-SCOPE-PIVOT / STOP review. A novelty claim requires evidence beyond published STT-MTJ Max-Cut/device-variability systems.
+
 # Evidence protocol — weighted Max-Cut / STT-MRAM p-bit coupling
 
 **Active policy, 6 November 2026:** weighted Max-Cut using the Biq Mac Library Mac section, confirmed after supervisor discussion. The [benchmark decision](BENCHMARK_DECISION_WEIGHTED_MAXCUT_20261106.md) supersedes earlier BPSK/QAM-only policies. Low-order FP coupling and STT-MRAM p-bit nonidealities remain the core; optimized INT/BFP are controls.
