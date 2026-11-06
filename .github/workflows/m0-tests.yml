@@ -18,13 +18,15 @@ jobs:
         with:
           python-version: '3.11'
       - name: Compile original-weight Rudy parser
-        run: python -m py_compile experiments/biqmac_maxcut.py experiments/biqmac_weight_audit.py
+        run: python -m py_compile experiments/biqmac_maxcut.py experiments/biqmac_weight_audit.py experiments/m1_biqmac_reference_quality_gate.py
       - name: Exact signed weighted-cut and Ising consistency tests
         run: python -m unittest discover -s tests -p 'test_biqmac*py' -v
       - name: M1 bounded ideal Max-Cut solver mathematical invariants
         run: python -m unittest discover -s tests -p 'test_m1_biqmac_ideal_pilot.py' -v
       - name: M1 paired-seed report consistency checks
         run: python -m unittest discover -s tests -p 'test_m1_biqmac_paired_report.py' -v
+      - name: Official Biq Mac optimum provenance + FP64 bounded quality gate invariants
+        run: python -m unittest discover -s tests -p 'test_m1_biqmac_reference_quality_gate.py' -v
 
 # Older MIMO source/tests are intentionally preserved as historical research.
 # This ACTIVE benchmark CI does not run MIMO, quantization sweeps or devices.
