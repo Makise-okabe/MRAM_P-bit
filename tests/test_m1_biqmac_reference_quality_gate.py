@@ -63,6 +63,10 @@ class TestReferenceQualityGate(unittest.TestCase):
         self.assertEqual(len(rows),8)
         self.assertEqual(len(summary),4)
         self.assertTrue((output/"manifest.json").exists())
+        policy=json.loads((output/"operating_point_recommendation.json").read_text())
+        self.assertEqual(policy["status"],"CALIBRATION_RECOMMENDATION_NOT_HELDOUT")
+        self.assertIn(policy["selected"]["schedule"],("fixed","linear"))
+        self.assertIn(policy["selected"]["updates"],(10,25))
         with self.assertRaisesRegex(ValueError,"output already exists"):
             examine([p], refs, (10,), ("fixed",), 1, 777, output)
 
