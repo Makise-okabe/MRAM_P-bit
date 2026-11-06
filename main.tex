@@ -132,10 +132,20 @@ M5 & Qualified final design rules, limitations, and report.\\\bottomrule
 \end{tabularx}
 \end{center}
 \section{Current status}
-The new Rudy parser, mathematical checker and tests were
-authored in the M0 draft branch. They are not yet NUS-executed.
-No new Biq Mac optimization quality, measured stochastic-MTJ
-device response, or Max-Cut-specific mapped-area claim exists.
+The official ten-graph Biq Mac source audit passed on NUS:
+eight 100-node Mac/rudy small-integer graphs and two 100-node
+Mac/ising wide-range graphs. For the latter, the verified source
+nonzero absolute weights range from 460 to 294541 in
+\texttt{t2g10\_5555} (200 edges) and from 1 to 239752 in
+\texttt{ising2.5-100\_5555} (4950 edges).
+A naive globally fullscale signed INT6 quantizer rounds 4657 of 4950
+nonzero edges in the dense graph to zero; this is a source weight
+characteristic, not a demonstrated Max-Cut quality loss.
+A preliminary global-scale FP6/INT6/BFP6 ideal-Gibbs pilot has been
+authored and unit-tested with a represented-energy output policy;
+its source-graph solver run is still pending.
+There is no measured stochastic-MTJ response, loaded certified
+Max-Cut optimum or Max-Cut-specific mapped-area claim.
 The previous MIMO-oriented report is preserved at
 \texttt{docs/archive/MAIN\_MIMO\_PRE\_MAXCUT\_20261106.tex}.
 \end{document}
