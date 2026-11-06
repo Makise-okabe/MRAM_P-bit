@@ -1,31 +1,23 @@
-name: M0-M1 BPSK MIMO and FP coupling verification
+name: Default-branch generic Ising math and coupling-format tests
 on:
   push:
-    branches: [main, 'research/m0-*', 'research/m1-*']
+    branches: [main]
   pull_request:
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
-  m0:
+  math:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-      - name: Generic Ising and complex MIMO mathematical tests
-        run: python -m unittest discover -s tests -v
-      - name: Standalone BPSK MIMO smoke test
-        run: python experiments/m0_mimo_reference.py --tx 4 --rx 4 --snr-db 10 --records 100 --output results/ci_mimo4x4
-      - name: Independent-frame BER/ML smoke test
-        run: python experiments/m0_mimo_batch.py --tx 3 --rx 3 --snrs 0,10 --frames 2 --burnin 30 --records 10 --thin 2 --output results/ci_mimo_batch
-      - name: Exploratory FP4 versus scaled INT under behavioral response
-        run: python experiments/m1_pbit_screen.py --tx 3 --rx 3 --snrs 0 --frames 2 --burnin 25 --records 6 --thin 2 --formats fp32,fp4,fp4_fn,fp6_fn,int4,bfp4 --responses ideal,offset015 --output results/ci_m1_screen
-      - name: Exact Ising original-versus-quantized objective audit
-        run: python experiments/m1_exact_ground_audit.py --runs results/ci_m1_screen/m1_paired_runs.csv --frames results/ci_m1_screen/m1_frames.jsonl --tile 4 --output results/ci_m1_exact_audit
-
-      - name: M1B frozen scale global/tile pairing smoke test
-        run: python experiments/m1_calibrated_scale_gate.py --tx 3 --rx 3 --snrs 0 --cal-frames 2 --heldout-frames 2 --formats fp4,fp4_fn,fp6_fn,int4,int6,bfp4 --granularities global,tile --tile 2 --output results/ci_m1b_gate
-      - name: M1C J/h-only and FP4-J FP6-h mixed exact oracle
-        run: python experiments/m1_jh_ablation.py --m1b-dir results/ci_m1b_gate --output results/ci_m1c_jh
+          python-version: "3.11"
+      - name: Generic Ising energy and symmetric-coupling tests
+        run: python -m unittest discover -s tests -p 'test_m0_ising_math.py' -v
+      - name: Low-order coupling element-format tests
+        run: python -m unittest discover -s tests -p 'test_m1_coupling_formats.py' -v
+      - name: Finite element codebook tests
+        run: python -m unittest discover -s tests -p 'test_m1_finite_fp_formats.py' -v
+# Active Biq Mac graph/solver CI and code live on the draft research branch.
