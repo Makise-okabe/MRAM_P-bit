@@ -64,5 +64,20 @@ class TestMaxCutIdealPilot(unittest.TestCase):
         self.assertEqual(a["returned_state_hex"],b["returned_state_hex"])
         self.assertEqual(a["returned_original_cut"],b["returned_original_cut"])
 
+
+    def test_small_integer_int6_mse_unit_scale_is_exact(self):
+        g=self.make_graph("4 4\n1 2 -10\n2 3 7\n3 4 -1\n1 4 9\n")
+        ideal=prepare(g,"ref64","source")
+        fitted=prepare(g,"int6","mse")
+        self.assertEqual(fitted["scale"],1.0)
+        self.assertEqual(fitted["edges"],ideal["edges"])
+        self.assertEqual(fitted["relative_abs_coefficient_error"],0.0)
+        self.assertEqual(fitted["zeroed_edges"],0)
+        beta=beta_from_original_graph(g)
+        self.assertEqual(
+            solve(g,ideal,beta,100,20261107)["returned_state_hex"],
+            solve(g,fitted,beta,100,20261107)["returned_state_hex"],
+        )
+
 if __name__=="__main__":
     unittest.main()
