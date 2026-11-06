@@ -42,11 +42,27 @@ class FormatTests(unittest.TestCase):
             self.assertEqual(len(r["h"]),4)
             self.assertGreater(r["coefficient_bits"],0)
             self.assertGreaterEqual(r["metadata_bits"],0)
-            if fmt=="fp32":
+            if fmt=="fp64_ref":
                 self.assertEqual(r["J"],J)
                 self.assertEqual(r["h"],h)
+            if fmt=="fp32":
+                self.assertNotEqual(r["J"][0][1],J[0][1])
+                self.assertNotEqual(r["h"][0],h[0])
         self.assertEqual(f.quantize_couplings(J,h,"int4")["coefficient_bits"],40)
         self.assertGreater(f.quantize_couplings(J,h,"bfp4",tile=2)["metadata_bits"],0)
+
+    def test_fp32_is_binary32_and_fp64_reference_remains_exact(self):
+        self.assertNotEqual(f.f32(0.1),0.1)
+        self.assertEqual(f.f32(0.5),0.5)
+        J=[[0.0,.1],[.1,0.0]]
+        h=[.01,-.1]
+        a=f.quantize_couplings(J,h,"fp32")
+        b=f.quantize_couplings(J,h,"fp64_ref")
+        self.assertEqual(a["coefficient_bits"],96)
+        self.assertEqual(b["coefficient_bits"],192)
+        self.assertGreater(a["mse_J"],0)
+        self.assertEqual(b["mse_J"],0)
+        self.assertEqual(a["J"][0][1],a["J"][1][0])
 
     def test_input_rejects_asymmetry(self):
         with self.assertRaises(ValueError):
