@@ -34,3 +34,45 @@ This is E0/E1 **representation only**; there is NO physical stochastic MTJ respo
       --m1b-dir "$OUT" --output "$OUT-jh"
 
 Data/source SHA256 and independent CAL/HELD frames stay saved. 24 heldout frames per SNR only exploratory. Next scientific gate: finite-budget target-reaching updates with physically sourced stochastic MRAM control-input response, multiple device populations, fair hardware costs (M2/M3 coupling tile).
+
+## User-run NUS M1B/M1C HELDOUT RESULTS — 6 November 2026 (E0/E1, representation only)
+
+**Data provenance:**
+- M1B: `results/m1b_fn_20261106T030113Z_3625599`.
+- M1C: `results/m1b_fn_20261106T030113Z_3625599_jh`.
+- Complex 8×8 BPSK MIMO, SNR = 0 and 5 dB, 24 independent CAL frame seeds and 24 disjoint HELDOUT frame seeds for each SNR. Same H and normalized noise seed are intentionally paired across SNRs. Scales are fitted by calibration-only coefficient MSE and frozen for held-out evaluation; *not* per-test-frame optimization. These values are reported by user NUS output and have not independently been recomputed from the private output files.
+
+### Crucial original-ML preservation results (global scale; original optimum in quantized ground set)
+
+| Representation | 0 dB retained | 5 dB retained | Degenerate quantized-ground frames 0/5 dB | Nominal coefficient + assumed metadata bits |
+|---|---:|---:|---:|---:|
+| historical fp4 J and h | 18/24 | 21/24 | 2/24, 0/24 | 208 |
+| finite-only fp4_fn J and h | 19/24 | 22/24 | 0/24, 3/24 | 208 |
+| int4 J and h | 18/24 | 21/24 | 0/24, 1/24 | 208 |
+| **fp4_fn J + fp6_fn h** | **23/24** | **24/24** | **0/24, 0/24** | **224** |
+| int4 J + int6 h | 21/24 | 24/24 | 0/24, 1/24 | 224 |
+| fp6_fn J and h | 21/24 | 24/24 | 0/24, 0/24 | 280 |
+| bfp6 J and h | 23/24 | 24/24 | 0/24, 1/24 | 232 |
+
+M1B global finite-only FP4 improves one frame at each SNR versus historical FP4 (19 vs 18 and 22 vs 21), but under **tile** grouping drops to 18/24 at 0 dB and 20/24 at 5 dB (vs historical FP4 18/24 and 21/24). The larger FP4 finite-only element codebook is NOT automatically better after independently fitted scaling. Finite-only fp6_fn is effectively tied with historical fp6 in these counts.
+
+### J/h mechanism isolation (global scale; original ML retained)
+
+| Coefficient format | 0 dB J-only; exact h | 0 dB h-only; exact J | 0 dB both | 5 dB J-only; exact h | 5 dB h-only; exact J | 5 dB both |
+|---|---:|---:|---:|---:|---:|---:|
+| fp4_fn | 23/24 | 19/24 | 19/24 | 24/24 | 23/24 | 22/24 |
+| int4 | 21/24 | 18/24 | 18/24 | 24/24 | 21/24 | 21/24 |
+| bfp4 | 21/24 | 18/24 | 19/24 | 23/24 | 20/24 | 21/24 |
+
+J-only and h-only retain the **other operand at full precision** and are diagnostics, not deployable low-bit formats. The comparison indicates low-bit bias representation is a primary constraint in these frames, but J/h errors interact: the effects cannot be added or used to establish universal h dominance. A mixed-precision configuration is more informative and must be compared with a matched mixed INT candidate.
+
+### Mixed precision and hardware interpretation
+
+- **Global**: fp4_fn-J/fp6_fn-h retained **23/24 at 0 dB, 24/24 at 5 dB** using **224 nominal bits**. Matched int4-J/int6-h retained **21/24 and 24/24** at **the same 224 nominal bits**. It is a **2-frame exploratory difference**, not a statistically established FP advantage.
+- **Tile**: fp4_fn-J/fp6_fn-h retained **22/24, 24/24** at **288 nominal bits**, versus INT mixed **22/24, 24/24** at **288 nominal bits**. Tile scaling adds assumed scale words but does not improve these mixed outcomes.
+- Compared with uniform fp6_fn global (280 nominal bits), mixed FP (224 nominal bits) uses 56 fewer bits in this **N=8** representation model; physical area/energy might still be higher due to per-element exponent, scale decode, alignment, bias precision and accumulator overhead. BFP6 global gives **23/24 and 24/24** at **232 nominal bits**, and deserves a genuine synthesized fixed-point/PoT-scale baseline.
+- At N=128, changing h only from 4 to 6 coefficient bits adds 2N=256 coefficient bits before metadata and logic; this does not establish 128-spin quality or hardware feasibility.
+
+**STOP/GO conclusion:** Stop open-ended FP-codebook sweeps. Retain just three implementation candidates for the next M2/M3 proof-of-concept: (A) FP4_fn-J/FP6_fn-h, (B) matched INT4-J/INT6-h, (C) BFP6. Additional FP4 uniform / FP6 uniform form transparent reference controls, not new research branches. The next decisive work is (1) real/sourced stochastic MRAM p-bit transfer-input/response, and (2) bit-accurate local-field arithmetic and synthesis for the 64–128-spin coupling array. The quantitative hardware-quality-cost criterion must be predeclared; no result here yet demonstrates MRAM p-bit nonideality interaction, lower hardware cost, or FYP novelty.
+
+**Limitations:** 24 HELDOUT frames per SNR is too few for statistical superiority. No p-bit sampling or time-to-target is performed in M1B/M1C, the 32-bit per-group scale costs are nominal while actual scalars are Python floating point, and only unique symmetric J coefficient storage is counted (not access paths, mirror reads, circuit peripherals, or physical stochastic MTJs). Old CIM/TSP physical datasets are excluded.
