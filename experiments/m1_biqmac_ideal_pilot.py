@@ -76,10 +76,13 @@ def prepare(graph, fmt, policy):
     abs_err = sum(abs(v-q) for (_,_,v),q in zip(edges,quantized))
     mse = sum((v-q)**2 for (_,_,v),q in zip(edges,quantized)) / max(1,len(edges))
     zeroed = sum(v != 0 and q == 0 for (_,_,v),q in zip(edges,quantized))
+    zeroed_abs_mass = sum(abs(v) for (_,_,v),q in zip(edges,quantized) if v != 0 and q == 0)
     metadata_bits = 0 if fmt=="ref64" else 8 if fmt.startswith("bfp") else 32
     bits_per_edge = 64 if fmt=="ref64" else format_bits(fmt)
     return dict(adjacency=adj,edges=represented_edges,scale=scale,
-                zeroed_edges=zeroed,relative_abs_coefficient_error=abs_err/abs_total if abs_total else 0.0,
+                zeroed_edges=zeroed,
+                zeroed_abs_weight_fraction=zeroed_abs_mass/abs_total if abs_total else 0.0,
+                relative_abs_coefficient_error=abs_err/abs_total if abs_total else 0.0,
                 coefficient_mse=mse,
                 nominal_dense_coefficient_bits=graph.n*(graph.n-1)//2*bits_per_edge,
                 scale_metadata_bits=metadata_bits,
@@ -179,6 +182,7 @@ def run(graphs, fmts, policies, updates, seeds, base_seed, output):
                         n=graph.n,raw_m=graph.raw_edge_count,format=fmt,
                         scale_policy=policy,scale=p["scale"],
                         zeroed_edges=p["zeroed_edges"],
+                        zeroed_abs_weight_fraction=p["zeroed_abs_weight_fraction"],
                         relative_abs_coefficient_error=p["relative_abs_coefficient_error"],
                         coefficient_mse=p["coefficient_mse"],
                         nominal_dense_coefficient_bits=p["nominal_dense_coefficient_bits"],
