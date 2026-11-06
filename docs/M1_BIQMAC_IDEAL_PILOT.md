@@ -48,3 +48,22 @@ This script was authored and its invariants unit tested in GitHub Actions. **The
 - Count original edges and **sum of absolute discarded weight**, not just number of zeroed edges. The previously observed 4657/4950 zero edges under a single naïve global INT6 is not a measure of lost optimization quality.
 
 The subsequent stage must import published reference objective/bound provenance, run held-out graph seeds and a documented stochastic-p-bit response; do NOT treat an illustrative ideal Gibbs model as measured MRAM evidence.
+
+
+## First NUS four-source E1 pilot completed — diagnostic only, superseded INT-MSE scale policy
+
+**User-run path:** `results/m1_maxcut_ideal_20261106T181543Z_2961844`.
+**Source-graph pilot:** 4 original 100-spin graphs x 7 configs x 3 paired seeds = 84 solver runs, 5000 attempted updates each, original-cut evaluation, best-represented-energy returned state. Script source SHA256 `c11a19ea91f8ad6aa2c508cf67328db678e740c55f7ac9d151e2cb452a20bd7e` (historical pilot, do not overwrite or silently reclassify).
+
+| Graph | ref64 returned mean | FP6 MSE | INT6 MSE | BFP6 MSE |
+| --- | ---: | ---: | ---: | ---: |
+| w01_100.0 | 567.667 | 562.667 | 571.667 | 567.667 |
+| pw01_100.0 | 1921.000 | 1933.333 | 1946.000 | 1921.000 |
+| t2g10_5555 | 5185275.333 | 5069377.000 | 5193319.667 | 5187966.000 |
+| ising2.5-100_5555 | 2301758.333 | 2274156.333 | 2313754.667 | 2281519.000 |
+
+Notably, on the dense wide-range graph, FP6 MSE has lower relative coefficient L1 distortion (0.070301 vs INT6 0.16441), but lower mean returned original cut for these 3 seeds. **This is not statistically supported evidence of INT6 superiority**; coefficient fidelity does not directly equal finite-budget stochastic solver quality. Some approximate representations exceed ref64 mean returned cut because the reference is NOT an exact optimum, and numerical perturbations change finite-budget trajectories.
+
+**CRITICAL fairness correction after inspecting source:** legacy `tune_scale`'s heuristic max-weight grid failed to offer INT6 `scale=1` for small *integer* weight graphs, despite exact representability with signed six-bit values. Updated `m1_biqmac_ideal_pilot.py` now selects `scale=1` in its `int6/mse` path when source coefficients are integers fitting signed magnitude 31. This changes low-range INT6 outcomes; the 84-run pilot is retained as the uncorrected historical result. New script also distinguishes **percentage of ORIGINAL absolute weight mass discarded** from count of nonzero edges zeroed. For dense graph, the original 4657/4950 count uses all edges; 4657/4881 = approx 95.4% of initially nonzero edges after the loader drops original zero weights.
+
+**Next reproducibility gate:** first use `scripts/m1_biqmac_paired_report.py` to audit original pilot seed pairing, then run a NEW frozen 24-seed ideal E1 repetition at unchanged 5000 attempted-update budget, with unit-INT correction and zeroed-magnitude mass. Keep results in a fresh, SHA-recorded folder; do not overwrite original run. 24 seeds reduce within-graph Monte Carlo noise but the independent units are still FOUR graphs, not 96 independent graphs. No p-bit physical response, certified optimum, bit-true RTL or complete hardware cost is claimed.
