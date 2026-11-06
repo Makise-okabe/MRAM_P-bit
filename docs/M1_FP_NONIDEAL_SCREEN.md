@@ -54,3 +54,17 @@ The old `fp32` implementation *returned unchanged Python float64 coefficient val
 **Interpretation:** M1 has an early coefficient precision sensitivity at FP4/INT4 and an empirical ceiling at 6/8 bit, but has NOT established device-response-by-format interaction (H1), scaling advantage from exponent granularity (H2), size trend (H3), physically meaningful MTJ nonideality or synthesis-backed cost. FP/INT use per-instance optimized global real scales, while BFP uses symmetric tile-pair power-of-two scales; format and granularity are confounded. Best-of-120 post-burn-in checkpoints may mask nonideality in returned best solution. 12 frames = 96 bits/SNR gives wide BER uncertainty.
 
 **Follow-up gate (no new MIMO application):** Analyze the already saved per-frame `m1_paired_runs.csv` using `experiments/m1_paired_diagnostics.py` to measure (a) response-vs-ideal selected-state divergence, ML-hit flips, first-best checkpoint changes; (b) 4/6/8-bit FP vs INT paired discordances. Preserve the original pilot files and commit hashes. Then design controlled equal-scale-granularity INT/FP, physically sourced p-bit response, time-to-target and macro synthesis studies.
+
+## Paired diagnostics result (user-run NUS, 6 November 2026)
+
+Input: original `results/m1_fp_nonideal_screen001/m1_paired_runs.csv`; analyzer output saved to `results/m1_paired_diagnostic002/m1_paired_diagnostics.json`. This is a **read-only analysis**, not a new simulation and not a physically measured MTJ result.
+
+- `gain080`: zero changed final selected states / zero original ML-hit flips across both SNR and all ten original format labels. In individual pairs, the first checkpoint at which the **eventually selected best quantized-energy state** was recorded changed in approximately 1–5/12 frames per format/SNR.
+- `offset015`: zero changed final selected states / zero ML-hit flips; some selected-best checkpoints changed (0–4/12).
+- `contrast090`: 1 changed final selected state (BFP4 at 0 dB) / 1 ML-hit flip; all other format/SNR selected states unchanged, although best checkpoints changed (typically 3–6/12).
+- There are 10 labels × 2 SNR × 3 response changes × 12 frame pairs = 720 `final-state` comparisons, but **NOT 720 statistically independent trials**. Only one selected state differed.
+- Paired FP4 vs INT4 original-ML discordances (under ideal response): 0 dB FP-only=1, INT-only=2; 5 dB FP-only=0, INT-only=2. Aggregate transmitted-bit errors match, so BER conceals some optimization-quality differences. At 6/8 bits, no ML-hit discordances in these 12-frame pilots.
+
+**Important timing distinction:** `selected_at_update` is the *first recorded checkpoint of the ultimately selected best quantized-energy state*. It is NOT necessarily the earliest sample to meet a predefined original-task residual/BER threshold; it is not a measured hardware latency or full application time-to-target. Observed changes cannot yet be called faster/slower convergence.
+
+**Primary next mechanism test:** `experiments/m1_exact_ground_audit.py` will enumerate all 256 states in each 8-spin quantized Hamiltonian, using saved `m1_frames.jsonl` and CSV to distinguish (a) original ML optima surviving quantization, (b) selected state being a ground state under quantized coefficients, (c) original ML hit. It reconstructs old `fp32`-labeled *unrounded software* reference using the new `fp64_ref`, verifies logged energies and does not produce any new device simulations. This must be run on NUS before drawing conclusions about quantization vs sampling failures.
