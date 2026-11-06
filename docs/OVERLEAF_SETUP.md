@@ -1,11 +1,15 @@
-# Overleaf source of truth — BPSK MIMO low-order FP scope
+# Overleaf-ready report and sync — MRAM p-bit low-order FP FYP
 
-GitHub default main is the authoritative FYP report source. Its main.tex title should read:
+GitHub repo: https://github.com/Makise-okabe/MRAM_P-bit
 
-**Device-Aware Low-Order Floating-Point Coupling for MRAM-Based p-Bit Ising Machines**.
+The authoritative report source is **`main.tex` on GitHub default `main`**. It now contains the section **Proposed Coupling Array and Relationship to CIM**, retaining the 64–128-spin FP coupling tile and careful distinction between digital near-memory p-bit logic and a physically justified MRAM-CIM implementation. Additional architecture detail: `docs/ARCHITECTURE_CIM_SCOPE.md`.
 
-The application benchmark is complex BPSK MIMO detection only. FP4/FP6/FP8 coupling, device nonideality and hardware scale/accumulation are the research objects. Prior TSP/graph application code is stored on archive/pre-mimo-benchmark-20261106, not main.
+**GitHub commit is NOT a push to an existing Overleaf project.** No Overleaf account/project write connection is installed in this chat. Overleaf's documented GitHub synchronization is a premium feature and requires you to choose **Integrations -> GitHub -> Pull GitHub changes** on a project already linked to this repo. Sync is manual, not automatic.
 
-To create a new independent Overleaf project: New Project -> Import from GitHub -> select Makise-okabe/MRAM_P-bit (default main). Choose main.tex and pdfLaTeX.
+If your existing Overleaf project is **not linked to this GitHub repo**, Overleaf says linking an existing Overleaf project to an existing GitHub repository is not supported using GitHub Synchronization. Update that project's `main.tex` manually from GitHub, or create a NEW project from GitHub through the Overleaf GitHub import feature and use its pull control subsequently. Preserve existing Overleaf changes before copying.
 
-Overleaf import creates a snapshot; already created projects do not automatically refresh when GitHub main changes. Do not accidentally sync an old Overleaf-specific branch or upload November 5 starter ZIP.
+Official docs: https://docs.overleaf.com/integrations-and-add-ons/git-integration-and-github-synchronization/github-synchronization
+
+Alternative for an eligible project: Overleaf's separate premium Git integration can expose an authenticated Git remote that you can push to using a user-held token; do not share tokens in chat. See https://docs.overleaf.com/integrations-and-add-ons/git-integration-and-github-synchronization/git-integration
+
+When editing technical findings in future, update and cite both the relevant GitHub research note and `main.tex`. Do not imply that Overleaf has synced until it actually has.
