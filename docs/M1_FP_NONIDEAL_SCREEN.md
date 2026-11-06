@@ -68,3 +68,17 @@ Input: original `results/m1_fp_nonideal_screen001/m1_paired_runs.csv`; analyzer 
 **Important timing distinction:** `selected_at_update` is the *first recorded checkpoint of the ultimately selected best quantized-energy state*. It is NOT necessarily the earliest sample to meet a predefined original-task residual/BER threshold; it is not a measured hardware latency or full application time-to-target. Observed changes cannot yet be called faster/slower convergence.
 
 **Primary next mechanism test:** `experiments/m1_exact_ground_audit.py` will enumerate all 256 states in each 8-spin quantized Hamiltonian, using saved `m1_frames.jsonl` and CSV to distinguish (a) original ML optima surviving quantization, (b) selected state being a ground state under quantized coefficients, (c) original ML hit. It reconstructs old `fp32`-labeled *unrounded software* reference using the new `fp64_ref`, verifies logged energies and does not produce any new device simulations. This must be run on NUS before drawing conclusions about quantization vs sampling failures.
+
+## M1 exact oracle audit command — separates representation from sampler
+
+A **new read-only diagnostic**, not new stochastic simulation. The historical 6 November pilot used unrounded Python coefficients under the `fp32` name; to reconstruct its saved energies correctly, pass `--legacy-unrounded-fp32`. New runs with genuine binary32 `fp32` must **omit** that flag.
+
+```bash
+python3 experiments/m1_exact_ground_audit.py \\
+  --runs results/m1_fp_nonideal_screen001/m1_paired_runs.csv \\
+  --frames results/m1_fp_nonideal_screen001/m1_frames.jsonl \\
+  --legacy-unrounded-fp32 \\
+  --output results/m1_exact_quantized_ground001
+```
+
+Enumerates all 256 Ising states in each saved 8-spin case; verifies the selected state's logged quantized energy against reconstructed J,h; computes whether (1) the original ML state is a quantized Hamiltonian minimizer and (2) the returned selected state is quantized-optimal. These diagnose **representation distortion vs sampling failure**. The original ML optimum can be lost in the quantized Hamiltonian even if a lucky finite-budget sample finds it. Conversely a chosen quantized minimum need not solve original ML. Log all caveats, avoid claiming causal MRAM nonideality or area/power. Do not alter or overwrite the original NUS saved pilot.
