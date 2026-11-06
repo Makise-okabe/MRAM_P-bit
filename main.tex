@@ -164,9 +164,19 @@ matched original ML in only $11/12$; the same phenomenon
 occurs for BFP4. This is consistent with \emph{quantization-induced
 degeneracy}: multiple equal-minimum quantized states can have unequal
 original ML residuals, with stochastic search selecting one of them.
-The current output alone does not quantify all energy gaps or
-ground-state multiplicities; these are available for further audit
-from the saved per-frame CSV.
+A subsequent read-only NUS CSV audit confirmed the ground-state
+multiplicity pattern: FP4 and INT4 had no degenerate cases at either
+SNR; BFP4 had two such frames at 0~dB (maximum two minima)
+and one at 5~dB (maximum three minima); BFP6 had one case at
+5~dB (maximum two minima), and none at 0~dB.
+More specifically, the original ML state remained a quantized minimizer
+but was not selected in BFP4 0~dB frame 10, BFP4 5~dB frame 8,
+and BFP6 5~dB frame 10. These are frame identifiers from the
+original NUS experiment, not independent replicated trials.
+Here equality means energies tied within the exact audit's
+tolerance ($10^{-8}$); a bit-accurate accumulator check will be
+needed to determine whether the corresponding physical machine
+would realize the same degeneracy.
 
 H1 is \emph{not validated}: gain-$0.80$ and offset-$0.15$
 illustrative responses did not change final selections, and
