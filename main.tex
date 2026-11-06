@@ -211,6 +211,55 @@ All these comparisons are \emph{planned} and have no new measured NUS
 outcomes. Later H1 must measure finite-budget original-task performance
 under physically sourced stochastic MRAM p-bit characteristics;
 M2/M3 must implement bit-true exponent/scale paths and RTL synthesis.
+\subsection{M1B: first held-out frozen-scale results (E0/E1)}
+A separate NUS user-run experiment applied 24 calibration and
+24 disjoint held-out channel frames per SNR (0 and 5~dB) for
+$8\times8$ BPSK MIMO. A group scale was fitted using calibration
+coefficients only, then frozen for the held-out Hamiltonians.
+All outcomes in Table~\ref{tab:m1b-heldout} are \emph{exact enumeration}
+of quantized-Hamiltonian minima, not measured p-bit detection BER,
+nonideal device response or hardware-area estimates. The software
+reported 36 then-current tests passing, indicating this was the
+older M1B implementation; in particular finite-only \texttt{fp4\_fn}
+and \texttt{fp6\_fn} and the subsequent J/h ablation were \emph{not}
+run in this dataset.
+
+\begin{table}[htbp]
+\centering\small
+\begin{tabular}{@{}lrrrr@{}}\toprule
+Format & Global ML 0/5~dB & Tile ML 0/5~dB & Global bits & Tile bits\\\midrule
+Historical FP4 & 18/24, 21/24 & 18/24, 21/24 & 208 & 272\\
+INT4 & 18/24, 21/24 & 18/24, 22/24 & 208 & 272\\
+BFP4 & 19/24, 21/24 & 19/24, 21/24 & 160 & 176\\
+Historical FP6 & 21/24, 24/24 & 21/24, 24/24 & 280 & 344\\
+INT6 & 21/24, 24/24 & 23/24, 22/24 & 280 & 344\\
+BFP6 & 23/24, 24/24 & 23/24, 24/24 & 232 & 248\\
+Historical FP8 & 24/24, 24/24 & 24/24, 24/24 & 352 & 416\\
+INT8 & 24/24, 24/24 & 24/24, 24/24 & 352 & 416\\
+BFP8 & 24/24, 24/24 & 24/24, 24/24 & 304 & 320\\\bottomrule
+\end{tabular}
+\caption{First frozen-CAL/held-out exact original-ML preservation
+(retained cases out of 24 per SNR), with nominal unique $J$/$h$
+coefficient plus assumed scale-metadata bits. The 0 and 5~dB
+cases use paired channel seeds, not 48 independent frames; the
+scale representation is not bit-true nor hardware synthesized.}
+\label{tab:m1b-heldout}
+\end{table}
+
+Historical FP4 and INT4 were equal under global scaling; INT4
+retained one extra 5~dB case under tile scaling. BFP6 preserved
+23/24 original ML states at 0~dB compared with 21/24 for
+historical FP6 and INT6 globally, using fewer nominal bits.
+This is a small sample and uses different scale encodings
+(BFP uses power-of-two scales with eight-bit exponent metadata,
+FP/INT assume 32-bit real scales); it is not an equal-area or
+statistically established design advantage. Eight-bit formats
+reached an apparent ceiling at 24/24 in this task.
+Nearly identical J-MSE across SNR for each format/group follows
+from reusing the same channel realizations and $J$ independent
+of received noise. Local field biases $h$ and the ML landscape
+can still differ across SNR. The newer M1C finite-only FP, J/h
+ablation and mixed-format results remain \emph{pending user execution}.
 \section{Project schedule}
 Fourteen active working weeks and two weeks buffer, reduced capacity around exams. Aim for M1/M2 for CA3. FPGA deployment is optional. A well-supported integer-favoring configuration rule can be a valid outcome.
 \begin{thebibliography}{9}
