@@ -23,3 +23,7 @@ Authoritative FYP report: https://github.com/Makise-okabe/MRAM_FYP_Overleaf . Th
 
 ## Next bounded gate (only mathematical transfer preflight)
 A 2026 experimental STT-MTJ Ising p-bit paper reports a nominal sigmoid example, and already demonstrates Biq Mac Max-Cut; it is a close prior-art collision. [STT-MTJ transfer preflight](experiments/m2_stt_pbit_transfer_preflight.py) validates only the algebraic conditional-field-to-voltage map with explicitly passed, provenance-dependent nonideal parameters; it is NOT device-characterized E3 or a new 936-run sweep. See the decision feedback protocol for STOP/GO and novelty warning.
+
+## E2 response screen (assumed sensitivity, NOT measured STT-MTJ)
+
+A six-bit FP64/FP6/INT6/BFP6 × 3 CAL graph × 24 paired-seed screen has been [preregistered](docs/M2_E2_RESPONSE_SCREEN_FREEZE_20261107.md), using one explicitly **assumed** fixed per-device gain/offset vector. [E2 runner](experiments/m2_e2_response_gate.py) refuses to run without the frozen raw E1 CSV SHA256 and preserves the original solver and original-cut metric. GitHub Actions run [42299340532](https://github.com/Makise-okabe/MRAM_P-bit/actions/runs/42299340532) passed tiny regression tests; **the 288 actual NUS runs are not yet reported**. This is conditional E2 sensitivity, NOT a measurement of post-calibration residuals; no six-bit-only screen can prove a shifted bit-width knee or ASIC energy benefit.
