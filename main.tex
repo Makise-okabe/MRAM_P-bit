@@ -126,14 +126,59 @@ favored INT4 in 2 frames versus FP4 in 1 frame at $0$~dB, and
 in 2 frames versus 0 at $5$~dB; the total bit-error counts were
 identical. No meaningful FP-versus-INT superiority is established.
 
-An additional exact finite-spin diagnostic is prepared to enumerate all
-$2^8=256$ states of each quantized Hamiltonian, independently checking
-whether coefficient quantization destroys the original ML optimum or
-whether stochastic p-bit sampling fails to reach a preserved optimum.
-It uses the original saved NUS channel frames and does not rerun, tune,
-or replace their measurements. This is an \emph{upcoming analysis},
-not an already observed result. Any nonideal response remains
-illustrative until physically validated against stochastic MRAM data.
+\subsection{Exact quantized-ground audit: representation versus sampling}
+The exact audit was subsequently completed on the original 6 November
+NUS MIMO pilot, independently enumerating all $2^8=256$ states
+for each quantized Hamiltonian, without rerunning stochastic sampling.
+The recorded selected state minimized its \emph{own quantized}
+Hamiltonian in every tested frame/format/response combination
+($12/12$ per row, within the numerical tolerance used by the audit).
+Therefore the observed original-ML failures in this pilot cannot be
+attributed to failure to reach a \emph{quantized} minimum.
+
+\begin{table}[htbp]
+\centering\small
+\begin{tabular}{@{}lrr@{}}\toprule
+Representation & 0 dB preserved & 5 dB preserved\\\midrule
+FP4 E2M1 & 10/12 & 10/12\\
+INT4 scaled & 11/12 & 12/12\\
+BFP4 shared-scale & 11/12 & 11/12\\
+FP6 / FP8 & 12/12 & 12/12\\
+INT6 / INT8 & 12/12 & 12/12\\
+BFP6 / BFP8 & 12/12 & 12/12\\\bottomrule
+\end{tabular}
+\caption{Original unquantized ML state remains among minimizers of
+the quantized Hamiltonian. Values use the \emph{ideal} response;
+the quantized coefficient landscape is unchanged by the illustrative
+p-bit response model. Each SNR has only 12 frames and the two SNRs
+share channel seeds.}
+\label{tab:m1ground}
+\end{table}
+
+For FP4 the original ML optimum was absent from the quantized
+ground-state set in $2/12$ frames at each SNR. INT4 lost it
+in $1/12$ frames at $0$~dB and $0/12$ at $5$~dB.
+For BFP6 at $5$~dB, the original ML state was retained
+in $12/12$ quantized ground-state sets but the selected state
+matched original ML in only $11/12$; the same phenomenon
+occurs for BFP4. This is consistent with \emph{quantization-induced
+degeneracy}: multiple equal-minimum quantized states can have unequal
+original ML residuals, with stochastic search selecting one of them.
+The current output alone does not quantify all energy gaps or
+ground-state multiplicities; these are available for further audit
+from the saved per-frame CSV.
+
+H1 is \emph{not validated}: gain-$0.80$ and offset-$0.15$
+illustrative responses did not change final selections, and
+contrast-$0.90$ changed one BFP4 selected state at $0$~dB.
+While some best-recorded checkpoint indices changed, these
+are not calibrated time-to-target. H2 is not isolated either:
+FP/INT used an optimistic per-frame global scale, whereas
+BFP used tile-pair power-of-two scales. A necessary next study
+must control scale granularity, energy degeneracy and finite-budget
+search, while separately establishing a physically sourced
+stochastic MRAM p-bit response. No FP superiority, CIM implementation,
+hardware energy or novelty claim follows from this small software pilot.
 \section{Project schedule}
 Fourteen active working weeks and two weeks buffer, reduced capacity around exams. Aim for M1/M2 for CA3. FPGA deployment is optional. A well-supported integer-favoring configuration rule can be a valid outcome.
 \begin{thebibliography}{9}
