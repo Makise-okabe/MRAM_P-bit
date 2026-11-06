@@ -1,7 +1,7 @@
-name: M0 BPSK MIMO and generic Ising verification
+name: M0-M1 BPSK MIMO and FP coupling verification
 on:
   push:
-    branches: [main, 'research/m0-*']
+    branches: [main, 'research/m0-*', 'research/m1-*']
   pull_request:
   workflow_dispatch:
 permissions:
@@ -20,3 +20,5 @@ jobs:
         run: python experiments/m0_mimo_reference.py --tx 4 --rx 4 --snr-db 10 --records 100 --output results/ci_mimo4x4
       - name: Independent-frame BER/ML smoke test
         run: python experiments/m0_mimo_batch.py --tx 3 --rx 3 --snrs 0,10 --frames 2 --burnin 30 --records 10 --thin 2 --output results/ci_mimo_batch
+      - name: Exploratory FP4 versus scaled INT under behavioral response
+        run: python experiments/m1_pbit_screen.py --tx 3 --rx 3 --snrs 0 --frames 2 --burnin 25 --records 6 --thin 2 --formats fp32,fp4,int4,bfp4 --responses ideal,offset015 --output results/ci_m1_screen
