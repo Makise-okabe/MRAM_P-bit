@@ -23,6 +23,8 @@ jobs:
         run: python -m unittest discover -s tests -p 'test_biqmac*py' -v
       - name: M1 bounded ideal Max-Cut solver mathematical invariants
         run: python -m unittest discover -s tests -p 'test_m1_biqmac_ideal_pilot.py' -v
+      - name: M1 paired-seed report consistency checks
+        run: python -m unittest discover -s tests -p 'test_m1_biqmac_paired_report.py' -v
 
 # Older MIMO source/tests are intentionally preserved as historical research.
 # This ACTIVE benchmark CI does not run MIMO, quantization sweeps or devices.
