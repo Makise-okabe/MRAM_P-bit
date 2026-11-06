@@ -114,6 +114,11 @@ def calibrate(tx, rx, snr_db, cal_frames, cal_seed, tile):
             for key in groups[grouping]:
                 scales[key] = qfmt.tune_scale(vals[key],jf)[0]
             scales["h"] = qfmt.tune_scale(vals["h"],hf)[0]
+            if label=="bfp6":
+                for key,sc in scales.items():
+                    exp=round(math.log2(sc))
+                    if not (-128 <= exp <= 127) or not math.isclose(sc,2.0**exp,rel_tol=1e-12):
+                        raise ValueError("BFP6 exponent not representable with assumed signed 8-bit metadata")
             fitted[f"{label}|{grouping}"] = scales
     return fitted
 
@@ -154,8 +159,10 @@ class ExactOracle:
         nright=n-nleft
         left_int=np.arange(1<<nleft, dtype=np.uint32)
         right_int=np.arange(1<<nright, dtype=np.uint32)
-        self.left=(2*((left_int[:,None] >> np.arange(nleft)) & 1)-1).astype(np.int8)
-        self.right=(2*((right_int[:,None] >> np.arange(nright)) & 1)-1).astype(np.int8)
+        lbits=((left_int[:,None] >> np.arange(nleft)) & 1).astype(np.int8)
+        rbits=((right_int[:,None] >> np.arange(nright)) & 1).astype(np.int8)
+        self.left=2*lbits-1
+        self.right=2*rbits-1
         self.states=np.concatenate([
             np.repeat(self.left,len(self.right),axis=0),
             np.tile(self.right,(len(self.left),1))
