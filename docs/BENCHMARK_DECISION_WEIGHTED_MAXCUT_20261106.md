@@ -49,3 +49,6 @@ Preserve signed weights. Use relative optimum gaps only where their denominator 
 
 ## Status
 Benchmark choice is confirmed. Dataset import, instance shortlist, mapped quality results and end-to-end hardware validation for this benchmark are **pending**. This decision adds documentation only: no new experiment, codebook, CI gate or performance result.
+
+## Dataset expansion within the approved Mac collection (7 Nov 2026)
+The active benchmark includes low-dynamic-range `Mac/rudy` integer controls and high-dynamic-range `Mac/ising` examples. `t2g10_5555` has 100 nodes/200 edges and official coefficients with nonzero magnitudes 460 through 294541; `ising2.5-100_5555` has 100 nodes/4950 edges and contains 1 and -101237 (a confirmed lower bound on magnitude span of 101237). Source weight ranges must be recomputed and hashed by the loader on NUS; do not interpret those inputs as a floating-point advantage or exact optimality. See M0 source protocol and separate wide-input audit script. Old h=0 and original-cut scoring rules unchanged.

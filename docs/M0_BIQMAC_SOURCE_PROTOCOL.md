@@ -62,3 +62,33 @@ E4: authorized device/circuit simulation.
 E5: RTL/synthesis/hardware component evidence.
 
 Preexisting MIMO software results and earlier generic Max-Cut pilots stay historical only. MIMO bit-true generic circuitry may be reused after application-specific validation, not relabeled automatically as benchmark results.
+
+## Frozen within-library dynamic-range contrast (7 Nov 2026)
+
+The benchmark does NOT need a new library. The official Mac files are in TWO directories and have the SAME Rudy format:
+
+| Category | Exact official source | Vertices | Raw edges | Evidential role |
+| --- | --- | ---: | ---: | --- |
+| Low-range signed | `/library/mac/rudy/w01_100.0` etc | 100 | per source | INT-friendly negative control |
+| Low-range nonnegative | `/library/mac/rudy/pw01_100.0` etc | 100 | per source | INT-friendly reference |
+| Wide-range sparse torus | `/library/mac/ising/t2g10_5555` | 100 | 200 | physical-spin-glass broad-range calibration |
+| Wide-range dense Ising | `/library/mac/ising/ising2.5-100_5555` | 100 | 4950 | broad-range dense calibration |
+
+`t2g10_5555` has observed minimum nonzero |weight|=460 and maximum |weight|=294541, ratio about 640.31. The official full source is small enough to inspect completely. For `ising2.5-100_5555`, the official source contains a coefficient of 1 and an edge with weight -101237; the confirmed within-graph ratio is **at least** 101237 and must be recomputed over all entries during E0 rather than asserted as a global maximum. Preserve all original signed weights and zero-valued entries.
+
+Official listing: https://biqmac.aau.at/library/mac/ising/ . Individual files:
+- https://biqmac.aau.at/library/mac/ising/t2g10_5555
+- https://biqmac.aau.at/library/mac/ising/ising2.5-100_5555
+
+**Predeclared independence:** For initial source audits, only use the `_5555` graphs of these two wide-range families. If calibrated on `_5555` and `_6666`, reserve `_7777` within each family as a separate held-out graph. Three instances per wide-range family are NOT sufficient to claim a broad statistical generalization. Continue the earlier `.0`–`.4` CAL and `.5`–`.9` HELD-OUT partition for Rudy families. Avoid moving or renaming the training/held-out assignments after seeing results.
+
+**First E0 audit run (no optimization):**
+```bash
+python -m unittest discover -s tests -p 'test_biqmac*py' -v
+bash scripts/m0_fetch_biqmac_mac.sh
+bash scripts/m0_fetch_biqmac_wide.sh
+```
+
+The wide-range script downloads into `data/biqmac/raw/ising`, enforces n=100/m=200 and n=100/m=4950, audits the sign/cut/flip identities, reports source SHA256, and records min|max, dynamic-range ratio, sign counts, number of nonzero/unique edges, and a **simple globally fullscale INT6** zeroing/error diagnostic. That diagnostic is NOT an optimized INT6 result; a calibrated INT6/BFP/FP comparison and actual Max-Cut solving remain future E1.
+
+**Interpretation caution:** large raw |weight| alone is not a test of FP dynamic range. Uniform common scaling preserves relative proportions, and sparsity/density, edge importance, rounding, global vs block scale, device response and returned solution quality all matter. In particular, FP4 E2M1's finite nonzero range cannot simply be assumed to preserve a >600x weight spread, and a per-block BFP design can be competitive even when a global 6-bit INT is not. Freeze numeric format semantics and compare equal resource budgets rather than retune each format using the held-out graphs.

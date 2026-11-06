@@ -29,3 +29,8 @@ M0–M5 remain the research stages: mapping/reference, joint representation–re
 
 ## First M0 weighted Max-Cut code gate (draft)
 The current code migration is on branch research/m0-biqmac-maxcut-20261106 and documented in [M0 source protocol](docs/M0_BIQMAC_SOURCE_PROTOCOL.md). Its source-audit tests are **not yet NUS-executed**. Original graph optimum references and Max-Cut solver quality are still absent; earlier MIMO scripts remain preserved as historical only.
+
+
+## New locked benchmark contrast: LOW versus WIDE original edge-weight range
+
+Retain `Mac/rudy` 100-node small-integer graphs as **low-range controls**. Add two **unmodified official `Mac/ising` 100-node wide-range calibration examples, `t2g10_5555` (200 edges; 460 to 294541 in |weight|) and `ising2.5-100_5555` (4950 edges; includes |weight|=1 and -101237). Do not mistake the name `ising` for a non-Max-Cut source: these are official **Mac** graph inputs. `scripts/m0_fetch_biqmac_wide.sh` downloads and exactly validates these sources; `experiments/biqmac_weight_audit.py` generates SHA256/weight-distribution and simple descriptive INT6 fullscale diagnostics. All reports remain E0; no solver or FP improvement claim. See [M0 source protocol](docs/M0_BIQMAC_SOURCE_PROTOCOL.md).

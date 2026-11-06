@@ -45,3 +45,5 @@ Existing component verification remains evidence for that component. Neither pre
 
 ## First actual M0 code gate (pending execution)
 The draft branch research/m0-biqmac-maxcut-20261106 contains a source-preserving Rudy parser, an independent tiny signed Max-Cut test suite, and a fixed official-instance import script. See [M0 source protocol](M0_BIQMAC_SOURCE_PROTOCOL.md). No original Mac graphs have been executed on NUS yet; no benchmark optimization quality or Max-Cut-specific synthesis can be reported.
+
+**Data regime explicitly added 7 Nov:** low-range Mac/rudy integer controls AND wide-range original Mac/ising physics graphs `t2g10_5555` (100/200) and `ising2.5-100_5555` (100/4950). Weight range is an input characteristic, NOT FP superiority evidence. Keep a matched solver/format/hardware cost protocol and reserve independent graph seeds for held-out. The M0 import/test script reports E0 only. See M0 source protocol.

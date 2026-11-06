@@ -49,6 +49,31 @@ $pm1s,pm1d$ (signed sparse/dense), with $n=100$ and instance
 suffix .0. Preserve raw files and SHA256. Later experiments may
 split seeds .0--.4 for calibration and .5--.9 for held-out evaluation;
 results on a single .0 graph cannot establish a trend.
+
+\subsection{Frozen low-/wide-range original-source contrast}
+The official \emph{Mac} collection includes both Rudy random graphs
+with original weights in $[-10,10]$ or $[0,10]$, and graphs from
+statistical physics under the \texttt{Mac/ising} directory.
+The initial 100-spin wide-range calibration audit includes
+\texttt{t2g10\_5555} (200 edges: nonzero absolute weights
+from 460 to 294541, ratio about 640), and
+\texttt{ising2.5-100\_5555} (4950 edges: already confirmed
+to contain $1$ and $-101237$, ratio at least 101237).
+All global minima/maxima, hashes, and density values must be
+recomputed from the unchanged downloaded source.
+The low-range graphs act as negative controls where a small
+signed integer is already an exact storage representation.
+An input's dynamic range does \emph{not} by itself imply better
+FP solution quality or lower hardware cost. Compare FP4/FP6/FP8
+only after defining scales, representable range, saturation,
+zeroing, metadata, row access and hardware costs; optimize INT
+and BFP fairly. A descriptive fullscale INT6 quantization diagnostic
+in the M0 audit is not an optimized INT baseline.
+For wide-range families the \texttt{\_5555} instance is calibration,
+\texttt{\_6666} may be used for additional calibration, and
+\texttt{\_7777} is held out. Do not treat three graphs per family
+as sufficient for general statistical inference.
+
 \section{Measurements and evidence}
 Score states against the \emph{original source weights}, not the
 represented Hamiltonian: original cut value, absolute difference to
