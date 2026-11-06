@@ -366,6 +366,46 @@ designs with uncertainty and bit-true synthesized cost.
 No more unconstrained codebook sweeps are justified
 by the existing 24-frame result.
 
+\subsection{H2: held-out 16-QAM encoding-aware scale experiment}
+A fresh NUS software experiment verified the complex 16-QAM
+spin mapping against all $2^{16}$ original-channel residuals
+per 4-by-4 complex MIMO frame, including intra-symbol
+significance-bit couplings and Gray data labeling.
+Using 100 calibration frames, 300 disjoint held-out frames
+at 12~dB, and frozen symmetric global, tile, or
+significance-pair grouping, both $J$ and $h$ were quantized.
+Exact enumeration gave the following original-ML-state
+retention counts: global mixed FP4-$J$/FP6-$h$ 48/300,
+matched INT4-$J$/INT6-$h$ 39/300, BFP6 109/300;
+significance-pair mixed FP 57/300, mixed INT 41/300,
+BFP6 104/300. Global nominal coefficient-plus-assumed
+scale storage was 640, 640, and 832 bits, respectively.
+Mixed FP showed a numerical preference over matched
+INT on these paired frames, but paired uncertainty
+has not been computed and no FP advantage is
+statistically established. BFP6 had much better
+represented ground-state preservation yet 107/300
+global frames contained multiple quantized minima,
+so the actual stochastic p-bit output-selection
+distribution is a critical open question. Uniform
+selection among quantized minima gave Gray BER
+0.2049 for mixed FP, 0.2240 for matched INT,
+and 0.1796 for BFP6 globally; original full-precision
+ML Gray BER was 0.1210. These tie-average figures
+are mathematical diagnostics, not sampled p-bit BER.
+
+This H2 result (local NUS directory
+\texttt{h2\_16qam\_20261106T040315Z\_4108213})
+does not include stochastic device characteristics
+or synthesized circuit cost. The next H1 experiment
+uses the same frozen calibration/representation
+implementation with an exact one-p-bit-at-a-time
+Markov chain on eight spins, separately recording
+probability of visiting an original-quality target
+and probability of \emph{returning} one at a
+fixed update budget. Synthetic contrast/mismatch
+responses are E2 illustrations pending device sourcing.
+
 \section{Project schedule}
 Fourteen active working weeks and two weeks buffer, reduced capacity around exams. Aim for M1/M2 for CA3. FPGA deployment is optional. A well-supported integer-favoring configuration rule can be a valid outcome.
 \begin{thebibliography}{9}
