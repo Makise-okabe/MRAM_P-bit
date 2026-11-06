@@ -31,3 +31,26 @@ python3 experiments/m1_pbit_screen.py --tx 8 --rx 8 --snrs 0,5 --frames 12 --out
 2. Constrain FP and INT scales to deployable train/calibration rules with equivalent scale granularity and metadata cost. Tune strong integer baselines, extend FP tile/block scales fairly.
 3. Replace illustrative response with documented stochastic MRAM p-bit switching curve and operating ranges (if available under permitted access); otherwise clearly limit claim to behavioral models.
 4. Implement per-element exponent decoding, alignment, bounded-precision local-field accumulation and synthesized tile; compare power, area, delay and bandwidth, not bit count alone.
+
+## Fresh NUS 8x8 M1 pilot — 6 November 2026 (E1/E2 only)
+
+User-executed: 24/24 then-current tests PASS. Complex BPSK MIMO N_t=N_r=8, 12 independent frames for each SNR 0 and 5 dB, 96 transmitted bits per SNR, 1,000 attempted spin updates per format/response/frame. These are NEW results; no archived TSP/CIM device values.
+
+| Ideal-response format | 0 dB ML hits | 5 dB ML hits | 0 dB bit errors | 5 dB bit errors | Nominal storage bits (pilot) |
+|---|---:|---:|---:|---:|---:|
+| `fp32` label = **unrounded Python-double reference** | 12/12 | 12/12 | 7/96 | 3/96 | **1,152 mislabeled as FP32 storage** |
+| FP4 E2M1 | 10/12 | 10/12 | 9/96 | 3/96 | 208 |
+| INT4 | 11/12 | 12/12 | 9/96 | 3/96 | 208 |
+| BFP4 | 10/12 | 10/12 | 8/96 | 5/96 | 176 |
+| FP6 E3M2 | 12/12 | 12/12 | 7/96 | 3/96 | 280 |
+| INT6 | 12/12 | 12/12 | 7/96 | 3/96 | 280 |
+| FP8 E4M3 | 12/12 | 12/12 | 7/96 | 3/96 | 352 |
+| INT8 | 12/12 | 12/12 | 7/96 | 3/96 | 352 |
+
+The old `fp32` implementation *returned unchanged Python float64 coefficient values* while counting each coefficient as 32 bits, so the reported 1152 bits is NOT a valid hardware-storage number. Do not retroactively relabel past runs as true IEEE FP32. A newer code revision introduces real binary32 coefficient rounding and a separate `fp64_ref` path. This fixes reference semantics going forward; it does NOT create M1 device/format results by itself.
+
+**Response comparison:** Both `gain080` and `offset015` produced exactly the same **aggregated** ML-hit, BER and mean ML-residual-gap metrics as ideal for every format at 0 and 5 dB. This does not imply identical per-frame final states or update trajectories. `contrast090` altered BFP4 at 0 dB only in the aggregate: 10/12 to 9/12 ML hits (worse), 8/96 to 7/96 bit errors (apparently better), and mean original gap from 0.05281 to 0.08252 (worse). One-bit BER difference is noise at this sample size, not evidence of device benefit.
+
+**Interpretation:** M1 has an early coefficient precision sensitivity at FP4/INT4 and an empirical ceiling at 6/8 bit, but has NOT established device-response-by-format interaction (H1), scaling advantage from exponent granularity (H2), size trend (H3), physically meaningful MTJ nonideality or synthesis-backed cost. FP/INT use per-instance optimized global real scales, while BFP uses symmetric tile-pair power-of-two scales; format and granularity are confounded. Best-of-120 post-burn-in checkpoints may mask nonideality in returned best solution. 12 frames = 96 bits/SNR gives wide BER uncertainty.
+
+**Follow-up gate (no new MIMO application):** Analyze the already saved per-frame `m1_paired_runs.csv` using `experiments/m1_paired_diagnostics.py` to measure (a) response-vs-ideal selected-state divergence, ML-hit flips, first-best checkpoint changes; (b) 4/6/8-bit FP vs INT paired discordances. Preserve the original pilot files and commit hashes. Then design controlled equal-scale-granularity INT/FP, physically sourced p-bit response, time-to-target and macro synthesis studies.

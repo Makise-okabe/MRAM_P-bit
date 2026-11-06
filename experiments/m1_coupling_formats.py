@@ -1,18 +1,32 @@
 #!/usr/bin/env python3
 """M1 exploratory low-order floating-point coupling quantization.
 
-Value-level mathematical encoding only; not RTL/bit-true arithmetic, device
-physics, physical area or complete optimized scale-architecture results.
+Value-level mathematical encoding, except real IEEE binary32 coefficient rounding;
+not a bit-true local-field accumulator, device physics, physical area or final scale architecture. Earlier fp32-labeled Nov 6 pilot was an *unrounded* double reference.
 """
 import bisect
 import math
+import struct
 from collections import defaultdict
 
 FP_FORMATS = {"fp4": (2, 1), "fp6": (3, 2), "fp8": (4, 3)}
 INT_FORMATS = {"int4": 4, "int6": 6, "int8": 8}
 BFP_FORMATS = {"bfp4": 4, "bfp6": 6, "bfp8": 8}
-FORMATS = ("fp32", "fp4", "fp6", "fp8",
+FORMATS = ("fp64_ref", "fp32", "fp4", "fp6", "fp8",
            "int4", "int6", "int8", "bfp4", "bfp6", "bfp8")
+
+
+def f32(x):
+    """Round a real number to binary32 with nearest-even, without NumPy.
+
+    Only coefficient storage is rounded; the local-field arithmetic remains
+    Python float64 until a later bit-true accumulator model.
+    """
+    if not math.isfinite(x):
+        raise ValueError("nonfinite coefficient")
+    vmax = (2 - 2**-23)*2**127
+    x = min(vmax, max(-vmax, x))
+    return struct.unpack("!f", struct.pack("!f", x))[0]
 
 
 def fp_positive_levels(exponent_bits, mantissa_bits):
@@ -121,10 +135,19 @@ def quantize_couplings(J,h,kind,tile=4):
         for j in range(i+1,n):
             if not math.isfinite(J[i][j]) or abs(J[i][j]-J[j][i])>1e-12:
                 raise ValueError("nonfinite or asymmetric J")
-    if kind=="fp32":
-        return dict(J=[row[:] for row in J],h=h[:],format=kind,
-                    scales={"J":[1.0],"h":[1.0]},coefficient_bits=32*(n*(n-1)//2+n),
-                    metadata_bits=0,mse_J=0.0,mse_h=0.0)
+    if kind in ("fp64_ref","fp32"):
+        qJ = [[0.0]*n for _ in range(n)]
+        qh = h[:] if kind=="fp64_ref" else [f32(x) for x in h]
+        for i in range(n):
+            for j in range(i+1,n):
+                q = J[i][j] if kind=="fp64_ref" else f32(J[i][j])
+                qJ[i][j] = qJ[j][i] = q
+        return dict(J=qJ,h=qh,format=kind,
+                    scales={"J":[],"h":[]},
+                    coefficient_bits=(64 if kind=="fp64_ref" else 32)*(n*(n-1)//2+n),
+                    metadata_bits=0,
+                    mse_J=sum((J[i][j]-qJ[i][j])**2 for i in range(n) for j in range(i+1,n)),
+                    mse_h=sum((a-b)**2 for a,b in zip(h,qh)))
     groups=defaultdict(list)
     for i in range(n):
         for j in range(i+1,n):
