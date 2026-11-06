@@ -63,11 +63,12 @@ $12$ independent channel/noise frames per SNR ($96$ transmitted bits),
 SNR $0$ and $5$~dB, and $1000$ attempted asynchronous spin updates per
 format/response/frame. All 24 then-current unit tests passed.
 The screening combined preliminary custom low-order coupling codebooks and
-emph{illustrative}, not experimentally validated, p-bit response variants.
+\emph{illustrative}, not experimentally validated, p-bit response variants.
 Table~\ref{tab:m1pilot} reports independent-frame exact-ML solution hits
 under the ideal response; the source is the user-executed NUS M1 software
 log dated 6 November 2026, not magnetic-device or synthesis evidence.
-\begin{center}\small
+\begin{table}[htbp]
+\centering\small
 \begin{tabular}{@{}lrrr@{}}\toprule
 Representation & 0 dB ML hits & 5 dB ML hits & 0 dB bit errors\\\midrule
 Unquantized reference & 12/12 & 12/12 & 7/96\\
@@ -79,18 +80,18 @@ INT6 scaled & 12/12 & 12/12 & 7/96\\
 FP8 E4M3 & 12/12 & 12/12 & 7/96\\
 INT8 scaled & 12/12 & 12/12 & 7/96\\\bottomrule
 \end{tabular}
-\captionof{table}{Early paired M1 screen (12 frames per SNR). ML-state hit
+\caption{Early paired M1 screen (12 frames per SNR). ML-state hit
 and transmitted-bit BER are separate metrics; sample counts are insufficient
 for inferential hardware or precision claims.}
 \label{tab:m1pilot}
-\end{center}
+\end{table}
 Across all formats, the illustrative gain-0.80 and fixed per-device
 offset-$\sigma=0.15$ conditions gave the same aggregated BER/ML-hit
 outcomes as ideal; the contrast-0.90 condition altered only the BFP4
 0~dB outcomes. In that case, BFP4 ML hits decreased from $10/12$ to
 $9/12$, while observed transmitted-bit errors decreased from $8/96$
 to $7/96$, illustrating why BER alone is an unreliable optimization
-proxy in a small pilot. This evidence does emph{not} establish the
+proxy in a small pilot. This evidence does \emph{not} establish the
 hypothesized format--nonideality interaction.
 
 An important reference erratum is that the pilot's
