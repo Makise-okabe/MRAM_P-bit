@@ -57,6 +57,56 @@ M5 & Final architecture, configuration rules and reproducible report.\\\bottomru
 \end{center}
 \section{Evaluation and evidence}
 Primary: time-to-target on the original ML objective, counting all updates, exchanges and selection. Report bit-error rate against transmitted BPSK symbols versus SNR separately. Secondary: original-task objective gap, target-hit probability, validity, ideal small-$N$ distribution check and verified implementation cost. Software update counts do not establish hardware latency or energy. Independent instances are the primary statistical unit; solver seeds are nested. An unvalidated behavioral sigmoid does not constitute physical MRAM evidence. All older CIM, sensing-margin, TSP pilot and assistant-generated nonideality results are excluded.
+\section{Preliminary low-order floating-point coupling screen (E1/E2)}
+The first fresh NUS BPSK MIMO software screen used a complex $8\times8$ channel,
+$12$ independent channel/noise frames per SNR ($96$ transmitted bits),
+SNR $0$ and $5$~dB, and $1000$ attempted asynchronous spin updates per
+format/response/frame. All 24 then-current unit tests passed.
+The screening combined preliminary custom low-order coupling codebooks and
+emph{illustrative}, not experimentally validated, p-bit response variants.
+Table~\ref{tab:m1pilot} reports independent-frame exact-ML solution hits
+under the ideal response; the source is the user-executed NUS M1 software
+log dated 6 November 2026, not magnetic-device or synthesis evidence.
+\begin{center}\small
+\begin{tabular}{@{}lrrr@{}}\toprule
+Representation & 0 dB ML hits & 5 dB ML hits & 0 dB bit errors\\\midrule
+Unquantized reference & 12/12 & 12/12 & 7/96\\
+FP4 E2M1 & 10/12 & 10/12 & 9/96\\
+INT4 scaled & 11/12 & 12/12 & 9/96\\
+BFP4 shared-scale & 10/12 & 10/12 & 8/96\\
+FP6 E3M2 & 12/12 & 12/12 & 7/96\\
+INT6 scaled & 12/12 & 12/12 & 7/96\\
+FP8 E4M3 & 12/12 & 12/12 & 7/96\\
+INT8 scaled & 12/12 & 12/12 & 7/96\\\bottomrule
+\end{tabular}
+\captionof{table}{Early paired M1 screen (12 frames per SNR). ML-state hit
+and transmitted-bit BER are separate metrics; sample counts are insufficient
+for inferential hardware or precision claims.}
+\label{tab:m1pilot}
+\end{center}
+Across all formats, the illustrative gain-0.80 and fixed per-device
+offset-$\sigma=0.15$ conditions gave the same aggregated BER/ML-hit
+outcomes as ideal; the contrast-0.90 condition altered only the BFP4
+0~dB outcomes. In that case, BFP4 ML hits decreased from $10/12$ to
+$9/12$, while observed transmitted-bit errors decreased from $8/96$
+to $7/96$, illustrating why BER alone is an unreliable optimization
+proxy in a small pilot. This evidence does emph{not} establish the
+hypothesized format--nonideality interaction.
+
+An important reference erratum is that the pilot's
+\texttt{fp32}-labeled path retained Python double-precision values while
+counting 32 nominal bits per coefficient. It should be described as an
+\emph{unquantized software reference}, not a measured binary32 storage
+implementation. Subsequent code separates genuine binary32 coefficient
+rounding from a 64-bit unquantized reference. Local-field accumulation
+still requires bit-true modeling. Further limitations include per-frame
+coefficient-MSE scale optimization, non-equal scale granularity across
+FP/INT and BFP, tiny frame samples, full-budget best-of-sample selection,
+and lack of a physically characterized stochastic MRAM response.
+These results motivate paired final-state/first-hit diagnostics and
+a deployable scale/accumulator study; they do not motivate changing
+the locked BPSK MIMO benchmark or low-order-FP hardware direction.
+
 \section{Project schedule}
 Fourteen active working weeks and two weeks buffer, reduced capacity around exams. Aim for M1/M2 for CA3. FPGA deployment is optional. A well-supported integer-favoring configuration rule can be a valid outcome.
 \begin{thebibliography}{9}
