@@ -71,4 +71,27 @@ NEXT VALID GATE is actual simulator/synthesis of this candidate row, checking ra
       echo "YOSYS NOT INSTALLED: no synthesis/area result"
     fi
 
-**Verification status: repository RTL candidate authored; neither Icarus testbench nor synthesis has yet been executed in NUS. The existing GitHub CI tests Python experiments only. No quantitative area/energy comparison is claimed.**
+**Verification status (superseded by NUS evidence below):** Icarus 84/84 PASS and Nangate45 Yosys mapped digital row-area PASS. Physical p-bit, controller, netlist timing, and full-chip area still not measured.
+
+
+## NUS M2 mapped-area result — verified tool output, 6 Nov 2026
+
+**User-run PASS:** independent Python vs Icarus bit-true row test 84/84 across 16/64/128 spins and the three frozen modes, including stalls and signed/saturation vectors. Evidence: \`results/m2_row_verify_20261106T074423Z_718494/m2_vector_results.json\`. This verifies sampled cycle-serial row semantics only, not a full p-bit solver or memory macro.
+
+**User-run Yosys 0.69 / Nangate45 typical mapped synthesis completed for N_SPINS=128** under the same Liberty file and \`scripts/m2_yosys_mapped_area.sh\` methodology. Evidence: \`results/m2_nangate45_20261106T080343Z_718494/\`. Tool-reported \`Chip area for module '\\pbit_local_field_row'\`:
+
+| Frozen mode | Mapped library cell area units | Relative to mixed FP |
+|---|---:|---:|
+| MODE=0 mixed finite FP4 J / FP6 h | **8132.418** | 100% |
+| MODE=1 matched INT4 J / INT6 h | **7597.758** | 93.42% |
+| MODE=2 BFP6 signed mantissa / power-of-two scale | **2401.980** | 29.54% |
+
+Mixed FP maps to **7.04% more** area than matched INT; BFP6 is **70.46% lower area** than mixed FP for THIS serial one-row implementation. The probable major implementation distinction is mixed FP/INT's **two variable real-scale 16×32 multipliers** versus BFP6 exponent-controlled shifting; this is a plausible structural interpretation, NOT measured cell-level attribution until inspecting the actual mapped gate statistics.
+
+Storage at N=128, unique symmetric edges and global scales (not mapped into the row): mixed FP/INT **33,344 code+metadata bits**, BFP6 **49,552 bits**, thus BFP6 stores **16,208 more bits (+48.61%)**. This storage is NOT included in the synthesized datapath; mirrored coefficient storage, read muxing, ROM/RAM, p-bit drivers and best-state selection also excluded. Therefore NO full-chip total-area or area-energy winner has been proven.
+
+**H2/M2 joint interpretation, not a clean apples-to-apples format-only ranking:** H2 16-spin 300-frame global group original ML retained: mixed FP 48/300, matched INT 39/300, BFP6 109/300. Ground-tie uniform mean Gray BER: .20490, .22403, .17959. BFP6 had 107/300 degenerate ground frames. M2 mapped area above is for ONE parameterized 128-spin serial local-field row. BFP6 has better observed numerical quality and much smaller mapped digital row cost, but more coefficient storage and potential tie-selection overhead. Its power-of-two scale changes the arithmetic and metadata relative to FP/INT's globally shared real scale: **these results compare complete format+scale implementations, not only number-codebook efficiency**. Floating-point superiority is not established.
+
+**Outstanding checks:** read Yosys logs for mapping warnings, mapped cell/FF breakdown, dead optimized logic, output connectivity, and consistency of design constraints. No SDC/STA or Fmax was measured; \`synth\` + \`abc -liberty\` + \`stat -liberty\` reports pre-placement mapped cell area, not post-layout area, memory access energy, or switching power. Floating H2 calibration scales are not yet resimulated as Q12.20 encoded scales; this must be reconciled before comparing mapped-RTL output quality and software exact-H2 numerical results.
+
+No additional format/temperature sweep is warranted. The next scientific gate is: validate actual mapped netlist and resource breakdown, implement/cost one best-of-visited-represented-energy output mechanism, then integrate a documented stochastic-MTJ field-to-device model. Existing GF22FDX conventional storage-MTJ PDK does NOT validate a stochastic p-bit. **Draft PR remains open; do not merge as if an end-to-end MRAM implementation were proven.**
