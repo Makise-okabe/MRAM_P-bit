@@ -134,7 +134,8 @@ def solve_with_response(graph, rep, beta: float, updates: int, seed: int, model:
         raise AssertionError("retained represented energy mismatch")
     return dict(seed=seed, attempted_updates=updates, actual_flips=flips,
                 improvements=improvements, returned_original_cut=original_cut(graph, best_state),
-                returned_represented_energy=saved,
+                final_original_cut=original_cut(graph, spins),
+                returned_represented_energy=saved, final_represented_energy=actual,
                 returned_state_hex=format(sum(1 << i for i, s in enumerate(best_state) if s > 0), "x"))
 
 
