@@ -59,4 +59,12 @@ python3 -m experiments.m2_e2_response_gate \
 
 The runner rejects an incorrect E1 CSV SHA, keeps a model hash and immutable non-existing output directory, and writes `E2_ASSUMED_MODEL.json`, `E2_paired_runs.csv`, `E2_summary.csv`, and `manifest.json`. Do not run it under GitHub Actions: actual Biq Mac graph inputs and source-verified NUS E1 CSV live on NUS.
 
-**Status at freeze:** code + tiny regression tests authored. **No 288-run NUS result has been claimed.** This E2 model is source-agnostic. Keep searching boundedly for useful individual-device *post-calibration* records or a genuinely different published J-format study without blocking a falsifiable E2 sensitivity result.
+**Verified code gate:** GitHub Actions [run 42299340532](https://github.com/Makise-okabe/MRAM_P-bit/actions/runs/42299340532) passed the new E2 parity/persistence/unit tests plus all existing M0/M1 checks (7 Nov 2026). This is a tiny *synthetic* regression, not the 288-run evaluation. **No 288-run NUS result has been claimed.** This E2 model is source-agnostic. Keep searching boundedly for useful individual-device *post-calibration* records or a genuinely different published J-format study without blocking a falsifiable E2 sensitivity result.
+
+### Analytic E0 sensitivity bound (not measured)
+
+For ideal logit \`x=2 beta H\` and E2 \`x'=g_i*x + d_i\`, the logistic derivative satisfies \`0 <= sigmoid'(z) <= 1/4\`. By the mean-value theorem:
+
+\`|P_E2(+1)-P_ideal(+1)| <= (0.05*|x|+0.10)/4\`.
+
+Thus at \`x=0\` the bound is 0.025 probability (2.5 percentage points); for \`|x|<=4\` it is 0.075 (7.5 pp). These are *mathematical worst-case envelopes* for the explicitly artificial E2 parameter assumptions, not measured device deviations or guaranteed changes in Max-Cut gap. The bound also becomes loose at saturated logits. It does not imply any actual format ranking reversal.
