@@ -43,8 +43,8 @@ def read_inputs(csv_path, frames_path):
     return rows,frame_dict
 
 
-def quantized_minima(instance, label, tile):
-    kind="fp64_ref" if label=="fp32" else label
+def quantized_minima(instance, label, tile, legacy_fp32=False):
+    kind="fp64_ref" if legacy_fp32 and label=="fp32" else label
     # The original pilot mislabeled UNROUNDED coefficients as fp32.
     if kind not in fmt.FORMATS:
         raise ValueError("unknown original format label: "+label)
@@ -62,7 +62,7 @@ def quantized_minima(instance, label, tile):
     return dict(minima=set(minimizers),ground_energy=best,quant=quant)
 
 
-def audit(rows,frame_dict,tile=4):
+def audit(rows,frame_dict,tile=4,legacy_fp32=False):
     # Only small-N exact check; these datasets are 8-spin MIMO.
     if any(int(frame["tx"])>16 for frame in frame_dict.values()):
         raise ValueError("exact oracle restricted to Nt<=16")
@@ -79,7 +79,7 @@ def audit(rows,frame_dict,tile=4):
         ckey=(key,label)
         if ckey not in cache:
             oracle=mimo.exact_ml(frame)
-            quant=quantized_minima(frame,label,tile)
+            quant=quantized_minima(frame,label,tile,legacy_fp32=legacy_fp32)
             source_min=tuple(oracle["state"])
             in_min=source_min in quant["minima"]
             min_original_gap=min(
@@ -151,7 +151,7 @@ def audit(rows,frame_dict,tile=4):
     return unique,evaluated,summary
 
 
-def write_output(path,source_csv,source_frames,unique,evaluated,summary):
+def write_output(path,source_csv,source_frames,unique,evaluated,summary,legacy_fp32=False):
     p=Path(path)
     p.mkdir(parents=True,exist_ok=False)
     def write_csv(name,rows):
@@ -167,7 +167,8 @@ def write_output(path,source_csv,source_frames,unique,evaluated,summary):
             Path(source_csv).name:hashlib.sha256(Path(source_csv).read_bytes()).hexdigest(),
             Path(source_frames).name:hashlib.sha256(Path(source_frames).read_bytes()).hexdigest()
         },
-        reference_erratum="Old M1 fp32 means unchanged Python float64; correctly reconstructed with fp64_ref, NOT new true binary32 format.",
+        reference_interpretation=("LEGACY fp32 values treated as unrounded fp64_ref; pilot date 2026-11-06" if legacy_fp32
+                                 else "fp32 uses real binary32-rounded coefficient values in current code"),
         notes="Quantization ground-state preservation and sampled-solver ground-state arrival are distinct. "
               "Quantized ground tie states may have different original ML residuals. "
               "A candidate can match original ML without minimizing quantized energy, "
@@ -187,14 +188,15 @@ def main():
     ap.add_argument("--runs",required=True,type=Path)
     ap.add_argument("--frames",required=True,type=Path)
     ap.add_argument("--tile",type=int,default=4)
+    ap.add_argument("--legacy-unrounded-fp32",action="store_true",help="ONLY for the original 6 Nov pilot where fp32 was unchanged Python double")
     ap.add_argument("--output",required=True,type=Path)
     a=ap.parse_args()
     if a.output.exists():
         ap.error("output already exists; choose a fresh directory")
     try:
         rows,frames=read_inputs(a.runs,a.frames)
-        unique,checked,summary=audit(rows,frames,tile=a.tile)
-        write_output(a.output,a.runs,a.frames,unique,checked,summary)
+        unique,checked,summary=audit(rows,frames,tile=a.tile,legacy_fp32=a.legacy_unrounded_fp32)
+        write_output(a.output,a.runs,a.frames,unique,checked,summary,legacy_fp32=a.legacy_unrounded_fp32)
     except (ValueError,FileExistsError) as exc:
         ap.error(str(exc))
     print("=== EXACT QUANTIZATION vs SAMPLING GATE ===")
