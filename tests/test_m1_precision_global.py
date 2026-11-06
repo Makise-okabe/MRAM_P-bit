@@ -119,6 +119,39 @@ class TestPrecisionGlobal(unittest.TestCase):
         low,high=bootstrap_paired_ci([float(i-12) for i in range(24)],1,200)
         self.assertLessEqual(low,high)
 
+    def test_full_three_graph_pipeline_short_synthetic_preflight(self):
+        import json
+        import csv
+        from experiments.m1_biqmac_precision_sweep import run
+        from scripts.m1_precision_gap_plots import plot_graph
+        with tempfile.TemporaryDirectory() as td:
+            d=Path(td)
+            paths=[]
+            refs={"reference_type":"PUBLISHED_OPTIMUM","graphs":{}}
+            for name in ("w01_100.0","t2g10_5555","ising2.5-100_5555"):
+                p=d/name
+                p.write_text("100 3\n1 2 1\n2 3 -2\n1 3 5\n",encoding="utf-8")
+                g=load_rudy(p)
+                paths.append(p)
+                refs["graphs"][name]={"sha256":g.sha256,"cut":6,"table":0,"pdf_page":0}
+            reference=d/"ref.json"
+            reference.write_text(json.dumps(refs))
+            out=d/"result"
+            runs,summaries=run(paths,reference,out,updates=40,seeds=2,base_seed=777)
+            self.assertEqual(len(runs),3*13*2)
+            self.assertEqual(len(summaries),3*13)
+            self.assertEqual(json.loads((out/"manifest.json").read_text())["total_runs"],78)
+            with (out/"precision_summary.csv").open(newline="") as stream:
+                data=list(csv.DictReader(stream))
+            self.assertEqual(len(data),39)
+            figures=d/"figures"
+            for graph in ("w01_100.0","t2g10_5555","ising2.5-100_5555"):
+                path=plot_graph([r for r in data if r["graph"]==graph],figures)
+                self.assertTrue(path.exists())
+                self.assertIn("<svg ",path.read_text())
+            with self.assertRaisesRegex(ValueError,"results directory exists"):
+                run(paths,reference,out,updates=40,seeds=2,base_seed=777)
+
     def test_aggregate_checks_exactly_matched_seed_coverage(self):
         rows=[]
         for seed in (1,2):
