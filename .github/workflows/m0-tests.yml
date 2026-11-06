@@ -1,31 +1,27 @@
-name: M0-M1 BPSK MIMO and FP coupling verification
+name: M0 Biq Mac weighted Max-Cut mapping verification
+
 on:
   push:
-    branches: [main, 'research/m0-*', 'research/m1-*']
+    branches: [main, 'research/m0-biqmac-*']
   pull_request:
   workflow_dispatch:
+
 permissions:
   contents: read
+
 jobs:
-  m0:
+  m0-maxcut:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Generic Ising and complex MIMO mathematical tests
-        run: python -m unittest discover -s tests -v
-      - name: Standalone BPSK MIMO smoke test
-        run: python experiments/m0_mimo_reference.py --tx 4 --rx 4 --snr-db 10 --records 100 --output results/ci_mimo4x4
-      - name: Independent-frame BER/ML smoke test
-        run: python experiments/m0_mimo_batch.py --tx 3 --rx 3 --snrs 0,10 --frames 2 --burnin 30 --records 10 --thin 2 --output results/ci_mimo_batch
-      - name: Exploratory FP4 versus scaled INT under behavioral response
-        run: python experiments/m1_pbit_screen.py --tx 3 --rx 3 --snrs 0 --frames 2 --burnin 25 --records 6 --thin 2 --formats fp32,fp4,fp4_fn,fp6_fn,int4,bfp4 --responses ideal,offset015 --output results/ci_m1_screen
-      - name: Exact Ising original-versus-quantized objective audit
-        run: python experiments/m1_exact_ground_audit.py --runs results/ci_m1_screen/m1_paired_runs.csv --frames results/ci_m1_screen/m1_frames.jsonl --tile 4 --output results/ci_m1_exact_audit
+      - name: Compile original-weight Rudy parser
+        run: python -m py_compile experiments/biqmac_maxcut.py
+      - name: Exact signed weighted-cut and Ising consistency tests
+        run: python -m unittest discover -s tests -p 'test_biqmac_maxcut.py' -v
 
-      - name: M1B frozen scale global/tile pairing smoke test
-        run: python experiments/m1_calibrated_scale_gate.py --tx 3 --rx 3 --snrs 0 --cal-frames 2 --heldout-frames 2 --formats fp4,fp4_fn,fp6_fn,int4,int6,bfp4 --granularities global,tile --tile 2 --output results/ci_m1b_gate
-      - name: M1C J/h-only and FP4-J FP6-h mixed exact oracle
-        run: python experiments/m1_jh_ablation.py --m1b-dir results/ci_m1b_gate --output results/ci_m1c_jh
+# Older MIMO source/tests are intentionally preserved as historical research.
+# This ACTIVE benchmark CI does not run MIMO, quantization sweeps or devices.
+# Actual Biq Mac source downloads and SHA256 audits run separately on NUS.
