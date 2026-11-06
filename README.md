@@ -1,6 +1,6 @@
 # STT-MRAM p-bit FYP — Biq Mac Weighted Max-Cut
 
-**Mandatory decision gate:** [FYP Decision Feedback Loop](docs/FYP_DECISION_FEEDBACK_LOOP.md). Every research step must have explicit FYP alignment, evidence level, prior-art check, smallest falsifiable test and STOP condition; return to the gate after observing results. This requirement applies across future project sessions.
+**Mandatory decision gate:** [FYP Decision Feedback Loop](docs/FYP_DECISION_FEEDBACK_LOOP.md). [2026 closest precision/device prior-art collision audit](docs/PRIOR_ART_COLLISION_PRECISION_STTMTJ_20261107.md). Every research step must have explicit FYP alignment, evidence level, prior-art check, smallest falsifiable test and STOP condition; return to the gate after observing results. This requirement applies across future project sessions.
 
 ## Active benchmark
 Original **Biq Mac Library / Mac weighted Max-Cut**, 100-spin calibration graphs. The problem maps as `J_ij=J_ji=-w_ij`, `J_ii=0`, `h_i=0`. The research compares 4/5/6/8-bit FP/INT/BFP couplings under a consistent p-bit solver, then separately evaluates physical device response and real hardware cost.
