@@ -207,10 +207,11 @@ and scale storage counted. Upgrading the $N$ bias coefficients from
 four to six bits adds $2N$ nominal coefficient bits (256 at $N=128$),
 before decoding, accumulation, control logic and other overhead.
 
-All these comparisons are \emph{planned} and have no new measured NUS
-outcomes. Later H1 must measure finite-budget original-task performance
-under physically sourced stochastic MRAM p-bit characteristics;
-M2/M3 must implement bit-true exponent/scale paths and RTL synthesis.
+These comparisons were later executed as fresh NUS M1B/M1C
+held-out exact-enumeration software experiments, summarized below.
+H1 remains open: finite-budget original-task performance must be studied
+under physically sourced stochastic MRAM p-bit characteristics, and
+M2/M3 still require bit-true arithmetic and RTL synthesis.
 \subsection{M1B: first held-out frozen-scale results (E0/E1)}
 A separate NUS user-run experiment applied 24 calibration and
 24 disjoint held-out channel frames per SNR (0 and 5~dB) for
@@ -258,8 +259,82 @@ reached an apparent ceiling at 24/24 in this task.
 Nearly identical J-MSE across SNR for each format/group follows
 from reusing the same channel realizations and $J$ independent
 of received noise. Local field biases $h$ and the ML landscape
-can still differ across SNR. The newer M1C finite-only FP, J/h
-ablation and mixed-format results remain \emph{pending user execution}.
+can still differ across SNR. Subsequent M1B/M1C codebook
+and bias/coupling ablations are described in the next subsection.
+\subsection{M1B/M1C: held-out finite-only FP and $J$/$h$ ablation}
+The next NUS software run retained the same complex $8\times8$
+BPSK MIMO benchmark with 24 independent calibration and 24
+disjoint held-out channel seeds, tested at 0 and 5~dB SNR.
+The two SNRs are paired on the same channel seeds. Coupling/bias
+scales were fitted by training-set coefficient MSE and \emph{frozen}
+for held-out testing. The 0~dB and 5~dB original-ML preservation
+counts in Table~\ref{tab:m1c-mixed} are \emph{exact representational
+ground-state} results and \emph{not} finite-budget p-bit sampling
+success, measured stochastic MTJ data, or statistical evidence
+of FP superiority.
+
+\begin{table}[htbp]
+\centering\small
+\begin{tabular}{@{}lrrr@{}}\toprule
+Global-scale format & 0~dB & 5~dB & Nominal bits\\\midrule
+Historical FP4, $J$ and $h$ & 18/24 & 21/24 & 208\\
+Finite-only FP4, $J$ and $h$ & 19/24 & 22/24 & 208\\
+INT4, $J$ and $h$ & 18/24 & 21/24 & 208\\
+\textbf{Finite-only FP4-$J$ / FP6-$h$} & \textbf{23/24} & \textbf{24/24} & 224\\
+INT4-$J$ / INT6-$h$ & 21/24 & 24/24 & 224\\
+Finite-only FP6, $J$ and $h$ & 21/24 & 24/24 & 280\\
+BFP6, $J$ and $h$ & 23/24 & 24/24 & 232\\\bottomrule
+\end{tabular}
+\caption{Held-out original ML solution preserved within the
+quantized Hamiltonian's ground-state set. Nominal bits count
+unique undirected $J$, $h$, and assumed scale metadata; they do
+not measure local-field arithmetic, circuitry, area, or energy.
+Twenty-four cases per SNR are insufficient for an FP
+superiority claim.}
+\label{tab:m1c-mixed}
+\end{table}
+
+The $J$-only/$h$-only oracles help localize the damage:
+finite-only FP4 at 0~dB retained 23/24 when only $J$ was
+quantized (exact $h$), versus 19/24 when only $h$ was quantized
+(exact $J$), and 19/24 when both were quantized. Matched INT4
+gave 21/24, 18/24, and 18/24 respectively. These are
+\emph{unquantized-opposite diagnostics}, not practical low-bit
+hardware designs. Their interaction need not be additive.
+At 5~dB, finite-only FP4 $J$-only preserved 24/24,
+$h$-only 23/24, and both 22/24.
+
+Representing $J$ in finite-only FP4 and $h$ in finite-only
+FP6 increased global-scale original-ML preservation to
+23/24 at 0~dB and 24/24 at 5~dB with 224 nominal bits.
+At the same nominal bits, mixed INT4-$J$/INT6-$h$ retained
+21/24 and 24/24; the two-case difference at 0~dB
+\emph{does not} establish a statistically robust FP advantage.
+Under tile grouping both mixed configurations retained 22/24
+and 24/24 at 0/5~dB, respectively, at 288 nominal bits.
+BFP6 globally retained 23/24 and 24/24 with 232 nominal bits,
+a serious fixed-point/power-of-two-scale baseline for hardware.
+
+Finite-only E2M1 made a small global improvement over the
+historical FP4 codebook (19 versus 18 preserved cases
+at 0~dB, and 22 versus 21 at 5~dB), but \emph{did not}
+consistently improve under tile scaling. An element format
+with more representable values does not by itself
+guarantee detection quality after scale fitting.
+The mixed-FP result is a candidate \emph{architectural
+hypothesis}, not device-aware novelty: all of these results use
+software-real-valued scales, exact enumeration, and no
+physical stochastic MRAM response or synthesized
+exponent-alignment/accumulator cost.
+
+To avoid open-ended format sweeps, further implementation
+work will focus on three candidate configurations:
+finite-only FP4-$J$/FP6-$h$, mixed INT4-$J$/INT6-$h$,
+and BFP6. The next decisive evidence is a physically
+sourced p-bit response, a fixed finite-budget original
+MIMO-quality criterion, and bit-true RTL/synthesis
+cost for the proposed 64--128-spin coupling tile.
+
 \section{Project schedule}
 Fourteen active working weeks and two weeks buffer, reduced capacity around exams. Aim for M1/M2 for CA3. FPGA deployment is optional. A well-supported integer-favoring configuration rule can be a valid outcome.
 \begin{thebibliography}{9}
