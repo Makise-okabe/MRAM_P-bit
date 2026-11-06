@@ -1,6 +1,6 @@
 # Active benchmark decision: Biq Mac weighted Max-Cut
 
-**Effective 6 November 2026.** The user confirmed the supervisor-approved application choice: **weighted Max-Cut**, with instances from the **Biq Mac Library, Mac section**. This decision supersedes earlier BPSK/16-QAM MIMO-only benchmark policies throughout the repository. The central research direction remains low-order floating-point coupling and STT-MRAM p-bit nonidealities.
+**Effective 6 November 2026.** The user confirmed the supervisor-approved application choice: **weighted Max-Cut**, with instances from the **Biq Mac Library, Mac section**. This decision defines the sole application benchmark for this repository. The central research direction remains low-order floating-point coupling and STT-MRAM p-bit nonidealities.
 
 ## Dataset and problem are separate
 Biq Mac Library is a collection of optimization problem instances, not a CMOS standard-cell library and not a coupling number format. It includes both binary quadratic programs (Biq) and Max-Cut graphs (Mac); the active application uses the latter. The official documentation provides graph descriptions and optimal values or bounds. Selected instance families and calibration/held-out membership are still to be specified.
@@ -40,12 +40,15 @@ A visited target is not automatically the returned output. Runtime candidate ret
 Preserve signed weights. Use relative optimum gaps only where their denominator is meaningful. Do not assume every listed reference value is a certified optimum.
 
 ## Existing work and limits
-- Stop further MIMO benchmark expansion. Preserve its results as historical exploratory work, not weighted-Max-Cut evidence.
+- Run and report only weighted Max-Cut for the active application benchmark.
 - Retain generic Ising routines, number-format definitions, bit-true row tests and synthesis tooling.
-- Reconcile the actual fixed-point scale encoding with the software representation. Configure h=0 and account fairly for removal/tie-off of unnecessary bias arithmetic before quoting a Max-Cut datapath area. Previous mixed FP4-J/FP6-h MIMO quality results do not determine Max-Cut quality.
+- Reconcile the actual fixed-point scale encoding with the software representation. Configure h=0 and account fairly for removal/tie-off of unnecessary bias arithmetic before quoting a Max-Cut datapath area. Bias-inclusive component areas cannot establish Max-Cut-specific area.
 - The 64–128-spin hardware goal remains. Graph size is the number of original vertices, not a QAM antenna/symbol count.
 - Use small graphs only for independent mathematical/software checks where needed. Cropped or modified graphs are not unmodified Biq Mac instances and cannot inherit their published optima. Full Biq Mac benchmark runs do not require constructing an exponentially large exact Markov chain.
 - Keep the STT-MRAM response evidence boundary: illustrative curves, literature-informed models and process-specific measured device data are distinct.
 
 ## Status
 Benchmark choice is confirmed. Dataset import, instance shortlist, mapped quality results and end-to-end hardware validation for this benchmark are **pending**. This decision adds documentation only: no new experiment, codebook, CI gate or performance result.
+
+## Dataset expansion within the approved Mac collection (7 Nov 2026)
+The active benchmark includes low-dynamic-range `Mac/rudy` integer controls and high-dynamic-range `Mac/ising` examples. `t2g10_5555` has 100 nodes/200 edges and official coefficients with nonzero magnitudes 460 through 294541; `ising2.5-100_5555` has 100 nodes/4950 edges and contains 1 and -101237 (a confirmed lower bound on magnitude span of 101237). Source weight ranges must be recomputed and hashed by the loader on NUS; do not interpret those inputs as a floating-point advantage or exact optimality. See M0 source protocol and separate wide-input audit script. Old h=0 and original-cut scoring rules unchanged.

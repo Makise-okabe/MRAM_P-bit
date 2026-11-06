@@ -1,0 +1,69 @@
+{
+  "$schema": "biqmac-mac-optima-2026-11-07-v1",
+  "source_pdf": "https://biqmac.aau.at/biqmaclib.pdf",
+  "source_title": "Angelika Wiegele, Biq Mac Library, September 2007",
+  "source_qualification": "Rows headed 'solution' without <=, in tables introduced as optimal values or bounds. Here selected rows are unqualified solution values and treated as published optimal Max-Cut values.",
+  "reference_type": "PUBLISHED_OPTIMUM",
+  "graphs": {
+    "w01_100.0": {
+      "cut": 651,
+      "table": 8,
+      "pdf_page": 11,
+      "sha256": "3800aa7c2e6376f941ea7b74e29b89498563e22e6659090e73ef60ed41415a90"
+    },
+    "pw01_100.0": {
+      "cut": 2019,
+      "table": 8,
+      "pdf_page": 11,
+      "sha256": "836cb9ea6b7e273675c9df967ccc2e07a80b27d4a2b1b28deae0f8934601224e"
+    },
+    "w05_100.0": {
+      "cut": 1646,
+      "table": 8,
+      "pdf_page": 11,
+      "sha256": "d5df4d176e0583cd002e24064f27cf45d485e81edc01d5042f44781f066a9499"
+    },
+    "pw05_100.0": {
+      "cut": 8190,
+      "table": 8,
+      "pdf_page": 11,
+      "sha256": "12ce767e84a775b08d026360ecff7ca79a7e9f1e4543aa7058fc93fa263bb12c"
+    },
+    "w09_100.0": {
+      "cut": 2121,
+      "table": 8,
+      "pdf_page": 11,
+      "sha256": "dc489bdb6ec1f905a7a3210242af71edcc2cf8fc68b6bea05cf6c8457cea713d"
+    },
+    "pw09_100.0": {
+      "cut": 13585,
+      "table": 8,
+      "pdf_page": 11,
+      "sha256": "979725b5cde56c746aa717c7d4976684060ca95fc2c40e1a341e305169cccb2d"
+    },
+    "pm1s_100.0": {
+      "cut": 127,
+      "table": 7,
+      "pdf_page": 10,
+      "sha256": "6b2d67cc88ce5e4873df9e2b28a6c75a5bcbbc44884bae7250bb8283def844d6"
+    },
+    "pm1d_100.0": {
+      "cut": 340,
+      "table": 7,
+      "pdf_page": 10,
+      "sha256": "b9d2e3a3deb80ffdab17419577fe79f5b6aefb16600cf6d4a9d3db7ed68c6b35"
+    },
+    "t2g10_5555": {
+      "cut": 6049461,
+      "table": 10,
+      "pdf_page": 13,
+      "sha256": "c742b78ebdebb47ad7146bffd657d42fab814a7fa82c4a17942b37f2f7fa96cb"
+    },
+    "ising2.5-100_5555": {
+      "cut": 2460049,
+      "table": 9,
+      "pdf_page": 12,
+      "sha256": "c8fa3ce4df1997b89aad6199525a66e55699c259680483b62cc5fd3cfc1e316e"
+    }
+  }
+}
