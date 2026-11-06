@@ -1,6 +1,6 @@
 # Bounded E1 evaluation sequence — 7 November 2026 (NOT a direction reset)
 
-Supervisor-selected direction unchanged: STT-MRAM p-bit coupling precision on **original Biq Mac / Mac weighted Max-Cut**. MIMO archived. No new physical or Max-Cut-specific ASIC results claimed.
+Supervisor-selected direction unchanged: STT-MRAM p-bit coupling precision on **original Biq Mac / Mac weighted Max-Cut**. No additional application benchmark. No new physical or Max-Cut-specific ASIC results claimed.
 
 ## Evidence already completed
 - M0/E0: 10/10 source/hash/Ising-math checks on NUS.
@@ -30,7 +30,7 @@ Calibrate coupling scales from source coefficients only and charge the same type
 ## Response distortion and hardware gates
 Once an ideal precision profile is available, repeat with **physically supported** STT-MRAM low-barrier p-bit gain/offset/time-correlation models, including persistent device identity. E2 illustrative response ≠ E3 validated p-bit curve ≠ E4 transistor simulation. Do this even if ideal FP does not beat INT: research question is interaction with physical response.
 
-Use reusable historical M2 RTL as component starting point only. Native Max-Cut has h=0; implement actual selected FP/INT/BFP *J* width and metadata, verify a row + best-state retention, then compare preplacement area/timing, coefficient storage, memory-access energy proxies, p-bit and interface costs. A bias-inclusive MIMO FP4-J row is not the area of an FP6-J Max-Cut solution.
+Use reusable historical M2 RTL as component starting point only. Native Max-Cut has h=0; implement actual selected FP/INT/BFP *J* width and metadata, verify a row + best-state retention, then compare preplacement area/timing, coefficient storage, memory-access energy proxies, p-bit and interface costs. A bias-inclusive, mismatched-width row cannot be used as the area of the chosen Max-Cut implementation.
 
 ## Order; no extra prerequisites
 1. If corrected 24-seed 6-bit pilot is running, finish its immutable output. Otherwise, do not needlessly rerun before solver quality gate.

@@ -1,6 +1,6 @@
 # M0 source and mathematical benchmark gate — Biq Mac / Mac
 
-Scope locked 6 November 2026: **weighted Max-Cut** with original instances from the Mac part of the official **Biq Mac Library**, not Biq/QUBO, not MIMO.
+Scope locked 6 November 2026: **weighted Max-Cut** with original instances from the Mac part of the official **Biq Mac Library**, not the Biq/QUBO part.
 
 ## Official source format
 
@@ -61,7 +61,7 @@ E3: physically sourced or validated p-bit response.
 E4: authorized device/circuit simulation.
 E5: RTL/synthesis/hardware component evidence.
 
-Preexisting MIMO software results and earlier generic Max-Cut pilots stay historical only. MIMO bit-true generic circuitry may be reused after application-specific validation, not relabeled automatically as benchmark results.
+Only original weighted Max-Cut results count as active application evidence. Generic RTL components require new workload-specific verification.
 
 ## Frozen within-library dynamic-range contrast (7 Nov 2026)
 

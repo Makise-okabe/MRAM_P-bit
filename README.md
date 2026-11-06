@@ -1,39 +1,20 @@
-# STT-MRAM p-bit FYP — Low-order floating-point coupling / weighted Max-Cut
+# STT-MRAM p-bit FYP — Biq Mac Weighted Max-Cut
 
-**Current benchmark decision, 6 November 2026:** weighted Max-Cut using the **Mac (Max-Cut) instances in the Biq Mac Library**. The user confirmed this choice after discussion with the supervisor. MIMO is no longer an active application benchmark; SAT/MaxSAT are not the selected implementation route.
+## Active benchmark
+Original **Biq Mac Library / Mac weighted Max-Cut**, 100-spin calibration graphs. The problem maps as `J_ij=J_ji=-w_ij`, `J_ii=0`, `h_i=0`. The research compares 4/5/6/8-bit FP/INT/BFP couplings under a consistent p-bit solver, then separately evaluates physical device response and real hardware cost.
 
-**Research core remains:** low-order floating-point coupling representation and scale granularity under nonideal **STT-MRAM p-bit** responses, with optimized integer and shared-exponent/BFP controls and an implementation-backed quality–cost comparison.
+## Real NUS evidence
+- **M0:** 10/10 official source audits passed, original files SHA256-verified.
+- **M1 FP64:** 144 solver calibration runs; 50k linear-beta selected by preregistered equal-graph gap/cost rule, observed 2.343% mean optimality gap across four calibration graphs.
+- **M1 global precision:** 936 actual original Max-Cut solver runs completed: 3 calibration graphs × 13 configs (FP64 and FP/INT/BFP at 4/5/6/8 bits) × 24 fresh paired seeds, 50k linear attempted updates. Findings remain restricted to these calibration graphs; the +1pp paired-bootstrap quality screen is not a cross-graph proof.
+- **Hardware:** row arithmetic and represented-energy retention are generic verified components, NOT an integrated Max-Cut p-bit ASIC or device characterization.
 
-**Research question:** Which coupling configuration preserves useful weighted-Max-Cut solution quality under a specified STT-MRAM p-bit response at lower implementation cost?
+## Active scripts
+- `experiments/biqmac_maxcut.py`: exact original-source graph import and Ising mapping.
+- `experiments/m1_precision_codebooks.py`: finite-only FP, symmetric INT, global BFP codebooks.
+- `experiments/m1_biqmac_precision_sweep.py`: paired 50k-linear original-cut gap experiment.
+- `scripts/m1_biqmac_precision_sweep.sh`: reproducible NUS runner.
+- `docs/BIQMAC_OFFICIAL_OPTIMA_2007.json`: source-hash-matched published references.
+- `docs/M1_GLOBAL_PRECISION_FREEZE_20261107.md`: frozen codebooks, seeds, +1pp criterion.
 
-Representation determines numerical error and digital implementation cost. Device nonidealities determine deviations in the p-bit response. Their joint effect on solution quality is to be tested, not assumed.
-
-## Active sources of scope
-- [Supervisor-approved benchmark decision and mapping](docs/BENCHMARK_DECISION_WEIGHTED_MAXCUT_20261106.md)
-- [Current roadmap](docs/ROADMAP_LOCKED_2026-11-06.md)
-- [Evidence rules](docs/RESEARCH_PROTOCOL.md)
-- [Official Biq Mac Library](https://biqmac.aau.at/biqmaclib.html)
-
-## What changes
-- One graph vertex corresponds to one spin. Native weighted Max-Cut uses pairwise couplings, no auxiliary spins, and zero problem bias h.
-- Score returned states with the **original graph weights**: cut value, gap to a verified optimum/bound, and fixed-budget target success.
-- Communication BER, QAM significance grouping and AWGN-posterior beta are not weighted-Max-Cut metrics or operating-point rules.
-- Existing formats, generic Ising arithmetic and row RTL are reusable components. The MIMO-specific FP6-bias conclusion does not carry over to h=0.
-
-## Current implementation status
-The supervisor-approved main-branch scope change is now supported by a separate M0 draft branch containing an authored Rudy loader, tests, and an E0 import script (all pending actual NUS execution). Existing main-branch application scripts and CI still include the historical MIMO implementation. No Biq Mac import, weighted-Max-Cut result or new physical-MRAM result is claimed here. Do not start further MIMO performance sweeps.
-
-Prior MIMO, TSP, CIM/ADC and older Max-Cut pilots remain historical evidence only. The new benchmark requires fresh, identified Biq Mac instances and runs; old archived graph results are not retrospectively promoted. Preserve the M2 hardware work and its component verification without relabeling it as a complete Max-Cut accelerator.
-
-M0–M5 remain the research stages: mapping/reference, joint representation–response evaluation, design rule and cost specification, bit-true/synthesized hardware, held-out scaling, final report. The planned 64–128-spin coupling hardware remains in scope; neither fabricated stochastic MTJs nor a GF22FDX implementation are claimed. No new format search, toolchain expansion or simulation was introduced by this decision.
-
-## First M0 weighted Max-Cut code gate (draft)
-The current code migration is on branch research/m0-biqmac-maxcut-20261106 and documented in [M0 source protocol](docs/M0_BIQMAC_SOURCE_PROTOCOL.md). Its source-audit tests were NUS-executed: **8/8 official Mac/rudy plus 2/2 Mac/ising source graphs PASS** at E0 (hashes and source weight distributions recorded in Draft PR #19). Original graph optimum references and Max-Cut solver quality are still absent; earlier MIMO scripts remain preserved as historical only.
-
-
-## New locked benchmark contrast: LOW versus WIDE original edge-weight range
-
-Retain `Mac/rudy` 100-node small-integer graphs as **low-range controls**. Add two **unmodified official `Mac/ising` 100-node wide-range calibration examples, `t2g10_5555` (200 edges; 460 to 294541 in |weight|) and `ising2.5-100_5555` (4950 edges; includes |weight|=1 and -101237). Do not mistake the name `ising` for a non-Max-Cut source: these are official **Mac** graph inputs. `scripts/m0_fetch_biqmac_wide.sh` downloads and exactly validates these sources; `experiments/biqmac_weight_audit.py` generates SHA256/weight-distribution and simple descriptive INT6 fullscale diagnostics. All reports remain E0; no solver or FP improvement claim. See [M0 source protocol](docs/M0_BIQMAC_SOURCE_PROTOCOL.md).
-
-## M1 E1 preliminary solver (draft)
-[First paired ideal-Gibbs weighted Max-Cut pilot](docs/M1_BIQMAC_IDEAL_PILOT.md) now has a reproducible script, and its tiny-graph checks passed CI. The actual four official-graph solver run is **pending NUS execution**. It is 6-bit FP6/INT6/BFP6 global scale only, with ideal Gibbs response, paired update streams and a best-represented-energy returned state; no real device, benchmark optimum or ASIC result.
+Authoritative FYP report: https://github.com/Makise-okabe/MRAM_FYP_Overleaf . The active repository contains **no alternative application scripts**. Older history remains recoverable in Git history without being part of this active worktree.
