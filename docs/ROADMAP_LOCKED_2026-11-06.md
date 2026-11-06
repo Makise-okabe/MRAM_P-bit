@@ -1,50 +1,44 @@
-# LOCKED FYP ROADMAP — Low-order Floating-Point MRAM p-bit Couplings
+# Current FYP roadmap — Low-order FP coupling for STT-MRAM p-bits
 
-**Locked 6 November 2026.** Changes in this revision affect the APPLICATION BENCHMARK only. Research problem, H1/H2/H3, M0–M5 implementation and evidence standards remain the same.
+**Benchmark updated 6 November 2026:** supervisor-approved weighted Max-Cut using the Mac portion of the Biq Mac Library. See the [active decision](BENCHMARK_DECISION_WEIGHTED_MAXCUT_20261106.md), which supersedes previous MIMO-specific benchmark instructions. The research core and M0–M5 stages remain.
 
 ## Research question
-**How should coupling precision and scale granularity be chosen for nonideal MRAM p-bit systems to preserve useful optimization performance at lower implementation cost?**
+How should coupling precision and scale granularity be chosen for nonideal STT-MRAM p-bit systems to preserve useful weighted-Max-Cut solution quality at lower implementation cost?
 
-## Central design — NOT optional
-Build and evaluate **LOW-ORDER FLOATING-POINT COUPLING** representations in nonideal MRAM p-bit machines. Nominal candidate encodings: explicitly defined FP4 (E2M1), FP6 (E3M2), FP8 (E4M3), with complete sign/exponent/mantissa rules, zeros, overflow, underflow, rounding, optional scaling and accumulator design. Test per-element exponent storage against shared tile/block/row scale methods. Integer formats are **strong comparison baselines**, not replacement direction. We do not predeclare that floating point must outperform tuned integer everywhere.
+Low-order floating-point coupling is the design focus. Optimized scaled integers and BFP/shared-exponent representations are fair controls. Use the already defined candidate formats; this benchmark change does not authorize an open-ended codebook search or predetermine a floating-point advantage.
 
-## H1 / H2 / H3 — unchanged
-- **H1: Device-dependent useful precision.** Minimum coupling precision to preserve an absolute acceptable BER / task-quality target varies with the type and severity of a physically justified p-bit response.
-- **H2: Scale granularity.** Trade off FP per-element exponent and more compact block/tile/row scales, including metadata, exponent alignment, local-field accumulation, bias precision and wiring.
-- **H3: Conditional size dependence.** Measure precision requirements by MIMO transmitter count Nt, receiver count Nr, antenna ratio, SNR and channel conditioning; presume neither FP nor INT scaling advantage.
+## Hypotheses
+- **H1 — Response and useful precision:** assess whether the benefit of existing coupling-precision choices changes with a specified, justified STT-MRAM p-bit response while maintaining an absolute useful-quality target.
+- **H2 — Scale granularity and cost:** compare per-element floating-point representation with calibrated shared-scale/group configurations; preserve symmetric effective couplings and include metadata, alignment, accumulation and access overhead. QAM bit-significance grouping is no longer an application-specific rationale.
+- **H3 — Conditional scaling:** evaluate effects of graph vertex count, density and source weight distribution on useful representation and system cost. Presume neither a monotonic FP advantage nor a flat precision requirement.
 
-## Formal application: BPSK MIMO detection ONLY
-- Complex baseband y=Hx+n, H in C^(Nr×Nt), x in {-1,+1}^Nt; define complex Rayleigh variance and complex AWGN convention.
-- ML residual R(s) = ||y-Hs||²; preserve original unquantized H and y for scoring.
-- Ising convention E(s)=C−Σ_(i<j) Jij si sj−Σ_i hi si. Let G=Re(HᴴH), b=Re(Hᴴy). Set Jij=−2 Gij (i≠j), Jii=0, hi=2 bi, C=||y||² + Σ_i Gii; require exact state-wise matching at small Nt.
-- Communication metric: **BER versus transmitted bits** over SNR; other metrics: original ML residual gap, exact ML-state hit rate at small Nt, and all-inclusive time-to-target at prescribed residual-quality threshold. ML hit is not equivalent to zero BER because noisy ML can differ from transmitted x.
-- Independent channel/noise frames with frozen seeds, Rx/Tx regimes, calibration/held-out split and nested solver RNG. No changing the workload to engineer a format winner.
-- No TSP, Max-Cut, balanced partitioning or spin-glass formal application benchmarks. Tiny generic Ising exact-enumeration/Gibbs unit tests are permitted as software checks; old application codes/results are preserved in archive/pre-mimo-benchmark-20261106 and excluded from H1/H2/H3.
+Numerical representation error and device response nonideality are distinct. Their interaction in output quality is an experimental question; representation choice does not itself establish a physical MTJ nonideality mechanism.
 
-## Format baseline and hardware accounting
-- High precision FP32/FP64 numerical reference.
-- FP4 E2M1, FP6 E3M2 and FP8 E4M3 custom **low-order FP coupling** formats; compare at specified effective storage and cost, not bit-label only.
-- Calibrated scaled INT4/INT6/INT8 and block-floating/shared-exponent representations with identical calibration data.
-- Preserve effective symmetric J, zero diagonal and a coherent J+h implementation; J-only quantization is an explicitly labeled ablation.
-- Count coefficient/bias storage, scales/exponent metadata, sign multiply/select, exponent alignment, accumulation and overflow, memory bandwidth, replicas, swaps, routing and scheduling. Full bit-true simulation in M3 followed by synthesis-backed resources and timing. Software update counts are not watts or seconds.
+## Formal benchmark and scoring
+- Weighted Max-Cut: maximize Cut_w(s)=sum_(i<j) w_ij*(1-s_i*s_j)/2 for s_i in {-1,+1}.
+- Under E=-sum_(i<j)J_ij*s_i*s_j-sum_i h_i*s_i, choose J_ij=-w_ij, symmetric zero-diagonal J and h=0. Then E=sum w-2*Cut_w. Native mapping needs no auxiliary spins.
+- Use fresh identified Biq Mac Mac instances, preserved original weights and verified optimum/bound conventions. Biq/QUBO instances are not silently treated as Max-Cut graphs.
+- Score original cut, reference gap and finite-budget RETURNED-target success. Declare readout and represented-energy retention policies. Any-visit probability is a diagnostic.
+- Split calibration and held-out graphs; nest solver seeds and device populations. Large graph state spaces are not exact-enumeration/Markov-chain requirements.
+- MIMO BER, likelihood beta and antenna-based scaling are historical. Earlier archived graph pilots remain excluded as evidence for the new runs.
 
-## Coupling array and CIM boundary (M2–M3)
-The project still targets an **array-based probabilistic Ising architecture**, with a logical N×N symmetric J and N biases h for N BPSK MIMO spins. In M2–M3 retain the **64–128-spin low-order FP coupling tile**, bit-true exponent/scale alignment and local-field accumulation, p-bit interface, and synthesis-backed cost. The earlier 256×256 conventional MRAM-CIM bitcell array is NOT a required rebuild and its static-MTJ observations are not valid stochastic p-bit response evidence. A coupling tile with SRAM/register storage and separate arithmetic is a digital p-bit accelerator; MRAM-backed near-memory coupling and true in-array CIM are architectural candidates only after explicit weight storage, sign/exponent encoding and computation placement are specified. See docs/ARCHITECTURE_CIM_SCOPE.md. This adds clarity, not a new research direction or benchmark.
+## Hardware and response scope
+Reuse the existing local-field row and representation definitions where appropriate. The application has h=0, so reconsider bias-code storage and hardware rather than carrying over the MIMO FP6-h design conclusion. Device offsets remain separate response parameters.
 
-## Evidence guardrails
-E0 exact math; E1 independent seeded software; E2 illustrative nonideal p-bit response; E3 sourced validated stochastic p-bit response; E4 authorized circuit; E5 bit-true/synthesis or hardware. Device response assumptions cannot be relabeled physical results. No prior ADC/CIM, TSP pilot, past assistant nonideality pilots or parasitic-return measurements may be recycled. Parasitic shared-line coupling is a separate out-of-scope proposal.
+Retain the intended 64–128-spin coupling hardware and bit-true exponent/scale handling, bounded accumulation, p-bit interface and implementation-backed cost. A one-row engine, a tile, and a complete accelerator are different scopes. Count the actual number of row engines, scheduler, stored states, coefficient memory/access, output-retention and conversion/interface overhead. Cell-area estimates alone are not full-system area, energy or performance.
 
-## Milestones (unchanged)
-| M | Deliverable | Exit |
-|---|---|---|
-| M0 | Fresh MIMO-to-Ising reference, ML/BER/solver checks, independent channels and response-model provenance | Exact state-wise equality, credible ideal solver and frozen workload |
-| M1 | FP4/FP6/FP8 vs optimized integer/shared-scale under p-bit nonidealities | H1/H2 bounds and independent-frame paired uncertainty above absolute BER threshold |
-| M2 | Device-aware low-order FP format/scale selection rule and coupling-macro specification | Honest analytical coefficient, exponent alignment, accumulator and replica cost |
-| M3 | Bit-true 64–128 spin tile, RTL/synthesis comparison | Verified arithmetic and implementation-backed area/timing |
-| M4 | Held-out BPSK MIMO and device populations at larger Nt/Nr | Tested operating limits and conditional scaling H3 |
-| M5 | Final architecture, configuration rules and CA/report | Every contribution traced to reproducible evidence |
+Any suitable authorized CMOS standard-cell library may support a clearly labeled first digital comparison; GF22FDX is not mandatory. Digital synthesis does not validate a stochastic STT-MTJ response or establish process-compatible co-integration. A conventional stable-storage MTJ model is not automatically a validated stochastic p-bit model. True in-array CIM is not assumed.
 
-14 active working weeks plus 2 weeks buffer around exams. Target M1/M2 for CA3, synthesis at M3, board deployment optional.
+## Evidence and milestones
+E0 exact theory; E1 seeded algorithmic simulations; E2 illustrative response; E3 sourced/validated device response; E4 authorized circuit simulation; E5 bit-true/synthesis/hardware. Keep these distinctions explicit and do not reuse restricted or unrelated old data.
 
-## Prior art and intended novelty
-Singh et al., *Ising Machines' Dynamics and Regularization for Near-Optimal MIMO Detection*, IEEE TWC 2022, DOI 10.1109/TWC.2022.3189604, already studied finite-precision Ising couplings for MIMO. Our target is **device-response-aware low-order floating-point coupling and scale granularity with implementation-backed cost**, not a new MIMO algorithm or a generic finite-bit observation.
+| Stage | Deliverable |
+|---|---|
+| M0 | Weighted-Max-Cut loader/mapping and independent original-cut checks; bounded baseline validation |
+| M1 | Existing coupling representations under ideal/nonideal responses, paired by graph; H1/H2 quality bounds |
+| M2 | STT-MRAM-aware coupling configuration and costed local-field/output-policy specification |
+| M3 | Bit-true coupling hardware and synthesis-backed area/timing with full stated scope |
+| M4 | Held-out graph families/sizes and device populations; conditional H3 |
+| M5 | Supported design rules, operating limits and final report |
+
+Existing component verification remains evidence for that component. Neither previous MIMO results nor the existence of RTL constitutes a completed Biq Mac benchmark. Keep prior results intact; no new simulation or infrastructure expansion is implied by this scope update.

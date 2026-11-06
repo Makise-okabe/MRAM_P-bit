@@ -1,25 +1,28 @@
-# MRAM p-bit FYP — LOCKED low-order floating-point coupling / BPSK MIMO
+# STT-MRAM p-bit FYP — Low-order floating-point coupling / weighted Max-Cut
 
-**Research core:** custom **low-order floating-point FP4/FP6/FP8 coupling** and per-edge/row/tile exponent scale granularity for nonideal MRAM p-bits. Build a bit-true coupling macro and synthesis-backed cost comparison; optimized scaled integers and block floating point are mandatory fair baselines.
+**Current benchmark decision, 6 November 2026:** weighted Max-Cut using the **Mac (Max-Cut) instances in the Biq Mac Library**. The user confirmed this choice after discussion with the supervisor. MIMO is no longer an active application benchmark; SAT/MaxSAT are not the selected implementation route.
 
-**Application:** complex **BPSK MIMO detection** only. It is a benchmark of device-aware coupling quality and hardware cost, **not** an attempt to invent a MIMO detector. Older TSP/Max-Cut/partition/Ising pilot results are excluded. Old task-specific scripts/tests are **removed from the active tree**, but fully preserved on archive/pre-mimo-benchmark-20261106. Active code uses generic exact Ising mathematics and fresh complex BPSK MIMO.
+**Research core remains:** low-order floating-point coupling representation and scale granularity under nonideal **STT-MRAM p-bit** responses, with optimized integer and shared-exponent/BFP controls and an implementation-backed quality–cost comparison.
 
-**Question (unchanged):** How should coupling precision and scale granularity be chosen for nonideal MRAM p-bit systems to preserve useful optimization performance at lower implementation cost?
+**Research question:** Which coupling configuration preserves useful weighted-Max-Cut solution quality under a specified STT-MRAM p-bit response at lower implementation cost?
 
-H1 device-dependent useful precision; H2 exponent/scale granularity; H3 conditional scaling with antenna dimensions and SNR. **M0–M5 unchanged.** Floating-point is the design target, not a required performance winner.
+Representation determines numerical error and digital implementation cost. Device nonidealities determine deviations in the p-bit response. Their joint effect on solution quality is to be tested, not assumed.
 
-See [Architecture and CIM boundary](docs/ARCHITECTURE_CIM_SCOPE.md): **64–128-spin low-order FP coupling tile and RTL/synthesis remain in scope**, but true MRAM-CIM requires actual array-integrated computation; our software currently demonstrates neither a fabricated p-bit array nor a CIM macro.
+## Active sources of scope
+- [Supervisor-approved benchmark decision and mapping](docs/BENCHMARK_DECISION_WEIGHTED_MAXCUT_20261106.md)
+- [Current roadmap](docs/ROADMAP_LOCKED_2026-11-06.md)
+- [Evidence rules](docs/RESEARCH_PROTOCOL.md)
+- [Official Biq Mac Library](https://biqmac.aau.at/biqmaclib.html)
 
-Read: [Locked roadmap](docs/ROADMAP_LOCKED_2026-11-06.md), [MIMO protocol](docs/M0_MIMO_BENCHMARK.md), [M0 acceptance](docs/M0_ACCEPTANCE.md), [evidence rules](docs/RESEARCH_PROTOCOL.md).
+## What changes
+- One graph vertex corresponds to one spin. Native weighted Max-Cut uses pairwise couplings, no auxiliary spins, and zero problem bias h.
+- Score returned states with the **original graph weights**: cut value, gap to a verified optimum/bound, and fixed-budget target success.
+- Communication BER, QAM significance grouping and AWGN-posterior beta are not weighted-Max-Cut metrics or operating-point rules.
+- Existing formats, generic Ising arithmetic and row RTL are reusable components. The MIMO-specific FP6-bias conclusion does not carry over to h=0.
 
-**M0:** independently seeded complex channel/AWGN, exact state-wise ML-to-Ising validation, correct ML vs BER semantics and sampler/reference checks. M1: device-nonideality x FP4/6/8 vs optimized integer/BFP. M2: precision/scale configuration and macro cost. M3: bit-true RTL+synthesis. M4: held-out larger MIMO. M5: report.
+## Current implementation status
+This is a **scope/documentation update**, not a completed benchmark-code migration. Existing main-branch application scripts and CI still include the historical MIMO implementation. No Biq Mac import, weighted-Max-Cut result or new physical-MRAM result is claimed here. Do not start further MIMO performance sweeps.
 
-No old CIM/ADC/TSP pilot, earlier synthetic pilot or shared-line parasitic data reused. No restricted PDK in this public repository. Active source of truth is GitHub main; existing Overleaf project snapshots do not auto-update.
+Prior MIMO, TSP, CIM/ADC and older Max-Cut pilots remain historical evidence only. The new benchmark requires fresh, identified Biq Mac instances and runs; old archived graph results are not retrospectively promoted. Preserve the M2 hardware work and its component verification without relabeling it as a complete Max-Cut accelerator.
 
-## M0 command (new)
-```bash
-python3 -m unittest discover -s tests -v
-python3 experiments/m0_mimo_reference.py --tx 4 --rx 4 --snr-db 10 --output results/m0_mimo_first
-```
-
-Prior art already demonstrates finite-bit Ising-MIMO couplings (Singh et al., IEEE TWC 2022); our contribution must specifically be device-aware low-order floating-point scale/architecture and implementation evidence.
+M0–M5 remain the research stages: mapping/reference, joint representation–response evaluation, design rule and cost specification, bit-true/synthesized hardware, held-out scaling, final report. The planned 64–128-spin coupling hardware remains in scope; neither fabricated stochastic MTJs nor a GF22FDX implementation are claimed. No new format search, toolchain expansion or simulation was introduced by this decision.

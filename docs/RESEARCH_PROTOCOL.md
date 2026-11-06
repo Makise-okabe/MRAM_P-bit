@@ -1,12 +1,15 @@
-# New evidence protocol v1 (2026-11-06)
+# Evidence protocol — weighted Max-Cut / STT-MRAM p-bit coupling
 
-**FINAL BENCHMARK POLICY:** BPSK MIMO detection ONLY for application quality/cost evaluation. Old TSP/Max-Cut/partition/spin-glass results excluded; tiny exact Ising tests may remain for software correctness. H1/H2/H3, M0–M5 and clean-slate evidence policy unchanged. Central design MUST be low-order floating-point FP4/FP6/FP8 coupling and scale granularity with fair optimized INT and BFP comparisons. Parasitic shared-line proposal out of scope.
+**Active policy, 6 November 2026:** weighted Max-Cut using the Biq Mac Library Mac section, confirmed after supervisor discussion. The [benchmark decision](BENCHMARK_DECISION_WEIGHTED_MAXCUT_20261106.md) supersedes earlier BPSK/QAM-only policies. Low-order FP coupling and STT-MRAM p-bit nonidealities remain the core; optimized INT/BFP are controls.
 
-Tier E0 exact theory/enumeration; E1 seeded algorithmic instance simulation; E2 explicitly illustrative behavioral response; E3 sourced validated device curves; E4 authorized circuit simulation; E5 synthesis/extraction/silicon. Label each claim by its tier.
-Independent problem instance is the statistical unit; solver seeds nested. Predeclare calibration/held-out membership, quality floor and time-to-target conditions. Save original and quantized J+h, scale/codebook, energy constant, problem objective, RNG seeds, beta/PT schedule, source/config/input/output hashes, per-trial hit and validity, all update and swap counts.
-All formats use same task instances and budget. Ideal local updates and PT exchange must use consistent quantized Hamiltonian. Only original task is scored. Validate symmetry, zero diagonal and correct QUBO/Ising conversion.
-Paired trials: both/INT-only/FP-only/neither with paired uncertainty and cluster bootstrap by independent instance. No noninferiority claim without explicit equivalence tolerance and CI. Device nonideal models with unverified parameters are E2 only.
-No software-update count is physical latency or energy. A flatter precision curve after task quality collapses is a failure, not a saving.
+Tier E0 exact theory; E1 seeded algorithmic simulation; E2 illustrative response; E3 sourced/validated device response; E4 authorized circuit; E5 bit-true/synthesis/hardware. Do not relabel synthetic response parameters or CMOS logic synthesis as measured stochastic-MTJ evidence.
 
-Old CIM/TSP/previous assistant-pilot results are excluded by instruction. M0 acceptance is documented separately.
-BPSK MIMO metrics: original ML objective ||y-Hs||², BER against transmitted BPSK x, ML-hit for small exact instances, and time-to-target with all replica/swap costs. ML-hit is not the same as correct transmitted bits. Preserve H, x, received y, complex noise variance/SNR, channel and solver seed, original and quantized J+h, scale metadata and output hashes; cluster independent channel/noise frames correctly. No synthetic p-bit response may be called physical MRAM evidence.
+Independent graph instance is the statistical unit. Pair representations on the same original graph and budgets; nest solver seeds and device populations. Predeclare calibration/held-out graphs, quality floor, target definition and observation/output policy. Save source instance identity and weights, represented J, format/scale/rounding, input normalization, seeds, attempted updates and relevant source/output hashes. Do not add infrastructure beyond what the actual experiment needs.
+
+Use symmetric zero-diagonal J=-w and h=0 under E=-sum J_ij*s_i*s_j. The original objective is Cut_w=sum w_ij*(1-s_i*s_j)/2 and E=sum w-2*Cut_w. Verify signs and reference-value conventions independently. Report original-cut quality and gap; identify references as certified optima, best-known values or bounds. Relative gaps require a meaningful denominator. Original/represented objectives must not be silently interchanged.
+
+Any-visit target probability, final snapshot quality and best-represented-energy returned output are distinct. Runtime selection may not consult an uncosted original-task oracle. Physical offset does not vanish just because problem h=0.
+
+Use unchanged source weights, including signs. Weighted integer instances are legitimate: do not introduce fractional or widened weights just to favor FP. No FP advantage is assumed. Preserve metadata, encoded-scale, accumulator and memory/access costs. Update counts are not physical latency/energy; pre-placement logic area is not total accelerator area.
+
+Earlier MIMO, TSP/CIM and archived Max-Cut pilots remain historical only. Generic mathematical tests and component RTL evidence may be reused within their stated scope; new Biq Mac task claims require fresh instance-specific runs. Do not claim that documentation migration has implemented or executed the new benchmark.
