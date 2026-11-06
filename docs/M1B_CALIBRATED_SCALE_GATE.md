@@ -21,3 +21,7 @@ python3 experiments/m1_calibrated_scale_gate.py \
 ```
 
 M1B preserves CAL and HELDOUT complete channel/noise frames, every frozen scale (JSON), per-format exact-quantization state metrics and SHA256 hashes. 24 held-out frames per SNR are preliminary, not sufficient to infer noninferiority or FP advantage. **Next H1:** physically sourced stochastic MRAM p-bit response and independent device populations, finite update-budget time-to-target on a calibrated format/coupling tile. **Next M2/M3:** bit-true FP exponent alignment/accumulation and synthesis cost against equally routed integer schemes. No old TSP/CIM records imported.
+
+## Finite-only FP and J/h extension (integration of earlier draft PR #14)
+
+OCP finite-only E2M1/E3M2 format candidates (fp4_fn and fp6_fn) now run in the same global/tile, CAL-only-fitted framework. The follow-on read-only M1C ablation compares the influence of represented J versus h, and mixed FP4-J/FP6-h against matching mixed INT4-J/INT6-h, without using the original ML optimum to fit scales. See docs/M1C_FINITE_FP_JH_ABLATION.md and the Overleaf-ready report section. OCP element encodings are prior art, not demonstrated MRAM-CIM hardware or novel device results; no new NUS experimental outcome is claimed by this commit.

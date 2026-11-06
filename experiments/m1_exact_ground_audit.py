@@ -80,16 +80,22 @@ def audit(rows,frame_dict,tile=4,legacy_fp32=False):
         if ckey not in cache:
             oracle=mimo.exact_ml(frame)
             quant=quantized_minima(frame,label,tile,legacy_fp32=legacy_fp32)
-            source_min=tuple(oracle["state"])
-            in_min=source_min in quant["minima"]
-            min_original_gap=min(
+            original_gaps=[
                 mimo.original_residual(frame,s)-oracle["residual"]
-                for s in quant["minima"])
+                for s in quant["minima"]]
+            min_original_gap=min(original_gaps)
+            # Preserve ANY original ML minimizer, including a degenerate ML
+            # state different from the single representative returned by exact_ml.
+            original_ml_minima=sum(gap<=ATOL for gap in original_gaps)
+            in_min=original_ml_minima>0
             cache[ckey]=(quant,oracle,in_min,max(0.0,min_original_gap))
             unique.append(dict(
                 frame_index=key[0],snr_db=key[1],format=label,
                 original_ml_is_quantized_minimizer=int(in_min),
                 quantized_ground_degeneracy=len(quant["minima"]),
+                original_ml_minimizers_in_quantized_ground=original_ml_minima,
+                non_ml_minimizers_in_quantized_ground=(
+                    len(quant["minima"])-original_ml_minima),
                 best_original_gap_within_quantized_minima=max(0.0,min_original_gap)
             ))
         quant,oracle,in_min,min_gap=cache[ckey]
@@ -111,12 +117,23 @@ def audit(rows,frame_dict,tile=4,legacy_fp32=False):
         selected_original_ml=original_gap<=ATOL
         if selected_original_ml!=(int(row["ml_hit"])==1):
             raise ValueError("saved ML-hit label mismatch")
+        # Partition ORIGINAL-objective misses. A non-ML state tied at the
+        # quantized minimum is not evidence of a sampler convergence failure.
+        if selected_original_ml:
+            outcome="original_ml_hit"
+        elif not selected_quant_ground:
+            outcome="sampling_miss"
+        elif in_min:
+            outcome="quantized_tie_non_ml"
+        else:
+            outcome="changed_quantized_optimum"
         evaluated.append(dict(
             frame_index=key[0],snr_db=key[1],format=label,
             response=row["response"],
             original_ml_in_quantized_minima=int(in_min),
             selected_is_quantized_minimum=int(selected_quant_ground),
             selected_is_original_ml=int(selected_original_ml),
+            selection_outcome=outcome,
             selected_original_gap=original_gap,
             best_possible_gap_among_quantized_minima=min_gap,
             quantized_energy_gap=max(0.0,local_e-quant["ground_energy"])
@@ -140,9 +157,14 @@ def audit(rows,frame_dict,tile=4,legacy_fp32=False):
                     found_quantized_minimum=sum(
                         r["selected_is_quantized_minimum"] for r in group),
                     original_ml_hits=sum(r["selected_is_original_ml"] for r in group),
-                    failed_sampling_even_when_orig_ml_is_quant_min=sum(
-                        r["original_ml_in_quantized_minima"] and
-                        not r["selected_is_original_ml"] for r in group),
+                    original_ml_not_preserved=sum(
+                        not r["original_ml_in_quantized_minima"] for r in group),
+                    missed_original_ml_not_at_quantized_minimum=sum(
+                        r["selection_outcome"]=="sampling_miss" for r in group),
+                    missed_original_ml_at_quantized_tie=sum(
+                        r["selection_outcome"]=="quantized_tie_non_ml" for r in group),
+                    missed_original_ml_at_changed_quantized_optimum=sum(
+                        r["selection_outcome"]=="changed_quantized_optimum" for r in group),
                     mean_selected_quantized_gap=sum(
                         r["quantized_energy_gap"] for r in group)/n,
                     mean_original_residual_gap=sum(
@@ -170,7 +192,12 @@ def write_output(path,source_csv,source_frames,unique,evaluated,summary,legacy_f
         reference_interpretation=("LEGACY fp32 values treated as unrounded fp64_ref; pilot date 2026-11-06" if legacy_fp32
                                  else "fp32 uses real binary32-rounded coefficient values in current code"),
         notes="Quantization ground-state preservation and sampled-solver ground-state arrival are distinct. "
+              "Preservation means ANY original ML state remains a quantized minimum. "
               "Quantized ground tie states may have different original ML residuals. "
+              "Original-ML misses are partitioned into selection above the quantized minimum, "
+              "a non-ML quantized tie despite an ML minimizer surviving, or a changed quantized optimum. "
+              "These selection outcomes do not imply independent causal effects; "
+              "quantization bias can coexist with a selected state above the quantized minimum. "
               "A candidate can match original ML without minimizing quantized energy, "
               "or can minimize quantized energy without matching original ML. "
               "No time-to-target, hardware energy, device-proven nonideality or format novelty inferred.",
@@ -207,6 +234,14 @@ def main():
               f'{item["original_ml_preserved_as_quantized_minimum"]:2d}/{item["frames"]:2d} | '
               f'{item["found_quantized_minimum"]:2d}/{item["frames"]:2d} | '
               f'{item["original_ml_hits"]:2d}/{item["frames"]:2d}')
+    print("=== ORIGINAL-ML MISS BREAKDOWN (mutually exclusive per returned state) ===")
+    print("Response SNR Format | Above-quant-min | Non-ML-quant-tie | Changed-quant-optimum")
+    for item in summary:
+        print(f'{item["response"]:11s} {item["snr_db"]:>4g} '
+              f'{item["format"]:7s} | '
+              f'{item["missed_original_ml_not_at_quantized_minimum"]:2d} | '
+              f'{item["missed_original_ml_at_quantized_tie"]:2d} | '
+              f'{item["missed_original_ml_at_changed_quantized_optimum"]:2d}')
     print(f"Evidence folder: {a.output}")
 
 

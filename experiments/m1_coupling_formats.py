@@ -10,10 +10,23 @@ import struct
 from collections import defaultdict
 
 FP_FORMATS = {"fp4": (2, 1), "fp6": (3, 2), "fp8": (4, 3)}
+FINITE_FP_FORMATS = {"fp4_fn": (2, 1), "fp6_fn": (3, 2)}
 INT_FORMATS = {"int4": 4, "int6": 6, "int8": 8}
 BFP_FORMATS = {"bfp4": 4, "bfp6": 6, "bfp8": 8}
 FORMATS = ("fp64_ref", "fp32", "fp4", "fp6", "fp8",
-           "int4", "int6", "int8", "bfp4", "bfp6", "bfp8")
+           "int4", "int6", "int8", "bfp4", "bfp6", "bfp8",
+           "fp4_fn", "fp6_fn")
+
+
+def format_bits(kind):
+    if kind in ("fp64_ref", "fp32"):
+        return 64 if kind == "fp64_ref" else 32
+    if kind in FP_FORMATS or kind in FINITE_FP_FORMATS:
+        e,m=FP_FORMATS.get(kind,FINITE_FP_FORMATS.get(kind))
+        return 1+e+m
+    if kind in INT_FORMATS or kind in BFP_FORMATS:
+        return INT_FORMATS.get(kind,BFP_FORMATS.get(kind))
+    raise ValueError("unknown format")
 
 
 def f32(x):
@@ -29,11 +42,14 @@ def f32(x):
     return struct.unpack("!f", struct.pack("!f", x))[0]
 
 
-def fp_positive_levels(exponent_bits, mantissa_bits):
+def fp_positive_levels(exponent_bits, mantissa_bits, *, finite_only=False):
     """Finite E(e)M(m) format: exp field all ones reserved, no Inf/NaN used.
 
     exp=0: signed zero and subnormal fractions; exp=1..2**e-2 normal;
     bias=2**(e-1)-1. Overflow saturates at largest finite number.
+    finite_only=True also uses the all-ones exponent for normal values.
+    This gives the OCP MX FP4 E2M1 / FP6 E3M2 element value sets, but the
+    instance-tuned global scale here is NOT a full MX implementation.
     At this stage signed negative zero is decoded as zero (not stored as code).
     """
     if exponent_bits < 2 or mantissa_bits < 1:
@@ -42,18 +58,29 @@ def fp_positive_levels(exponent_bits, mantissa_bits):
     levels = [0.0]
     for frac in range(1, 1 << mantissa_bits):
         levels.append((frac / (1 << mantissa_bits)) * 2.0**(1-bias))
-    for exponent in range(1, (1 << exponent_bits) - 1):
+    stop=(1 << exponent_bits) if finite_only else (1 << exponent_bits)-1
+    for exponent in range(1, stop):
         for frac in range(1 << mantissa_bits):
             levels.append((1 + frac/(1 << mantissa_bits)) * 2.0**(exponent-bias))
     return sorted(set(levels))
 
 
+def format_positive_levels(kind):
+    if kind in FINITE_FP_FORMATS:
+        return fp_positive_levels(*FINITE_FP_FORMATS[kind],finite_only=True)
+    return fp_positive_levels(*FP_FORMATS[kind])
+
+
 def quantized_level(x, scale, kind):
-    """Symmetric round-to-nearest/ties-to-smaller magnitude; saturating."""
+    """Symmetric nearest rounding and saturation.
+
+    Historical labels keep ties-to-smaller magnitude. New *_fn labels use
+    ties-to-even in the element encoding, as specified by OCP MX v1.0.
+    """
     if not math.isfinite(x) or not math.isfinite(scale) or scale <= 0:
         raise ValueError("need finite coefficient and positive scale")
     if kind.startswith("fp"):
-        positive = fp_positive_levels(*FP_FORMATS[kind])
+        positive = format_positive_levels(kind)
         a = abs(x)/scale
         j = bisect.bisect_left(positive, a)
         if j == len(positive):
@@ -62,7 +89,13 @@ def quantized_level(x, scale, kind):
             q = positive[0]
         else:
             lo, hi = positive[j-1], positive[j]
-            q = lo if a-lo <= hi-a else hi
+            lower_distance,upper_distance=a-lo,hi-a
+            if kind in FINITE_FP_FORMATS and lower_distance==upper_distance:
+                # Ordered nonnegative code index is the raw exponent/mantissa
+                # encoding; its low bit determines ties-to-even.
+                q = lo if (j-1)%2==0 else hi
+            else:
+                q = lo if lower_distance <= upper_distance else hi
         return math.copysign(q * scale, x) if q else 0.0
     bits = INT_FORMATS.get(kind, BFP_FORMATS.get(kind))
     if bits is None:
@@ -88,7 +121,7 @@ def tune_scale(values, kind):
     if vmax == 0:
         return 1.0, [0.0]*len(values)
     if kind.startswith("fp"):
-        upper = fp_positive_levels(*FP_FORMATS[kind])[-1]
+        upper = format_positive_levels(kind)[-1]
     else:
         bits = INT_FORMATS.get(kind, BFP_FORMATS.get(kind))
         if bits is None:
@@ -162,7 +195,7 @@ def quantize_couplings(J,h,kind,tile=4):
         for (i,j,_),value in zip(elements,q):
             qJ[i][j]=qJ[j][i]=value
     h_scale,qh=tune_scale(h,kind)
-    bits=int(kind[-1]) if kind != "fp32" else 32
+    bits=format_bits(kind)
     # 32-bit real scales for FP/INT per J group, plus h.
     # BFP scale is assumed a signed 8-bit exponent for PoT scale; bounds
     # and encoding must be validated in later macro work.

@@ -17,7 +17,7 @@ import m0_mimo_reference as mimo
 import m0_ising_math as core
 import m1_coupling_formats as quant
 
-FAMILIES=("fp4","fp6","fp8","int4","int6","int8","bfp4","bfp6","bfp8")
+FAMILIES=("fp4","fp4_fn","fp6","fp6_fn","fp8","int4","int6","int8","bfp4","bfp6","bfp8")
 GRANULARITIES=("global","tile")
 ATOL=1e-8
 
@@ -91,7 +91,7 @@ def quantize_with_frozen(frame, kind, gran, tile, frozen_scales):
             J[i][j]=J[j][i]=quant.quantized_level(frame["J"][i][j],scale,kind)
     h=[quant.quantized_level(v,frozen_scales["h"],kind) for v in frame["h"]]
     core.assert_ising(J,h)
-    b=int(kind[-1])
+    b=quant.format_bits(kind)
     scale_metadata_width=8 if kind.startswith("bfp") else 32
     unique_coefs=n*(n-1)//2+n
     return {
@@ -123,7 +123,7 @@ def exact_ground_compare(frame, q):
     higher=[e-ground for e,_ in levels if e>ground+ATOL]
     minimum_energy_gap=min(higher) if higher else None
     return {
-        "original_ml_preserved":int(tuple(oracle["state"]) in minima),
+        "original_ml_preserved":int(min(original_gaps)<=ATOL),
         "quantized_ground_degeneracy":len(minima),
         "ground_degenerate":int(len(minima)>1),
         "best_possible_original_gap":min(original_gaps),
@@ -227,7 +227,7 @@ def main():
     ap.add_argument("--heldout-frames",type=int,default=24)
     ap.add_argument("--cal-seed",type=int,default=2026112000)
     ap.add_argument("--heldout-seed",type=int,default=2026113000)
-    ap.add_argument("--formats",default="fp4,int4,bfp4,fp6,int6,bfp6,fp8,int8,bfp8")
+    ap.add_argument("--formats",default="fp4,fp4_fn,int4,bfp4,fp6,fp6_fn,int6,bfp6,fp8,int8,bfp8")
     ap.add_argument("--granularities",default="global,tile")
     ap.add_argument("--tile",type=int,default=4)
     ap.add_argument("--output",required=True,type=Path)
