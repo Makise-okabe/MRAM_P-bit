@@ -229,7 +229,7 @@ def run(output: Path, ideal_csv: Path) -> None:
                 if score > optimum + 1e-7:
                     raise AssertionError("published original optimum exceeded")
                 rows.append(dict(graph=graph_name, graph_sha256=graph.sha256,
-                                 configuration=fmt, seed=seed, official_optimum=optimum,
+                                 configuration=fmt, official_optimum=optimum,
                                  gap_pct=100*(optimum-score)/optimum,
                                  e1_paired_gap_pct=ideal[(graph_name,fmt,seed)],
                                  **x))
