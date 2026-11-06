@@ -108,6 +108,32 @@ These results motivate paired final-state/first-hit diagnostics and
 a deployable scale/accumulator study; they do not motivate changing
 the locked BPSK MIMO benchmark or low-order-FP hardware direction.
 
+\subsection{Paired response sensitivity and exact-ground diagnostic}
+The same NUS pilot was subsequently analyzed in paired comparisons against
+the ideal response (12 original frames per SNR and representation).
+The illustrative gain-$0.80$ and offset-$\sigma=0.15$ variants changed
+\emph{no final selected states} among the tested 10 format labels and both
+SNRs, though some first-best-recorded checkpoints changed.
+The contrast-$0.90$ response changed only one selected state:
+BFP4 at $0$~dB (1 of 12 paired frames), and reduced that group's
+original-ML hit count by one. These final-state comparisons are highly
+dependent across formats, response settings and SNRs, so they are not
+independent experimental replicates. A different first-best checkpoint
+is \emph{not} a measured hardware time-to-target.
+
+At the same four-bit nominal storage, paired original-ML hit comparisons
+favored INT4 in 2 frames versus FP4 in 1 frame at $0$~dB, and
+in 2 frames versus 0 at $5$~dB; the total bit-error counts were
+identical. No meaningful FP-versus-INT superiority is established.
+
+An additional exact finite-spin diagnostic is prepared to enumerate all
+$2^8=256$ states of each quantized Hamiltonian, independently checking
+whether coefficient quantization destroys the original ML optimum or
+whether stochastic p-bit sampling fails to reach a preserved optimum.
+It uses the original saved NUS channel frames and does not rerun, tune,
+or replace their measurements. This is an \emph{upcoming analysis},
+not an already observed result. Any nonideal response remains
+illustrative until physically validated against stochastic MRAM data.
 \section{Project schedule}
 Fourteen active working weeks and two weeks buffer, reduced capacity around exams. Aim for M1/M2 for CA3. FPGA deployment is optional. A well-supported integer-favoring configuration rule can be a valid outcome.
 \begin{thebibliography}{9}
