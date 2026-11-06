@@ -335,6 +335,37 @@ sourced p-bit response, a fixed finite-budget original
 MIMO-quality criterion, and bit-true RTL/synthesis
 cost for the proposed 64--128-spin coupling tile.
 
+\subsection{Required physical MRAM p-bit response gate}
+Unlike a high-retention static eMRAM storage MTJ, a stochastic
+$p$-bit requires a fluctuation mechanism with a controllable
+state probability and a characterized update time. Recent
+hybrid memristor--stochastic-MTJ experiments measured a
+voltage-dependent sigmoidal switching probability, strong
+pulse-width sensitivity in slower devices, and variability
+among SMTJs \cite{hybrid2026}. Independent work reported a
+CMOS-integrated superparamagnetic-MTJ $p$-bit at 130~nm
+\cite{cacoilo2026} and an on-chip stochastic-MTJ/transistor
+$p$-bit core with material- and circuit-dependent response
+nonidealities \cite{daniel2024}. These studies show plausible
+response mechanisms, but \emph{do not validate} our
+available stable-storage MRAM model as a stochastic MTJ or
+establish process portability to the proposed coupling tile.
+
+Before H1 can support a physical novelty claim, we must
+identify a permitted stochastic-device response model
+or measured voltage/current-to-probability data, its
+pulse-width/time correlation and device variation, and
+the circuit mapping from accumulated $H_i$ to the
+$p$-bit input. If external publications provide only
+cross-technology response curves, results must be
+explicitly labeled literature-informed behavioral modeling.
+The decisive experiment then compares fixed finite
+spin-update budgets and original-task MIMO quality for
+the selected mixed FP, matched mixed INT, and BFP6
+designs with uncertainty and bit-true synthesized cost.
+No more unconstrained codebook sweeps are justified
+by the existing 24-frame result.
+
 \section{Project schedule}
 Fourteen active working weeks and two weeks buffer, reduced capacity around exams. Aim for M1/M2 for CA3. FPGA deployment is optional. A well-supported integer-favoring configuration rule can be a valid outcome.
 \begin{thebibliography}{9}
@@ -343,5 +374,7 @@ Fourteen active working weeks and two weeks buffer, reduced capacity around exam
 \bibitem{hybrid2026} ``Intrinsic annealing in a hybrid memristor-magnetic tunnel junction Ising machine,'' \emph{Nature Communications} (2026), DOI: 10.1038/s41467-026-71844-8.
 \bibitem{vcma2024} ``In-Memory Neural Stochastic Differential Equations with Probabilistic Differential Pair Achieved by In-Situ P-Bit Using CMOS Integrated Voltage-Controlled Magnetic Tunnel Junctions,'' \emph{IEDM} (2024), DOI: 10.1109/IEDM50854.2024.10873318.
 \bibitem{ocpmx2023} Open Compute Project, ``OCP Microscaling Formats (MX) Specification,'' Version 1.0, Sep. 2023, Secs. 5.3.2--5.3.3, \url{https://www.opencompute.org/documents/ocp-microscaling-formats-mx-v1-0-spec-final-pdf}.
+\bibitem{cacoilo2026} N. Cacoilo et al., ``130-nm CMOS-Integrated Superparamagnetic Tunnel Junction-Based p-bit,'' \emph{IEEE Electron Device Letters} 47 (2026), DOI: 10.1109/LED.2026.3696800.
+\bibitem{daniel2024} J. Daniel et al., ``Experimental demonstration of an on-chip p-bit core based on stochastic magnetic tunnel junctions and 2D MoS2 transistors,'' \emph{Nature Communications} 15, 4098 (2024), DOI: 10.1038/s41467-024-48152-0.
 \end{thebibliography}
 \end{document}
