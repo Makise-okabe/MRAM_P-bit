@@ -98,7 +98,7 @@ def read_m1b(path):
     if not frames:
         raise ValueError("missing heldout MIMO frames")
     if set(range(conf["cal_seed"],conf["cal_seed"]+conf["cal_frames"])) & \
-       set(range(conf["heldout_seed"],conf["heldout_seed"]+conf["heldout_frames"])):
+       set(range(conf["held_seed"],conf["held_seed"]+conf["heldout_frames"])):
         raise ValueError("CAL/HELD seed overlap")
     return frames,frozen,conf
 
