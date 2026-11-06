@@ -108,3 +108,21 @@ The original ML preservation numbers repeat across response models because those
 - Hence H1 (device-dependent useful precision) has NOT been demonstrated; H2 (floating-point exponent/scale granularity value) is NOT isolated, H3 not studied; the MRAM response models remain synthetic E2.
 
 **Next required scientific gate:** use existing `format_exact_minima.csv` to quantify ground-state multiplicity and margin/degeneracy, then compare FP versus tuned INT at **the same global/tile scale granularity and full hardware metadata cost**. Follow with finite-budget, multi-seed p-bit dynamics under a physically justified stochastic MRAM transfer curve. The architecture remains a 64–128-spin low-order FP coupling array; BPSK MIMO remains the sole application benchmark.
+
+## Confirmed ground-state multiplicities (additional NUS read-only diagnostic, 6 Nov 2026)
+
+User inspected the original `results/m1_exact_ground_20261106T015525Z_3625599/format_exact_minima.csv` and `frame_exact_audit.csv`, **without rerunning the solver or importing prior project results**.
+
+| Format | 0 dB degenerate frames (of 12) | 5 dB degenerate frames (of 12) | Maximum quantized ground degeneracy |
+|---|---:|---:|---:|
+| FP4 | 0 | 0 | 1 |
+| INT4 | 0 | 0 | 1 |
+| BFP4 | 2 | 1 | 3 |
+| BFP6 | 0 | 1 | 2 |
+| FP6 | 0 | 0 | 1 |
+
+The exact frame identifiers where the original ML solution remains in the quantized-ground set but **is not** the ultimately selected quantized-ground solution (under ideal response) are: `BFP4 @ 0 dB, frame 10`; `BFP4 @ 5 dB, frame 8`; `BFP6 @ 5 dB, frame 10`. These confirm a restricted **ground-state tie / degeneracy mechanism** only for some BFP quantizers in this dataset. In contrast, FP4 and INT4 failures here arise from a unique quantized minimum that no longer matches the original ML solution, so making the sampler converge harder to the *same* quantized Hamiltonian cannot fix those original ML errors.
+
+The exact audit uses `ATOL=1e-8` on energies; degeneracy is mathematical/software-level within that tolerance, not proof of equal physical currents or identical magnetic free energy. A different nonideal p-bit trajectory might select among tied minima, but there is no current evidence of a general device-dependent useful precision advantage. At 0 dB, BFP4 had two frames with degeneracy >1, but only one ideal-response frame with ML-preserved-but-not-selected; those counts must not be conflated. At 5 dB, BFP4 and BFP6 each had one identified discrepancy. Multiple SNR points use the same channel seeds; not independent populations.
+
+**Decision to stop repeated tiny-pilot diagnostics:** next substantive M1 experiment must use (a) frozen CAL-versus-HELDOUT coefficient scales, (b) both global and matched tile-pair granularity for **each** FP and INT/BFP baseline, (c) equal spin-update budget and a fixed quantized-Hamiltonian selection rule, (d) representation metrics including original-ML optimum retention, ground degeneracy, original residual gap and BER, and (e) independently sourced or physically validated stochastic MRAM p-bit response before any H1 physical claim. Report actual coefficient+scale bits and later RTL alignment/accumulator costs rather than calling bit counts silicon area/energy. The locked 64–128-spin array, FP4/6/8 core design and BPSK MIMO application do NOT change.
