@@ -27,6 +27,18 @@ This asynchronous Gibbs model is mathematical reference software, not a validate
 \item[H2: Scale granularity.] When do per-element exponents justify their storage and arithmetic cost compared with optimized global, row, tile, or block scales? Preserve symmetric effective couplings.
 \item[H3: Size dependence.] Across BPSK MIMO channel dimensions, antenna ratios, SNR and conditioning, determine useful precision requirements without assuming a trend.
 \end{description}
+\section{Proposed Coupling Array and Relationship to CIM}
+The FYP retains an array-based hardware target: a stochastic $p$-bit Ising machine with a low-order floating-point coupling array, not the earlier conventional MRAM-CIM current-summing/ADC array. For $N=N_t$ BPSK MIMO spins, the logical architecture has a symmetric $N\times N$ coupling matrix $J$, $N$ biases $h_i$, and a feedback spin state vector. The coupling hardware computes a selected local field
+\begin{equation}
+H_i=h_i+\sum_{j\ne i}J_{ij}s_j,
+\end{equation}
+using stored low-order FP4/FP6/FP8 coefficients, sign selection, exponent/scale alignment and bounded-width accumulation. A stochastic MRAM $p$-bit updates its state according to its actual probability-controlling input. The ideal sigmoid of the mathematical reference is not a foundry-validated magnetic-device response.
+
+The M2--M3 hardware milestone remains a \emph{bit-true 64--128-spin coupling tile} and synthesis-backed area/timing estimate. This tile includes coupling/bias storage assumptions, format decoding, accumulation, update scheduling, p-bit-interface abstraction and accounting for interconnect, bandwidth and scale metadata. It does \emph{not} imply a fabricated 64--128-$p$-bit MTJ array or rebuilding the former 256$\times$256 2T1MTJ-CIM circuit.
+
+Three physical integrations must be distinguished: a digital SRAM/register-driven coupling processor is a $p$-bit accelerator; MRAM-backed coefficient storage with adjacent arithmetic is near-memory probabilistic processing (its CIM label depends on integration); and a true in-array weighted-sum circuit can qualify as CIM. Signed FP exponents and local-field accumulation require explicit circuitry in each case---ordinary low-bit FP coefficients do not map directly onto analog MTJ conductances. Crossbar--SMTJ probabilistic machines provide relevant architectural precedent but \emph{not} low-order-FP implementation proof \cite{hybrid2026,vcma2024}.
+
+Thus the novelty remains \emph{low-order floating-point coupling under nonideal MRAM $p$-bit behavior}, with BPSK MIMO as the workload and a defensible array/compute boundary established before claiming CIM.
 \section{Fair comparisons}
 Compare high-precision reference, optimized scaled integers, shared-scale block floating point, and precisely defined per-element low-bit float. Count scales, metadata, exponent alignment, accumulation, bandwidth and replica overhead. Assess both $J$ and $h$ quantization; isolated $J$-only analysis is explicitly labeled. Keep local-field updates and ideal replica exchanges consistent with the quantized Hamiltonian. Score all outputs against the unquantized BPSK MIMO ML objective; report BER against transmitted symbols separately. The core design targets FP4 (E2M1), FP6 (E3M2), FP8 (E4M3) coupling and exponent handling. Historical TSP and graph benchmarks are removed from formal application evaluation.
 \section{BPSK MIMO benchmark}
@@ -50,5 +62,7 @@ Fourteen active working weeks and two weeks buffer, reduced capacity around exam
 \begin{thebibliography}{9}
 \bibitem{camsari2017} K. Y. Camsari, R. Faria, B. M. Sutton and S. Datta, ``Stochastic p-Bits for Invertible Logic,'' \emph{Physical Review X} 7, 031014 (2017), DOI: 10.1103/PhysRevX.7.031014.
 \bibitem{singh2022} A. K. Singh et al., ``Ising Machines' Dynamics and Regularization for Near-Optimal MIMO Detection,'' \emph{IEEE Transactions on Wireless Communications} 21, 11080--11094 (2022), DOI 10.1109/TWC.2022.3189604.
+\bibitem{hybrid2026} ``Intrinsic annealing in a hybrid memristor-magnetic tunnel junction Ising machine,'' \emph{Nature Communications} (2026), DOI: 10.1038/s41467-026-71844-8.
+\bibitem{vcma2024} ``In-Memory Neural Stochastic Differential Equations with Probabilistic Differential Pair Achieved by In-Situ P-Bit Using CMOS Integrated Voltage-Controlled Magnetic Tunnel Junctions,'' \emph{IEDM} (2024), DOI: 10.1109/IEDM50854.2024.10873318.
 \end{thebibliography}
 \end{document}
