@@ -37,7 +37,7 @@ class TestPrecisionGlobal(unittest.TestCase):
                 if family=="fp":
                     e,m=FP_LAYOUTS[bits]
                     self.assertEqual(e+m+1,bits)
-                    self.assertEqual(len(levels(bits)),2**(e+m)-1)
+                    self.assertEqual(len(levels(bits)),2**(e+m))
                     self.assertTrue(d["finite_only"])
                     self.assertTrue(d["subnormals"])
                 else:
