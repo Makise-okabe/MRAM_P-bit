@@ -21,8 +21,11 @@ Representation determines numerical error and digital implementation cost. Devic
 - Existing formats, generic Ising arithmetic and row RTL are reusable components. The MIMO-specific FP6-bias conclusion does not carry over to h=0.
 
 ## Current implementation status
-This is a **scope/documentation update**, not a completed benchmark-code migration. Existing main-branch application scripts and CI still include the historical MIMO implementation. No Biq Mac import, weighted-Max-Cut result or new physical-MRAM result is claimed here. Do not start further MIMO performance sweeps.
+The supervisor-approved main-branch scope change is now supported by a separate M0 draft branch containing an authored Rudy loader, tests, and an E0 import script (all pending actual NUS execution). Existing main-branch application scripts and CI still include the historical MIMO implementation. No Biq Mac import, weighted-Max-Cut result or new physical-MRAM result is claimed here. Do not start further MIMO performance sweeps.
 
 Prior MIMO, TSP, CIM/ADC and older Max-Cut pilots remain historical evidence only. The new benchmark requires fresh, identified Biq Mac instances and runs; old archived graph results are not retrospectively promoted. Preserve the M2 hardware work and its component verification without relabeling it as a complete Max-Cut accelerator.
 
 M0–M5 remain the research stages: mapping/reference, joint representation–response evaluation, design rule and cost specification, bit-true/synthesized hardware, held-out scaling, final report. The planned 64–128-spin coupling hardware remains in scope; neither fabricated stochastic MTJs nor a GF22FDX implementation are claimed. No new format search, toolchain expansion or simulation was introduced by this decision.
+
+## First M0 weighted Max-Cut code gate (draft)
+The current code migration is on branch research/m0-biqmac-maxcut-20261106 and documented in [M0 source protocol](docs/M0_BIQMAC_SOURCE_PROTOCOL.md). Its source-audit tests are **not yet NUS-executed**. Original graph optimum references and Max-Cut solver quality are still absent; earlier MIMO scripts remain preserved as historical only.

@@ -42,3 +42,6 @@ E0 exact theory; E1 seeded algorithmic simulations; E2 illustrative response; E3
 | M5 | Supported design rules, operating limits and final report |
 
 Existing component verification remains evidence for that component. Neither previous MIMO results nor the existence of RTL constitutes a completed Biq Mac benchmark. Keep prior results intact; no new simulation or infrastructure expansion is implied by this scope update.
+
+## First actual M0 code gate (pending execution)
+The draft branch research/m0-biqmac-maxcut-20261106 contains a source-preserving Rudy parser, an independent tiny signed Max-Cut test suite, and a fixed official-instance import script. See [M0 source protocol](M0_BIQMAC_SOURCE_PROTOCOL.md). No original Mac graphs have been executed on NUS yet; no benchmark optimization quality or Max-Cut-specific synthesis can be reported.

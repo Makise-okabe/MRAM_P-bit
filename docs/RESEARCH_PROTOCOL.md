@@ -13,3 +13,6 @@ Any-visit target probability, final snapshot quality and best-represented-energy
 Use unchanged source weights, including signs. Weighted integer instances are legitimate: do not introduce fractional or widened weights just to favor FP. No FP advantage is assumed. Preserve metadata, encoded-scale, accumulator and memory/access costs. Update counts are not physical latency/energy; pre-placement logic area is not total accelerator area.
 
 Earlier MIMO, TSP/CIM and archived Max-Cut pilots remain historical only. Generic mathematical tests and component RTL evidence may be reused within their stated scope; new Biq Mac task claims require fresh instance-specific runs. Do not claim that documentation migration has implemented or executed the new benchmark.
+
+## M0 executable source gate
+A dedicated Mac/Rudy loader and exact Decimal original-cut/Ising/flip audit have been authored on a separate draft branch, alongside signed-graph unit tests. Preserve source SHA256, source node and edge counts, loop and parallel-edge handling and optimum_status=NOT_LOADED until exact/verified reference data is imported. This is E0 mathematical consistency, not measured Max-Cut solver quality. See [M0 source protocol](M0_BIQMAC_SOURCE_PROTOCOL.md).

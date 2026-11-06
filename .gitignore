@@ -14,3 +14,6 @@ private/
 *.cdl
 *.dspf
 *.spef
+
+# Keep original official Mac graph downloads and audit results local
+/data/biqmac/raw/
