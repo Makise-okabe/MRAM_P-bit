@@ -29,7 +29,7 @@ jobs:
         run: python -m unittest discover -s tests -p 'test_m1_biqmac_reference_quality_gate.py' -v
       - name: Frozen 4-5-6-8 bit precision codebooks, exact integer, paired-seed and symmetry checks
         run: python -m unittest discover -s tests -p 'test_m1_precision_global.py' -v
-      - name: Literature STT-MTJ nominal transfer preflight, no fabricated device data
+      - name: Bounded E2 response gate parity/persistence checks (NO device or solver sweep)\n        run: python -m unittest discover -s tests -p 'test_m2_e2_response_gate.py' -v\n      - name: Literature STT-MTJ nominal transfer preflight, no fabricated device data
         run: python -m unittest discover -s tests -p 'test_m2_stt_pbit_transfer_preflight.py' -v
 
 # Older MIMO source/tests are intentionally preserved as historical research.
