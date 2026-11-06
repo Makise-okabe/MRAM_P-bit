@@ -25,3 +25,34 @@ M1B preserves CAL and HELDOUT complete channel/noise frames, every frozen scale 
 ## Finite-only FP and J/h extension (integration of earlier draft PR #14)
 
 OCP finite-only E2M1/E3M2 format candidates (fp4_fn and fp6_fn) now run in the same global/tile, CAL-only-fitted framework. The follow-on read-only M1C ablation compares the influence of represented J versus h, and mixed FP4-J/FP6-h against matching mixed INT4-J/INT6-h, without using the original ML optimum to fit scales. See docs/M1C_FINITE_FP_JH_ABLATION.md and the Overleaf-ready report section. OCP element encodings are prior art, not demonstrated MRAM-CIM hardware or novel device results; no new NUS experimental outcome is claimed by this commit.
+
+## First NUS user-run M1B result: frozen CAL/HELDOUT, historical formats ONLY (6 November 2026)
+
+- User output: `results/m1b_calibrated_20261106T022926Z_3625599`.
+- NUS test output: **36 tests PASS**. This predates merged M1C / finite-only integration (now 50 CI tests); no `fp4_fn`, `fp6_fn`, J-only/h-only or mixed-precision results are contained in these data.
+- Setup: 8x8 complex BPSK MIMO, 24 separate CAL and 24 HELDOUT channel seeds per SNR (0,5 dB), frozen CAL-only group scales, global or symmetric tile grouping (tile size 4). Same 24 HELDOUT channel seeds reused across the two SNR conditions. This is E0/E1 **exact representation**, not a stochastic p-bit detector run, device nonideality or fabricated 64–128-spin array.
+- Tables show `ML` = **original exact ML optimum retained in the quantized minimum set**, not hit rate from finite sampling or transmitted-bit BER. `Deg` = frames with >1 minima within the 1e-8 energy tolerance. Nominal bits include unique undirected J + h plus assumed real/PoT scale words; no coefficient-construction, programming, alignment, accumulation, area or timing.
+
+| Format | Global 0 dB ML/Deg | Global 5 dB ML/Deg | Global bits | Tile 0 dB ML/Deg | Tile 5 dB ML/Deg | Tile bits |
+|---|---:|---:|---:|---:|---:|---:|
+| fp4 | 18/24 / 2 | 21/24 / 0 | 208 | 18/24 / 0 | 21/24 / 0 | 272 |
+| int4 | 18/24 / 0 | 21/24 / 1 | 208 | 18/24 / 0 | 22/24 / 0 | 272 |
+| bfp4 | 19/24 / 3 | 21/24 / 3 | 160 | 19/24 / 3 | 21/24 / 3 | 176 |
+| fp6 | 21/24 / 0 | 24/24 / 0 | 280 | 21/24 / 0 | 24/24 / 0 | 344 |
+| int6 | 21/24 / 0 | 24/24 / 0 | 280 | 23/24 / 0 | 22/24 / 0 | 344 |
+| bfp6 | 23/24 / 0 | 24/24 / 1 | 232 | 23/24 / 0 | 24/24 / 1 | 248 |
+| fp8 | 24/24 / 0 | 24/24 / 0 | 352 | 24/24 / 0 | 24/24 / 0 | 416 |
+| int8 | 24/24 / 0 | 24/24 / 0 | 352 | 24/24 / 0 | 24/24 / 0 | 416 |
+| bfp8 | 24/24 / 0 | 24/24 / 0 | 304 | 24/24 / 0 | 24/24 / 0 | 320 |
+
+### Interpretation / follow-up gates
+
+1. **FP4 is not demonstrably superior to INT4**: global 0/5 dB ML preservation identical, tile INT4 improves by one heldout case at 5 dB. Different representations still have different coefficient MSE, original decision margins and quantized tie patterns.
+2. **BFP6 merits follow-up, not a winning claim**: global and tile 23/24 at 0 dB, 24/24 at 5 dB, lower *nominal* storage than FP6 or INT6 because of the assumed compact PoT scale metadata. It is not a proof of lower circuit power/area or a large-sample result.
+3. **Eight-bit ceiling**: all retained ML optimum in these frames, so larger/harder BPSK MIMO is needed for format discrimination; these small instances are valuable primarily for exact mathematical checks.
+4. **Scale granularity needs cost accounting**: tile FP4 increases storage 208 to 272 with no improvement here; INT6 tile improves at 0 dB yet worsens at 5 dB. Global/tile matching prevents a grouping confound, but scale encoding differs between INT/FP real and BFP PoT.
+5. **Identical J-MSE across SNR is expected** because the paired H realizations are reused, while J depends on H alone; transmitted/channel noise affects y, hence h and ML residual. J-MSE cannot be used as a proxy for detection accuracy.
+6. **Next numerical experiment**: pull latest main (merged PR #16, initially 50/50 CI tests), rerun M1B with `fp4_fn` and `fp6_fn` under the SAME frozen CAL/HELDOUT seeds, then M1C's J-only/h-only oracle diagnostics and mixed FP4_fn-J/FP6_fn-h versus matched INT4-J/INT6-h. Report source hashes and independent CAL vs HELDOUT. Do not overwrite previous evidence.
+7. **Physical-H1 remains open**: no electrically validated stochastic MRAM p-bit control-input transfer function, finite-time original-task target-reach, or synthesized coupling tile has been measured.
+
+No claim of low-order-FP novelty, FP statistical superiority, device-aware rule, or CIM implementation follows from this pilot.
