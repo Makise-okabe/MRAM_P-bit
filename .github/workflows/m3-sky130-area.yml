@@ -1,0 +1,57 @@
+name: M3 mapped six-bit row (Sky130 HD exploratory area only)
+
+on:
+  push:
+    branches: [main, 'research/m0-biqmac-*']
+    paths:
+      - 'rtl/m3_local_field_row.v'
+      - '.github/workflows/m3-sky130-area.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  m3-sky130-row:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Yosys
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq yosys
+          yosys -V
+      - name: Fetch PINNED open Sky130 HD typical-corner Liberty from OpenROAD
+        run: |
+          set -euo pipefail
+          mkdir -p pdk_libs hardware_reports/sky130
+          # OpenROAD-flow-scripts commit pinned as of 7 Nov 2026.
+          curl -fL --retry 3 --connect-timeout 15 --max-time 120 \
+            https://raw.githubusercontent.com/The-OpenROAD-Project/OpenROAD-flow-scripts/aef47dd6ed123b0ed7cedac372b00456722be327/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib \
+            -o pdk_libs/sky130_fd_sc_hd__tt_025C_1v80.lib
+          test "$(wc -c < pdk_libs/sky130_fd_sc_hd__tt_025C_1v80.lib)" -gt 1000000
+          sha256sum pdk_libs/sky130_fd_sc_hd__tt_025C_1v80.lib \
+            | tee hardware_reports/sky130/liberty_sha256.txt
+          yosys -V > hardware_reports/sky130/yosys_version.txt
+      - name: Identical Yosys cell mapping (one fixed compile-time format per top)
+        run: |
+          set -euo pipefail
+          LIB=pdk_libs/sky130_fd_sc_hd__tt_025C_1v80.lib
+          for fmt in fp6 int6 bfp6; do
+            yosys -Q -p "read_liberty -lib $LIB; read_verilog rtl/m3_local_field_row.v; synth -top m3_${fmt}_row -flatten -noabc; dfflibmap -liberty $LIB; abc -liberty $LIB; clean; stat -liberty $LIB" \
+              > "hardware_reports/sky130/m3_${fmt}_sky130_mapped.log"
+            echo "Mapped m3_${fmt}_row with exact same Liberty and synthesis flow"
+          done
+      - name: Archive area-only library-mapped logs
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m3-sky130-sixbit-row-mapped-area
+          path: hardware_reports/sky130/
+          if-no-files-found: warn
+
+# Same RTL and clock/reset/valid protocol as M3 generic row.
+# This is NOT 22FDX or calibrated STT-MTJ, and no voltage, memory,
+# placement/routing, timing constraint, p-bit, scheduler, ADC/DAC, power
+# or energy-to-original-Max-Cut-target is modelled.
