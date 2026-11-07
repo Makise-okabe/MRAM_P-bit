@@ -39,7 +39,7 @@ jobs:
           set -euo pipefail
           LIB=pdk_libs/sky130_fd_sc_hd__tt_025C_1v80.lib
           for fmt in fp6 int6 bfp6; do
-            yosys -Q -p "read_liberty -lib $LIB; read_verilog rtl/m3_local_field_row.v; synth -top m3_${fmt}_row -flatten -noabc; dfflibmap -liberty $LIB -dont_use sky130_fd_sc_hd__lpflow_* -dont_use sky130_fd_sc_hd__clkinv_*; abc -liberty $LIB -dont_use sky130_fd_sc_hd__lpflow_* -dont_use sky130_fd_sc_hd__clkinv_*; clean; stat -liberty $LIB" \
+            yosys -Q -p "read_liberty -lib $LIB; read_verilog rtl/m3_local_field_row.v; synth -top m3_${fmt}_row -flatten -noabc; dfflibmap -liberty $LIB; abc -liberty $LIB -dont_use sky130_fd_sc_hd__lpflow_* -dont_use sky130_fd_sc_hd__clkinv_*; clean; stat -liberty $LIB" \
               > "hardware_reports/sky130/m3_${fmt}_sky130_mapped.log"
             # Reject unintended multi-power isolation and clock-only logic cells.
             if sed -n '/^=== m3_/,$p' "hardware_reports/sky130/m3_${fmt}_sky130_mapped.log" |
