@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Compile original-weight Rudy parser
-        run: python -m py_compile experiments/biqmac_maxcut.py experiments/biqmac_weight_audit.py experiments/m1_biqmac_reference_quality_gate.py
+        run: python -m py_compile experiments/biqmac_maxcut.py experiments/biqmac_weight_audit.py experiments/m1_biqmac_reference_quality_gate.py experiments/m3_sixbit_encoding.py experiments/m3_actual_graph_row_vectors.py
       - name: Exact signed weighted-cut and Ising consistency tests
         run: python -m unittest discover -s tests -p 'test_biqmac*py' -v
       - name: M1 bounded ideal Max-Cut solver mathematical invariants
