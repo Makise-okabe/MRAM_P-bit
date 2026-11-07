@@ -1,0 +1,85 @@
+name: M3 official Biq Mac graph-to-FP6-INT6-BFP6 RTL bridge
+
+on:
+  push:
+    branches: [main, 'research/m0-biqmac-*']
+    paths:
+      - 'rtl/m3_local_field_row.v'
+      - 'rtl/tb_m3_row.v'
+      - 'experiments/m1_precision_codebooks.py'
+      - 'experiments/m3_sixbit_encoding.py'
+      - 'experiments/m3_actual_graph_row_vectors.py'
+      - 'docs/BIQMAC_OFFICIAL_OPTIMA_2007.json'
+      - '.github/workflows/m3-official-graph.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  m3-original-source-row:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Icarus Verilog simulator
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq iverilog
+      - name: Download UNMODIFIED official Biq Mac CAL source files
+        run: |
+          set -euo pipefail
+          mkdir -p data/biqmac/raw/rudy data/biqmac/raw/ising
+          curl -fL --retry 3 --connect-timeout 12 --max-time 90 \
+             https://biqmac.aau.at/library/mac/rudy/w01_100.0 \
+             -o data/biqmac/raw/rudy/w01_100.0
+          for name in t2g10_5555 ising2.5-100_5555; do
+            curl -fL --retry 3 --connect-timeout 12 --max-time 90 \
+              "https://biqmac.aau.at/library/mac/ising/$name" \
+              -o "data/biqmac/raw/ising/$name"
+          done
+          sha256sum data/biqmac/raw/rudy/w01_100.0 data/biqmac/raw/ising/*
+      - name: Verify frozen source SHA256 and generate REAL graph row coefficients
+        run: |
+          set -euo pipefail
+          python3 -m experiments.m3_actual_graph_row_vectors \
+            --graph data/biqmac/raw/rudy/w01_100.0 \
+            --out hardware_reports/m3_graphs/w01
+          python3 -m experiments.m3_actual_graph_row_vectors \
+            --graph data/biqmac/raw/ising/t2g10_5555 \
+            --out hardware_reports/m3_graphs/t2g10
+          python3 -m experiments.m3_actual_graph_row_vectors \
+            --graph data/biqmac/raw/ising/ising2.5-100_5555 \
+            --out hardware_reports/m3_graphs/ising2p5
+      - name: 3 original graphs x 3 formats x 99 real coupling terms checked in RTL
+        run: |
+          set -euo pipefail
+          mkdir -p hardware_reports
+          for fmt in fp int bfp; do
+            case "$fmt" in
+              fp) idx=0 ;;
+              int) idx=1 ;;
+              bfp) idx=2 ;;
+            esac
+            iverilog -g2012 -s tb_m3_row -Ptb_m3_row.FORMAT="$idx" \
+              -o "/tmp/tb_m3_${fmt}6" rtl/m3_local_field_row.v rtl/tb_m3_row.v
+            for graph in w01 t2g10 ising2p5; do
+              vvp "/tmp/tb_m3_${fmt}6" \
+                +VEC="hardware_reports/m3_graphs/$graph/m3_${fmt}6_vectors.txt" \
+                | tee -a hardware_reports/m3_official_graph_rtl_checks.log
+            done
+          done
+      - name: Archive verified source-linked row manifests and RTL logs
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m3-official-BiqMac-row-bridge
+          path: hardware_reports/
+          if-no-files-found: warn
+
+# E0/E1 original graph and format identities unchanged.
+# This does NOT simulate an Ising solution, GF22FDX MTJ, p-bit pulses
+# or scaling hardware. No E2 synthetic response runs.
