@@ -75,7 +75,7 @@ jobs:
             for graph in w01 t2g10 ising2p5; do
               for point in begin middle end; do
                 vvp "/tmp/m4b_tb_$fam" \
-                  +VEC="hardware_reports/m4b/vectors_$graph/m4_$fam6_$point.txt" \
+                  +VEC="hardware_reports/m4b/vectors_$graph/m4_${fam}6_${point}.txt" \
                   | tee -a hardware_reports/m4b/clocked_rtl_pass.log
               done
             done
