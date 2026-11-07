@@ -8,6 +8,7 @@ on:
       - 'tests/test_m4_common_logit.py'
       - 'rtl/m4_common_logit_row.v'
       - 'rtl/tb_m4_common_logit.v'
+      - 'scripts/m4b_run_nus.sh'
       - '.github/workflows/m4-common-logit.yml'
       - 'scripts/m3_filter_sky130_liberty.py'
   workflow_dispatch:
@@ -81,6 +82,8 @@ jobs:
             done
           done
           test "$(grep -c 'M4B RTL PASS' hardware_reports/m4b/clocked_rtl_pass.log)" = 27
+      - name: Reproduce M4B via submitted NUS one-command wrapper
+        run: bash scripts/m4b_run_nus.sh
       - name: Fetch and verify same PINNED Sky130 HD Liberty used in M3
         run: |
           set -euo pipefail
