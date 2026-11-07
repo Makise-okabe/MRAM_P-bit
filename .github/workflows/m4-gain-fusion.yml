@@ -1,0 +1,75 @@
+name: M4 frozen M1 M3 gain-fusion audit (math and memory accounting)
+
+on:
+  push:
+    branches: [main, 'research/m0-biqmac-*', 'research/m4-*']
+    paths:
+      - 'experiments/m4_gain_folding_audit.py'
+      - 'tests/test_m4_gain_folding_audit.py'
+      - '.github/workflows/m4-gain-fusion.yml'
+      - 'experiments/m3_actual_graph_row_vectors.py'
+      - 'experiments/m3_sixbit_encoding.py'
+      - 'experiments/m1_precision_codebooks.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  m4-exact-math-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Unit-test gain factorization and serial-memory operation counts
+        run: python3 -m unittest discover -s tests -p 'test_m4_gain_folding_audit.py' -v
+      - name: Download unchanged official original Mac CAL graphs (same M3 source path)
+        run: |
+          set -euo pipefail
+          mkdir -p data/biqmac/raw/rudy data/biqmac/raw/ising
+          curl -fL --retry 3 --connect-timeout 12 --max-time 90 \
+            https://biqmac.aau.at/library/mac/rudy/w01_100.0 \
+            -o data/biqmac/raw/rudy/w01_100.0
+          for name in t2g10_5555 ising2.5-100_5555; do
+            curl -fL --retry 3 --connect-timeout 12 --max-time 90 \
+              "https://biqmac.aau.at/library/mac/ising/$name" \
+              -o "data/biqmac/raw/ising/$name"
+          done
+      - name: Rebuild SHA-validated M3 graph vectors (frozen 6-bit codebooks)
+        run: |
+          set -euo pipefail
+          python3 -m experiments.m3_actual_graph_row_vectors \
+            --graph data/biqmac/raw/rudy/w01_100.0 --out hardware_reports/m4_vectors/w01
+          python3 -m experiments.m3_actual_graph_row_vectors \
+            --graph data/biqmac/raw/ising/t2g10_5555 --out hardware_reports/m4_vectors/t2g10
+          python3 -m experiments.m3_actual_graph_row_vectors \
+            --graph data/biqmac/raw/ising/ising2.5-100_5555 --out hardware_reports/m4_vectors/ising2p5
+      - name: Audit 3 x 3 x 99 exact algebra logits, plus counts
+        run: |
+          set -euo pipefail
+          python3 -m experiments.m4_gain_folding_audit \
+            --graph data/biqmac/raw/rudy/w01_100.0 \
+            --vectors-dir hardware_reports/m4_vectors/w01 \
+            --out hardware_reports/m4_results/w01_gain_folding.json
+          python3 -m experiments.m4_gain_folding_audit \
+            --graph data/biqmac/raw/ising/t2g10_5555 \
+            --vectors-dir hardware_reports/m4_vectors/t2g10 \
+            --out hardware_reports/m4_results/t2g10_gain_folding.json
+          python3 -m experiments.m4_gain_folding_audit \
+            --graph data/biqmac/raw/ising/ising2.5-100_5555 \
+            --vectors-dir hardware_reports/m4_vectors/ising2p5 \
+            --out hardware_reports/m4_results/ising2p5_gain_folding.json
+      - name: Archive source-linked reports, not measured area/power
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m4-gain-fusion-official-graph-math-audit
+          path: hardware_reports/m4_results/
+          if-no-files-found: warn
+
+# This workflow intentionally does NOT synthesize p-bit gain/DAC hardware;
+# logit mathematical equivalence is not proof that finite analog/digital
+# gain can be applied at no cost or with exact numerical fidelity.
