@@ -54,3 +54,26 @@ This row result and E1 table together identify a meaningful quality–logic-cost
 - **Hypothesis:** quality gain on some weight distributions could justify extra FP decoding logic; not assumed or established.
 - **Minimum test:** one 99-term matched clocked RTL vector test per format + same generic synth flow, no new solver runs or device assumptions. **COMPLETE**.
 - **Stop/novelty:** do not claim FP wins from dense graph; do not treat generic gates as area or energy; bit-width-vs-resource comparisons are prior art, and a distinctive end-to-end **format–quality–cost design rule** remains unverified. **GO** next only to graph-to-RTL integrity bridge then fully costed comparison. No need to repeat or expand E2 noise runs.
+
+## Next gate implementation status (same date)
+
+The **source-to-RTL bridge is now authored** in `experiments/m3_actual_graph_row_vectors.py`. It accepts **only** one of the three frozen original Biq Mac CAL graphs, verifies the official source SHA256 and published optimum entry, reconstructs frozen M1 source-only `build_global` coefficient representations, encodes every off-diagonal term (including implicit zeros), and writes three 99-term Icarus-consumable vector files with exact expected cumulative integer sums. For each format it independently verifies that the represented local field computed from floating M1 `Jhat` agrees with decoded integer sum times the appropriate global scale, then records a source-linked `manifest.json`.
+
+[GitHub Actions run 42352795556](https://github.com/Makise-okabe/MRAM_P-bit/actions/runs/42352795556) **PASS** on graph-bridge syntax plus existing tests. The **NUS original graph-to-RTL execution is NOT RUN**, as original source files do not exist in the active GitHub worktree. It is not a substitute for a graph-to-row hardware test result.
+
+On NUS, after switching to the updated branch and from the repository root (example using the already frozen dense original graph):
+
+```bash
+python3 -m experiments.m3_actual_graph_row_vectors \
+  --graph data/biqmac/raw/ising/ising2.5-100_5555 \
+  --out results/m3_dense_row0_20261107
+# If iverilog/vvp are installed:
+for fmt in fp int bfp; do
+  case "$fmt" in fp) idx=0;; int) idx=1;; bfp) idx=2;; esac
+  iverilog -g2012 -s tb_m3_row -Ptb_m3_row.FORMAT="$idx" \
+    -o "/tmp/m3_${fmt}6" rtl/m3_local_field_row.v rtl/tb_m3_row.v
+  vvp "/tmp/m3_${fmt}6" +VEC="results/m3_dense_row0_20261107/m3_${fmt}6_vectors.txt"
+done
+```
+
+**Decision:** software+synthetic RTL component gate PASS, source integrity bridge authored/syntax PASS, original-graph input gate PENDING, full FPGA/ASIC/system costs PENDING. FP direction remains unchanged.
