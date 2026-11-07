@@ -77,3 +77,47 @@ done
 ```
 
 **Decision:** software+synthetic RTL component gate PASS, source integrity bridge authored/syntax PASS, original-graph input gate PENDING, full FPGA/ASIC/system costs PENDING. FP direction remains unchanged.
+
+## Scientific closure — original-source-to-RTL plus common Sky130 mapping (7 Nov 2026)
+
+### Gate A: OFFICIAL graph-to-row equivalence: **PASS**
+
+[GitHub Actions 42353562894](https://github.com/Makise-okabe/MRAM_P-bit/actions/runs/42353562894) downloaded the *unmodified* official 100-spin Biq Mac CAL graphs, checked their source-file SHA256 against the frozen original-optimum JSON, constructed per-format M1 source-MSE global representations, encoded all 99 off-diagonal terms from row 0, and checked 9 clocked Icarus executions (3 graphs × 3 formats) against step-by-step integer accumulators. All nine passed. Artifacts: `m3-official-BiqMac-row-bridge` (GitHub Actions artifact id `13567155228`). This proves **one row and one fixed spin vector per graph**, not a 100-row system test or full Max-Cut solver RTL.
+
+Observed row-0 local fields after decoding and applying the correctly frozen **external** global scale, from official source-linked manifests:
+
+| Graph (one fixed spin sample) | FP6 H | INT6 H | BFP6 H |
+|---|---:|---:|---:|
+| `w01_100.0` | -5.7336772084 | -5.0000000000 | -5.0000000000 |
+| `t2g10_5555` | -461173.6191406250 | -465564.8388671875 | -466944.0000000000 |
+| `ising2.5-100_5555` | -28196.3177490234 | -30935.7421875000 | -24576.0000000000 |
+
+Every displayed `H` was identical between the frozen M1 represented `Jhat` oracle and the raw-bit integer-accumulator plus global-scale reconstruction (absolute difference **0.0** for all 9), in this single deterministic state. These differences *across formats* are expected numerical quantization differences, NOT accuracy superiority, Max-Cut solution quality or device effects. Source hashes match frozen records `3800aa7c...`, `c742b78e...`, `c8fa3ce4...` respectively.
+
+### Gate B: tech-library-mapped row CORE cell area: **PASS, preliminary scope only**
+
+[GitHub Actions 42354259889](https://github.com/Makise-okabe/MRAM_P-bit/actions/runs/42354259889) passed one matched open Sky130 HD 130nm typical 25°C/1.8V Yosys 0.33 technology-mapping flow for all three fixed format tops. The source Liberty was pinned to OpenROAD-flow-scripts commit `aef47dd6ed123b0ed7cedac372b00456722be327`, original SHA256 `ec0e1067a35c8bf20b11e58d1e8ac53326067e4dac84a125cc1b917a3518d0d9`. A reproducible filtered Liberty `cd8abb502b47e96b31b0f179b8f16c34fd2f027c3cc4c7e0dbdbadc71030367b` omitted 39 multi-power/clock-only cells, leaving 389 of 428 original cells, because Ubuntu Yosys 0.33 lacks `-dont_use` support in ABC/dfflibmap. Filter process is saved in `scripts/m3_filter_sky130_liberty.py`; the comparison rejects those excluded cells in mapped netlists. The earlier unfiltered synthesis counts/area are **superseded**, not suitable for reported normal digital row cost.
+
+| Row variant (99 coefficient terms, serial) | Std-cell instances | Flip-flops | Standard-cell area from Liberty |
+|---|---:|---:|---:|
+| FP6 finite E3M2 | **171** | **17** | **1438.8800 µm²** |
+| INT6 symmetric | 107 | 13 | **929.6416 µm²** |
+| BFP6 global exponent, integer mantissa row | 107 | 13 | **929.6416 µm²** |
+
+Under this *specific row-only architecture and library mapping*, FP6 requires `1438.88 / 929.6416 = ~1.55×` the cell area of INT6/BFP6, ~509.24 µm² extra. INT6 and BFP6 rows map identically **only because external BFP scale handling is outside the row**. This is an important quantitative **FP cost penalty** rather than a whole-machine FP failure.
+
+**Not yet represented:** FP/INT floating-scale and BFP power-of-two metadata/transfer, scheduling beta(t), voltage/logit interface, coefficient RAM banking/ports/access energy, pulse/reset/perturb and any STT-MTJ circuit, graph/energy retention, retries-to-target, placement/utilisation, post-route timing, total dynamic energy or power. Source-to-row test is functionality; mapped area is technology-library logic area, neither physical implementation nor energy. Yosys observed unsupported Liberty expressions in several unused scan cells; final mapped netlists do not use excluded isolation cells. No STA/critical-path report was produced.
+
+### Cost and scheduling baseline
+
+All three formats have six physical coefficient payload bits. For a dense 100-spin graph, one copy of undirected coefficients requires `100*99/2*6 = 29,700` bits before scale metadata (FP6/INT6: 32-bit global binary32 scale, BFP6: 8-bit signed global exponent); a row-addressable mirrored dense matrix could require more. A serial 99-term row sampled on each of the frozen 50,000 attempted updates requires at least `99*50,000 = 4,950,000` coefficient issue slots in that *explicit* naïve implementation. This is an architectural operation count **only**, not measured time/energy or necessary for a more parallel/updated-field design. Sparse-row skipping, row-memory organization and read ports must be specified and costed rather than assumed free.
+
+### Final GO/STOP after two verified gates
+
+- **Target:** test whether numerical FP6 `J` storage can be implemented faithfully and quantify its standalone local-field row arithmetic price: **YES, accomplished on three original CAL graphs for one row; YES, area penalty measured in one open library.**
+- **Hypothesis/expected observable:** FP6 may preserve some wide-dynamic-range Max-Cut quality while paying more decode/accumulator cost. The result supports *hardware penalty*, not an unconditional quality benefit.
+- **Evidence:** original source SHA256 verified; 9/9 clocked original-weight tests; technology-library mapped cell area (not GF22FDX nor complete p-bit).
+- **Closest novelty risk:** coefficient precision/resource tradeoffs in Ising/p-computers are prior art. The unique conditional full-cost original-weight Max-Cut selection rule is **not yet established**.
+- **Failure/STOP:** do not assert that 1.55× is a full-ASIC area or energy ratio; don't infer general FP win from the single dense E1 graph.
+- **Next smallest discriminating question:** when scale/interface costs and coefficient memory access are included with the same frozen update schedule, does the **component-relative** row penalty materially change whole-solution cost or is it amortized? Freeze a single row-streaming memory/interface architecture and **common logit precision** before cost comparison. Then independent held-out graph quality; E2 response remains parked.
+- **Decision: GO to full-scale/interface + memory-cost closure, keep FP as primary FYP object.** No solver retune, no new benchmark, no invented device residuals.
