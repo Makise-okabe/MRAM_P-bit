@@ -1,0 +1,62 @@
+name: M3 six-bit FP INT BFP local-field row (component only)
+
+on:
+  push:
+    branches: [main, 'research/m0-biqmac-*']
+    paths:
+      - 'rtl/**'
+      - 'experiments/m3_sixbit_encoding.py'
+      - 'tests/test_m3_sixbit_encoding.py'
+      - '.github/workflows/m3-row.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  m3-row:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify exact frozen M1 six-bit scalar codebooks and row sum
+        run: python -m unittest discover -s tests -p 'test_m3_sixbit_encoding.py' -v
+      - name: Create independent deterministic 99-term FPGA simulation vectors
+        run: python -m experiments.m3_sixbit_encoding --out /tmp/m3_vectors
+      - name: Install open-source RTL simulator and generic synthesizer
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq iverilog yosys
+          iverilog -V | head -2
+          yosys -V
+      - name: Bit-true clocked RTL simulation, all 3 formats, matched 99-term rows
+        run: |
+          set -euo pipefail
+          for fmt in fp int bfp; do
+            case "$fmt" in
+              fp) idx=0 ;;
+              int) idx=1 ;;
+              bfp) idx=2 ;;
+            esac
+            iverilog -g2012 -s tb_m3_row -Ptb_m3_row.FORMAT="$idx" \
+              -o "/tmp/tb_m3_${fmt}6" rtl/m3_local_field_row.v rtl/tb_m3_row.v
+            vvp "/tmp/tb_m3_${fmt}6" +VEC="/tmp/m3_vectors/m3_${fmt}6_vectors.txt"
+          done
+      - name: Identical-flow Yosys generic synthesis (NOT silicon area or timing)
+        run: |
+          set -euo pipefail
+          mkdir -p hardware_reports
+          yosys -V > hardware_reports/tool_version.txt
+          for fmt in fp6 int6 bfp6; do
+            yosys -Q -p "read_verilog rtl/m3_local_field_row.v; synth -top m3_${fmt}_row; stat" \
+              > "hardware_reports/${fmt}_generic_synth.log"
+            echo "Synthesized m3_${fmt}_row; inspect log/artifact for generic cell counts"
+          done
+      - name: Save fully qualified generic synthesis logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: m3-sixbit-row-generic-yosys
+          path: hardware_reports/
+          if-no-files-found: error
