@@ -1,37 +1,29 @@
-# FYP Decision Feedback Loop — standing project rule (7 November 2026)
+# FYP Decision Feedback Loop — current lock, 8 November 2026
 
-## Current user instruction and execution priority — 8 November 2026
+**The user has LOCKED one joint research question:** coupling precision (design choice) × STT-MRAM p-bit switching nonideality (physical condition), evaluated on original Biq Mac weighted Max-Cut.
 
-**Read this section first.** The user has explicitly restored the original joint question: **low-order floating-point coupling precision × STT-MRAM p-bit switching nonidealities → Max-Cut quality/failure regimes → precision-selection guidance**. This supersedes historical instructions below that park device-response research indefinitely or call it only a secondary robustness check. It does NOT change the supervisor-approved weighted Max-Cut benchmark.
+Read the [authoritative locked roadmap](ROADMAP_LOCKED_2026-11-06.md) first. It takes precedence over all dated “next gate”, parked-response, hardware-first, three-graph or mandatory-BFP instructions preserved below.
 
-**Research question:** How should low-order FP coupling format and precision be chosen for STT-MRAM p-bits with specified nonideal switching responses? INT/BFP are strong controls; an FP win or a format-ranking reversal is not assumed. Candidate novelty is the evidenced conditional design rule, not the assertion that nobody has studied quantization or MTJ variability.
+## Current decision
 
-### Preserve completed work; stop hardware expansion
-- Retain the 936-run ideal CAL baseline, official graph-to-RTL checks, Sky130 row-core mapping, gain-folding audit and M4B common digital-interface results as supporting evidence. These are not complete-chip, measured-MTJ, GF22FDX, power or energy results.
-- Further Genus/Nangate45 cross-checks, Linux-library repair, simulator installation, old Spectre-disk searches and new RTL/interface optimization are NOT prerequisites for the next scientific result. Freeze them unless an actual numerical correctness bug blocks that result.
-- No return to CIM/ADC, MIMO/TSP, SAT, a neural/Boltzmann-machine extension, new annealing algorithms or new FP formats. Existing FP/INT/BFP 4/5/6/8-bit codebooks and the 50k linear schedule remain fixed.
+- **Target / alignment:** precision-response regime maps, a conditional precision-selection rule, two held-out graph checks and one bounded supporting cost table.
+- **Evidence:** retain the 936 ideal CAL runs, graph-to-RTL verification, Sky130 row mapping and M4B digital interface. These are not physical MTJ/device-population or full-chip energy evidence.
+- **Hypothesis:** offset or gain variation may shift useful coupling precision, or leave it stable within the tested range. Neither FP superiority nor a ranking reversal is required.
+- **Scope:** two CAL + two held-out 100-spin graphs; core FP/INT 4/5/6 + FP64; existing 8-bit candidates under the predeclared rule. Preserve BFP evidence and the authored all-width gain pilot; optional BFP6 is a supporting control, not a new format/grouping search.
+- **Next minimum experiment:** preserve E2-GAIN-01 as currently authored: one dense CAL graph, 13 existing configurations, two new gain levels, 24 paired seeds, 624 new runs and matching ideal rows reused. Interpret that plot before the larger, separately studied gain and offset slices.
+- **Model:** three assumed nonzero E2 levels plus ideal in the main campaign, gain and offset separate. Full numerical values, fixed populations, absolute quality thresholds, corrected run counts and extension rules are in the roadmap. Never call assumed stresses measured residuals.
+- **Expected observable:** original-optimum gaps and conditional CIs, accepted/degraded/failed/uncertain regimes, same-response numerical penalty, and whether the lowest qualifying bit width changes.
+- **Prior art:** precision, p-bit variation and calibration already have literature; the specific validated conditional selection rule is the candidate contribution. No unsupported “nobody has studied it” claim.
+- **STOP / opportunity cost:** stop Genus/library repair, disk searches, extra RTL and alternate applications/solvers. Stop extending stress levels to rescue FP. Preserve negative and uncertain findings. Do not report a moved bit-width threshold from six-bit-only data or a whole-chip benefit from row area.
+- **Decision:** GO joint precision-response science. Hardware remains supporting evidence; no new hardware prerequisite. No solver/device run is performed by this documentation lock.
 
-### Next bounded scientific experiment
-1. Adapt the existing response runner for a **precision × device-response** experiment on one original dense CAL graph. A six-bit-only 288-run screen cannot establish a moved bit-width threshold.
-2. Use existing 4/5/6/8-bit candidates with FP64 and matched INT/BFP controls. Start with ONE mechanism, offset OR gain spread, at ideal plus two predeclared nonzero levels. Do not start an offset × gain × contrast cross-product. Study the second mechanism only after interpreting the first plot.
-3. Declare the response equation, parameter units, distribution, calibration assumption, levels and total run budget before inspecting results. Use published measured/curve-derived information when available; mark fitted/digitised approximations and assumed stresses separately. Pre-calibration spread is not measured post-calibration residual. The existing +/-5% gain and +/-0.10 logit E2 envelope is an assumption, not measured STT-MTJ evidence.
-4. Do not block indefinitely on one unavailable Supplementary PDF. An explicitly labelled E2 sensitivity study may proceed with justified, stated assumptions; silicon-validation claims require appropriate evidence. Do not reproduce the unpublished paper's calibration method.
-5. Keep device parameters persistent within a run, use a separate device RNG, and share the same device population and solver draws across representations. State whether seed intervals condition on one population; do not claim manufacturing robustness from one array. Reuse ideal results only with matching numerical semantics, graphs, seeds and update/retention rules.
-6. Keep J symmetric, h=0, beta normalized from the original graph, and return the best REPRESENTED-energy state. Score original-weight cut against the documented original optimum. Never tune beta, scales from solver outcomes, or noise levels to rescue FP.
+## Compact feedback loop
 
-### Metrics, deliverables and stopping rules
-- Primary: absolute original-optimum gap and attainment of a common quality target across ALL response conditions.
-- For a regime map, fix acceptable/degraded/failure thresholds before the experiment. A fixed ideal FP64 reference may anchor total degradation. ALSO report quantization penalty relative to FP64 under the SAME response to isolate numerical effects.
-- Never label a degraded format acceptable merely because nonideal FP64 is equally poor. If none meets the absolute target, report “no tested configuration meets target.”
-- Deliver one regime plot, then a concise explanation of whether useful precision changes. Stable ordering/no interaction is valid; a wide CI crossing zero is inconclusive. More device variation does not automatically imply fewer useful bits.
-- Confirm the finding on an untouched held-out Biq Mac instance before broader generalization. Solver seeds are not independent graph instances.
-- Derive a conditional precision-selection rule. Use existing hardware costs only for matching implemented formats/boundaries; do not invent 4/5/8-bit area or energy from six-bit RTL.
-- STOP enlarging the grid or inventing another method to manufacture an FP win. Report bounded negative findings or uncertainty. Preserve hardware work without expanding it.
+Before a scientific step answer relevance, evidence, closest prior art, opportunity cost and stop condition. Afterward: prediction → observed evidence → fairness/counterexamples → continue/change/stop. Existing necessary correctness checks remain; another PASS label, report rewrite or environment check alone is not a research milestone.
 
-### Feedback discipline and immediate action
-For each scientific decision, answer relevance, evidence, closest prior art, opportunity cost and stop condition concisely. Close the loop: prediction → minimum experiment → observed result → continue/change/stop. Existing necessary correctness tests stay; no new CI/provenance frameworks or repeated report rewrites before the scientific output.
+## Historical record
 
-**Immediate next action:** inspect the existing M1 raw paired CSV and response-runner capability, then state ONE bounded matrix and run budget. Execute and interpret that experiment using the working Python environment. No new hardware/toolchain prerequisite. This is an execution-priority correction within the original FYP, not a new research direction.
+The chronological entries below are preserved as evidence of completed work and past decisions. Their old prospective instructions do not override the locked roadmap.
 
 ## Historical decisions and evidence — retained for provenance
 

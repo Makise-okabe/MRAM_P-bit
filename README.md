@@ -1,33 +1,47 @@
-# STT-MRAM p-bit FYP — Biq Mac Weighted Max-Cut
+# STT-MRAM p-bit FYP — Coupling Precision × Device Nonidealities
 
-**Mandatory decision gate:** [FYP Decision Feedback Loop](docs/FYP_DECISION_FEEDBACK_LOOP.md). [2026 closest precision/device prior-art collision audit](docs/PRIOR_ART_COLLISION_PRECISION_STTMTJ_20261107.md). Every research step must have explicit FYP alignment, evidence level, prior-art check, smallest falsifiable test and STOP condition; return to the gate after observing results. This requirement applies across future project sessions.
+**Research scope LOCKED, 8 November 2026:** [authoritative roadmap](docs/ROADMAP_LOCKED_2026-11-06.md) · [evidence rules](docs/RESEARCH_PROTOCOL.md).
 
-## Active benchmark
-Original **Biq Mac Library / Mac weighted Max-Cut**, 100-spin calibration graphs. The problem maps as `J_ij=J_ji=-w_ij`, `J_ii=0`, `h_i=0`. The research compares 4/5/6/8-bit FP/INT/BFP couplings under a consistent p-bit solver, then separately evaluates physical device response and real hardware cost.
+**One question, two axes:** Which low-order coupling representation preserves useful weighted-Max-Cut solution quality under specified STT-MRAM p-bit switching nonidealities, and is its implementation cost worthwhile?
 
-## Real NUS evidence
-- **M0:** 10/10 official source audits passed, original files SHA256-verified.
-- **M1 FP64:** 144 solver calibration runs; 50k linear-beta selected by preregistered equal-graph gap/cost rule, observed 2.343% mean optimality gap across four calibration graphs.
-- **M1 global precision:** 936 actual original Max-Cut solver runs completed: 3 calibration graphs × 13 configs (FP64 and FP/INT/BFP at 4/5/6/8 bits) × 24 fresh paired seeds, 50k linear attempted updates. Findings remain restricted to these calibration graphs; the +1pp paired-bootstrap quality screen is not a cross-graph proof.
-- **Hardware:** row arithmetic and represented-energy retention are generic verified components, NOT an integrated Max-Cut p-bit ASIC or device characterization.
+- **Design choice:** existing low-order FP coupling precision, with matched INT controls and retained/optional BFP support.
+- **Physical condition:** gain and offset variation, studied separately.
+- **Task:** original Biq Mac Mac weighted Max-Cut.
+- **Outcome:** precision × device-quality regime maps, a conditional precision-selection rule, held-out validation and one supporting cost table.
 
-## Active scripts
-- `experiments/biqmac_maxcut.py`: exact original-source graph import and Ising mapping.
-- `experiments/m1_precision_codebooks.py`: finite-only FP, symmetric INT, global BFP codebooks.
-- `experiments/m1_biqmac_precision_sweep.py`: paired 50k-linear original-cut gap experiment.
-- `scripts/m1_biqmac_precision_sweep.sh`: reproducible NUS runner.
-- `docs/BIQMAC_OFFICIAL_OPTIMA_2007.json`: source-hash-matched published references.
-- `docs/M1_GLOBAL_PRECISION_FREEZE_20261107.md`: frozen codebooks, seeds, +1pp criterion.
+## Frozen execution scope
 
-Authoritative FYP report: https://github.com/Makise-okabe/MRAM_FYP_Overleaf . The active repository contains **no alternative application scripts**. Older history remains recoverable in Git history without being part of this active worktree.
+Two 100-spin CAL instances (ising2.5-100_5555, t2g10_5555) and two untouched held-out instances (ising2.5-100_7777, t2g10_7777). Initial primary formats: FP/INT 4/5/6 bits + FP64; existing 8-bit variants under the declared six-bit-failure/uncertainty rule. Retain BFP results; optional BFP6 adds no new representation search.
 
-## Next bounded gate (only mathematical transfer preflight)
-A 2026 experimental STT-MTJ Ising p-bit paper reports a nominal sigmoid example, and already demonstrates Biq Mac Max-Cut; it is a close prior-art collision. [STT-MTJ transfer preflight](experiments/m2_stt_pbit_transfer_preflight.py) validates only the algebraic conditional-field-to-voltage map with explicitly passed, provenance-dependent nonideal parameters; it is NOT device-characterized E3 or a new 936-run sweep. See the decision feedback protocol for STOP/GO and novelty warning.
+Keep 50,000 attempted updates, frozen linear beta, 24 paired trials per cell, symmetric J=-w, h=0, represented-energy retention and original-weight scoring. Study gain and offset in separate slices; no gain × offset × contrast grid.
 
-## E2 response screen (assumed sensitivity, NOT measured STT-MTJ)
+**Next:** the already authored gain-only dense-CAL pilot, then interpret its first regime plot. It reuses matching ideal data and requires 624 new runs; no result is claimed merely because code/tests exist. See the roadmap for the staged campaign and corrected run counts.
 
-A six-bit FP64/FP6/INT6/BFP6 × 3 CAL graph × 24 paired-seed screen has been [preregistered](docs/M2_E2_RESPONSE_SCREEN_FREEZE_20261107.md), using one explicitly **assumed** fixed per-device gain/offset vector. [E2 runner](experiments/m2_e2_response_gate.py) refuses to run without the frozen raw E1 CSV SHA256 and preserves the original solver and original-cut metric. GitHub Actions run [42299340532](https://github.com/Makise-okabe/MRAM_P-bit/actions/runs/42299340532) passed tiny regression tests; **the 288 actual NUS runs are not yet reported**. This is conditional E2 sensitivity, NOT a measurement of post-calibration residuals; no six-bit-only screen can prove a shifted bit-width knee or ASIC energy benefit.
+**Hardware expansion is frozen.** Existing RTL/Sky130 results provide bounded cost evidence. Genus/library repair, old Spectre searches, new processor/DAC/ADC work, other benchmarks and new solvers are not prerequisites.
 
-## M3 — Actual six-bit FP coupling row (first hardware component evidence)
+## Evidence already established
 
-[Matched FP6/INT6/BFP6 RTL](rtl/m3_local_field_row.v) now implements exponent/mantissa-based **FP6 coefficient storage decode** and integer accumulation, alongside two compile-time optimized symmetric INT6/BFP6 comparators. [Frozen experiment specification](docs/M3_FP6_INT6_BFP6_ROW_COMPARISON_20261107.md) and [verified result](docs/M3_FP6_INT6_BFP6_ROW_RESULT_20261107.md). [GitHub Actions 42352449618](https://github.com/Makise-okabe/MRAM_P-bit/actions/runs/42352449618) **PASS**: complete 99-term bit-true RTL tests and generic Yosys synth, giving 274 cells for FP6, 138 INT6 and 138 BFP6 in the *row core only*. These are NOT PDK area, cost-to-quality, memory/access, interface, controller or MTJ figures. Original 936-run ideal CAL quality supports only conditional format conclusions; complete cost and independent graphs are the next main FP research gate. The separately frozen E2 device sensitivity experiment is parked, not the FP direction.
+| Evidence | Status and limit |
+|---|---|
+| Original-source checks | 10 official Biq Mac source audits passed |
+| FP64 calibration | 144 ideal runs; 50k linear operating point selected |
+| Ideal precision study | 936 actual CAL runs across three original graphs, 13 configurations, 24 paired seeds |
+| Arithmetic implementation | Official graph-to-RTL row checks passed |
+| Row-core mapping | Sky130 HD FP6 1438.88 vs INT6/BFP6 929.6416 square micrometres |
+| Common digital interface | 27 RTL cases and Sky130 mapping recorded; FP6 23481.2704 vs INT6/BFP6 18061.0720 square micrometres |
+| Joint response-regime study | Gain-only runner authored; scientific completion must be established from actual outputs |
+| Held-out validation | Pending; preserve untouched instances |
+
+Mapped standard-cell area is not full-chip area, measured energy, physical MTJ validation or GF22FDX evidence. The current variation magnitudes are explicitly assumed E2 sensitivity levels, not measured post-calibration residuals.
+
+## Active implementation and report
+
+The working implementation is on [research/m4-gain-fusion-20261107](https://github.com/Makise-okabe/MRAM_P-bit/tree/research/m4-gain-fusion-20261107), [Draft PR #20](https://github.com/Makise-okabe/MRAM_P-bit/pull/20), building on [PR #19](https://github.com/Makise-okabe/MRAM_P-bit/pull/19). The default branch may contain only the scope/documentation baseline; this update does not merge research code.
+
+- Ideal precision: experiments/m1_biqmac_precision_sweep.py.
+- Existing codebooks: experiments/m1_precision_codebooks.py.
+- Current scientific gate: experiments/m2_precision_gain_regime.py.
+- Earlier six-bit combined-response screen: historical supporting code, not the current regime-map campaign.
+- Report: https://github.com/Makise-okabe/MRAM_FYP_Overleaf .
+
+All future chats should read the locked roadmap before proposing another step. FP superiority, a moved precision threshold, and priority over all literature remain hypotheses until supported.

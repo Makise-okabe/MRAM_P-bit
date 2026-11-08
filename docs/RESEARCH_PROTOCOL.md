@@ -1,21 +1,35 @@
+# Evidence protocol — joint precision × STT-MRAM p-bit response
 
-> **Standing user instruction — mandatory before every new scientific decision:** apply [the FYP Decision Feedback Loop](FYP_DECISION_FEEDBACK_LOOP.md). Every decision must state its FYP-relevance, evidence tier, closest prior art, minimum experiment, stopping condition, and a post-result GO / WITHIN-SCOPE-PIVOT / STOP review. A novelty claim requires evidence beyond published STT-MTJ Max-Cut/device-variability systems.
+**Current scope:** [locked roadmap, 8 November 2026](ROADMAP_LOCKED_2026-11-06.md). It controls experiment ordering and supersedes older benchmark-only or hardware-first execution notes.
 
-# Evidence protocol — weighted Max-Cut / STT-MRAM p-bit coupling
+## Evidence levels and physical interpretation
 
-**Active policy, 6 November 2026:** weighted Max-Cut using the Biq Mac Library Mac section, confirmed after supervisor discussion. The [benchmark decision](BENCHMARK_DECISION_WEIGHTED_MAXCUT_20261106.md) supersedes earlier BPSK/QAM-only policies. Low-order FP coupling and STT-MRAM p-bit nonidealities remain the core; optimized INT/BFP are controls.
+E0: exact theory/algebra. E1: seeded ideal algorithm simulation. E2: explicitly assumed response sensitivity. E3: sourced/validated device response with documented coverage. E4: authorized circuit simulation. E5: bit-true RTL or synthesis. Never promote a code/CI pass, nominal sigmoid, assumed variability distribution or CMOS area result into measured STT-MTJ evidence.
 
-Tier E0 exact theory; E1 seeded algorithmic simulation; E2 illustrative response; E3 sourced/validated device response; E4 authorized circuit; E5 bit-true/synthesis/hardware. Do not relabel synthetic response parameters or CMOS logic synthesis as measured stochastic-MTJ evidence.
+The present gain/offset levels are E2 assumptions. A published nominal curve establishes a response form, not a measured residual distribution. Digitised fits, pre-calibration spread, post-calibration residuals and manufacturing statistics are distinct. A conventional storage MTJ is not automatically a validated free-running p-bit model. Do not reproduce the unpublished manuscript's calibration contribution or publish restricted material.
 
-Independent graph instance is the statistical unit. Pair representations on the same original graph and budgets; nest solver seeds and device populations. Predeclare calibration/held-out graphs, quality floor, target definition and observation/output policy. Save source instance identity and weights, represented J, format/scale/rounding, input normalization, seeds, attempted updates and relevant source/output hashes. Do not add infrastructure beyond what the actual experiment needs.
+## Numerical fairness
 
-Use symmetric zero-diagonal J=-w and h=0 under E=-sum J_ij*s_i*s_j. The original objective is Cut_w=sum w_ij*(1-s_i*s_j)/2 and E=sum w-2*Cut_w. Verify signs and reference-value conventions independently. Report original-cut quality and gap; identify references as certified optima, best-known values or bounds. Relative gaps require a meaningful denominator. Original/represented objectives must not be silently interchanged.
+Use preserved original signed Biq Mac Mac weights. For E=-sum_(i<j)J_ij*s_i*s_j, use symmetric J=-w, diagonal zero and problem h=0; E=sum w-2 Cut_w. Physical response offset remains separate from problem h.
 
-Any-visit target probability, final snapshot quality and best-represented-energy returned output are distinct. Runtime selection may not consult an uncosted original-task oracle. Physical offset does not vanish just because problem h=0.
+All representations share source-only scale rules, graph identities, frozen beta normalization/schedule, budgets and solver draws. Preserve metadata/rounding/saturation semantics. Runtime returns the earliest best REPRESENTED-energy state; original cut is scored externally. Any-visit success, final state and retained output are different metrics.
 
-Use unchanged source weights, including signs. Weighted integer instances are legitimate: do not introduce fractional or widened weights just to favor FP. No FP advantage is assumed. Preserve metadata, encoded-scale, accumulator and memory/access costs. Update counts are not physical latency/energy; pre-placement logic area is not total accelerator area.
+Device parameters persist during a run and are paired across formats/levels. Separate device and solver RNGs. Reuse ideal results only after matching semantics and pairing; do not repeat experiments for a new output layout.
 
-Unrelated earlier experiments are outside the active weighted Max-Cut evidence chain. Generic mathematical tests and component RTL evidence may be reused within their stated scope; new Biq Mac task claims require fresh instance-specific runs. Do not claim that documentation migration has implemented or executed the new benchmark.
+## Quality and uncertainty
 
-## M0 executable source gate
-A dedicated Mac/Rudy loader and exact Decimal original-cut/Ising/flip audit have been authored on a separate draft branch, alongside signed-graph unit tests. Preserve source SHA256, source node and edge counts, loop and parallel-edge handling and optimum_status=NOT_LOADED until exact/verified reference data is imported. This is E0 mathematical consistency, not measured Max-Cut solver quality. See [M0 source protocol](M0_BIQMAC_SOURCE_PROTOCOL.md).
+Report absolute original-optimum gap against the common target, paired additional gap relative to FP64 under the SAME response, and response degradation relative to the fixed ideal condition. Keep the roadmap's 5%/7.5% absolute regime thresholds and +1pp numerical-loss screen. Label intervals crossing category boundaries uncertain. A poor device-conditioned FP64 reference does not make poor low-bit quality acceptable.
+
+Graph instances, device populations and solver seeds are different statistical levels. Seed CIs for a fixed graph and array are conditional, not graph-population or manufacturing/yield claims. With two held-out graphs report per-instance results and limits; do not pretend that 24 seeds create 24 independent graph instances. A CI crossing zero is not evidence of equivalence. Do not tune on held-out outcomes.
+
+## Cost and claims
+
+Coefficient payload/metadata counts, issue slots, mapped standard-cell area, physical memory area, timing and energy are different quantities. Existing Sky130 six-bit boundaries do not establish full-chip cost, GF22FDX integration, other-width area or energy-to-solution. Preserve hardware as one supporting cost table rather than reopening the toolchain.
+
+FP at six bits has no automatic payload saving over INT6. A useful rule must connect a stated quality target to the actual cost information available. Stable thresholds, negative results and bounded uncertainty are valid outcomes; do not invent an advantage or first-ever claim.
+
+## Decision feedback and records
+
+For each scientific choice briefly identify relevance, evidence, closest prior art, minimum test, opportunity cost and stop condition; close the loop after results. Keep source IDs, original/represented coefficients, model/calibration assumptions, populations/seeds, budgets, output policy and minimal reusable numerical summaries. Preserve earlier results, including BFP controls, without adding a provenance/CI framework or a new document for every command.
+
+Completed M0/M1 and M3/M4B evidence is preserved. A scope update is not a new solver/device run. New claims require actual outputs; the current gain pilot is not complete merely because a runner exists.
