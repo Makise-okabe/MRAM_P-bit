@@ -2,6 +2,12 @@
 
 **Locked by user instruction on 8 November 2026.** This is the authoritative current research scope on both main and the active research branch. It supersedes older execution instructions that prioritize further RTL/toolchain expansion, park device response indefinitely, or expand the benchmark/format/solver search. Completed evidence remains valid within its original scope.
 
+## Current execution status — research pause after CAL closure (8 November 2026)
+
+The FP64-only offset scout, 576-run FP/INT primary CAL study, all 192 predeclared 8-bit extension runs, and 144-FP64-state / 3,888-row *read-only* coupling J snapshot have **all completed** with user-reported NUS checks PASS. Do not re-run them. The earlier sequence below is retained as the historical plan, not as an outstanding to-do list. The authoritative scientific interpretation, closest-prior-art comparisons, model limitations and proposed held-out hypotheses are in [COUPLING_MATRIX_RESEARCH_SYNTHESIS_20261108.md](COUPLING_MATRIX_RESEARCH_SYNTHESIS_20261108.md).
+
+**Execution HOLD:** No new CAL sweep, gain/offset escalation, codebook search, RTL expansion or held-out graph inspection while literature and mechanism findings are reviewed. This documentation does not authorize held-out simulation. Once the synthesis is accepted, predeclare the bounded 7777 validation protocol before accessing those graphs; retain existing J, formats, source-only scale policy, conditional device population, 50k solver, score and CI criteria.
+
 ## One research question
 
 **Under non-ideal STT-MRAM p-bit responses, what precision and representation (FP or INT, how many bits) should the coupling matrix J use to keep weighted-Max-Cut quality acceptable, and is its hardware cost reasonable?**
