@@ -60,7 +60,7 @@ class TestOffsetFP64Scout(unittest.TestCase):
         for r in rows:
             d=r["offset_logit_halfspan"]
             self.assertAlmostEqual(r["mean_paired_deterioration_pp"],d)
-            self.assertFalse(r["practical_deterioration_above_1pp_supported"] if d<=1 else False)
+            self.assertEqual(r["practical_deterioration_above_1pp_supported"],d>1.0)
 
 
 if __name__=="__main__":
