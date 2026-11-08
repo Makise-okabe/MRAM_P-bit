@@ -19,6 +19,14 @@ Read the [authoritative locked roadmap](ROADMAP_LOCKED_2026-11-06.md) first. It 
 - **Direction lock:** keep the question, benchmark, formats, fixed solver and separate mechanisms. No new research axis, solver, application or hardware project without a new explicit user instruction. More bits and stronger stress need not improve quality; interaction does not require a failure-region crossing.
 - **Decision:** GO current precision-response closure → held-out validation → existing cost table. Hardware remains supporting evidence. This documentation lock runs no experiments.
 
+## Research synthesis pause — 8 November 2026, after all CAL offset results
+
+**Authoritative research-pause deliverable:** [COUPLING_MATRIX_RESEARCH_SYNTHESIS_20261108.md](COUPLING_MATRIX_RESEARCH_SYNTHESIS_20261108.md). This 15-source focused prior-art review and mechanism synthesis was authored AFTER the FP64 scout, 576 low-bit primary offset runs, all 192 conditional FP8/INT8 runs, and the 144-state / 3,888-row read-only J snapshot were completed in the user's NUS environment. All these results are PRESERVED. The previous "next step: run FP8/INT8" line in the historical 8-Nov lock above is superseded by this closure. It is not an instruction to rerun anything.
+
+**Current decision: STOP new CAL, new stress, extra codebooks, full-solver sweeps, hardware expansion and held-out graph inspection during this literature/mechanism pause.** The research question remains J representation -> local field -> assumed nonideal STT-MRAM p-bit response -> original-cut weighted Max-Cut quality, with existing hardware cost evidence supporting. The 15-paper review identifies strong closest prior art in coupling-error mechanisms, optimum-preserving compression, digital p-computer coupling architecture, and p-bit device-variation weight compensation; neither FP superiority nor response-by-format interaction is established. The E2 synthetic device population is not measured silicon.
+
+**Future dependent gate only:** after reviewing this synthesis, predeclare tests on the two untouched 7777 held-out instances; primary proposed prediction: dense FP6 has lower same-offset, same-FP64-state mean absolute decision-probability distortion than INT6 under the fixed frozen model. Pair seed-level CIs; report original-cut quality separately. No run is authorized by this documentation update.
+
 ## Compact feedback loop
 
 Before a scientific step answer relevance, evidence, closest prior art, opportunity cost and stop condition. Afterward: prediction → observed evidence → fairness/counterexamples → continue/change/stop. Existing necessary correctness checks remain; another PASS label, report rewrite or environment check alone is not a research milestone.
