@@ -1,24 +1,47 @@
-# STT-MRAM p-bit FYP — Biq Mac Weighted Max-Cut
+# STT-MRAM p-bit FYP — Coupling Precision × Device Nonidealities
 
-## Active benchmark
-Original **Biq Mac Library / Mac weighted Max-Cut**, 100-spin calibration graphs. The problem maps as `J_ij=J_ji=-w_ij`, `J_ii=0`, `h_i=0`. The research compares 4/5/6/8-bit FP/INT/BFP couplings under a consistent p-bit solver, then separately evaluates physical device response and real hardware cost.
+**Research scope LOCKED, 8 November 2026:** [authoritative roadmap](docs/ROADMAP_LOCKED_2026-11-06.md) · [evidence rules](docs/RESEARCH_PROTOCOL.md).
 
-## Real NUS evidence
-- **M0:** 10/10 official source audits passed, original files SHA256-verified.
-- **M1 FP64:** 144 solver calibration runs; 50k linear-beta selected by preregistered equal-graph gap/cost rule, observed 2.343% mean optimality gap across four calibration graphs.
-- **M1 global precision:** 936 actual original Max-Cut solver runs completed: 3 calibration graphs × 13 configs (FP64 and FP/INT/BFP at 4/5/6/8 bits) × 24 fresh paired seeds, 50k linear attempted updates. Findings remain restricted to these calibration graphs; the +1pp paired-bootstrap quality screen is not a cross-graph proof.
-- **Hardware:** row arithmetic and represented-energy retention are generic verified components, NOT an integrated Max-Cut p-bit ASIC or device characterization.
+**One question, two axes:** Which low-order coupling representation preserves useful weighted-Max-Cut solution quality under specified STT-MRAM p-bit switching nonidealities, and is its implementation cost worthwhile?
 
-## Where to find the active implementation
+- **Design choice:** existing low-order FP coupling precision, with matched INT controls and retained/optional BFP support.
+- **Physical condition:** gain and offset variation, studied separately.
+- **Task:** original Biq Mac Mac weighted Max-Cut.
+- **Outcome:** precision × device-quality regime maps, a conditional precision-selection rule, held-out validation and one supporting cost table.
 
-The current weighted Max-Cut scripts are in [Draft PR #19](https://github.com/Makise-okabe/MRAM_P-bit/pull/19) on branch `research/m0-biqmac-maxcut-20261106`. This default branch is the clean scope/documentation baseline until the research PR is reviewed and merged; run active experiments from the PR branch.
+## Frozen execution scope
 
-## Active scripts (on the research branch)
-- `experiments/biqmac_maxcut.py`: exact original-source graph import and Ising mapping.
-- `experiments/m1_precision_codebooks.py`: finite-only FP, symmetric INT, global BFP codebooks.
-- `experiments/m1_biqmac_precision_sweep.py`: paired 50k-linear original-cut gap experiment.
-- `scripts/m1_biqmac_precision_sweep.sh`: reproducible NUS runner.
-- `docs/BIQMAC_OFFICIAL_OPTIMA_2007.json`: source-hash-matched published references.
-- `docs/M1_GLOBAL_PRECISION_FREEZE_20261107.md`: frozen codebooks, seeds, +1pp criterion.
+Two 100-spin CAL instances (ising2.5-100_5555, t2g10_5555) and two untouched held-out instances (ising2.5-100_7777, t2g10_7777). Initial primary formats: FP/INT 4/5/6 bits + FP64; existing 8-bit variants under the declared six-bit-failure/uncertainty rule. Retain BFP results; optional BFP6 adds no new representation search.
 
-Authoritative FYP report: https://github.com/Makise-okabe/MRAM_FYP_Overleaf . The active repository contains **no alternative application scripts**. Older history remains recoverable in Git history without being part of this active worktree.
+Keep 50,000 attempted updates, frozen linear beta, 24 paired trials per cell, symmetric J=-w, h=0, represented-energy retention and original-weight scoring. Study gain and offset in separate slices; no gain × offset × contrast grid.
+
+**Next:** the already authored gain-only dense-CAL pilot, then interpret its first regime plot. It reuses matching ideal data and requires 624 new runs; no result is claimed merely because code/tests exist. See the roadmap for the staged campaign and corrected run counts.
+
+**Hardware expansion is frozen.** Existing RTL/Sky130 results provide bounded cost evidence. Genus/library repair, old Spectre searches, new processor/DAC/ADC work, other benchmarks and new solvers are not prerequisites.
+
+## Evidence already established
+
+| Evidence | Status and limit |
+|---|---|
+| Original-source checks | 10 official Biq Mac source audits passed |
+| FP64 calibration | 144 ideal runs; 50k linear operating point selected |
+| Ideal precision study | 936 actual CAL runs across three original graphs, 13 configurations, 24 paired seeds |
+| Arithmetic implementation | Official graph-to-RTL row checks passed |
+| Row-core mapping | Sky130 HD FP6 1438.88 vs INT6/BFP6 929.6416 square micrometres |
+| Common digital interface | 27 RTL cases and Sky130 mapping recorded; FP6 23481.2704 vs INT6/BFP6 18061.0720 square micrometres |
+| Joint response-regime study | Gain-only runner authored; scientific completion must be established from actual outputs |
+| Held-out validation | Pending; preserve untouched instances |
+
+Mapped standard-cell area is not full-chip area, measured energy, physical MTJ validation or GF22FDX evidence. The current variation magnitudes are explicitly assumed E2 sensitivity levels, not measured post-calibration residuals.
+
+## Active implementation and report
+
+The working implementation is on [research/m4-gain-fusion-20261107](https://github.com/Makise-okabe/MRAM_P-bit/tree/research/m4-gain-fusion-20261107), [Draft PR #20](https://github.com/Makise-okabe/MRAM_P-bit/pull/20), building on [PR #19](https://github.com/Makise-okabe/MRAM_P-bit/pull/19). The default branch may contain only the scope/documentation baseline; this update does not merge research code.
+
+- Ideal precision: experiments/m1_biqmac_precision_sweep.py.
+- Existing codebooks: experiments/m1_precision_codebooks.py.
+- Current scientific gate: experiments/m2_precision_gain_regime.py.
+- Earlier six-bit combined-response screen: historical supporting code, not the current regime-map campaign.
+- Report: https://github.com/Makise-okabe/MRAM_FYP_Overleaf .
+
+All future chats should read the locked roadmap before proposing another step. FP superiority, a moved precision threshold, and priority over all literature remain hypotheses until supported.

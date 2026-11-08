@@ -1,49 +1,99 @@
-# Current FYP roadmap — Low-order FP coupling for STT-MRAM p-bits
+# Locked FYP roadmap — coupling precision × STT-MRAM p-bit nonidealities
 
-**Benchmark updated 6 November 2026:** supervisor-approved weighted Max-Cut using the Mac portion of the Biq Mac Library. See the [active decision](BENCHMARK_DECISION_WEIGHTED_MAXCUT_20261106.md), which defines the sole active application benchmark. The research core and M0–M5 stages remain.
+**Locked by user instruction on 8 November 2026.** This is the authoritative current research scope on both main and the active research branch. It supersedes older execution instructions that prioritize further RTL/toolchain expansion, park device response indefinitely, or expand the benchmark/format/solver search. Completed evidence remains valid within its original scope.
 
-## Research question
-How should coupling precision and scale granularity be chosen for nonideal STT-MRAM p-bit systems to preserve useful weighted-Max-Cut solution quality at lower implementation cost?
+## One research question
 
-Low-order floating-point coupling is the design focus. Optimized scaled integers and BFP/shared-exponent representations are fair controls. Use the already defined candidate formats; this benchmark change does not authorize an open-ended codebook search or predetermine a floating-point advantage.
+**Which low-order coupling representation preserves useful weighted-Max-Cut solution quality under specified STT-MRAM p-bit switching nonidealities, and is its implementation cost worthwhile?**
 
-## Hypotheses
-- **H1 — Response and useful precision:** assess whether the benefit of existing coupling-precision choices changes with a specified, justified STT-MRAM p-bit response while maintaining an absolute useful-quality target.
-- **H2 — Scale granularity and cost:** compare per-element floating-point representation with calibrated shared-scale/group configurations; preserve symmetric effective couplings and include metadata, alignment, accumulation and access overhead. QAM bit-significance grouping is no longer an application-specific rationale.
-- **H3 — Conditional scaling:** evaluate effects of graph vertex count, density and source weight distribution on useful representation and system cost. Presume neither a monotonic FP advantage nor a flat precision requirement.
+The original proposal's structure is retained: precision × hardware nonidealities → acceptable/degraded/failure regimes → design guidance. The computing platform is now STT-MRAM p-bit Ising computing. FP coupling is the design focus; device nonideality is a core physical condition, and existing RTL is supporting cost evidence.
 
-Numerical representation error and device response nonideality are distinct. Their interaction in output quality is an experimental question; representation choice does not itself establish a physical MTJ nonideality mechanism.
+Candidate originality is an evidenced conditional precision-selection rule. Do not claim that numerical precision, p-bit variability, calibration, or their broad combination is unexplored. Neither an FP win nor a format-ranking reversal is required.
 
-## Formal benchmark and scoring
-- Weighted Max-Cut: maximize Cut_w(s)=sum_(i<j) w_ij*(1-s_i*s_j)/2 for s_i in {-1,+1}.
-- Under E=-sum_(i<j)J_ij*s_i*s_j-sum_i h_i*s_i, choose J_ij=-w_ij, symmetric zero-diagonal J and h=0. Then E=sum w-2*Cut_w. Native mapping needs no auxiliary spins.
-- Use fresh identified Biq Mac Mac instances, preserved original weights and verified optimum/bound conventions. Biq/QUBO instances are not silently treated as Max-Cut graphs.
-- Score original cut, reference gap and finite-budget RETURNED-target success. Declare readout and represented-energy retention policies. Any-visit probability is a diagnostic.
-- Split calibration and held-out graphs; nest solver seeds and device populations. Large graph state spaces are not exact-enumeration/Markov-chain requirements.
-- Evaluate official original-weight Max-Cut quality, device response and implementation cost only.
+## Locked scope
 
-## Hardware and response scope
-Reuse the existing local-field row and representation definitions where appropriate. The application has h=0, so reconsider bias-code storage and hardware and implement the actually selected coefficient precision. Device offsets remain separate response parameters.
+| Axis / component | Core | Outside this campaign |
+|---|---|---|
+| Coupling representation | Existing FP and INT codebooks at 4/5/6 bits, FP64 reference; existing 8-bit variants under the rule below | New codebooks, exponent/mantissa searches, logarithmic formats |
+| Shared-exponent control | Preserve all existing BFP results; optional BFP6 supporting control, with scope declared before runs | New BFP group-size searches, independently rounded asymmetric rows |
+| Device response | Gain and offset, each at ideal + three predeclared stress levels, studied in SEPARATE slices | Gain × offset cross-product, contrast, branch asymmetry, temporal correlation |
+| Graphs | Two CAL and two untouched held-out 100-spin original Biq Mac Mac instances | Larger suites, other applications, 10^4-spin scale-up |
+| Solver | Frozen 50,000 attempted updates, original-graph beta normalization, linear 0.5→2.0 schedule, 24 paired trials per cell | New solvers, temperature/schedule tuning, outcome-based scales |
+| Cost | Existing matched six-bit RTL/Sky130 results plus explicitly labelled storage/access counts | Genus repair, new RTL/processor, analog interface or ADC design, new power claims |
 
-Retain the intended 64–128-spin coupling hardware and bit-true exponent/scale handling, bounded accumulation, p-bit interface and implementation-backed cost. A one-row engine, a tile, and a complete accelerator are different scopes. Count the actual number of row engines, scheduler, stored states, coefficient memory/access, output-retention and conversion/interface overhead. Cell-area estimates alone are not full-system area, energy or performance.
+The format pool remains the already implemented 4/5/6/8-bit FP/INT/BFP definitions. The primary campaign starts with seven configurations: FP64 + FP4/5/6 + INT4/5/6. If either six-bit format does not clearly meet the common absolute-quality and +1pp numerical-loss screens at a cell, evaluate BOTH FP8 and INT8 there. Mark cells not run as unmeasured. This predeclared extension is not permission to search additional formats. The existing all-width BFP pilot is retained; optional status must never be used to hide an unfavorable BFP result or claim comparison against an untested best BFP architecture.
 
-Any suitable authorized CMOS standard-cell library may support a clearly labeled first digital comparison; GF22FDX is not mandatory. Digital synthesis does not validate a stochastic STT-MTJ response or establish process-compatible co-integration. A conventional stable-storage MTJ model is not automatically a validated stochastic p-bit model. True in-array CIM is not assumed.
+## Graphs and pairing
 
-## Evidence and milestones
-E0 exact theory; E1 seeded algorithmic simulations; E2 illustrative response; E3 sourced/validated device response; E4 authorized circuit simulation; E5 bit-true/synthesis/hardware. Keep these distinctions explicit and do not reuse restricted or unrelated old data.
+| Role | Original instance | Seed placement |
+|---|---|---|
+| CAL, wide dense | ising2.5-100_5555 | Preserve M1 graph index 2 |
+| CAL, wide sparse | t2g10_5555 | Preserve M1 graph index 1 |
+| Held-out, wide dense | ising2.5-100_7777 | New fixed graph index 4 |
+| Held-out, wide sparse | t2g10_7777 | New fixed graph index 3 |
 
-| Stage | Deliverable |
+Use the existing M1 solver seed rule, base 20261201 + 100000 × graph_index + k, k=0..23. Never reclassify the already inspected 5555 instances as held-out. Existing w01 integer-control evidence is preserved, but no new large integer-control campaign is required. Source hashes and official reference conventions must be verified by existing utilities before scoring the new files.
+
+All future decisions use CAL only. Models, scales, formats and thresholds are fixed before evaluating held-out instances. Two held-out instances validate only this bounded test set, not universal graph-population behavior.
+
+## Device model and calibration assumptions
+
+Use the already implemented behavioral form:
+P_i(+1) = sigmoid(alpha_i × 2 beta(t) H_i_quantized + delta_i).
+
+Gain alpha is dimensionless. Offset delta is in LOGIT units, not volts. Parameters persist for each device/spin throughout a run. The same normalized device population is paired across formats, levels and solver trials, using a separate device RNG. State how many device populations are used; seed confidence intervals for one fixed array do not establish manufacturing/yield robustness.
+
+The full planned E2 slices are:
+- Gain-only: alpha_i = 1 + a u_i, delta_i = 0; a = 0, 0.025, 0.05, 0.10.
+- Offset-only: alpha_i = 1, delta_i = d v_i; d = 0, 0.05, 0.10, 0.20.
+- u_i and v_i are the existing fixed uniform [-1,+1] population draws, shared across levels. Start with the already frozen gain pilot; offset follows its scientific review.
+
+These nonzero magnitudes are explicitly ASSUMED sensitivity levels: half, equal and double the existing E2 gain/offset stress envelope. They are NOT measured post-calibration residuals, a validated silicon distribution, or GF22FDX characterization. Do not infer residuals from pre-calibration spread. Document the calibration assumption and any measured or digitised inputs separately. Realistic-device conclusions require appropriate data; unavailable supplementary files do not block clearly labelled E2 research indefinitely. Do not reproduce the unpublished paper's calibration method.
+
+Do not alter levels after seeing format rankings. If thresholds do not move within this range, report that bounded result instead of widening noise until FP wins.
+
+## Metrics and regime labels
+
+Let g = 100 × (C_optimum - C_returned) / C_optimum, using the ORIGINAL graph weights and documented positive optimum. Runtime retains the earliest lowest REPRESENTED-energy state; original cut is external evaluation, not a selection oracle. J remains symmetric, J=-w, diagonal zero, and problem h=0.
+
+Retain the already declared gain-pilot ABSOLUTE thresholds for the first campaign:
+- Acceptable: the 95% solver-seed CI upper bound on mean g is <=5%.
+- Degraded: the CI lies above 5% and at/below 7.5%.
+- Failure: the CI lower bound is >7.5%.
+- Uncertain: the interval crosses a regime boundary.
+
+These are operational cut-quality categories, not device failure probabilities or guarantees on every individual run. Also report mean original-cut gap and the entire interval, so classification does not hide uncertainty.
+
+Separately report paired quantization penalty g(format, response) - g(FP64, SAME response), retaining the existing +1.0pp upper-CI screen. Report response degradation against the FIXED ideal condition, and paired FP-versus-INT response interaction as a diagnostic. A poor nonideal FP64 reference does not make an equally poor low-bit result acceptable. If no configuration meets the absolute target, say so.
+
+A wide interaction CI crossing zero is inconclusive. A stable threshold supports independence only within tested mechanisms, levels, graphs and populations. More variation does not automatically mean more or fewer useful bits.
+
+## Bounded execution and honest budget
+
+1. **Preserve the already authored E2-GAIN-01 pilot:** one dense CAL graph, all 13 existing FP64/FP/INT/BFP configurations, ideal plus a=0.025/0.05, 24 paired seeds. Reuse 312 matching ideal M1 rows; **624 new solver runs**. Do not restart or relabel completed/running pilot results because of this scope lock.
+2. Interpret that plot before expanding. The primary one-mechanism CAL campaign is 2 graphs × 7 configs × 4 response levels × 24 trials = **1344 evaluated rows**, including 336 reusable ideal CAL rows when semantics match: **1008 new primary CAL runs**, before optional BFP/8-bit additions. Credit matching pilot rows; do not rerun them for a new report.
+3. Review the gain findings, then study the offset slice using the SAME approved protocol. No combined gain-offset grid.
+4. Validate the locked rule on the two held-out instances. A full seven-config, four-level mirror is 1344 rows for one mechanism; a smaller predeclared validation subset is allowed if its inference limits are explicit.
+5. Two complete four-graph mechanism slices sharing ideal rows contain **4704 primary evaluated rows**, not approximately 2000. Optional BFP and conditional 8-bit cells add cost. This is an upper-scope count, not authorization to launch everything at once. Before each batch state its exact new/reused run count.
+
+Only minimal changes to the existing Python runner, analysis and plots are in scope. Keep the working environment and existing necessary regression checks; no new CI/provenance framework.
+
+## Deliverables and milestones
+
+| Stage | Deliverable / stopping point |
 |---|---|
-| M0 | Weighted-Max-Cut loader/mapping and independent original-cut checks; bounded baseline validation |
-| M1 | Existing coupling representations under ideal/nonideal responses, paired by graph; H1/H2 quality bounds |
-| M2 | STT-MRAM-aware coupling configuration and costed local-field/output-policy specification |
-| M3 | Bit-true coupling hardware and synthesis-backed area/timing with full stated scope |
-| M4 | Held-out graph families/sizes and device populations; conditional H3 |
-| M5 | Supported design rules, operating limits and final report |
+| Baselines, completed | Preserve 936 ideal CAL runs and the verified six-bit row/interface evidence |
+| Next scientific result | One gain × precision regime plot and paired uncertainty on the dense CAL graph |
+| Core CAL study | Two graph-specific precision-response maps for gain and offset studied separately |
+| Validation | Two untouched held-out instances under frozen choices |
+| Final result | Conditional precision-selection rule, counterexamples, one bounded hardware/storage cost table and report |
 
-Existing component verification remains evidence for that component. Existing component RTL alone does not constitute a complete Biq Mac optimizer. Keep prior results intact; no new simulation or infrastructure expansion is implied by this scope update.
+Use existing cost evidence only for implemented semantics and boundaries. Six-bit Sky130 row/interface area does not establish 4/5/8-bit area, full-chip cost, energy, latency or GF22FDX results. Report other-width payload counts as counts, not measured silicon. Equal six-bit payload does not imply equal decode/accumulator cost.
 
-## First actual M0 code gate (pending execution)
-The draft branch research/m0-biqmac-maxcut-20261106 contains a source-preserving Rudy parser, an independent tiny signed Max-Cut test suite, and a fixed official-instance import script. See [M0 source protocol](M0_BIQMAC_SOURCE_PROTOCOL.md). No original Mac graphs have been executed on NUS yet; no benchmark optimization quality or Max-Cut-specific synthesis can be reported.
+## Stop conditions and feedback
 
-**Data regime explicitly added 7 Nov:** low-range Mac/rudy integer controls AND wide-range original Mac/ising physics graphs `t2g10_5555` (100/200) and `ising2.5-100_5555` (100/4950). Weight range is an input characteristic, NOT FP superiority evidence. Keep a matched solver/format/hardware cost protocol and reserve independent graph seeds for held-out. The M0 import/test script reports E0 only. See M0 source protocol.
+Before a scientific decision, briefly state relevance, evidence tier, closest prior art, opportunity cost, minimum test and stop condition. After results: prediction → observation → fairness/counterexamples → continue/change/stop. This should be concise feedback, not another infrastructure deliverable.
+
+Stop new hardware/toolchain work, new axes, outcome-based parameter tuning, nominal-sigmoid duplicate runs and repeated report rewrites. Stop unsupported superiority/interaction claims when evidence does not support them; preserve valid negative or stable-threshold findings. The FYP goal is a useful, bounded design rule rather than guaranteed FP superiority.
+
+The dated [decision feedback record](https://github.com/Makise-okabe/MRAM_P-bit/blob/research/m4-gain-fusion-20261107/docs/FYP_DECISION_FEEDBACK_LOOP.md) preserves historical evidence. This locked roadmap controls future execution.
