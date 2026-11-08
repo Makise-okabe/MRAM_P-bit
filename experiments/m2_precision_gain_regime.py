@@ -245,6 +245,121 @@ def write_svg(path:Path, summary:list[dict], *, formats: tuple = FORMATS) -> Non
     path.write_text("\n".join(buf)+"\n",encoding="utf-8")
 
 
+
+def paired_fp_int(rows: dict, *, graph_name: str, formats: tuple,
+                  seeds: tuple) -> list[dict]:
+    """Direct per-condition gap(FP)-gap(INT) and paired difference-in-differences.
+
+    Independent unit for this CI is a solver seed, conditional on exactly one
+    100-device E2 assumed realization and one graph (NOT manufacturing/yield).
+    """
+    comparisons=[]
+    for cidx,(condition,alpha) in enumerate(STRESSES):
+        for bits in (4,5,6,8):
+            fp,intfmt=f"fp{bits}",f"int{bits}"
+            if fp not in formats or intfmt not in formats:
+                continue
+            delta=[rows[(condition,fp,k)]["optimality_gap_pct"]-
+                   rows[(condition,intfmt,k)]["optimality_gap_pct"] for k in seeds]
+            interaction=[
+                d-(rows[("ideal",fp,k)]["optimality_gap_pct"]-
+                   rows[("ideal",intfmt,k)]["optimality_gap_pct"])
+                for d,k in zip(delta,seeds)
+            ]
+            md,ld,hd=mean_ci(delta,51000+1000*cidx+bits)
+            mi,li,hi=mean_ci(interaction,52000+1000*cidx+bits)
+            comparisons.append(dict(
+                graph=graph_name,condition=condition,
+                gain_halfspan_assumed=alpha,width_bits=bits,
+                fp_format=fp,int_format=intfmt,
+                mean_direct_delta_fp_minus_int_pp=md,
+                ci95_direct_delta_lo_pp=ld,ci95_direct_delta_hi_pp=hd,
+                mean_interaction_D_pp=mi,
+                ci95_interaction_lo_pp=li,ci95_interaction_hi_pp=hi,
+                n_paired_solver_seeds=len(seeds),
+                device_populations=1,
+                evidence="E1_IDEAL" if alpha==0 else EVIDENCE,
+            ))
+    return comparisons
+
+
+def write_gap_bitwidth_plot(path: Path, summary: list[dict], *,
+                            graph_name: str, formats: tuple) -> None:
+    """One SVG with THREE original-optimum gap curves and paired-seed 95% CIs.
+
+    This plots FP and INT at the tested bit widths; FP64 mean is shown for
+    context. Exact +1pp FP64 penalty CIs are in E2_gain_regime_summary.csv.
+    """
+    lookup={(r["condition"],r["configuration"]):r for r in summary}
+    widths=[b for b in (4,5,6,8) if f"fp{b}" in formats and f"int{b}" in formats]
+    if len(widths)<2:
+        raise ValueError("bit-width plot needs >=2 matched widths")
+    ymin=math.floor(min([5.0,7.5]+[float(r["ci95_abs_gap_lo_pct"]) for r in summary])-0.5)
+    ymax=math.ceil(max([5.0,7.5]+[float(r["ci95_abs_gap_hi_pct"]) for r in summary])+0.5)
+    top,bottom=150,565
+    total_w,total_h=1240,710
+    def ycoord(g):
+        return top+(ymax-g)*(bottom-top)/(ymax-ymin)
+    out=[
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {total_w} {total_h}" width="{total_w}" height="{total_h}">',
+        '<rect width="100%" height="100%" fill="white"/>',
+        f'<text x="24" y="35" font-family="Arial" font-size="20" font-weight="bold">{html.escape(graph_name)} — gap versus coupling width, assumed gain variation</text>',
+        '<text x="24" y="58" font-family="Arial" font-size="13">Original weighted Max-Cut optimality gap (lower better), 24 paired solver seeds; one fixed E2 device population</text>',
+        '<text x="24" y="78" font-family="Arial" font-size="12">Error bars are 95% solver-seed bootstrap CIs; 5% and 7.5% gap thresholds are predeclared</text>',
+    ]
+    for cidx,(condition,alpha) in enumerate(STRESSES):
+        base=23+405*cidx
+        lx,rx=base+69,base+337
+        def xcoord(width):
+            return lx+(width-min(widths))*(rx-lx)/(max(widths)-min(widths))
+        out.append(f'<text x="{base+192}" y="117" font-family="Arial" font-size="17" font-weight="bold" text-anchor="middle">{html.escape(condition)} (±{100*alpha:g}%)</text>')
+        out.append(f'<line x1="{lx}" y1="{top}" x2="{lx}" y2="{bottom}" stroke="#888"/>')
+        out.append(f'<line x1="{lx}" y1="{bottom}" x2="{rx}" y2="{bottom}" stroke="#888"/>')
+        for tick in range(ymin,ymax+1):
+            y=ycoord(tick)
+            out.append(f'<line x1="{lx}" y1="{y:.1f}" x2="{rx}" y2="{y:.1f}" stroke="#eeeeee"/>')
+            out.append(f'<text x="{lx-9}" y="{y+4:.1f}" font-size="11" font-family="Arial" text-anchor="end">{tick}%</text>')
+        for threshold in (5.0,7.5):
+            y=ycoord(threshold)
+            out.append(f'<line x1="{lx}" y1="{y:.1f}" x2="{rx}" y2="{y:.1f}" stroke="#a0a0a0" stroke-dasharray="4,5"/>')
+        ref=lookup[(condition,"ref64")]
+        y=ycoord(float(ref["mean_absolute_gap_pct"]))
+        out.append(f'<line x1="{lx}" y1="{y:.1f}" x2="{rx}" y2="{y:.1f}" stroke="#666666" stroke-width="2" stroke-dasharray="7,3"/>')
+        for family,color in (("fp","#2765b7"),("int","#c87020")):
+            coords=[]
+            for bits in widths:
+                row=lookup[(condition,f"{family}{bits}")]
+                xx=xcoord(bits)
+                yy=ycoord(float(row["mean_absolute_gap_pct"]))
+                coords.append(f"{xx:.1f},{yy:.1f}")
+            out.append(f'<polyline points="{" ".join(coords)}" fill="none" stroke="{color}" stroke-width="2.5"/>')
+            for bits in widths:
+                row=lookup[(condition,f"{family}{bits}")]
+                xx=xcoord(bits)
+                yy=ycoord(float(row["mean_absolute_gap_pct"]))
+                ylow=ycoord(float(row["ci95_abs_gap_hi_pct"]))
+                yhigh=ycoord(float(row["ci95_abs_gap_lo_pct"]))
+                out.append(f'<line x1="{xx:.1f}" y1="{ylow:.1f}" x2="{xx:.1f}" y2="{yhigh:.1f}" stroke="{color}" stroke-width="1.5"/>')
+                out.append(f'<line x1="{xx-4:.1f}" y1="{ylow:.1f}" x2="{xx+4:.1f}" y2="{ylow:.1f}" stroke="{color}"/>')
+                out.append(f'<line x1="{xx-4:.1f}" y1="{yhigh:.1f}" x2="{xx+4:.1f}" y2="{yhigh:.1f}" stroke="{color}"/>')
+                out.append(f'<circle cx="{xx:.1f}" cy="{yy:.1f}" r="4" fill="{color}"/>')
+        for bits in widths:
+            xx=xcoord(bits)
+            out.append(f'<text x="{xx:.1f}" y="{bottom+22}" font-size="13" font-family="Arial" text-anchor="middle">{bits}</text>')
+        out.append(f'<text x="{base+200}" y="{bottom+47}" font-family="Arial" font-size="13" text-anchor="middle">Coupling bits</text>')
+    out.extend([
+        '<line x1="45" y1="665" x2="75" y2="665" stroke="#2765b7" stroke-width="3"/>',
+        '<text x="82" y="670" font-size="13" font-family="Arial">FP</text>',
+        '<line x1="145" y1="665" x2="175" y2="665" stroke="#c87020" stroke-width="3"/>',
+        '<text x="182" y="670" font-size="13" font-family="Arial">INT</text>',
+        '<line x1="245" y1="665" x2="275" y2="665" stroke="#666" stroke-width="2" stroke-dasharray="7,3"/>',
+        '<text x="283" y="670" font-size="13" font-family="Arial">FP64 mean (same response)</text>',
+        '<text x="45" y="692" font-size="12" font-family="Arial">E2 sensitivity, not measured post-calibration residuals. Matched-FP64 +1pp eligibility requires the companion CSV.</text>',
+        '</svg>',
+    ])
+    path.write_text("\n".join(out)+"\n",encoding="utf-8")
+
+
 def audit(graph,refs,ideal_csv:Path, *, graph_name: str = GRAPH_NAME,
           formats: tuple = FORMATS, seeds: tuple = SEEDS) -> dict:
     optimum=official_reference(graph,refs["graphs"][graph_name],refs)
@@ -351,6 +466,10 @@ def run(ideal_csv:Path,out:Path,audit_only:bool,graph_name:str=GRAPH_NAME) -> No
     summary=summarize(results,graph_name=graph_name,formats=formats,seeds=seeds)
     write_csv(out/"E2_gain_regime_summary.csv",summary)
     write_svg(out/"E2_gain_regime_map.svg",summary,formats=formats)
+    pairs=paired_fp_int(results,graph_name=graph_name,formats=formats,seeds=seeds)
+    write_csv(out/"E2_gain_fp_int_paired.csv",pairs)
+    write_gap_bitwidth_plot(out/"E2_gain_gap_vs_bitwidth.svg",summary,
+                            graph_name=graph_name,formats=formats)
     # The "minimum sufficient width" is SEED-CONDITIONAL on one CAL graph
     # and one assumed device sample, not a universally optimal bit width.
     knee=[]
@@ -384,7 +503,8 @@ def run(ideal_csv:Path,out:Path,audit_only:bool,graph_name:str=GRAPH_NAME) -> No
         "no_retuning":True,
         "precision_rule_scope":"within-calibration graph seed CI, conditional one E2 population",
         "output_files":["E2_gain_new_runs.csv","E2_gain_regime_summary.csv",
-                        "E2_gain_regime_map.svg","E2_gain_precision_rule.json",
+                        "E2_gain_regime_map.svg","E2_gain_fp_int_paired.csv",
+                        "E2_gain_gap_vs_bitwidth.svg","E2_gain_precision_rule.json",
                         "frozen_E2_gain_model.json"]
     }
     (out/"manifest.json").write_text(json.dumps(manifest,indent=2,sort_keys=True)+"\n")
@@ -393,6 +513,15 @@ def run(ideal_csv:Path,out:Path,audit_only:bool,graph_name:str=GRAPH_NAME) -> No
               f"{item['minimum_eligible_width']}",flush=True)
     print(f"E2-GAIN-01 {graph_name} SCIENTIFIC COMPLETE new={len(new_runs)} ideal_reused={len(ideal)} "
           f"plot={out/'E2_gain_regime_map.svg'}",flush=True)
+    for r in pairs:
+        if r["width_bits"] == 6:
+            print(f"DIRECT FP6-INT6 {r['condition']} "
+                  f"Delta={r['mean_direct_delta_fp_minus_int_pp']:+.3f} pp "
+                  f"CI=[{r['ci95_direct_delta_lo_pp']:+.3f},"
+                  f"{r['ci95_direct_delta_hi_pp']:+.3f}] "
+                  f"D={r['mean_interaction_D_pp']:+.3f} pp "
+                  f"CI=[{r['ci95_interaction_lo_pp']:+.3f},"
+                  f"{r['ci95_interaction_hi_pp']:+.3f}]",flush=True)
 
 
 def main() -> None:
