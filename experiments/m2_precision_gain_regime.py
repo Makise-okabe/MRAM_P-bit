@@ -246,6 +246,7 @@ def run(ideal_csv:Path,out:Path,audit_only:bool) -> None:
     if refs.get("reference_type")!="PUBLISHED_OPTIMUM":
         raise ValueError("missing official published optimum")
     graph=load_rudy(GRAPH_PATH)
+    optimum=official_reference(graph,refs["graphs"][GRAPH_NAME],refs)
     ideal=audit(graph,refs,ideal_csv)
     if audit_only:
         return
