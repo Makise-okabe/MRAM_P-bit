@@ -90,6 +90,46 @@ unchanged. The gain × offset cross product remains forbidden; the future
 low-bit comparison and held-out policy stay frozen. No additional gain
 tests, RTL/toolchain work, or new solvers are part of this scout.
 
+## FP64-scout decision and next locked primary offset batch — 8 November 2026
+
+**FP64-only scout has completed (240 new runs, 48 reused ideal).**
+Its seed-conditional mean original-gap deterioration (pp) from ideal at
+d=0.8/1.6 LOGIT was: t2g10 sparse +0.395 / +2.247; ising2.5 dense
++0.529 / +0.685. Only sparse d=1.6 had paired bootstrap CI lower
+bound >+1 pp; no absolute failure regime was established. Results belong
+to ONE synthetic 100-device offset population, not measured silicon residuals.
+
+**Decision based only on FP64 scout, frozen before any new low-bit outcomes:**
+select both d=0.8 and d=1.6 on BOTH existing CAL graphs, zero gain variation.
+These are intentionally diagnostic E2 logit offsets and do not replace a
+measured calibrated switching-response distribution.
+
+The **next experiment** is exactly:
+- Two CAL graphs with original M1 graph indices 1/2.
+- Six core low-bit formats: FP4/5/6 and INT4/5/6 (same M1 global codebooks).
+- Two selected offset halfspans d=0.8 and 1.6; identical per-device v_i,
+  persistent and reused from the completed FP64 scout (gain exactly one).
+- 24 paired solver seeds per cell, unchanged 50k linear schedule and beta.
+- **576 new primary solver runs** (2 graphs x 2 levels x 6 formats x 24 seeds).
+- Reuse **96 matched FP64 scout rows** (2 graphs x 2 levels x 24 seeds)
+  and **336 M1 ideal FP64/FP/INT rows** (2 graphs x 7 formats x 24 seeds).
+  Do not rerun either reference dataset.
+- Report absolute original-optimum gap + full seed CI, matched-condition
+  FP64 added quantization loss + CI, direct FP_b minus INT_b paired differences
+  and paired offset-induced difference-in-differences, b in {4,5,6}.
+- Apply the existing common acceptable-gap (5% CI upper) AND +1pp
+  matched-FP64 numerical-loss (CI upper) screens. If either six-bit
+  configuration does not clearly pass in a graph/offset cell, add **both
+  FP8 and INT8** at that cell as a separately budgeted conditional extension;
+  report unmeasured cells honestly.
+- Stop after interpreting primary maps, CIs and required conditional 8-bit
+  cells. Then freeze the conditional rule and perform held-out testing.
+  No gain expansion, enlarged offsets, new benchmark, solver or RTL work.
+
+This is a **scout-informed CAL design choice** documented *before* FP/INT
+offset results, not a revision selected using low-bit rankings. The earlier
+unextended gain-only pilots, all M1 and hardware cost evidence remain intact.
+
 ## Metrics and regime labels
 
 Let g = 100 × (C_optimum - C_returned) / C_optimum, using the ORIGINAL graph weights and documented positive optimum. Runtime retains the earliest lowest REPRESENTED-energy state; original cut is external evaluation, not a selection oracle. J remains symmetric, J=-w, diagonal zero, and problem h=0.
