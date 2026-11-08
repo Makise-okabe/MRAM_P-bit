@@ -52,6 +52,44 @@ These nonzero magnitudes are explicitly ASSUMED sensitivity levels: half, equal 
 
 Do not alter levels after seeing format rankings. If thresholds do not move within this range, report that bounded result instead of widening noise until FP wins.
 
+## Explicit bounded offset-scout amendment — 8 November 2026 (current next step)
+
+The FP64-only reference-response scout is the next experiment, **before** completing
+any additional gain-only rows. The two completed gain-only CAL pilots are preserved,
+without rewriting solver, seeds, response equation or their results.
+
+**Scientific question:** At what assumed persistent LOGIT offset does the frozen
+FP64 weighted-Max-Cut response exhibit *noticeable* quality deterioration?
+This isolates the response baseline **without examining low-bit rankings**.
+
+- Exactly the two existing CAL graphs: `t2g10_5555` (index 1),
+  `ising2.5-100_5555` (index 2).
+- `ref64` only, same 50,000-update linear solver, 24 original paired seeds,
+  same synthetic 100-device offset population drawn in E2, fixed in each run,
+  matched across levels, graphs and solver seeds; gain = 1 exactly.
+- Five nonzero offset halfspans: `d={0.1,0.2,0.4,0.8,1.6}` LOGIT,
+  where `delta_i=d*v_i`, `v_i~Uniform[-1,1]` is the *existing* fixed E2 draw.
+  These values are **E2 diagnostic assumed stresses, NOT measured STT-MRAM
+  post-calibration residuals**. ±1.6 logit is intentionally a high stress
+  and cannot be called realistic or equated with a measured voltage limit.
+- **240 new solver runs** = two graphs × five levels × 24 paired seeds.
+  **48 ideal runs reused** from the frozen 936-run original M1 CSV.
+- Report absolute original-optimum gap vs the existing 5%/7.5% regimes,
+  and paired per-seed deterioration from each graph's matching ideal FP64.
+  Declare *clear practical deterioration* only if the **95% seed-bootstrap
+  lower confidence limit** of the mean gap increase exceeds **+1.0 percentage
+  point**. A CI overlapping +1 pp is inconclusive.
+- After reviewing FP64 results, select at most two informative offset
+  levels using **FP64 only**, before examining any low-bit response rankings.
+  If no noteworthy effect appears within this declared range, report the
+  bounded negative finding; do not extend stress to force a result.
+
+This is an explicit amendment to the prior proposed offset grid
+`d={0,.05,.10,.20}`, which is deferred rather than silently called
+unchanged. The gain × offset cross product remains forbidden; the future
+low-bit comparison and held-out policy stay frozen. No additional gain
+tests, RTL/toolchain work, or new solvers are part of this scout.
+
 ## Metrics and regime labels
 
 Let g = 100 × (C_optimum - C_returned) / C_optimum, using the ORIGINAL graph weights and documented positive optimum. Runtime retains the earliest lowest REPRESENTED-energy state; original cut is external evaluation, not a selection oracle. J remains symmetric, J=-w, diagonal zero, and problem h=0.
