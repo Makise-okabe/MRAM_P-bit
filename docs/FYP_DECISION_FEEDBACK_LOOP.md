@@ -1,5 +1,40 @@
 # FYP Decision Feedback Loop — standing project rule (7 November 2026)
 
+## Current user instruction and execution priority — 8 November 2026
+
+**Read this section first.** The user has explicitly restored the original joint question: **low-order floating-point coupling precision × STT-MRAM p-bit switching nonidealities → Max-Cut quality/failure regimes → precision-selection guidance**. This supersedes historical instructions below that park device-response research indefinitely or call it only a secondary robustness check. It does NOT change the supervisor-approved weighted Max-Cut benchmark.
+
+**Research question:** How should low-order FP coupling format and precision be chosen for STT-MRAM p-bits with specified nonideal switching responses? INT/BFP are strong controls; an FP win or a format-ranking reversal is not assumed. Candidate novelty is the evidenced conditional design rule, not the assertion that nobody has studied quantization or MTJ variability.
+
+### Preserve completed work; stop hardware expansion
+- Retain the 936-run ideal CAL baseline, official graph-to-RTL checks, Sky130 row-core mapping, gain-folding audit and M4B common digital-interface results as supporting evidence. These are not complete-chip, measured-MTJ, GF22FDX, power or energy results.
+- Further Genus/Nangate45 cross-checks, Linux-library repair, simulator installation, old Spectre-disk searches and new RTL/interface optimization are NOT prerequisites for the next scientific result. Freeze them unless an actual numerical correctness bug blocks that result.
+- No return to CIM/ADC, MIMO/TSP, SAT, a neural/Boltzmann-machine extension, new annealing algorithms or new FP formats. Existing FP/INT/BFP 4/5/6/8-bit codebooks and the 50k linear schedule remain fixed.
+
+### Next bounded scientific experiment
+1. Adapt the existing response runner for a **precision × device-response** experiment on one original dense CAL graph. A six-bit-only 288-run screen cannot establish a moved bit-width threshold.
+2. Use existing 4/5/6/8-bit candidates with FP64 and matched INT/BFP controls. Start with ONE mechanism, offset OR gain spread, at ideal plus two predeclared nonzero levels. Do not start an offset × gain × contrast cross-product. Study the second mechanism only after interpreting the first plot.
+3. Declare the response equation, parameter units, distribution, calibration assumption, levels and total run budget before inspecting results. Use published measured/curve-derived information when available; mark fitted/digitised approximations and assumed stresses separately. Pre-calibration spread is not measured post-calibration residual. The existing +/-5% gain and +/-0.10 logit E2 envelope is an assumption, not measured STT-MTJ evidence.
+4. Do not block indefinitely on one unavailable Supplementary PDF. An explicitly labelled E2 sensitivity study may proceed with justified, stated assumptions; silicon-validation claims require appropriate evidence. Do not reproduce the unpublished paper's calibration method.
+5. Keep device parameters persistent within a run, use a separate device RNG, and share the same device population and solver draws across representations. State whether seed intervals condition on one population; do not claim manufacturing robustness from one array. Reuse ideal results only with matching numerical semantics, graphs, seeds and update/retention rules.
+6. Keep J symmetric, h=0, beta normalized from the original graph, and return the best REPRESENTED-energy state. Score original-weight cut against the documented original optimum. Never tune beta, scales from solver outcomes, or noise levels to rescue FP.
+
+### Metrics, deliverables and stopping rules
+- Primary: absolute original-optimum gap and attainment of a common quality target across ALL response conditions.
+- For a regime map, fix acceptable/degraded/failure thresholds before the experiment. A fixed ideal FP64 reference may anchor total degradation. ALSO report quantization penalty relative to FP64 under the SAME response to isolate numerical effects.
+- Never label a degraded format acceptable merely because nonideal FP64 is equally poor. If none meets the absolute target, report “no tested configuration meets target.”
+- Deliver one regime plot, then a concise explanation of whether useful precision changes. Stable ordering/no interaction is valid; a wide CI crossing zero is inconclusive. More device variation does not automatically imply fewer useful bits.
+- Confirm the finding on an untouched held-out Biq Mac instance before broader generalization. Solver seeds are not independent graph instances.
+- Derive a conditional precision-selection rule. Use existing hardware costs only for matching implemented formats/boundaries; do not invent 4/5/8-bit area or energy from six-bit RTL.
+- STOP enlarging the grid or inventing another method to manufacture an FP win. Report bounded negative findings or uncertainty. Preserve hardware work without expanding it.
+
+### Feedback discipline and immediate action
+For each scientific decision, answer relevance, evidence, closest prior art, opportunity cost and stop condition concisely. Close the loop: prediction → minimum experiment → observed result → continue/change/stop. Existing necessary correctness tests stay; no new CI/provenance frameworks or repeated report rewrites before the scientific output.
+
+**Immediate next action:** inspect the existing M1 raw paired CSV and response-runner capability, then state ONE bounded matrix and run budget. Execute and interpret that experiment using the working Python environment. No new hardware/toolchain prerequisite. This is an execution-priority correction within the original FYP, not a new research direction.
+
+## Historical decisions and evidence — retained for provenance
+
 **MANDATORY for every subsequent scientific/engineering choice.**
 This file is the durable cross-chat record of the user's direct instruction:
 *before accepting a new action, check whether it directly advances the FYP; after receiving evidence, close the loop and change course or stop instead of digging a research hole.*
