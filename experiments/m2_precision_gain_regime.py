@@ -46,7 +46,21 @@ REFERENCE_PATH = Path("docs/BIQMAC_OFFICIAL_OPTIMA_2007.json")
 SEEDS = tuple(BASE_SEED_FROZEN + 100_000*GRAPH_INDEX + k
               for k in range(SEEDS_FROZEN))
 FORMATS = ("ref64",) + tuple(f"{fam}{bits}" for fam in FAMILIES for bits in WIDTHS)
+SPARSE_GRAPH_NAME = "t2g10_5555"
+SPARSE_GRAPH_INDEX = 1
+SPARSE_FORMATS = ("ref64",) + tuple(
+    f"{fam}{bits}" for fam in ("fp","int") for bits in (4,5,6))
 STRESSES = (("ideal",0.0), ("gain_025",0.025), ("gain_050",0.05))
+
+
+def select_cal_graph(name: str):
+    if name == GRAPH_NAME:
+        return GRAPH_PATH, GRAPH_INDEX, FORMATS, SEEDS
+    if name == SPARSE_GRAPH_NAME:
+        seeds=tuple(BASE_SEED_FROZEN+100000*SPARSE_GRAPH_INDEX+k
+                    for k in range(SEEDS_FROZEN))
+        return Path("data/biqmac/raw/ising")/name, SPARSE_GRAPH_INDEX, SPARSE_FORMATS, seeds
+    raise ValueError("only the two locked CAL graphs supported")
 # Predeclared, E2 sensitivity only. A single seed-conditioned bootstrap
 # is not proof of production device/yield or across-graph generality.
 ACCEPT_GAP_PCT = 5.0
@@ -54,7 +68,9 @@ FAIL_GAP_PCT = 7.5
 ADDITIONAL_GAP_PP = 1.0
 
 
-def load_paired_ideal(path: Path, *, graph_sha: str, optimum: float) -> dict:
+def load_paired_ideal(path: Path, *, graph_sha: str, optimum: float,
+                      graph_name: str = GRAPH_NAME,
+                      formats: tuple = FORMATS, seeds: tuple = SEEDS) -> dict:
     """Inspect the ACTUAL 936-run CSV; fail closed on SHA / original semantics."""
     raw=path.read_bytes()
     if hashlib.sha256(raw).hexdigest()!=IDEAL_RUNS_SHA256:
@@ -65,14 +81,14 @@ def load_paired_ideal(path: Path, *, graph_sha: str, optimum: float) -> dict:
     seen=set()
     out={}
     all_configs=set(FORMATS)
-    expected_graphs={"w01_100.0","t2g10_5555",GRAPH_NAME}
+    expected_graphs={"w01_100.0",SPARSE_GRAPH_NAME,GRAPH_NAME}
     for r in records:
         name=r["graph"]
         fmt=r["configuration"]
         seed=int(r["seed"])
         if name not in expected_graphs or fmt not in all_configs:
             raise ValueError("unexpected graph/format in 936-run CSV")
-        expected_ix={"w01_100.0":0,"t2g10_5555":1,GRAPH_NAME:2}[name]
+        expected_ix={"w01_100.0":0,SPARSE_GRAPH_NAME:1,GRAPH_NAME:2}[name]
         if seed not in {BASE_SEED_FROZEN+100000*expected_ix+k for k in range(SEEDS_FROZEN)}:
             raise ValueError("unmatched M1 paired seed")
         key=(name,fmt,seed)
@@ -81,9 +97,9 @@ def load_paired_ideal(path: Path, *, graph_sha: str, optimum: float) -> dict:
         seen.add(key)
         if r["schedule"]!="linear" or int(r["attempted_updates"])!=UPDATES_FROZEN:
             raise ValueError("schedule/updates differ from M1 freeze")
-        if name==GRAPH_NAME:
+        if name==graph_name:
             if r["graph_sha256"]!=graph_sha:
-                raise ValueError("original dense graph hash mismatch")
+                raise ValueError("original selected graph hash mismatch")
             if not math.isclose(float(r["official_optimum"]),optimum,rel_tol=0,abs_tol=1e-8):
                 raise ValueError("original optimum mismatch")
             score=float(r["returned_original_cut"])
@@ -92,14 +108,15 @@ def load_paired_ideal(path: Path, *, graph_sha: str, optimum: float) -> dict:
                 raise ValueError("raw M1 gap inconsistent with original cut")
             if score > optimum + 1e-7 or not r["returned_state_hex"]:
                 raise ValueError("bad ideal original-cut / retained state")
-            out[(fmt,seed)]=dict(
-                condition="ideal",alpha=0.0,configuration=fmt,seed=seed,
+            if fmt in formats:
+                out[(fmt,seed)]=dict(
+                    condition="ideal",alpha=0.0,configuration=fmt,seed=seed,
                 returned_original_cut=score,optimality_gap_pct=gap,
                 returned_state_hex=r["returned_state_hex"],
                 actual_flips=int(r["actual_flips"]),
                 source="FROZEN_M1_IDEAL_CSV")
-    if len(seen)!=936 or len(out)!=13*24 or set(out)!={(f,s) for f in FORMATS for s in SEEDS}:
-        raise ValueError("M1 ideal pairing lacks complete 13-format x 24-seed coverage")
+    if len(seen)!=936 or len(out)!=len(formats)*len(seeds) or set(out)!={(f,s) for f in formats for s in seeds}:
+        raise ValueError("M1 ideal pairing lacks complete selected-format/seed coverage")
     return out
 
 
@@ -141,13 +158,14 @@ def mean_ci(xs:list[float],seed:int) -> tuple[float,float,float]:
     return statistics.mean(xs),lo,hi
 
 
-def summarize(rows:dict) -> list[dict]:
+def summarize(rows:dict, *, graph_name: str = GRAPH_NAME,
+              formats: tuple = FORMATS, seeds: tuple = SEEDS) -> list[dict]:
     out=[]
     for cix,(condition,alpha) in enumerate(STRESSES):
-        for fix,fmt in enumerate(FORMATS):
-            vals=[rows[(condition,fmt,seed)]["optimality_gap_pct"] for seed in SEEDS]
-            ref=[rows[(condition,"ref64",seed)]["optimality_gap_pct"] for seed in SEEDS]
-            ideal=[rows[("ideal",fmt,seed)]["optimality_gap_pct"] for seed in SEEDS]
+        for fix,fmt in enumerate(formats):
+            vals=[rows[(condition,fmt,seed)]["optimality_gap_pct"] for seed in seeds]
+            ref=[rows[(condition,"ref64",seed)]["optimality_gap_pct"] for seed in seeds]
+            ideal=[rows[("ideal",fmt,seed)]["optimality_gap_pct"] for seed in seeds]
             quant=[v-r for v,r in zip(vals,ref)]
             shift=[v-o for v,o in zip(vals,ideal)]
             m,lo,hi=mean_ci(vals,31000+cix*1000+fix*11)
@@ -161,12 +179,12 @@ def summarize(rows:dict) -> list[dict]:
                  rows[(condition,comparator,s)]["optimality_gap_pct"])-
                 (rows[("ideal",fmt,s)]["optimality_gap_pct"]-
                  rows[("ideal",comparator,s)]["optimality_gap_pct"])
-                for s in SEEDS
+                for s in seeds
             ]
             md,ld,hd=mean_ci(delta,34000+cix*1000+fix*11)
             out.append(dict(
-                graph=GRAPH_NAME,condition=condition,alpha_gain_halfspan=alpha,
-                configuration=fmt,paired_seeds=SEEDS_FROZEN,
+                graph=graph_name,condition=condition,alpha_gain_halfspan=alpha,
+                configuration=fmt,paired_seeds=len(seeds),
                 conditional_device_populations=1,
                 mean_absolute_gap_pct=m,ci95_abs_gap_lo_pct=lo,ci95_abs_gap_hi_pct=hi,
                 mean_quantization_penalty_pp=mq,
@@ -194,22 +212,22 @@ def write_csv(path:Path,rows:list[dict]) -> None:
         w.writerows(rows)
 
 
-def write_svg(path:Path, summary:list[dict]) -> None:
+def write_svg(path:Path, summary:list[dict], *, formats: tuple = FORMATS) -> None:
     """Single compact regime plot, no new plotting dependency."""
     by={(x["condition"],x["configuration"]):x for x in summary}
     w=930
-    h=140+len(FORMATS)*39+100
+    h=140+len(formats)*39+100
     y0=121
     palette={"acceptable":"#cdebdc","degraded":"#ffe6ae",
              "failure":"#ffcaca","uncertain":"#dddded"}
     buf=[f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}">',
          '<rect width="100%" height="100%" fill="#fff"/>',
          '<text x="22" y="29" font-family="Arial" font-size="20" font-weight="bold">E2 gain-only precision × response: original Max-Cut gap</text>',
-         '<text x="22" y="51" font-family="Arial" font-size="12">One dense calibration graph, 24 paired solver seeds, ONE fixed assumed device population</text>',
+         '<text x="22" y="51" font-family="Arial" font-size="12">One CAL graph, 24 paired solver seeds, ONE fixed assumed device population</text>',
          '<text x="22" y="70" font-family="Arial" font-size="12">Accepted only if 95% seed-CI upper bound <= 5% AND quantization penalty upper bound <= 1 pp</text>']
     for j,(name,alpha) in enumerate(STRESSES):
         buf.append(f'<text x="{225+j*228}" y="100" font-family="Arial" font-size="14" font-weight="bold">{html.escape(name)} (±{100*alpha:g}%)</text>')
-    for i,fmt in enumerate(FORMATS):
+    for i,fmt in enumerate(formats):
         y=y0+i*39
         buf.append(f'<text x="26" y="{y+24}" font-family="Arial" font-size="14">{html.escape(fmt)}</text>')
         for j,(name,alpha) in enumerate(STRESSES):
@@ -219,7 +237,7 @@ def write_svg(path:Path, summary:list[dict]) -> None:
             buf.append(f'<rect x="{x-8}" y="{y}" width="214" height="34" rx="4" fill="{palette[mode]}" stroke="#eee"/>')
             text=f'{r["mean_absolute_gap_pct"]:.2f}% [{r["ci95_abs_gap_lo_pct"]:.2f},{r["ci95_abs_gap_hi_pct"]:.2f}]'
             buf.append(f'<text x="{x}" y="{y+22}" font-family="Arial" font-size="13">{html.escape(text)}</text>')
-    y=y0+len(FORMATS)*39+14
+    y=y0+len(formats)*39+14
     buf.append(f'<text x="22" y="{y}" font-family="Arial" font-size="12">Legend: green=acceptable, amber=degraded, red=failure, violet=uncertain (seed-CI thresholds).</text>')
     buf.append(f'<text x="22" y="{y+20}" font-family="Arial" font-size="12">E2 assumptions, NOT measured residual spread; no manufacturing or held-out graph inference.</text>')
     buf.append(f'<text x="22" y="{y+40}" font-family="Arial" font-size="12">Companion CSV contains paired FP64 penalties, response shifts and INT interactions.</text>')
@@ -227,40 +245,43 @@ def write_svg(path:Path, summary:list[dict]) -> None:
     path.write_text("\n".join(buf)+"\n",encoding="utf-8")
 
 
-def audit(graph,refs,ideal_csv:Path) -> dict:
-    optimum=official_reference(graph,refs["graphs"][GRAPH_NAME],refs)
+def audit(graph,refs,ideal_csv:Path, *, graph_name: str = GRAPH_NAME,
+          formats: tuple = FORMATS, seeds: tuple = SEEDS) -> dict:
+    optimum=official_reference(graph,refs["graphs"][graph_name],refs)
     if graph.n != 100:
-        raise ValueError("100-spin dense calibration graph required")
-    ideal=load_paired_ideal(ideal_csv,graph_sha=graph.sha256,optimum=optimum)
-    for fmt in FORMATS:
-        values=[ideal[(fmt,s)]["optimality_gap_pct"] for s in SEEDS]
-        print(f"FROZEN E1 {fmt:6s} gap={statistics.mean(values):.4f}% "
-              f"paired_seeds=24",flush=True)
-    print(f"E2-GAIN-01 AUDIT PASS: 936-row source SHA and dense 13x24 pairing; "
-          f"original optimum={optimum}",flush=True)
+        raise ValueError("100-spin locked CAL graph required")
+    ideal=load_paired_ideal(ideal_csv,graph_sha=graph.sha256,optimum=optimum,
+                            graph_name=graph_name,formats=formats,seeds=seeds)
+    for fmt in formats:
+        values=[ideal[(fmt,s)]["optimality_gap_pct"] for s in seeds]
+        print(f"FROZEN E1 {fmt:6s} gap={statistics.mean(values):.4f}% paired_seeds=24",flush=True)
+    print(f"E2-GAIN-01 {graph_name} AUDIT PASS: 936-row source SHA and "
+          f"{len(formats)}x{len(seeds)} ideal pairing; original optimum={optimum}",flush=True)
     return ideal
 
 
-def run(ideal_csv:Path,out:Path,audit_only:bool) -> None:
+def run(ideal_csv:Path,out:Path,audit_only:bool,graph_name:str=GRAPH_NAME) -> None:
     refs=json.loads(REFERENCE_PATH.read_text(encoding="utf-8"))
     if refs.get("reference_type")!="PUBLISHED_OPTIMUM":
         raise ValueError("missing official published optimum")
-    graph=load_rudy(GRAPH_PATH)
-    optimum=official_reference(graph,refs["graphs"][GRAPH_NAME],refs)
-    ideal=audit(graph,refs,ideal_csv)
+    graph_path,graph_index,formats,seeds=select_cal_graph(graph_name)
+    graph=load_rudy(graph_path)
+    optimum=official_reference(graph,refs["graphs"][graph_name],refs)
+    ideal=audit(graph,refs,ideal_csv,graph_name=graph_name,formats=formats,seeds=seeds)
     if audit_only:
         return
     if out is None or out.exists():
         raise ValueError("supply a non-existing --out directory")
     beta=beta_from_original_graph(graph)
     reps={"ref64":prepare(graph,"ref64","source")}
-    for family in FAMILIES:
-        for bits in WIDTHS:
-            reps[f"{family}{bits}"]=build_global(graph,family,bits)
+    for fmt in formats[1:]:
+        family=next(f for f in FAMILIES if fmt.startswith(f))
+        bits=int(fmt[len(family):])
+        reps[fmt]=build_global(graph,family,bits)
     # Check source-only scales against frozen M1 metadata, including layout.
     with ideal_csv.open(newline="",encoding="utf-8") as f:
         for rec in csv.DictReader(f):
-            if rec["graph"]!=GRAPH_NAME:
+            if rec["graph"]!=graph_name or rec["configuration"] not in formats:
                 continue
             fmt=rec["configuration"]
             if not math.isclose(float(rec["scale"]),reps[fmt]["scale"],rel_tol=0,abs_tol=0):
@@ -277,11 +298,11 @@ def run(ideal_csv:Path,out:Path,audit_only:bool) -> None:
         "levels":[dict(name=k,alpha=a) for k,a in STRESSES],
         "model_seed":20261107,
         "device_population_count":1,
-        "population_seed_scope":"one fixed 100-device realization across both levels, all 13 formats and all 24 solver seeds",
+        "population_seed_scope":f"one fixed 100-device realization across both levels, all {len(formats)} formats and 24 solver seeds",
         "original_ideal_csv_sha256":IDEAL_RUNS_SHA256,
-        "graph_sha256":graph.sha256,
+        "graph":graph_name,"graph_sha256":graph.sha256,
         "original_optimum":optimum,
-        "paired_seeds":list(SEEDS),
+        "paired_seeds":list(seeds),
         "updates":UPDATES_FROZEN,"schedule":"linear 0.5 to 2 beta from original graph",
         "thresholds":{"acceptable_upper_ci_gap_pct":ACCEPT_GAP_PCT,
                       "failure_lower_ci_gap_pct":FAIL_GAP_PCT,
@@ -302,15 +323,15 @@ def run(ideal_csv:Path,out:Path,audit_only:bool) -> None:
         writer.writeheader()
         for condition,alpha in STRESSES[1:]:
             model=models[condition]
-            for fmt in FORMATS:
-                for seed in SEEDS:
+            for fmt in formats:
+                for seed in seeds:
                     got=solve_with_response(graph,reps[fmt],beta,UPDATES_FROZEN,seed,model)
                     score=float(got["returned_original_cut"])
                     if score>optimum+1e-7:
                         raise AssertionError("original optimum beaten; abort")
                     gap=100*(optimum-score)/optimum
                     item=dict(condition=condition,alpha_gain_halfspan=alpha,
-                              graph=GRAPH_NAME,graph_sha256=graph.sha256,
+                              graph=graph_name,graph_sha256=graph.sha256,
                               configuration=fmt,seed=seed,official_optimum=optimum,
                               optimality_gap_pct=gap,
                               returned_original_cut=score,
@@ -325,17 +346,19 @@ def run(ideal_csv:Path,out:Path,audit_only:bool) -> None:
                     results[(condition,fmt,seed)]=item
                 print(f"E2-GAIN-01 {condition} {fmt:6s} complete {SEEDS_FROZEN} paired seeds",
                       flush=True)
-    if len(new_runs)!=2*len(FORMATS)*SEEDS_FROZEN:
+    if len(new_runs)!=2*len(formats)*len(seeds):
         raise AssertionError("wrong number of new response runs")
-    summary=summarize(results)
+    summary=summarize(results,graph_name=graph_name,formats=formats,seeds=seeds)
     write_csv(out/"E2_gain_regime_summary.csv",summary)
-    write_svg(out/"E2_gain_regime_map.svg",summary)
+    write_svg(out/"E2_gain_regime_map.svg",summary,formats=formats)
     # The "minimum sufficient width" is SEED-CONDITIONAL on one CAL graph
     # and one assumed device sample, not a universally optimal bit width.
     knee=[]
     for condition,alpha in STRESSES:
         for family in FAMILIES:
-            eligible=[w for w in WIDTHS if next(
+            if not any(fmt.startswith(family) for fmt in formats):
+                continue
+            eligible=[w for w in WIDTHS if f"{family}{w}" in formats and next(
                 r["eligible_at_common_target"] for r in summary
                 if r["condition"]==condition and r["configuration"]==f"{family}{w}")]
             knee.append(dict(condition=condition,family=family,
@@ -345,14 +368,17 @@ def run(ideal_csv:Path,out:Path,audit_only:bool) -> None:
         dict(scope="candidate one-graph one-device E2 sensitivity; not a hardware-optimal rule",
              absolute_gap_threshold_pct=ACCEPT_GAP_PCT,
              matched_fp64_penalty_threshold_pp=ADDITIONAL_GAP_PP,
+             tested_formats=list(formats),
+             unmeasured_formats=[f"{fam}{w}" for fam in ("fp","int") for w in WIDTHS if f"{fam}{w}" not in formats],
              results=knee),indent=2,sort_keys=True)+"\n")
     manifest={
         "status":"E2_GAIN01_SCIENTIFIC_RUN_COMPLETE",
         "evidence":"E2 assumed sensitivity, NOT measured post-calibration residual",
         "n_new_solver_runs":len(new_runs),"n_reused_ideal_records":len(ideal),
         "original_e1_csv_sha256":IDEAL_RUNS_SHA256,
-        "graph":GRAPH_NAME,"graph_sha256":graph.sha256,
+        "graph":graph_name,"graph_sha256":graph.sha256,
         "device_population_count":1,"gain_stress_levels":[0,0.025,0.05],
+        "formats_tested":list(formats),"graph_index":graph_index,"solver_seeds":list(seeds),
         "offset":0,"anneal":"frozen M1 50k linear beta",
         "solver":"existing m2_e2_response_gate.solve_with_response; E1 M1 original returned-state policy",
         "no_retuning":True,
@@ -365,7 +391,7 @@ def run(ideal_csv:Path,out:Path,audit_only:bool) -> None:
     for item in knee:
         print(f"CONDITIONAL KNEE {item['condition']:8s} {item['family']:3s}: "
               f"{item['minimum_eligible_width']}",flush=True)
-    print(f"E2-GAIN-01 SCIENTIFIC COMPLETE new={len(new_runs)} ideal_reused={len(ideal)} "
+    print(f"E2-GAIN-01 {graph_name} SCIENTIFIC COMPLETE new={len(new_runs)} ideal_reused={len(ideal)} "
           f"plot={out/'E2_gain_regime_map.svg'}",flush=True)
 
 
@@ -374,8 +400,9 @@ def main() -> None:
     ap.add_argument("--e1-raw-csv",type=Path,required=True)
     ap.add_argument("--out",type=Path)
     ap.add_argument("--audit-only",action="store_true")
+    ap.add_argument("--graph",choices=(GRAPH_NAME,SPARSE_GRAPH_NAME),default=GRAPH_NAME)
     a=ap.parse_args()
-    run(a.e1_raw_csv,a.out,a.audit_only)
+    run(a.e1_raw_csv,a.out,a.audit_only,graph_name=a.graph)
 
 
 if __name__=="__main__":
