@@ -45,17 +45,12 @@ from experiments.m2_stt_pbit_transfer_preflight import logistic
 from experiments.m2_e2_response_gate import EVIDENCE, IDEAL_RUNS_SHA256
 from experiments.m2_offset_fp64_scout import GRAPH_SPECS, IDEAL_CSV, paired_seed
 from experiments.m2_offset_precision_primary import (
-    DEFAULT_SCOUT_DIR, DEFAULT_SCOUT_DIR as _SCOUT_CHECK,
-    DEFAULT_SCOUT_DIR as SCOUT_DIR,
-    DEFAULT_SCOUT_DIR as SCOUT_PATH,
-    LEVELS, FORMATS, load_references,
+    DEFAULT_SCOUT_DIR, LEVELS, FORMATS, load_references,
 )
 from experiments.m2_offset_8bit_extension import (
     DEFAULT_PRIMARY, EXT_FORMATS, audit_primary, load_8bit_ideal,
 )
 
-# The deliberately redundant aliases above are not part of the experiment;
-# use DEFAULT_SCOUT_DIR in CLI. Do not change the upstream experiment constants.
 DEFAULT_EXTENSION=Path("results/m2_offset_8bit_extension_20261108")
 PHASES=(0.5,1.0,2.0)
 ALL_FORMATS=("ref64",)+FORMATS+EXT_FORMATS
