@@ -1,253 +1,217 @@
 \documentclass[11pt,a4paper]{article}
-\usepackage[margin=24mm]{geometry}
+\usepackage[margin=23mm]{geometry}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern,amsmath,amssymb,booktabs,tabularx,hyperref}
-\hypersetup{colorlinks=true,urlcolor=blue,citecolor=blue}
-\title{Device-Aware Low-Order Floating-Point Coupling\\for STT-MRAM p-Bit Ising Machines}
-\author{Du Yanzhang\\National University of Singapore\\Supervisor: Prof. Kelvin Fong}
-\date{Weighted Max-Cut benchmark migration --- 6 November 2026}
+\usepackage{lmodern,microtype}
+\usepackage{amsmath,amssymb,booktabs,tabularx,array,longtable}
+\usepackage{graphicx,xcolor,hyperref,xurl}
+\usepackage{tikz,pgfplots,pgfplotstable}
+\usetikzlibrary{arrows.meta,positioning}
+\usepgfplotslibrary{groupplots}
+\pgfplotsset{compat=1.18}
+\hypersetup{colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black}
+\setlength{\parskip}{.27em}
+\setlength{\parindent}{1.1em}
+\renewcommand{\arraystretch}{1.13}
+\title{\vspace{-1em}\bfseries Low-Order Floating-Point Representations of\\
+Ising Coupling Matrices for STT-MRAM p-Bit Optimization}
+\author{Du Yanzhang\\Electrical Engineering Final-Year Project\\Supervisor: Prof.\ Kelvin Fong}
+\date{Completed calibration study and research synthesis --- 9 November 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
-We study low-order floating-point (FP) Ising coupling representations
-under nonideal stochastic-MTJ p-bit responses, compared with carefully
-calibrated integer (INT) and shared-exponent block-floating (BFP) controls.
-The active application benchmark is weighted Max-Cut on unmodified
-Mac instances from the Biq Mac Library, as selected with the supervisor.
-Graph weights are not altered to create an artificial FP advantage.
-This is a research protocol, not evidence of an implemented Max-Cut
-solver or physically measured p-bit.
+Low-order numerical representation of the symmetric Ising coupling matrix
+$\mathbf J$ can reduce coefficient storage, but may disturb local
+fields, stochastic p-bit switching decisions, and finite-budget
+optimisation quality. We compare FP4/5/6/8 against matched INT
+representations on original weighted Max-Cut graphs, using a
+fixed global source-MSE scale, a 50,000-update asynchronous Gibbs
+solver, and specified STT-MRAM-inspired switching-response assumptions.
+The evidence comprises 936 completed ideal runs, a 240-run FP64 offset
+scout, 576 low-bit offset runs and 192 conditional eight-bit runs.
+A separate read-only diagnostic evaluates 3,888 format/state/beta
+combinations on 144 already-returned FP64 states. On one dense
+calibration graph, FP6 has lower static mean absolute switching
+probability distortion than INT6 at the largest assumed offset, but
+the experiment does not establish a general FP advantage, a causal
+trajectory mechanism, measured physical offset statistics, or
+whole-processor hardware savings. Independent held-out graphs
+are still untouched.
 \end{abstract}
-\section{Research question}
-Which coupling representation and scale grouping preserves useful
-original-weight Max-Cut solution quality under a documented nonideal
-STT-MRAM p-bit response with lower full-architecture hardware cost?
-Novelty requires a tested configuration rule and implementable
-architecture; arithmetic quantization alone is not a novelty claim.
-\section{Exact objective and Ising convention}
-For an undirected graph with original signed edge weights $w_{ij}$,
-one vertex is one spin $s_i\in\{-1,+1\}$. Define
+\tableofcontents
+
+\section{Motivation and research question}
+The coupling matrix of an Ising optimiser maps a combinatorial
+objective into local fields. A low-bit coefficient representation
+trades matrix storage and arithmetic complexity against changes
+in the represented energy landscape. Stochastic p-bit devices
+further convert each local field into a switching probability,
+making the useful precision \emph{response- and workload-dependent}.
+Numerical coefficient error alone is not the desired endpoint.
+
+\noindent\textbf{Research question.}
+\emph{How do low-order floating-point coupling-matrix
+representations affect local-field accuracy, stochastic p-bit
+response, and weighted Max-Cut solution quality under specified
+STT-MRAM nonidealities?} Hardware cost remains a supporting,
+explicitly bounded comparison.
+
+\section{Prior art and scientific contribution boundary}
+Hizzani et al.\ show that coupling errors may deepen local
+energy traps even when the true optimum is preserved
+\cite{PbitHizzani2026}. M\"ucke et al.\ analyse
+optimum-preserving QUBO compression, demonstrating that coefficient
+fidelity and minimiser preservation are different objectives
+\cite{PbitMuecke2025}. Zhang et al.\ already examine
+p-bit gain/offset variation and compensating coupling-weight
+changes \cite{PbitZhang2025}. Floating-point Ising arithmetic,
+pipelined fixed-point coupling memory and bit-plane coupling
+organisation also have prior art \cite{PbitTao2023,S33,S32}.
+The measured switching curves and calibration of a
+250-STT-MTJ machine motivate our stochastic response model
+but cannot validate the synthetic post-nominal offsets here
+\cite{PbitYang2502026}.
+
+The FP4 E2M1 and FP6 E3M2 \emph{element value sets} have an
+OCP MX specification precedent \cite{PbitOCPMX2023}.
+Our complete representations are nevertheless \emph{not}
+OCP MX: they use a single source-fitted graph-wide binary32
+scale, not 32-element shared-scale blocks. FP5 is custom,
+and FP8 uses a custom finite-only E4M3 codebook with maximum
+unscaled magnitude 480 rather than the OCP E4M3 maximum 448.
+The BFP control uses one global power-of-two scale, not
+arbitrary BFP tiling. Format novelty and physical-device
+novelty must not be overstated.
+
+Our candidate contribution is narrower: a matched-bit FP
+versus INT matrix-encoding comparison connected explicitly
+to state-conditioned local-field error, one-step stochastic
+decision fidelity and independently observed finite-budget
+original-weight solution quality. Whether this yields a
+transferable design rule remains unproven.
+
+\section{Problem formulation and evaluation convention}
+With original signed edge weights $w_{ij}$ and spins
+$s_i\in\{-1,+1\}$, define
 \begin{align}
-C_w(\mathbf{s})&=\sum_{i<j}w_{ij}\frac{1-s_is_j}{2},\\
-J_{ij}&=-w_{ij},\quad J_{ji}=J_{ij},\quad J_{ii}=0,\quad h_i=0,\\
-E(\mathbf{s})&=-\sum_{i<j}J_{ij}s_is_j
-               =W-2C_w(\mathbf{s}),\quad W=\sum_{i<j}w_{ij},\\
-H_i&=\sum_{j\ne i}J_{ij}s_j,\qquad \Delta E_i=2s_iH_i .
+C_w(\mathbf s)&=\sum_{i<j}w_{ij}\frac{1-s_i s_j}{2},\\
+J_{ij}&=J_{ji}=-w_{ij},\qquad J_{ii}=0,\qquad h_i=0,\\
+E_J(\mathbf s)&=-\sum_{i<j}J_{ij}s_i s_j
+               =W-2C_w(\mathbf s),\\
+H_i(\mathbf s)&=\sum_jJ_{ij}s_j,\qquad
+\widehat H_i(\mathbf s)=\sum_j\widehat J_{ij}s_j.
 \end{align}
-This convention makes minimizing $E$ equivalent to maximizing the
-original cut. Native Max-Cut needs no auxiliary spins.
-Mathematical $h_i=0$ does not mean that a physical p-bit has zero
-offset. Both original and quantized Hamiltonians must preserve symmetry.
-\section{Source data and experimental units}
-The official Biq Mac Library separates Biq quadratic programs from
-Mac Max-Cut graphs; use only the Mac part
-(\url{https://biqmac.aau.at/biqmaclib.html}).
-Its Rudy graph format specifies an initial $n,m$ and exactly $m$
-one-based weighted edges. The initial source-audit shortlist is
-$w01,w05,w09$ (signed), $pw01,pw05,pw09$ (nonnegative), and
-$pm1s,pm1d$ (signed sparse/dense), with $n=100$ and instance
-suffix .0. Preserve raw files and SHA256. Later experiments may
-split seeds .0--.4 for calibration and .5--.9 for held-out evaluation;
-results on a single .0 graph cannot establish a trend.
+The sparse adjacency lists in the software represent the
+same symmetric matrix as $\widehat{\mathbf J}$: each
+undirected coefficient is encoded once, then mirrored.
+The numerical local-field accumulator is high precision.
+This does not represent a fabricated MRAM array,
+finite-precision mixed-signal input interface, or
+a full-system device-level timing result.
 
-\subsection{Frozen low-/wide-range original-source contrast}
-The official \emph{Mac} collection includes both Rudy random graphs
-with original weights in $[-10,10]$ or $[0,10]$, and graphs from
-statistical physics under the \texttt{Mac/ising} directory.
-The initial 100-spin wide-range calibration audit includes
-\texttt{t2g10\_5555} (200 edges: nonzero absolute weights
-from 460 to 294541, ratio about 640), and
-\texttt{ising2.5-100\_5555} (4950 edges: already confirmed
-to contain $1$ and $-101237$, ratio at least 101237).
-All global minima/maxima, hashes, and density values must be
-recomputed from the unchanged downloaded source.
-The low-range graphs act as negative controls where a small
-signed integer is already an exact storage representation.
-An input's dynamic range does \emph{not} by itself imply better
-FP solution quality or lower hardware cost. Compare FP4/FP6/FP8
-only after defining scales, representable range, saturation,
-zeroing, metadata, row access and hardware costs; optimize INT
-and BFP fairly. A descriptive fullscale INT6 quantization diagnostic
-in the M0 audit is not an optimized INT baseline.
-For wide-range families the \texttt{\_5555} instance is calibration,
-\texttt{\_6666} may be used for additional calibration, and
-\texttt{\_7777} is held out. Do not treat three graphs per family
-as sufficient for general statistical inference.
+The stochastic response is
+\[
+P_i(s_i=+1)
+=\sigma\bigl(2\beta(t)g_i\widehat H_i+\delta_i\bigr).
+\]
+A physical sigmoid approximation
+$P(+1|V)=\sigma(a_i(V-V_{50,i}))$ can motivate gain as
+$a_i/a_0$ and logit offset as
+$a_i(V_{50,0}-V_{50,i})$ under a nominal field-to-voltage
+mapping. The E2 experiments instead hold gain equal to one
+and assume $\delta_i=dv_i$ with one frozen synthetic
+device population and $d=0.8$ or $1.6$ logit.
+These levels are not measured residuals in volts.
 
-\section{Measurements and evidence}
-Score states against the \emph{original source weights}, not the
-represented Hamiltonian: original cut value, absolute difference to
-a genuinely certified optimum, or separately identified bounds.
-A returned state must come from a declared implementable policy
-(such as lowest visited \emph{represented} energy), not an uncosted
-oracle using the original objective. Use paired graph, solver seed and
-device population with a fixed attempted-update budget.
-Visited-target probability is distinct from returned-target success.
-Do not call an upper-bound difference the exact optimality gap.
-Negative edge weights and zero optima make some relative ratios
-inappropriate.
+\section{Frozen calibration campaign and uncertainty policy}
+Two original 100-spin calibration graphs are
+\texttt{t2g10\_5555} (200 source edges, sparse)
+and \texttt{ising2.5-100\_5555}
+(4950 off-diagonal source edges, dense).
+A small-integer graph is included in the ideal baseline.
+Each comparison has 24 matched solver seeds, 50,000
+attempted asynchronous updates and a fixed linear
+beta schedule from $0.5$ to $2.0$ times the original
+graph beta. The incumbent is selected by earliest
+minimum \emph{represented} Ising energy but always
+scored on the \emph{original} weighted cut.
 
-Evidence categories are E0 exact mapping, E1 seeded algorithmic
-performance, E2 illustrative response, E3 sourced/validated stochastic
-device transfer, E4 authorized circuit simulation, and E5 RTL/synthesis.
-These cannot be interchanged.
-\section{Representation and physical-device design}
-The project retains low-order FP4/FP6/FP8 couplings, with optimized
-scaled INT and BFP as fair controls. Many Mac/Rudy source weights are
-small integers: under unit scale, signed six-bit INT/BFP can represent
-the frequently used $[-10,10]$ weights exactly, whereas FP4 need not.
-Therefore FP superiority must be established experimentally or rejected.
-Fair comparisons include coefficient bits, global/group metadata,
-decoder, scale alignment, arithmetic width, memory reads, state
-controller, device interface and timing constraints.
-The original problem bias is zero, so bias storage and circuitry must
-be removed or tied off \emph{before} claiming Max-Cut-specific area.
-
-The digital local-field row is not automatically an in-array
-MRAM-CIM macro. The magnetic p-bit response, including fixed offsets,
-gain, correlation, voltage and timescale, requires physically
-grounded device evidence. Existing stable-storage GF22FDX MTJ models
-are not proof of a stochastic low-barrier p-bit.
-\section{Engineering evidence retained from the prior workload}
-A cycle-serial local-field row previously passed 84/84 Icarus
-bit-true vectors, and three bias-inclusive Nangate45/Yosys
-mappings; the standalone best-represented-energy tracker passed
-a focused RTL test and mapped to 3265.150 library-area units.
-These engineering tests are retained as \emph{component} evidence,
-not reclassified as weighted-Max-Cut quality or full-system area.
-A previous wired row/tracker wrapper has not yet been
-reported as successfully NUS-tested.
-\section{Stage gates}
-\begin{center}\small
-\begin{tabularx}{\linewidth}{@{}lX@{}}\toprule
-M0 & Import original Biq Mac Mac graphs; SHA256 and E0
-cut--Ising--flip checks; no fabricated optimum.\\
-M1 & Original-cut scoring and frozen, paired FP/INT/BFP baseline
-with honest returned-solution policy.\\
-M2 & Zero-bias device-aware coupling design rule and cost model.\\
-M3 & Bit-true Max-Cut row/tracker RTL integration and mapped
-area/timing with memory/peripheral accounting.\\
-M4 & Held-out signed-weight/density/size and device-model tests.\\
-M5 & Qualified final design rules, limitations, and report.\\\bottomrule
+\begin{table}[htbp]\centering\small
+\begin{tabularx}{\linewidth}{@{}l r X@{}}\toprule
+Evidence & Count & Experimental meaning\\\midrule
+Ideal precision E1 & 936 runs & 3 original graphs, 13 formats, 24 paired seeds.\\
+FP64 offset scout & 240 runs & 2 graphs and 5 assumed offset magnitudes.\\
+Primary E2 precision & 576 runs & 2 graphs, 2 offsets, 6 FP/INT 4--6-bit formats.\\
+Conditional E2 8-bit & 192 runs & The same 4 graph--offset cells, FP8/INT8.\\
+Static response diagnostic & 3888 rows & 144 already-returned FP64 states, 9 representations, 3 beta checkpoints; zero new solver trials.\\\bottomrule
 \end{tabularx}
-\end{center}
-\section{Preliminary E1 ideal-response solver pilot (NUS, 7 November 2026)}
-Four original 100-vertex Mac graphs were evaluated using a
-\emph{mathematical ideal Gibbs update}, not measured stochastic-MTJ
-response. Each representation used 5000 attempted asynchronous
-single-spin updates and three paired random seeds per graph.
-The output was the earliest lowest-\emph{represented}-energy
-visited configuration; the evaluation score was always the
-\emph{original source-weighted cut}. Published optimum reference values were imported after
-this initial three-seed pilot; the unquantized software solver
-remains a finite-budget stochastic baseline, not an optimum oracle.
-
-\begin{table}[htbp]\centering\small
-\begin{tabular}{@{}lrrrr@{}}\toprule
-Original graph & Reference & FP6-MSE & INT6-MSE & BFP6-MSE\\\midrule
-w01\_100.0 & 567.67 & 562.67 & 571.67 & 567.67\\
-pw01\_100.0 & 1921.00 & 1933.33 & 1946.00 & 1921.00\\
-t2g10\_5555 & 5185275 & 5069377 & 5193320 & 5187966\\
-ising2.5-100\_5555 & 2301758 & 2274156 & 2313755 & 2281519\\\bottomrule
-\end{tabular}
-\caption{First original-cut mean from 3 paired solver seeds per
-graph, each with 5000 attempted updates; E1 ideal mathematical software
-pilot only. Do not infer format superiority or MRAM-device performance.}
+\caption{Completed evidence counts. The static rows share
+reference states and are not independent trials.}
 \end{table}
 
-On the dense broad-range graph, FP6 had lower relative absolute
-coupling error (7.03\%) than INT6 (16.44\%), yet lower mean returned
-original cut in this tiny pilot; this illustrates that coefficient
-reconstruction error need not predict the returned finite-time
-optimization state. INT6 also exceeded the finite-budget reference
-mean in some cases, which does \emph{not} mean that it surpassed the
-unknown true maximum cut.
+The predeclared eligibility rule requires both a 95\% bootstrap
+seed-CI upper bound on the mean original optimum gap of at
+most 5\%, and a matched-FP64 mean quantisation-penalty
+upper bound of at most $+1$ percentage point. These CIs
+are conditional on the same assumed device population;
+they are not estimates of manufacturing variability.
 
-\textbf{Known fairness erratum:} the original source-only MSE
-scale search for INT6 omitted unit scale even on integer graphs
-whose $[-10,10]$ weights fit exactly in signed INT6. The pilot
-table preserves the \emph{original} 84-run evidence before
-the corrected INT6 exact-unit candidate. The fixed implementation
-is on the research branch, but the required corrected paired
-seed experiment has not yet been reported. Separate measurement of
-zeroed edge \emph{counts} and discarded original absolute
-weight \emph{mass} has also been added. The published-table
-interpretation must await the corrected and multi-graph run.
+\input{report/maxcut/10_coupling_matrix_cal_results.tex}
 
-\section{Bounded FP64 solver-quality calibration (NUS, completed)}
-A separate reference-only run tested an \emph{unquantized}
-Ising model against published original-weight Biq Mac
-optimal cut values. The four already observed graphs
-were used as \emph{calibration}, not held-out data.
-Each graph had six paired stochastic seeds at
-5000, 20000 and 50000 attempted asynchronous updates,
-with either a fixed $\beta_G$ or a linear schedule
-$\beta(t)=\beta_G[0.5+1.5\,t/(U-1)]$.
-This yielded $4\times 6\times 3\times 2=144$ NUS
-solver runs. Original graph SHA256 values were
-checked before consulting source-matched published
-optima~\cite{NewBiqMac2026}.
+\section{Cost evidence and limits of architecture inference}
+A 100-spin symmetric dense coupling matrix has
+$100(99)/2=4950$ distinct off-diagonal coefficient positions,
+giving $4950b$ nominal coefficient bits at width $b$.
+This excludes scale metadata, index/access hardware,
+memory read bandwidth, device interface and update scheduling.
+A bit-true 99-term generic row synthesis reported
+274 flattened generic cells for FP6 and 138 for INT6/BFP6.
+A separate matched open-standard-cell row-only mapping
+produced FP6 $1438.88\,\mu\mathrm{m}^2$ versus INT6/BFP6
+$929.6416\,\mu\mathrm{m}^2$.
+A non-optimised common digital-logit row-plus-interface
+comparison gave $23481.2704\,\mu\mathrm{m}^2$ versus
+$18061.0720\,\mu\mathrm{m}^2$. These are component-specific,
+not full-chip power, physical MTJ performance or
+energy-to-solution estimates. Serial recomputation hardware
+also differs from cached incremental fields in the
+numerical solver; combining those costs as if equivalent
+would be misleading.
 
-The metric is mean positive optimality gap,
-$100(C^\star-C_{\mathrm{returned}})/C^\star$,
-averaged first across six seeds within each graph
-and then equally across four \emph{graphs}:
-\begin{table}[htbp]\centering\small
-\begin{tabular}{@{}lrrr@{}}\toprule
-FP64 Gibbs schedule & 5000 updates & 20000 updates & 50000 updates\\\midrule
-Fixed $\beta_G$ & 10.039\% & 6.890\% & 5.402\%\\
-Linear 0.5--2.0$\beta_G$ & 5.502\% & 3.704\% & \textbf{2.343\%}\\\bottomrule
-\end{tabular}
-\caption{NUS reference-only quality-versus-budget calibration.
-Each cell averages four original graphs equally;
-six paired seeds are nested within each graph.}
-\label{tab:fp64-budget}
-\end{table}
-The 50000-update linear profile yielded graph-specific
-mean gaps of 1.101\% (\texttt{w01}), 0.396\%
-(\texttt{pw01}), 2.728\% (\texttt{t2g10}) and
-5.146\% (\texttt{ising2.5}). The dense
-\texttt{ising2.5} graph \emph{favoured fixed}
-over linear at 50000 updates (4.341\% versus
-5.146\%). The uniform linear schedule is selected
-by the \emph{aggregate}, not by universal
-instance-level superiority.
+\section{Mechanism, originality and validation boundary}
+For a fixed state and offset,
+$\Delta H_i=\sum_j(\widehat J_{ij}-J_{ij})s_j$.
+The logistic sigmoid derivative is bounded by $1/4$, so
+$|\Delta P_i|\le\beta|\Delta H_i|/2$ at matched gain one.
+When both reference and quantised updates share the
+same uniform random number, the exact probability
+that their \emph{one-step} choices differ is
+$|\Delta P_i|$. After a disagreement, the trajectories
+may diverge; the static statistic cannot be interpreted
+as the number of incorrect updates in a full anneal.
+This is why a lower snapshot $\Delta P$ cannot,
+on its own, certify better finite-budget Max-Cut quality.
 
-The predeclared choice is the \emph{smallest}
-budget within 1.0 absolute percentage point of
-the best equal-graph mean gap, with a tie favouring
-fixed beta. Linear 20000 had 3.704\% mean gap,
-more than 1.0 point above the minimum 2.343\%.
-Thus the first multi-format precision comparison
-shall use \textbf{linear 50000 attempted updates}
-with that beta schedule frozen across all formats.
+The remaining candidate contribution is a conditional
+representation--field--response--quality relationship,
+with explicitly accounted hardware overhead. FP6 is not
+declared universally superior to INT6, and offset-by-format
+interaction is not established by the CAL comparisons.
+Before touching held-out data, the primary directional
+prediction is that FP6 will produce lower static same-offset
+mean $|\Delta P|$ than INT6 on the \emph{unseen dense}
+\texttt{\_7777} instance, separately at $d=0.8$
+and $d=1.6$ and static beta multiplier 2.
+Final original-cut quality remains a separate test.
+Both \texttt{\_7777} graphs remain untouched.
 
-This is the \emph{largest tested} budget,
-not evidence of convergence, optimum attainment,
-or a physically realized annealing circuit.
-The schedule's control hardware and device-time
-cost must be included in later architectures.
-The original 84-run, fixed-5000 format pilot
-remains a separate historical baseline with its
-documented INT6 source-scale erratum.
-
-\section{Current status}
-The official ten-graph Biq Mac source audit passed on NUS:
-eight 100-node Mac/rudy small-integer graphs and two 100-node
-Mac/ising wide-range graphs. For the latter, the verified source
-nonzero absolute weights range from 460 to 294541 in
-\texttt{t2g10\_5555} (200 edges) and from 1 to 239752 in
-\texttt{ising2.5-100\_5555} (4950 edges).
-A naive globally fullscale signed INT6 quantizer rounds 4657 of the
-4881 originally nonzero dense-graph edges to zero (4950 raw edges); this is a source weight
-characteristic, not a demonstrated Max-Cut quality loss.
-A first four-source FP6/INT6/BFP6 ideal-Gibbs pilot completed
-84 solver runs with the represented-energy output policy.
-A small-integer INT6 scale-search fairness correction was then
-identified and repaired; corrected solver verification is pending.
-Published source-matched original-weight Max-Cut optimum
-references are now imported, and the 144-run FP64 quality gate
-is complete. There is no measured stochastic-MTJ response
-or Max-Cut-specific mapped-area claim.
-
+\noindent\textbf{Error-bar integrity.}
+The result figure contains 36 previously reported
+mean values. Only 15 plotted confidence intervals
+have traceable bounds in the currently accessible
+archived source summaries. We show no whisker for
+the other 21 points, rather than treating unknown
+uncertainty as zero. Full 36/36 intervals require
+the original archived per-cell summary exports.
+\bibliographystyle{unsrt}
+\bibliography{references}
 \end{document}
