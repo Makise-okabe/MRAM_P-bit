@@ -1,9 +1,9 @@
 # STT-MRAM p-bit FYP — coupling-matrix representation
 
 **This is the only active research and report repository.** The root
-[main.tex](main.tex) is the current FYP manuscript, with five vector
-figures embedded in the
-[completed-CAL results chapter](report/maxcut/10_coupling_matrix_cal_results.tex).
+[main.tex](main.tex) is the current FYP manuscript, with the [completed-CAL results chapter](report/maxcut/10_coupling_matrix_cal_results.tex)
+and the [independent M5 held-out chapter](report/maxcut/20_heldout_m5_results.tex),
+including native vector figures.
 The separate earlier report repository is historical, not current.
 
 ## Research question
@@ -27,9 +27,19 @@ variability. FP superiority is not assumed.
 - Static response diagnosis: 3,888 derived records on 144 saved
   FP64 states; no new optimiser evaluations.
 
-Every solver gap is scored on original source weights. The two
-original held-out 7777 instances remain untouched. Existing digital
+Every solver gap is scored on original source weights. The dense
+held-out `ising2.5-100_7777` has now been evaluated with 216 completed
+FP64/FP6/INT6 trials. The sparse `t2g10_7777` remains untouched. Existing digital
 row-core and common-interface costs are component-level only.
+
+## Completed M5 dense held-out validation (9 Nov 2026)
+
+- 216/216 original-weight Max-Cut solver runs: FP64, FP6, INT6 × offset halfspans 0/0.8/1.6 × 24 matched seeds.
+- FP6 has a paired original-cut quality advantage over INT6 at d=0 and d=0.8, but not a statistically confirmed one at d=1.6.
+- FP6 has lower static switching-probability distortion on common FP64-returned states at all three offsets; neither offset interaction CI excludes zero.
+- 144 post-hoc mechanism records recovered from the untouched original solver evidence after NUL corruption, with 6/6 source-summary checks passing. No solver reruns.
+- [M5 report chapter](report/maxcut/20_heldout_m5_results.tex) includes native PGFPlots figures for Overleaf, with no external image dependency.
+- [Verified M5 evidence and provenance](docs/M5_HELDOUT_DENSE_20261109.md) documents the source data boundaries; raw host CSVs/PNGs are not yet uploaded in this repo.
 
 ## Main manuscript, actual images and reproducibility
 
@@ -45,11 +55,11 @@ row-core and common-interface costs are component-level only.
 - [sync instructions](docs/OVERLEAF_SETUP.md): connect the web editor
   to this repository's main branch and pull changes.
 
-**Error bar policy:** Retain all 36 completed mean gap values, but
-display error bars only for the 15 source-supported confidence intervals
-available in the report mirror. Do not infer zero uncertainty where
-an interval has not yet been imported. To complete 36/36 genuine intervals,
-read the existing archived primary and eight-bit summary CSV files.
+**Error bar policy:** The current CAL figure displays 15/36 source-backed
+95% CI whiskers; a later host-side source recovery verified all 36
+intervals, but the remaining 21 numerical CI bounds have not yet been
+imported into the report mirror. Missing whiskers are not zero uncertainty.
+M5's paired CIs are reported separately in its completed chapter.
 
 ## Research code
 
