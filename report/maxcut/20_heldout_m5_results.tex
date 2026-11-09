@@ -1,0 +1,165 @@
+% M5 independent held-out dense graph; source: validated M5 CSV summaries.
+% The original solver runs and static snapshot diagnostics remain on the host.
+% This is a report transposition, not a rerun or a device measurement.
+\section{Independent dense held-out validation (M5)}
+\label{sec:m5-heldout}
+After freezing the CAL-driven prediction, we evaluated the previously
+unseen Biq Mac graph \texttt{ising2.5-100\_7777}, with 100 vertices,
+4950 raw source-edge entries (4869 nonzero, 81 zero-weight) and a
+published original-weight optimum of 3,363,230. The experiment used
+FP64, FP6 (E3M2 element codebook), and INT6 with frozen global
+source-MSE scaling, 24 matched seeds at each assumed logit-offset
+halfspan $d\in\{0,0.8,1.6\}$, and 50,000 attempted linear-annealing
+Gibbs updates per solver run. All 216 runs completed. We retained
+represented-energy incumbents and evaluated their \emph{original-weight}
+Max-Cut objective. This is one held-out dense graph, not a test of
+generality across an independent graph population.
+
+\begin{table}[htbp]\centering\small
+\begin{tabular}{@{}c rrr cc@{}}\toprule
+Assumed $d$ & FP64 gap (\%) & FP6 gap (\%) & INT6 gap (\%)
+ & FP6 eligible & INT6 eligible\\\midrule
+0.0 & 3.890 & 3.817 & 4.603 & Yes & No\\
+0.8 & 3.982 & 3.683 & 4.670 & Yes & No\\
+1.6 & 4.128 & 4.435 & 4.569 & No & No\\\bottomrule
+\end{tabular}
+\caption{M5 mean original-weight optimum gaps over 24 matched seeds
+per condition. Lower gaps are better. Eligibility is the frozen
+\emph{two-CI} conjunction: upper 95\% CI of absolute optimum gap
+$\leq5\%$ and upper paired CI of additional gap versus same-offset
+FP64 $\leq+1$ percentage point. FP64 meets the absolute target
+at all three offsets; FP6 at $d=1.6$ does not
+(absolute-gap upper bound 5.286\%).}
+\label{tab:m5-quality}
+\end{table}
+
+\begin{table}[htbp]\centering\small
+\begin{tabular}{@{}c rrr@{}}\toprule
+$d$ & FP6 minus INT6 gap (pp) & 95\% paired CI (pp)
+ & Offset interaction vs.\ $d=0$ (pp)\\\midrule
+0.0 & $-0.786$ & $[-1.271,-0.289]$ & baseline\\
+0.8 & $-0.987$ & $[-1.639,-0.412]$ &
+ $-0.201\;[-0.772,0.380]$\\
+1.6 & $-0.135$ & $[-0.835,0.500]$ &
+ $+0.651\;[-0.087,1.371]$\\\bottomrule
+\end{tabular}
+\caption{Paired solver-seed bootstrap contrasts. Negative gap
+differences favour FP6. The offset interaction is the
+difference-in-differences of the FP6--INT6 gap contrast versus
+$d=0$. Neither nonzero-offset interaction CI excludes zero.
+The interaction column supplies a point estimate and its own 95\% CI.}
+\label{tab:m5-paired-gap}
+\end{table}
+
+The FP6--INT6 optimum-gap confidence intervals exclude zero at
+$d=0$ and $d=0.8$ but not at $d=1.6$. This does \emph{not}
+establish that offset causally changes their relative advantage:
+both offset difference-in-differences intervals contain zero.
+Because FP6 already improves the mean gap under the ideal response,
+the results do not support a claim that nonideality \emph{creates}
+the FP benefit.
+
+\subsection{Common-state switching-probability fidelity}
+On 24 matched FP64-returned states per offset, we computed
+$\Delta H_i=\widehat H_i-H_i$ and
+$|\Delta P_i|=
+|\sigma(2\beta\widehat H_i+\delta_i)
+-\sigma(2\beta H_i+\delta_i)|$
+for FP6 and INT6. These 144 derived format-by-state diagnostics
+are \emph{not} new solver runs or independent physical devices.
+
+\begin{table}[htbp]\centering\small
+\begin{tabular}{@{}c rrrr@{}}\toprule
+$d$ & FP6 mean $|\Delta P|$ & INT6 mean $|\Delta P|$
+ & FP6 mean $|\Delta H|$ & INT6 mean $|\Delta H|$\\\midrule
+0.0 & .001684 & .004019 & 3481.19 & 4969.83\\
+0.8 & .001594 & .003830 & 3507.04 & 4883.83\\
+1.6 & .001747 & .003846 & 3515.48 & 4918.40\\\bottomrule
+\end{tabular}
+\caption{State-conditioned response fidelity under the same assumed
+device offsets, evaluated on common FP64-returned states. Mean
+absolute differences are computed with the exact sigmoid.}
+\label{tab:m5-fidelity}
+\end{table}
+
+For FP6 minus INT6, the paired mean $|\Delta P|$ differences
+and 95\% seed-bootstrap confidence intervals are
+$-0.002335$ $[-0.003154,-0.001530]$ at $d=0$;
+$-0.002236$ $[-0.003045,-0.001481]$ at $d=0.8$;
+and $-0.002099$ $[-0.002787,-0.001436]$ at $d=1.6$.
+All intervals exclude zero, supporting the \emph{pre-held-out}
+prediction of lower FP6 static probability distortion.
+
+\begin{figure}[htbp]\centering
+\begin{tikzpicture}
+\begin{groupplot}[
+group style={group size=2 by 1,horizontal sep=1.55cm},
+width=.46\linewidth,height=5.4cm,
+xmin=-.12,xmax=1.72,xtick={0,.8,1.6},
+xticklabels={0,0.8,1.6},xlabel={Assumed logit offset $d$},
+grid=major,grid style={gray!18},tick label style={font=\footnotesize},
+label style={font=\footnotesize},
+legend style={font=\scriptsize}]
+\nextgroupplot[ylabel={Original-cut gap (\%)},ymin=3.2,ymax=5.1]
+\addplot+[mark=diamond*,color=black] coordinates
+{(0,3.890077) (.8,3.981978) (1.6,4.128334)};
+\addlegendentry{FP64}
+\addplot+[mark=*,color=blue!75!black] coordinates
+{(0,3.816876) (.8,3.682681) (1.6,4.434675)};
+\addlegendentry{FP6}
+\addplot+[mark=square*,color=orange!85!black] coordinates
+{(0,4.602918) (.8,4.669792) (1.6,4.569409)};
+\addlegendentry{INT6}
+\nextgroupplot[ylabel={Static mean $|\Delta P|$},ymin=0,ymax=.005]
+\addplot+[mark=*,color=blue!75!black] coordinates
+{(0,.001684103) (.8,.001594345) (1.6,.001747120)};
+\addlegendentry{FP6}
+\addplot+[mark=square*,color=orange!85!black] coordinates
+{(0,.004018867) (.8,.003830003) (1.6,.003846156)};
+\addlegendentry{INT6}
+\end{groupplot}
+\end{tikzpicture}
+\caption{M5 mean solver quality (left) and common-FP64-state
+switching-probability distortion (right). These plots show
+\emph{means}; inferential comparisons and their paired 95\% CIs
+are given in the text and Table~\ref{tab:m5-paired-gap}.
+Static probabilities do not represent observed solver
+trajectory disagreement.}
+\label{fig:m5-quality-fidelity}
+\end{figure}
+
+\subsection{Exploratory nonlinear-sensitivity mechanism}
+As a \emph{post-hoc} diagnostic, define the transition band by
+$|2\beta H_i+\delta_i|\leq2$ on the FP64 reference state.
+It contains only approximately 1.7--1.8\% of tested spin--state
+observations but accounts for a disproportionate fraction
+(approximately 68--70\% at $d=0$) of total absolute
+probability distortion. The first-order relation
+\[
+|\Delta P_i|\approx P_i(1-P_i)\,|2\beta\Delta H_i|
+\]
+is close in mean for FP6 at $d=0$ (0.001667 predicted versus
+0.001684 exact) but overestimates INT6 (0.005599 predicted
+versus 0.004019 exact). The threshold and explanation are
+exploratory, not a preregistered causal mechanism.
+More accurate static probabilities do not necessarily yield
+a demonstrable original-cut advantage after independent
+stochastic trajectories.
+
+\noindent\textbf{Provenance and limits.}
+The 216 solver runs, 144 reconstructed mechanism records, six
+source-summary consistency checks, and original \texttt{runs.csv}
+SHA256 comparison all passed on the experiment host.
+The CSV mechanism artifact was reconstructed after
+NUL-byte corruption and cross-checked against the
+saved \texttt{snapshot\_summary.csv}; no solver reruns occurred.
+A documented zero-edge topology amendment changed the code's
+acceptance check without changing the fixed representation,
+solver, seeds or thresholds. These are source-reported
+validated outputs transcribed into this manuscript; full raw
+CSVs and generated PNG/PDF files reside on the experiment host
+and are \emph{not} included by this report-only commit.
+Confidence intervals describe 24 matched solver seeds from
+one graph and one fixed synthetic offset population, not
+between-graph or physical-device variability. The other
+held-out instance \texttt{t2g10\_7777} remains untested.
