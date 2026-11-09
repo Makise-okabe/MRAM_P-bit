@@ -15,7 +15,7 @@ Two 100-spin CAL instances (ising2.5-100_5555, t2g10_5555) and two untouched hel
 
 Keep 50,000 attempted updates, frozen linear beta, 24 paired trials per cell, symmetric J=-w, h=0, represented-energy retention and original-weight scoring. Study gain and offset in separate slices; no gain × offset × contrast grid.
 
-**Next:** the already authored gain-only dense-CAL pilot, then interpret its first regime plot. It reuses matching ideal data and requires 624 new runs; no result is claimed merely because code/tests exist. See the roadmap for the staged campaign and corrected run counts.
+**Previously planned:** the already authored gain-only dense-CAL pilot, then interpret its first regime plot. It reuses matching ideal data and requires 624 new runs; no result is claimed merely because code/tests exist. See the roadmap for the staged campaign and corrected run counts.
 
 **Hardware expansion is frozen.** Existing RTL/Sky130 results provide bounded cost evidence. Genus/library repair, old Spectre searches, new processor/DAC/ADC work, other benchmarks and new solvers are not prerequisites.
 
@@ -30,7 +30,7 @@ Keep 50,000 attempted updates, frozen linear beta, 24 paired trials per cell, sy
 | Row-core mapping | Sky130 HD FP6 1438.88 vs INT6/BFP6 929.6416 square micrometres |
 | Common digital interface | 27 RTL cases and Sky130 mapping recorded; FP6 23481.2704 vs INT6/BFP6 18061.0720 square micrometres |
 | Joint response-regime study | Gain-only runner authored; scientific completion must be established from actual outputs |
-| Held-out validation | Pending; preserve untouched instances |
+| Held-out validation | Dense `ising2.5-100_7777`: 216/216 completed, 144 post-hoc records recovered, six summary consistency checks PASS; sparse `t2g10_7777` still untouched. See [M5 closeout](docs/M5_HELDOUT_DENSE_20261109.md). |
 
 Mapped standard-cell area is not full-chip area, measured energy, physical MTJ validation or GF22FDX evidence. The current variation magnitudes are explicitly assumed E2 sensitivity levels, not measured post-calibration residuals.
 
@@ -42,6 +42,10 @@ The working implementation is on [research/m4-gain-fusion-20261107](https://gith
 - Existing codebooks: experiments/m1_precision_codebooks.py.
 - Current scientific gate: experiments/m2_precision_gain_regime.py.
 - Earlier six-bit combined-response screen: historical supporting code, not the current regime-map campaign.
-- Report: https://github.com/Makise-okabe/MRAM_FYP_Overleaf .
+- Current report: https://github.com/Makise-okabe/MRAM_P-bit/blob/main/main.tex (Overleaf sync via `main`). Earlier report repository is archived.
 
 All future chats should read the locked roadmap before proposing another step. FP superiority, a moved precision threshold, and priority over all literature remain hypotheses until supported.
+
+## 9 November 2026 completed M5 checkpoint
+
+The dense held-out FP64/FP6/INT6 study and its static-probability diagnostic are completed and documented in [M5 closeout](docs/M5_HELDOUT_DENSE_20261109.md). This is a separate verified checkpoint, not proof that the planned gain-only campaign has completed. Host-local raw data, the frozen script and audited topology amendment must be pushed separately; this commit contains only traceable report text.
