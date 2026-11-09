@@ -15,7 +15,7 @@
 \title{\vspace{-1em}\bfseries Low-Order Floating-Point Representations of\\
 Ising Coupling Matrices for STT-MRAM p-Bit Optimization}
 \author{Du Yanzhang\\Electrical Engineering Final-Year Project\\Supervisor: Prof.\ Kelvin Fong}
-\date{Completed calibration study and research synthesis --- 9 November 2026}
+\date{Completed CAL study and dense held-out validation --- 9 November 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -34,8 +34,8 @@ calibration graph, FP6 has lower static mean absolute switching
 probability distortion than INT6 at the largest assumed offset, but
 the experiment does not establish a general FP advantage, a causal
 trajectory mechanism, measured physical offset statistics, or
-whole-processor hardware savings. Independent held-out graphs
-are still untouched.
+whole-processor hardware savings. One independently held-out dense graph has since been evaluated
+in 216 completed solver runs; the sparse held-out remains untested.
 \end{abstract}
 \tableofcontents
 
@@ -156,6 +156,7 @@ are conditional on the same assumed device population;
 they are not estimates of manufacturing variability.
 
 \input{report/maxcut/10_coupling_matrix_cal_results.tex}
+\input{report/maxcut/20_heldout_m5_results.tex}
 
 \section{Cost evidence and limits of architecture inference}
 A 100-spin symmetric dense coupling matrix has
@@ -191,27 +192,25 @@ as the number of incorrect updates in a full anneal.
 This is why a lower snapshot $\Delta P$ cannot,
 on its own, certify better finite-budget Max-Cut quality.
 
-The remaining candidate contribution is a conditional
-representation--field--response--quality relationship,
-with explicitly accounted hardware overhead. FP6 is not
-declared universally superior to INT6, and offset-by-format
-interaction is not established by the CAL comparisons.
-Before touching held-out data, the primary directional
-prediction is that FP6 will produce lower static same-offset
-mean $|\Delta P|$ than INT6 on the \emph{unseen dense}
-\texttt{\_7777} instance, separately at $d=0.8$
-and $d=1.6$ and static beta multiplier 2.
-Final original-cut quality remains a separate test.
-Both \texttt{\_7777} graphs remain untouched.
-
+The supported contribution is a bounded, response-conditioned
+representation--field--probability--quality relationship, with
+explicit component-level hardware cost. FP6 is not declared
+universally superior to INT6. The originally unused dense held-out
+instance was tested only after the directional probability-fidelity
+prediction was frozen; its results are reported in
+Section~\ref{sec:m5-heldout}. The remaining sparse held-out instance
+\texttt{t2g10\_7777} is still unused. The observed
+format-by-offset interactions have not been established by
+paired confidence intervals.
 \noindent\textbf{Error-bar integrity.}
 The result figure contains 36 previously reported
 mean values. Only 15 plotted confidence intervals
 have traceable bounds in the currently accessible
 archived source summaries. We show no whisker for
 the other 21 points, rather than treating unknown
-uncertainty as zero. Full 36/36 intervals require
-the original archived per-cell summary exports.
+uncertainty as zero. A separate host-side recovery has now verified all 36 source intervals,
+but the additional 21 interval values have not yet been imported into
+this manuscript's plotted data. They are not silently estimated.
 \bibliographystyle{unsrt}
 \bibliography{references}
 \end{document}
