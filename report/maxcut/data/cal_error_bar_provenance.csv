@@ -1,0 +1,16 @@
+graph,offset_logit_halfspan,format,idx,mean_gap_pct,ci95_lo_pct,ci95_hi_pct,source_kind
+Sparse,0.8,FP64,0,3.594697665351233,3.0633576280597556,4.173105256815442,FP64_scout_csv
+Sparse,1.6,FP64,0,5.44701558260039,4.797657455212401,6.063965175299639,FP64_scout_csv
+Dense,0.8,FP64,0,4.874123781003278,4.207419581208884,5.517349451169468,FP64_scout_csv
+Dense,1.6,FP64,0,5.0295881640297955,4.410447379977662,5.689595342748593,FP64_scout_csv
+Sparse,0.8,FP4,1,3.819,3.4,4.24,primary_terminal_rounded
+Dense,0.8,FP6,3,4.537,3.92,5.17,primary_terminal_rounded
+Dense,1.6,FP6,3,4.892,4.29,5.55,primary_terminal_rounded
+Sparse,0.8,FP8,4,3.996,3.37,4.65,extension_terminal_rounded
+Sparse,1.6,FP8,4,5.242,4.67,5.83,extension_terminal_rounded
+Dense,0.8,FP8,4,5.016,4.28,5.71,extension_terminal_rounded
+Dense,1.6,FP8,4,5.363,4.75,6,extension_terminal_rounded
+Sparse,0.8,INT8,8,3.921,3.29,4.49,extension_terminal_rounded
+Sparse,1.6,INT8,8,5.425,4.8,5.99,extension_terminal_rounded
+Dense,0.8,INT8,8,4.737,4.03,5.43,extension_terminal_rounded
+Dense,1.6,INT8,8,5.207,4.6,5.82,extension_terminal_rounded
