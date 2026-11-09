@@ -1,0 +1,83 @@
+{
+  "bootstrap_resamples": 4000,
+  "code_hashes": {
+    "experiments/biqmac_maxcut.py": "b372b7d81e2ae406f223e1bd025373696fe3d3b4cbb9591d53b3fff917305f9d",
+    "experiments/m1_biqmac_ideal_pilot.py": "1c58a5b97d5e481d837fcdf1c94d9ea051c03f3ba2a17148ee3760b80ac6e0dc",
+    "experiments/m1_biqmac_precision_sweep.py": "b5c751e98ad2db65af64297c43a1c7d88152901129e2cd35c55480e445ef93bc",
+    "experiments/m1_biqmac_reference_quality_gate.py": "c6c5fcec5b1299d6d0ebfe96d7e51cecf2cbf02fe51bd5736ed264b2c03f744c",
+    "experiments/m1_precision_codebooks.py": "8aabba6954e49589c9690a6e4a0b71f80c16765fbca907a1dd57ee75bc606b02",
+    "experiments/m2_coupling_matrix_snapshot_diagnostic.py": "a2c1e7dc83ed869adeaa98cf8a1442464b78851cd4edf43266b990aab24b1db5",
+    "experiments/m2_e2_response_gate.py": "4309aa5bdf8066f6ba9c2f1b3de9b4ec3befac638cdeeee8fba9c738c7824f0f",
+    "experiments/m2_heldout_dense_sixbit.py": "679ddda6e9e403adef94717389aa69c1984ca3c1ced63e05e678bb781f2df963",
+    "experiments/m2_offset_fp64_scout.py": "6ba76532af095cab51031a8f08f93c1fd6d50193e2e4340945e81e35ed8bdc9e"
+  },
+  "coupling": "J_ij=-w_ij, h_i=0",
+  "device_evidence": "E2_ASSUMED_NOT_MEASURED",
+  "device_model_hashes": {
+    "0.0": "c4cb569672f1ac1f845885741219b56546c264695916cf72b9955428093fac9e",
+    "0.8": "536e071b4841f38dde1b2c9844195e6f016524b6c8bc1f3b5a2e0273209ce2b1",
+    "1.6": "a076129e5bac93381a550f8f9a197146608044fe6fd0e6405a938dc856c6642b"
+  },
+  "device_populations": 1,
+  "evaluation": "original signed weighted Max-Cut",
+  "expected_new_runs": 216,
+  "formats": [
+    "ref64",
+    "fp6",
+    "int6"
+  ],
+  "gain": 1.0,
+  "global_scale_policy": "source_mse_loggrid_v1",
+  "graph": "ising2.5-100_7777",
+  "graph_index": 4,
+  "graph_sha256": "TO_BE_RECORDED_AFTER_FREEZE",
+  "graph_url": "https://biqmac.aau.at/library/mac/ising/ising2.5-100_7777",
+  "hypotheses": {
+    "H1": "FP6 minus INT6 static mean |dP| < 0 at d=0.8 and d=1.6",
+    "H2": "Measure FP6 minus INT6 solver gap; no assumed sign",
+    "H3": "Measure offset interaction versus d=0"
+  },
+  "limitations": "One graph and one assumed device population; no measured physical-device variation.",
+  "offset_levels_logit": [
+    0.0,
+    0.8,
+    1.6
+  ],
+  "published_cut_optimum": 3363230,
+  "quality_screen_abs_gap_pct_upper": 5.0,
+  "quality_screen_quant_loss_pp_upper": 1.0,
+  "reference": "https://biqmac.aau.at/biqmaclib.pdf",
+  "return_policy": "lowest represented energy visited",
+  "schedule": "linear beta 0.5 to 2.0",
+  "seed_rule": "20261201 + 100000*4 + k",
+  "seeds": [
+    20661201,
+    20661202,
+    20661203,
+    20661204,
+    20661205,
+    20661206,
+    20661207,
+    20661208,
+    20661209,
+    20661210,
+    20661211,
+    20661212,
+    20661213,
+    20661214,
+    20661215,
+    20661216,
+    20661217,
+    20661218,
+    20661219,
+    20661220,
+    20661221,
+    20661222,
+    20661223,
+    20661224
+  ],
+  "snapshot_beta_multiplier": 2.0,
+  "snapshot_source": "FP64 returned state, same offset and seed",
+  "status": "FROZEN_BEFORE_HELDOUT_ACCESS",
+  "updates": 50000
+}
