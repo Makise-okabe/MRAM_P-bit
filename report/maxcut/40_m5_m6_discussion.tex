@@ -16,6 +16,27 @@ The graph-dependent fitted scale is part of the declared
 representation, rather than a parameter tuned using Max-Cut
 solution quality.
 
+The frozen FP6 and INT6 global coefficient scales
+and graph-normalized solver beta can be read directly
+from the original 216-row \texttt{runs.csv} in each archive:
+\begin{table}[htbp]\centering\small
+\begin{tabular}{@{}l rrr@{}}\toprule
+Instance & FP6 scale & INT6 scale & Base $\beta$\\\midrule
+Dense M5 & 8958.85 & 6804.42 & $6.59590\times10^{-5}$\\
+Sparse M6 & 14558.44 & 9709.81 & $6.50233\times10^{-6}$\\\bottomrule
+\end{tabular}
+\caption{Frozen source-only global scale metadata and base
+beta from the archived raw-run CSVs, constant over all
+offset levels and solver seeds within each graph/format.
+These scales and beta values are not cross-graph
+optimized for a preferred format.}
+\label{tab:heldout-scales}
+\end{table}
+Because source coefficient distributions and beta normalization
+differ by instance, absolute unnormalized $\Delta H$
+magnitudes cannot be directly equated across graphs;
+we therefore also examine relative RMS field errors.
+
 \begin{table}[htbp]\centering\small
 \begin{tabular}{@{}c rrrr@{}}\toprule
  & \multicolumn{2}{c}{Dense M5} & \multicolumn{2}{c}{Sparse M6}\\
