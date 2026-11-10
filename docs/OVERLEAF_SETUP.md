@@ -11,6 +11,7 @@ Report file structure:
 - references.bib — scientific citations and specifications
 - report/maxcut/10_coupling_matrix_cal_results.tex — completed CAL text and five native TikZ/PGFPlots figures
 - report/maxcut/20_heldout_m5_results.tex — independent M5 dense-held-out results, paired CIs and native PGFPlots figure
+- report/maxcut/30_heldout_m6_results.tex — independent M6 sparse-held-out results, cross-graph comparison and native PGFPlots figure
 - docs/M5_HELDOUT_DENSE_20261109.md — validation and data provenance
 - report/maxcut/data — frozen source-reported means, documented CI subsets, and static numerical diagnostics
 - report/figures — five real rendered PNGs and vector PDFs, created by a figure-only GitHub workflow
@@ -20,9 +21,9 @@ To view figures in the connected web editor, ensure it is linked to the
 MRAM_P-bit main branch, use its GitHub integration to PULL recent
 changes, set main.tex as the main document, and recompile. GitHub
 commits alone do not guarantee that the editor has synchronised.
-The M5 results chapter is included from the root main.tex, so a fresh
+Both M5 and M6 results chapters are included from the root main.tex, so a fresh
 pull of the `main` branch followed by recompilation is sufficient to
-render its native plots; no host-generated PNG is required.
+render their native plots; no host-generated PNG is required.
 
 To recreate the physical images locally, without new simulations:
 
@@ -36,8 +37,10 @@ data mirror yet. The means for
 all 36 graph/format/offset cells are retained. A missing whisker
 does not mean a zero confidence interval.
 
-The completed M5 study used the dense held-out graph; the remaining
-sparse held-out graph is untouched. This GitHub/Overleaf report update
-does not itself run an optimiser, create a device population, or inspect
-another graph. The M5 raw CSV/PNG/PDF archives remain local to the
-experiment host until separately uploaded.
+Both held-out studies are now solver-complete: dense M5 and sparse M6,
+216 runs each. M5 raw evidence is archived on the research branch in
+commit 755e4199f4542088b1dfc59f6bcb1e668d54f0a4. The sparse M6
+raw CSV/JSON and six verified PNG/PDF figures remain on the experiment
+host pending a separate research-branch push. The M6 report chapter
+uses only transcribed source-audited summaries and native PGFPlots;
+report commits do not themselves run optimisers or test real devices.
