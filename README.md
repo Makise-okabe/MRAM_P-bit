@@ -11,7 +11,7 @@
 
 ## Frozen execution scope
 
-Two 100-spin CAL instances (ising2.5-100_5555, t2g10_5555) and two untouched held-out instances (ising2.5-100_7777, t2g10_7777). Initial primary formats: FP/INT 4/5/6 bits + FP64; existing 8-bit variants under the declared six-bit-failure/uncertainty rule. Retain BFP results; optional BFP6 adds no new representation search.
+Two 100-spin CAL instances (ising2.5-100_5555, t2g10_5555) and two designated held-outs: dense ising2.5-100_7777 (M5 complete) and sparse t2g10_7777 (untouched, M6 protocol prepared). Initial primary formats: FP/INT 4/5/6 bits + FP64; existing 8-bit variants under the declared six-bit-failure/uncertainty rule. Retain BFP results; optional BFP6 adds no new representation search.
 
 Keep 50,000 attempted updates, frozen linear beta, 24 paired trials per cell, symmetric J=-w, h=0, represented-energy retention and original-weight scoring. Study gain and offset in separate slices; no gain × offset × contrast grid.
 
@@ -48,4 +48,8 @@ All future chats should read the locked roadmap before proposing another step. F
 
 ## 9 November 2026 completed M5 checkpoint
 
-The dense held-out FP64/FP6/INT6 study and its static-probability diagnostic are completed and documented in [M5 closeout](docs/M5_HELDOUT_DENSE_20261109.md). This is a separate verified checkpoint, not proof that the planned gain-only campaign has completed. Host-local raw data, the frozen script and audited topology amendment must be pushed separately; this commit contains only traceable report text.
+The dense held-out FP64/FP6/INT6 study and its static-probability diagnostic are completed and documented in [M5 closeout](docs/M5_HELDOUT_DENSE_20261109.md). This is a separate verified checkpoint, not proof that the planned gain-only campaign has completed. Run-level evidence, original M5 script and the documented topology amendment are now included in [archive commit](https://github.com/Makise-okabe/MRAM_P-bit/commit/755e4199f4542088b1dfc59f6bcb1e668d54f0a4). Dense M5 is COMPLETE; it does not establish an FP6-versus-INT6 offset interaction or a statistically confirmed cut-gap advantage at d=1.6.
+
+## Sparse validation is next; width work on hold (10 Nov 2026)
+
+The [M6 216-run sparse held-out protocol](https://github.com/Makise-okabe/MRAM_P-bit/blob/research/m4-gain-fusion-20261107/docs/M6_SPARSE_HELDOUT_PROTOCOL_20261110.md) has been preregistered on this branch, with a separate runner `experiments/m2_heldout_sparse_sixbit.py`. Neither the sparse graph nor the 216-run study has been accessed/executed in preparing these changes. Host `--selftest`, `--smoke-cal`, and `--freeze` are required **before** `--execute`. The narrow dense FP8/INT8 width extension (48 proposed runs) remains deferred until the sparse study is closed. CAL interval import and gain-data recovery remain separate.
