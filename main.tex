@@ -15,7 +15,7 @@
 \title{\vspace{-1em}\bfseries Low-Order Floating-Point Representations of\\
 Ising Coupling Matrices for STT-MRAM p-Bit Optimization}
 \author{Du Yanzhang\\Electrical Engineering Final-Year Project\\Supervisor: Prof.\ Kelvin Fong}
-\date{Completed CAL study and dense held-out validation --- 9 November 2026}
+\date{Completed CAL study and two held-out validations --- 10 November 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -34,8 +34,11 @@ calibration graph, FP6 has lower static mean absolute switching
 probability distortion than INT6 at the largest assumed offset, but
 the experiment does not establish a general FP advantage, a causal
 trajectory mechanism, measured physical offset statistics, or
-whole-processor hardware savings. One independently held-out dense graph has since been evaluated
-in 216 completed solver runs; the sparse held-out remains untested.
+whole-processor hardware savings. Two predesignated held-out graphs (one dense and one sparse)
+have now each completed 216 solver runs. Their FP6-versus-INT6
+static switching-probability fidelity rankings have opposite signs;
+neither this contrast nor the optimization-quality outcomes establish
+one universally optimal representation, or prove a causal sparsity effect.
 \end{abstract}
 \tableofcontents
 
@@ -157,6 +160,7 @@ they are not estimates of manufacturing variability.
 
 \input{report/maxcut/10_coupling_matrix_cal_results.tex}
 \input{report/maxcut/20_heldout_m5_results.tex}
+\input{report/maxcut/30_heldout_m6_results.tex}
 
 \section{Cost evidence and limits of architecture inference}
 A 100-spin symmetric dense coupling matrix has
@@ -195,13 +199,14 @@ on its own, certify better finite-budget Max-Cut quality.
 The supported contribution is a bounded, response-conditioned
 representation--field--probability--quality relationship, with
 explicit component-level hardware cost. FP6 is not declared
-universally superior to INT6. The originally unused dense held-out
-instance was tested only after the directional probability-fidelity
-prediction was frozen; its results are reported in
-Section~\ref{sec:m5-heldout}. The remaining sparse held-out instance
-\texttt{t2g10\_7777} is still unused. The observed
-format-by-offset interactions have not been established by
-paired confidence intervals.
+universally superior to INT6. Both designated held-out graphs have now been evaluated under
+frozen procedures: dense M5 in Section~\ref{sec:m5-heldout}
+and sparse M6 in Section~\ref{sec:m6-heldout}. The sparse
+probability-fidelity ranking contradicts the predeclared
+FP6-favouring prediction and limits graph-independent claims.
+Direct sparse FP6-versus-INT6 solver-quality contrasts remain
+inconclusive, and neither a causal sparsity mechanism nor an
+offset-by-format interaction has been established.
 \noindent\textbf{Error-bar integrity.}
 The result figure contains 36 previously reported
 mean values. Only 15 plotted confidence intervals
