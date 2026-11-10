@@ -11,7 +11,7 @@
 
 ## Frozen execution scope
 
-Two 100-spin CAL instances (ising2.5-100_5555, t2g10_5555) and two designated held-outs: dense ising2.5-100_7777 (M5 complete) and sparse t2g10_7777 (untouched, M6 protocol prepared). Initial primary formats: FP/INT 4/5/6 bits + FP64; existing 8-bit variants under the declared six-bit-failure/uncertainty rule. Retain BFP results; optional BFP6 adds no new representation search.
+Two 100-spin CAL instances (ising2.5-100_5555, t2g10_5555) and two designated held-outs: dense ising2.5-100_7777 (M5 complete) and sparse t2g10_7777 (M6 complete, host integrity audit passed). Initial primary formats: FP/INT 4/5/6 bits + FP64; existing 8-bit variants under the declared six-bit-failure/uncertainty rule. Retain BFP results; optional BFP6 adds no new representation search.
 
 Keep 50,000 attempted updates, frozen linear beta, 24 paired trials per cell, symmetric J=-w, h=0, represented-energy retention and original-weight scoring. Study gain and offset in separate slices; no gain × offset × contrast grid.
 
@@ -30,7 +30,7 @@ Keep 50,000 attempted updates, frozen linear beta, 24 paired trials per cell, sy
 | Row-core mapping | Sky130 HD FP6 1438.88 vs INT6/BFP6 929.6416 square micrometres |
 | Common digital interface | 27 RTL cases and Sky130 mapping recorded; FP6 23481.2704 vs INT6/BFP6 18061.0720 square micrometres |
 | Joint response-regime study | Gain-only runner authored; scientific completion must be established from actual outputs |
-| Held-out validation | Dense `ising2.5-100_7777`: 216/216 completed, 144 post-hoc records recovered, six summary consistency checks PASS; sparse `t2g10_7777` still untouched. See [M5 closeout](docs/M5_HELDOUT_DENSE_20261109.md). |
+| Held-out validation | Dense `ising2.5-100_7777`: 216/216 completed, 144 post-hoc records recovered, six summary consistency checks PASS; sparse `t2g10_7777`: 216/216 and host archive audit PASS. See [M5 closeout](docs/M5_HELDOUT_DENSE_20261109.md). |
 
 Mapped standard-cell area is not full-chip area, measured energy, physical MTJ validation or GF22FDX evidence. The current variation magnitudes are explicitly assumed E2 sensitivity levels, not measured post-calibration residuals.
 
@@ -50,6 +50,10 @@ All future chats should read the locked roadmap before proposing another step. F
 
 The dense held-out FP64/FP6/INT6 study and its static-probability diagnostic are completed and documented in [M5 closeout](docs/M5_HELDOUT_DENSE_20261109.md). This is a separate verified checkpoint, not proof that the planned gain-only campaign has completed. Run-level evidence, original M5 script and the documented topology amendment are now included in [archive commit](https://github.com/Makise-okabe/MRAM_P-bit/commit/755e4199f4542088b1dfc59f6bcb1e668d54f0a4). Dense M5 is COMPLETE; it does not establish an FP6-versus-INT6 offset interaction or a statistically confirmed cut-gap advantage at d=1.6.
 
-## Sparse validation is next; width work on hold (10 Nov 2026)
+## Sparse M6 completed and locally audited (10 Nov 2026)
 
-The [M6 216-run sparse held-out protocol](https://github.com/Makise-okabe/MRAM_P-bit/blob/research/m4-gain-fusion-20261107/docs/M6_SPARSE_HELDOUT_PROTOCOL_20261110.md) has been preregistered on this branch, with a separate runner `experiments/m2_heldout_sparse_sixbit.py`. Neither the sparse graph nor the 216-run study has been accessed/executed in preparing these changes. Host `--selftest`, `--smoke-cal`, and `--freeze` are required **before** `--execute`. The narrow dense FP8/INT8 width extension (48 proposed runs) remains deferred until the sparse study is closed. CAL interval import and gain-data recovery remain separate.
+The [sparse M6 frozen protocol](docs/M6_SPARSE_HELDOUT_PROTOCOL_20261110.md) passed synthetic self-test, sparse CAL smoke test and on-host source-hash freeze before any access to `t2g10_7777`. All 216 FP64/FP6/INT6 solver trials completed with exit status 0. The local integrity audit verified 216 unique source-hashed runs, 9 quality rows, 6 contrasts, 144 static snapshots and 6 summary rows. All six figures were subsequently generated without solver reruns.
+
+[Audited M6 results and dense/sparse contrast](docs/M6_SPARSE_RESULTS_20261110.md): the static probability-fidelity ranking reverses, with sparse INT6 beating FP6 on matched reference states at d=0/0.8/1.6 (95% paired CI support), whereas dense M5 favours FP6. The sparse direct paired FP6–INT6 Max-Cut gap contrasts remain inconclusive at all d. This contradicts the predeclared sparse direction and is not proof that sparsity alone causes the reversal.
+
+**Archive boundary:** The M6 raw CSVs, frozen protocol, manifest and six image files remain on the experiment host until the user stages and pushes them to this research branch. This research-summary commit is not a substitute for the raw archive. M5 remains archived and separate; CAL 36/36 CI import and gain-data recovery are separate. A potential 48-run FP8/INT8 width experiment stays on hold until M6 raw evidence is archived and the new width protocol is explicitly frozen.
