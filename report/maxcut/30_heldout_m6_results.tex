@@ -164,11 +164,13 @@ to predict certification of finite-budget optimization quality.
 At sparse $d=1.6$, INT6 has better static fidelity, but FP6
 passes the two frozen quality screens while INT6 does not.
 The direct FP6-minus-INT6 solver gap CI still crosses zero.
-The M6 offset difference-in-differences estimates are retained
-in the host's \texttt{paired\_contrasts.csv}; numerical CI
-values were not present in the console report used to prepare
-this chapter and are not reconstructed here. No statistically
-supported cross-graph interaction parameter is claimed.
+The archived M6 paired_contrasts.csv now verifies the within-graph
+offset difference-in-differences: at $d=0.8$,
+$-1.167$ pp, 95\% CI $[-2.791,+0.468]$, and at $d=1.6$,
+$-0.845$ pp, CI $[-2.215,+0.556]$. Both intervals span
+zero. A formal pooled graph-by-format interaction has not
+been estimated. Further field-error and hardware-cost
+interpretation is presented in Section~\ref{sec:heldout-synthesis}.
 
 \noindent\textbf{Boundary and provenance.}
 Both held-out graphs are now completed, but only two
@@ -176,8 +178,10 @@ distinct source instances and one fixed \emph{assumed},
 not measured, device population have been studied.
 The mean original-cut gaps were computed using the original
 signed weights, while the solver retains the earliest best
-\emph{represented}-energy state. The M6 raw files and
-six generated figures have passed an on-host consistency
-audit, but the GitHub research data archive is still
-pending separate upload at the time of writing.
+\emph{represented}-energy state. The M6 raw files and six generated figures passed an on-host
+consistency audit and are now archived on the
+\href{https://github.com/Makise-okabe/MRAM_P-bit/tree/research/m4-gain-fusion-20261107/results/m2_heldout_sparse_fp6_int6_20261110}
+{research branch}. The archived files include the original 216
+runs, frozen protocol and graph hashes, complete quality/contrast
+tables, static snapshots and six PNG/PDF figures.
 No new solver evaluations were made during this report update.
