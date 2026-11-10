@@ -1,0 +1,135 @@
+% Research synthesis of two archived held-out graph studies, 10 Nov 2026.
+% All values in tables below originate from research-branch
+% M5/M6 paired_contrasts.csv, snapshot_summary.csv and quality_summary.csv.
+\section{Comparative interpretation: numerical fidelity, optimizer quality, and cost}
+\label{sec:heldout-synthesis}
+
+\subsection{A graph-conditioned reversal already occurs in the local field}
+
+The two held-out instances both have 100 spins, but are
+not interchangeable workloads: M5 \texttt{ising2.5-100\_7777}
+has 4,869 nonzero couplings among 4,950 original source entries,
+whereas M6 \texttt{t2g10\_7777} has 200 nonzero couplings.
+In each study the original graph weights determine a
+source-only global scale \emph{separately} for FP6 and INT6.
+The graph-dependent fitted scale is part of the declared
+representation, rather than a parameter tuned using Max-Cut
+solution quality.
+
+\begin{table}[htbp]\centering\small
+\begin{tabular}{@{}c rrrr@{}}\toprule
+ & \multicolumn{2}{c}{Dense M5} & \multicolumn{2}{c}{Sparse M6}\\
+$d$ & FP6 (\%) & INT6 (\%) & FP6 (\%) & INT6 (\%)\\\midrule
+0.0 & 3.501 & 4.835 & 3.414 & 1.875\\
+0.8 & 3.516 & 4.786 & 3.436 & 1.906\\
+1.6 & 3.538 & 4.790 & 3.406 & 1.900\\\bottomrule
+\end{tabular}
+\caption{Mean state-conditioned relative RMS local-field error
+(relative fraction times 100), extracted from each archived
+\texttt{snapshot\_summary.csv}. At all three assumed offset
+levels, FP6 has lower field error on dense M5 but INT6
+has lower field error on sparse M6. Values describe
+common FP64-returned reference states, not dynamic
+solver trajectories.}
+\label{tab:heldout-relativefield}
+\end{table}
+
+The reversal in static switching-probability error therefore
+cannot be attributed \emph{solely} to the sigmoid output
+nonlinearity: the ranking of the sampled local-field
+errors has also changed. Plausible but \emph{untested}
+explanations include the graph weight-magnitude distribution,
+the source-only globally fitted scales, saturation and
+zeroing of coefficients, local-field cancellation, and
+different state distributions. Only two individual
+instances were studied; topology, weight distribution
+and visited states were not isolated as experimental
+factors. We cannot claim a causal sparsity effect.
+
+\subsection{The two frozen quality screens answer a different question}
+
+Define the extra-gap screen relative to the same-response
+FP64 baseline. The following are the \emph{upper limits}
+of the paired seed-bootstrap 95\% confidence intervals;
+these are not the estimated mean extra gaps.
+\begin{table}[htbp]\centering\small
+\begin{tabular}{@{}c rr rr@{}}\toprule
+ & \multicolumn{2}{c}{Dense M5 (pp)}
+ & \multicolumn{2}{c}{Sparse M6 (pp)}\\
+$d$ & FP6 & INT6 & FP6 & INT6\\\midrule
+0.0 & $+0.478$ & $+1.245$ & $+1.522$ & $+1.121$\\
+0.8 & $+0.241$ & $+1.287$ & $+0.278$ & $+0.677$\\
+1.6 & $+0.716$ & $+0.952$ & $+0.717$ & $+1.141$\\\bottomrule
+\end{tabular}
+\caption{Paired additional optimum-gap 95\% CI upper
+bounds against same-offset FP64 from the archived
+\texttt{quality\_summary.csv}. Eligibility additionally
+requires the \emph{absolute} mean gap upper CI not
+to exceed 5\%. Passing the +1-pp test alone is
+insufficient: dense M5 FP6 at $d=1.6$ fails the
+absolute screen with upper bound 5.286\%.}
+\label{tab:heldout-extra-ci}
+\end{table}
+
+On sparse M6, both FP6 and INT6 pass \emph{both}
+predeclared screens at $d=0.8$, and neither encoding
+has a statistically certified \emph{direct} advantage
+over the other in final original-weight Max-Cut gap:
+the paired FP6-minus-INT6 CI is
+$[-1.650,+0.034]$ pp. At $d=1.6$, sparse FP6 passes
+the two engineering screens and INT6 does not, even
+though INT6 has lower state-conditioned probability
+distortion. The direct cut-gap CI still crosses zero,
+$[-1.378,+0.386]$ pp. This difference in
+threshold certification is not, by itself, proof of
+an inferential format-ranking difference.
+
+For M6 the frozen within-graph offset-by-format
+difference-in-differences (FP6-minus-INT6 gap
+contrast against $d=0$) is $-1.167$ pp with
+95\% CI $[-2.791,+0.468]$ at $d=0.8$ and
+$-0.845$ pp with CI $[-2.215,+0.556]$ at $d=1.6$.
+Both CIs span zero. The corresponding M5 interactions
+also span zero. No format-by-offset interaction has
+been demonstrated; a formal across-graph interaction
+comparison has not been performed. An interval
+containing zero is inconclusive, not an equivalence test.
+
+\subsection{Implication for hardware-aware representation selection}
+
+At equal six-bit precision, FP6 and INT6 have identical
+nominal payload bits per stored undirected edge, plus
+one binary32 source-only global scale in the existing
+software representation. The existing 99-term generic
+mapped digital row-plus-interface comparison
+measures $23481.2704\,\mu\mathrm{m}^2$ for FP6
+versus $18061.0720\,\mu\mathrm{m}^2$ for INT6,
+a ratio of approximately $1.30$. This is
+architecture- and library-specific standard-cell
+area, \emph{not} total processor area, memory
+area, energy per solution, or a measured sparse
+graph implementation. The simulation uses cached
+incremental local fields, not the same serial
+recomputation as the mapped example.
+
+The current evidence supports \emph{conditional}
+format choice rather than universal FP preference.
+Static field/probability fidelity should be measured,
+but the frozen finite-budget quality target must be
+evaluated separately. A future FP8-versus-INT8
+comparison on the already-viewed dense graph is
+a distinct proposed study and has \emph{not}
+been included in the M5/M6 results.
+
+\noindent\textbf{Reproducibility and scope.}
+Both original 216-run experimental archives,
+their protocol/graph SHA256 manifests, complete
+paired uncertainty summaries and figures are
+retained on the \href{https://github.com/Makise-okabe/MRAM_P-bit/tree/research/m4-gain-fusion-20261107/results}{research branch}.
+Each graph has a \emph{single} persistent synthetic
+device-offset population; seed-bootstrap confidence
+intervals cannot be construed as manufacturing
+statistics or graph-population confidence intervals.
+The present STT-MRAM p-bit switching-response
+variations are assumed E2 stresses, not measured
+post-calibration physical residuals.
