@@ -46,7 +46,7 @@ The frozen eligibility conjunction is **both** (a) upper 95% seed-bootstrap mean
 | 0.8 | -0.814155 | [-1.650418, +0.034324] | inconclusive |
 | 1.6 | -0.492488 | [-1.378053, +0.385740] | inconclusive |
 
-All three paired cut-gap CIs cross zero. Although FP6 and/or INT6 can meet the frozen engineering screens at particular offsets, **direct solver-quality superiority of either six-bit format is not statistically established on M6**. M6 offset difference-in-differences estimates were saved to `paired_contrasts.csv`, but exact CI bounds were not included in the supplied terminal excerpt; do not invent them. No cross-graph interaction has been statistically estimated.
+All three paired cut-gap CIs cross zero. Although FP6 and/or INT6 can meet the frozen engineering screens at particular offsets, **direct solver-quality superiority of either six-bit format is not statistically established on M6**. The archived `paired_contrasts.csv` now verifies the M6 within-graph offset difference-in-differences: d=0.8 **−1.166727 pp** [−2.791248, +0.467528], and d=1.6 **−0.845060 pp** [−2.214803, +0.555813]. Both 95% CIs include zero. No pooled between-graph interaction has been estimated.
 
 ## Common-state static switching-probability fidelity
 
@@ -65,10 +65,22 @@ Furthermore, a better static fidelity score is **not sufficient** for a better f
 ## Scope, source audit, and follow-up gates
 
 - Dense M5 remains immutable: https://github.com/Makise-okabe/MRAM_P-bit/commit/755e4199f4542088b1dfc59f6bcb1e668d54f0a4
-- Sparse M6 is scientifically **solver-complete and locally audit-verified**. Original host files are to be archived on research branch before marking the GitHub data archive as complete.
+- Sparse M6 is scientifically **solver-complete, locally audit-verified and GitHub-archived**. The [original 216 runs, frozen protocol, manifest, 144 snapshot records and six PNG/PDF figures](https://github.com/Makise-okabe/MRAM_P-bit/tree/research/m4-gain-fusion-20261107/results/m2_heldout_sparse_fp6_int6_20261110) are now available on the research branch.
 - The six local verified figures are `quality_gap_95ci.{png,pdf}`, `probability_distortion_95ci.{png,pdf}`, `offset_interaction_95ci.{png,pdf}`. The earlier first run printed "Matplotlib missing"; post-run, read-only figure generation succeeded.
-- Report and Overleaf summary can be committed independently as clearly marked source-transcribed material while raw host files are being archived.
+- The [cross-instance report synthesis](https://github.com/Makise-okabe/MRAM_P-bit/blob/main/report/maxcut/40_m5_m6_discussion.tex) now refers to the archived source data, relative-RMS field error, confidence-bound screens, and bounded hardware costs.
 - CAL 36/36 CI import and gain-data recovery are separate workstreams; do not conflate their state with M6 closure.
 - No wider-format simulation yet. Next decision: separately freeze proposed **FP8/INT8 × 24 = 48** runs on already-viewed dense M5 at `d=0.8`, with a predeclared comparison against reused M5 `FP64/FP6/INT6` matched seeds. Any format-level logic-area comparison requires matched INT8 synthesis; payload saving alone is not area/energy saving.
 
 **M6 summary is from the host's printed completed execution and independently reported local audit; this report document did not execute any solver.**
+
+## Mechanistic interpretation from both archived snapshot summaries
+
+Mean relative RMS field error (M5 dense FP6/INT6; M6 sparse FP6/INT6):
+
+| d | M5 FP6 | M5 INT6 | M6 FP6 | M6 INT6 |
+|---|---:|---:|---:|---:|
+| 0 | 3.501% | 4.835% | 3.414% | 1.875% |
+| 0.8 | 3.516% | 4.786% | 3.436% | 1.906% |
+| 1.6 | 3.538% | 4.790% | 3.406% | 1.900% |
+
+The ranking reversal is visible **before sigmoid conversion**. FP6 relative field error stays near 3.5% on both instances, while INT6 changes substantially. Hypotheses to test using **read-only** existing data: source weight histograms, fitted global scales, coefficient zeroing/saturation and reference-state cancellation. Do not claim that sparsity itself caused the reversal, or that better static fidelity implies statistically better final solver solutions. These inferences are conditional on two graph instances and one synthetic offset population.
