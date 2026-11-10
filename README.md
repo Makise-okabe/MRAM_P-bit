@@ -3,7 +3,8 @@
 **This is the only active research and report repository.** The root
 [main.tex](main.tex) is the current FYP manuscript, with the [completed-CAL results chapter](report/maxcut/10_coupling_matrix_cal_results.tex)
 and the [M5 dense](report/maxcut/20_heldout_m5_results.tex) plus
-[M6 sparse](report/maxcut/30_heldout_m6_results.tex) held-out chapters,
+[M6 sparse](report/maxcut/30_heldout_m6_results.tex) held-out chapters and
+[cross-instance interpretation](report/maxcut/40_m5_m6_discussion.tex),
 including native vector figures.
 The separate earlier report repository is historical, not current.
 
@@ -42,7 +43,7 @@ row-core and common-interface costs are component-level only.
 - [M5 report chapter](report/maxcut/20_heldout_m5_results.tex) includes native PGFPlots figures for Overleaf, with no external image dependency.
 - **Dense M5 validation COMPLETE.** [Source-verified M5 interpretation](https://github.com/Makise-okabe/MRAM_P-bit/blob/755e4199f4542088b1dfc59f6bcb1e668d54f0a4/results/m2_heldout_dense_fp6_int6_20261109/M5_RESULTS_INTERPRETATION.md) and [archived run-level evidence, runner, manifests, summary CSVs and figures](https://github.com/Makise-okabe/MRAM_P-bit/commit/755e4199f4542088b1dfc59f6bcb1e668d54f0a4) now exist on the research branch. The prior note about missing raw files is obsolete. The script/data archive is not silently merged into `main`.
 - FP6 cleared both predeclared quality screens at d=0 and 0.8; at d=1.6 the paired FP6–INT6 cut-gap contrast is inconclusive, and neither nonzero-offset interaction is established. These are results from one dense graph and one assumed device population.
-- **Sparse M6 completed and locally audited (10 Nov 2026):** [frozen 216-run sparse protocol](https://github.com/Makise-okabe/MRAM_P-bit/blob/research/m4-gain-fusion-20261107/docs/M6_SPARSE_HELDOUT_PROTOCOL_20261110.md), [M6 result summary](https://github.com/Makise-okabe/MRAM_P-bit/blob/research/m4-gain-fusion-20261107/docs/M6_SPARSE_RESULTS_20261110.md), and [native M6 Overleaf chapter](report/maxcut/30_heldout_m6_results.tex). All 216 runs, 144 snapshot rows, and six figures passed local host audit; raw M6 files still require a separate research-branch push. The later dense-width FP8/INT8 study remains deferred.
+- **Sparse M6 completed and locally audited (10 Nov 2026):** [frozen 216-run sparse protocol](https://github.com/Makise-okabe/MRAM_P-bit/blob/research/m4-gain-fusion-20261107/docs/M6_SPARSE_HELDOUT_PROTOCOL_20261110.md), [M6 result summary](https://github.com/Makise-okabe/MRAM_P-bit/blob/research/m4-gain-fusion-20261107/docs/M6_SPARSE_RESULTS_20261110.md), and [native M6 Overleaf chapter](report/maxcut/30_heldout_m6_results.tex). All 216 runs, 144 snapshot rows, and six figures passed the host audit and are now [archived on the research branch](https://github.com/Makise-okabe/MRAM_P-bit/tree/research/m4-gain-fusion-20261107/results/m2_heldout_sparse_fp6_int6_20261110), including the original manifest, CSVs, and figures. The later dense-width FP8/INT8 study remains deferred.
 
 ## Dense M5 versus sparse M6: workload-conditioned results
 
@@ -50,6 +51,10 @@ row-core and common-interface costs are component-level only.
 - **Sparse M6:** INT6 has lower static probability distortion than FP6 at all three offsets (paired CIs support this); the predeclared FP6 sparse-fidelity prediction at d=0.8 and 1.6 was contradicted.
 - Sparse M6 direct FP6–INT6 solver gap comparisons are statistically inconclusive at all offsets. Both formats pass both engineering quality screens at d=0.8; only FP6 passes at d=1.6.
 - No causal effect of sparsity alone or universal format ranking is established by these two particular graph instances. The device population is synthetic, not experimentally measured.
+
+## What the raw-data comparison suggests
+
+The [full report discussion](report/maxcut/40_m5_m6_discussion.tex) shows that the relative RMS local-field error also reverses: FP6 is about 3.4–3.5% across both instances, while INT6 changes from roughly 4.8% in dense M5 to 1.9% in sparse M6. This points to the source weight distribution, global scaling and state-conditioned field errors as hypotheses, not a proved sparsity mechanism. The verified M6 offset-by-format difference-in-differences CIs include zero at d=0.8 and 1.6. No additional simulations were performed for this analysis.
 
 ## Main manuscript, actual images and reproducibility
 
