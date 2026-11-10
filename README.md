@@ -39,7 +39,9 @@ row-core and common-interface costs are component-level only.
 - FP6 has lower static switching-probability distortion on common FP64-returned states at all three offsets; neither offset interaction CI excludes zero.
 - 144 post-hoc mechanism records recovered from the untouched original solver evidence after NUL corruption, with 6/6 source-summary checks passing. No solver reruns.
 - [M5 report chapter](report/maxcut/20_heldout_m5_results.tex) includes native PGFPlots figures for Overleaf, with no external image dependency.
-- [Verified M5 evidence and provenance](docs/M5_HELDOUT_DENSE_20261109.md) documents the source data boundaries; raw host CSVs/PNGs are not yet uploaded in this repo.
+- **Dense M5 validation COMPLETE.** [Source-verified M5 interpretation](results/m2_heldout_dense_fp6_int6_20261109/M5_RESULTS_INTERPRETATION.md) and [archived run-level evidence, runner, manifests, summary CSVs and figures](https://github.com/Makise-okabe/MRAM_P-bit/commit/755e4199f4542088b1dfc59f6bcb1e668d54f0a4) now exist on the research branch. The prior note about missing raw files is obsolete. The script/data archive is not silently merged into `main`.
+- FP6 cleared both predeclared quality screens at d=0 and 0.8; at d=1.6 the paired FP6–INT6 cut-gap contrast is inconclusive, and neither nonzero-offset interaction is established. These are results from one dense graph and one assumed device population.
+- **Sparse M6 protocol now preregistered (not executed):** [216-run FP64/FP6/INT6 freeze and CAL/synthetic smoke gates](https://github.com/Makise-okabe/MRAM_P-bit/blob/research/m4-gain-fusion-20261107/docs/M6_SPARSE_HELDOUT_PROTOCOL_20261110.md); do not open `t2g10_7777` until the on-host protocol freeze and smoke checks pass. The later dense-width FP8/INT8 proposal is deferred.
 
 ## Main manuscript, actual images and reproducibility
 
