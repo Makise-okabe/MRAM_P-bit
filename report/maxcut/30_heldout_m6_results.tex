@@ -1,0 +1,183 @@
+% M6 source: completed 216-run sparse held-out experiment, terminal output
+% and separately passed local archive audit, 10 November 2026.
+% Native PGFPlots figures use the reported means only; all confidence
+% intervals below are original seed-bootstrap results, not estimated bars.
+\section{Independent sparse held-out validation (M6)}
+\label{sec:m6-heldout}
+
+We next evaluated the pre-frozen sparse Biq Mac weighted Max-Cut
+instance \texttt{t2g10\_7777} with 100 spins, 200 original
+nonzero source edges and the published cut optimum $6{,}509{,}837$.
+Prior to accessing that source graph, the isolated M6 runner passed
+synthetic and \texttt{t2g10\_5555} CAL smoke tests and wrote a
+parameter- and source-hash-frozen protocol. The on-host
+pre-execution protocol equality check passed. The source gate found
+100 vertices, 200 raw entries, 200 nonzero edges and zero zero-weight
+edges. Exact source file hashes are preserved in the experimental
+host's manifest and run-level CSV archive.
+
+We preserved the M5 comparison: one common persistent
+\emph{synthetic} device-offset population at $d\in\{0,0.8,1.6\}$
+logit, unit gain, 24 paired solver seeds, and 50,000 attempted
+asynchronous Gibbs updates per condition. The formats are reference
+FP64, six-bit E3M2 FP6, and signed INT6, with the same source-only
+global-scale codebooks. All $3\times3\times24=216$ runs completed.
+The subsequent local archive audit verified the source-data and
+frozen-protocol hashes, all 216 unique records, nine format--offset
+quality rows, six contrast rows, 144 static snapshot rows, six
+snapshot summaries and six generated figures. No solver reruns were
+needed for figure generation.
+
+\begin{table}[htbp]\centering\small
+\begin{tabular}{@{}c rrr ccc@{}}\toprule
+$d$ & FP64 gap (\%) & FP6 gap (\%) & INT6 gap (\%)
+& FP64 & FP6 & INT6\\\midrule
+0.0 & 2.797 & 3.413 & 3.061 & Pass & No & No\\
+0.8 & 3.513 & 2.609 & 3.424 & Pass & Pass & Pass\\
+1.6 & 3.621 & 3.591 & 4.084 & Pass & Pass & No\\\bottomrule
+\end{tabular}
+\caption{Sparse M6 mean original-weight optimum gaps and eligibility
+on 24 matched seeds per format and offset. Pass means that
+\emph{both} upper 95\% seed-bootstrap bounds satisfy the
+frozen screens: absolute optimum gap at most 5\% and paired
+extra gap against the same-offset FP64 at most $+1$ pp.
+A mean below 5\% is not sufficient to certify both screens.}
+\label{tab:m6-quality}
+\end{table}
+
+The FP64 95\% absolute-gap intervals were $[2.061,3.590]\%$,
+$[2.680,4.383]\%$ and $[2.800,4.426]\%$
+for increasing $d$.
+The corresponding FP6 intervals were $[2.665,4.122]\%$,
+$[1.717,3.556]\%$, and $[2.779,4.411]\%$; for INT6
+they were $[2.234,3.919]\%$, $[2.769,4.056]\%$ and
+$[3.292,4.831]\%$. At $d=0$ both six-bit formats fail the
+\emph{second}, same-offset FP64 extra-gap screen even though
+their absolute-gap upper bounds lie below 5\%. The same holds
+for INT6 at $d=1.6$. These failed certifications are not a
+formal test of format equivalence or a proven gross-failure regime.
+
+\begin{table}[htbp]\centering\small
+\begin{tabular}{@{}c rr@{}}\toprule
+$d$ & FP6 minus INT6 gap (pp) & 95\% paired CI (pp)\\\midrule
+0.0 & $+0.353$ & $[-0.681,+1.395]$\\
+0.8 & $-0.814$ & $[-1.650,+0.034]$\\
+1.6 & $-0.492$ & $[-1.378,+0.386]$\\\bottomrule
+\end{tabular}
+\caption{Sparse M6 direct matched-seed original-cut gap contrasts.
+All intervals include zero, so no direct FP6--INT6
+solver-quality advantage is established on this graph.}
+\label{tab:m6-paired}
+\end{table}
+
+\subsection{Predeclared static probability-fidelity test}
+The frozen prediction expected FP6 to show \emph{lower} mean
+absolute probability distortion than INT6 at $d=0.8$ and
+$d=1.6$ on common returned FP64 reference states. The M6
+results \emph{contradict this directional prediction}.
+The paired quantity below is
+\[
+D_P=\langle|\Delta P|\rangle_{\mathrm{FP6}}
+-\langle|\Delta P|\rangle_{\mathrm{INT6}},
+\]
+where each $\Delta P$ is an exact sigmoid-probability difference
+computed at identical spins, offset population and beta.
+Positive $D_P$ favours INT6; negative favours FP6.
+
+\begin{table}[htbp]\centering\small
+\begin{tabular}{@{}c rr r@{}}\toprule
+$d$ & Dense M5 $D_P$ & Sparse M6 $D_P$
+& Sparse M6 paired 95\% CI\\\midrule
+0.0 & $-0.002335$ & $+0.000446$ &
+$[+0.000216,+0.000676]$\\
+0.8 & $-0.002236$ & $+0.000414$ &
+$[+0.000151,+0.000658]$\\
+1.6 & $-0.002099$ & $+0.000239$ &
+$[+0.000027,+0.000466]$\\\bottomrule
+\end{tabular}
+\caption{Signed FP6-minus-INT6 state-conditioned switching-probability
+distortion. The M5 values are from Table~\ref{tab:m5-fidelity}
+and its corresponding paired contrasts; M6 intervals are
+paired 24-seed bootstrap results. Every M6 interval is positive
+but M5's are negative. These are not trajectory divergence rates.}
+\label{tab:m6-fidelity}
+\end{table}
+
+\begin{figure}[htbp]\centering
+\begin{tikzpicture}
+\begin{groupplot}[
+group style={group size=2 by 1,horizontal sep=1.55cm},
+width=.47\linewidth,height=5.5cm,
+xmin=-.14,xmax=1.74,xtick={0,.8,1.6},
+xticklabels={0,0.8,1.6},
+xlabel={Assumed offset $d$ (logit)},
+grid=major,grid style={gray!20},
+tick label style={font=\footnotesize},
+label style={font=\footnotesize},
+legend style={font=\scriptsize,at={(.98,.98)},anchor=north east}]
+\nextgroupplot[ylabel={Sparse M6 optimum gap (\%)},
+ymin=2.1,ymax=4.5]
+\addplot+[mark=diamond*,color=black] coordinates
+{(0,2.797) (.8,3.513) (1.6,3.621)};
+\addlegendentry{FP64}
+\addplot+[mark=*,color=blue!75!black] coordinates
+{(0,3.413) (.8,2.609) (1.6,3.591)};
+\addlegendentry{FP6}
+\addplot+[mark=square*,color=orange!85!black] coordinates
+{(0,3.061) (.8,3.424) (1.6,4.084)};
+\addlegendentry{INT6}
+\nextgroupplot[ylabel={FP6 minus INT6 static $|\Delta P|$},
+ymin=-.0028,ymax=.0009,
+legend style={at={(.97,.95)},anchor=north east,font=\scriptsize}]
+\addplot+[dashed,black!65,forget plot] coordinates
+{(0,0) (1.6,0)};
+\addplot+[mark=*,color=blue!75!black] coordinates
+{(0,-.002335) (.8,-.002236) (1.6,-.002099)};
+\addlegendentry{Dense M5}
+\addplot+[mark=square*,color=orange!85!black] coordinates
+{(0,.000446) (.8,.000414) (1.6,.000239)};
+\addlegendentry{Sparse M6}
+\end{groupplot}
+\end{tikzpicture}
+\caption{Reported mean solver quality on the sparse graph (left)
+and the observed sign reversal in FP6-minus-INT6 static
+probability distortion between the two held-out graphs (right).
+Error bars are deliberately not reconstructed from the means:
+the original paired confidence intervals are in
+Tables~\ref{tab:m6-paired} and~\ref{tab:m6-fidelity}.}
+\label{fig:m6-comparison}
+\end{figure}
+
+\subsection{Meaning of the contrasting dense and sparse findings}
+M5 and M6 used the same frozen experimental procedure but
+different graph instances. The \emph{direction} of the
+static probability-fidelity ranking reversed: FP6 was
+favoured on the dense graph at all three offsets, whereas
+INT6 is favoured on the sparse graph with paired CI support.
+This finding is graph-conditioned; differences in topology,
+weight distribution and the solver's visited states are
+not isolated experimentally, so sparsity alone cannot be
+assigned causal responsibility.
+
+Moreover, lower static response distortion is insufficient
+to predict certification of finite-budget optimization quality.
+At sparse $d=1.6$, INT6 has better static fidelity, but FP6
+passes the two frozen quality screens while INT6 does not.
+The direct FP6-minus-INT6 solver gap CI still crosses zero.
+The M6 offset difference-in-differences estimates are retained
+in the host's \texttt{paired\_contrasts.csv}; numerical CI
+values were not present in the console report used to prepare
+this chapter and are not reconstructed here. No statistically
+supported cross-graph interaction parameter is claimed.
+
+\noindent\textbf{Boundary and provenance.}
+Both held-out graphs are now completed, but only two
+distinct source instances and one fixed \emph{assumed},
+not measured, device population have been studied.
+The mean original-cut gaps were computed using the original
+signed weights, while the solver retains the earliest best
+\emph{represented}-energy state. The M6 raw files and
+six generated figures have passed an on-host consistency
+audit, but the GitHub research data archive is still
+pending separate upload at the time of writing.
+No new solver evaluations were made during this report update.
