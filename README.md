@@ -8,6 +8,12 @@ and the [M5 dense](report/maxcut/20_heldout_m5_results.tex) plus
 including native vector figures.
 The separate earlier report repository is historical, not current.
 
+## Prospective next phase: first recalibrate the FP64 solver (12 November 2026)
+
+After completing and archiving both held-outs, the [research roadmap was amended](https://github.com/Makise-okabe/MRAM_P-bit/blob/research/m4-gain-fusion-20261107/docs/ROADMAP_LOCKED_2026-11-06.md) to permit one narrow [two-graph CAL-only FP64 pilot](https://github.com/Makise-okabe/MRAM_P-bit/blob/research/m4-gain-fusion-20261107/docs/E0_FP64_TWO_CAL_PILOT_FREEZE_20261112.md), not a fresh held-out sweep. The [prospective manuscript section](report/maxcut/50_prospective_minimum_width_study.tex) introduces an *unmeasured* minimum-useful-width endpoint `k=b*(INT)-b*(FP)` bits per coupling. The proposed +0.5 pp same-response FP64 tolerance is **not yet approved or measured** and does not alter any M5/M6 quality decision.
+
+**E0 status: code and protocol documentation committed, but host self-test, host freeze, and all 80 FP64 CAL runs are pending.** Existing 500-sweep M5/M6 statistics remain historical, and FP8/INT8 width work is on HOLD until the E0 comparison is interpreted.
+
 ## Research question
 
 How do low-order floating-point representations of the symmetric Ising
