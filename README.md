@@ -1,6 +1,12 @@
 # STT-MRAM p-bit FYP — Coupling Precision × Device Nonidealities
 
-**Research scope LOCKED, 8 November 2026:** [authoritative roadmap](docs/ROADMAP_LOCKED_2026-11-06.md) · [evidence rules](docs/RESEARCH_PROTOCOL.md).
+**Research scope LOCKED, amended 12 November 2026:** [authoritative roadmap including the newer E0 allowance](docs/ROADMAP_LOCKED_2026-11-06.md) · [evidence rules](docs/RESEARCH_PROTOCOL.md).
+
+### Active next work — FP64 solver calibration only
+
+Following dense M5/sparse M6 completion, the next authorized new solver work is the [E0-A two-graph CAL-only FP64 pilot](docs/E0_FP64_TWO_CAL_PILOT_FREEZE_20261112.md) implemented in [e0_fp64_two_cal_pilot.py](experiments/e0_fp64_two_cal_pilot.py). **Status: runner and freeze protocol committed; no on-host E0 pilot runs yet.** Use synthetic solver-parity test and on-host frozen source/code hashes before execution. At equal 50,000-update budgets, compare legacy linear versus conditional-uphill-calibrated geometric beta on `ising2.5-100_5555` and `t2g10_5555` with 20 paired seeds per graph (80 total solver runs). Record ten flip/conditional-uphill acceptance bins and best-cut gap checkpoints. The wider FP8/INT8 or INT7 width selection is deferred until E0 is interpreted and separately preregistered.
+
+**Prospective FYP endpoint (not yet demonstrated):** minimum useful bit width `b*` at agreed equal Max-Cut quality; `k=b*(INT)-b*(FP)` storage bits saved per coupling; then assess whether physically grounded, independently drawn STT-MRAM p-bit gain/offset populations change `k`. A +0.5 pp margin is still a supervisor discussion item, not the retrospective M5/M6 +1 pp screen.
 
 **One question, two axes:** Which low-order coupling representation preserves useful weighted-Max-Cut solution quality under specified STT-MRAM p-bit switching nonidealities, and is its implementation cost worthwhile?
 
