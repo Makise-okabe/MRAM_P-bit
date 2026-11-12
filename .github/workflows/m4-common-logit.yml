@@ -1,0 +1,148 @@
+name: M4B common FP6 INT6 BFP6 digital logit RTL and matched Sky130 area
+
+on:
+  push:
+    branches: [main, 'research/m4-*']
+    paths:
+      - 'experiments/m4_common_logit.py'
+      - 'tests/test_m4_common_logit.py'
+      - 'rtl/m4_common_logit_row.v'
+      - 'rtl/tb_m4_common_logit.v'
+      - 'scripts/m4b_run_nus.sh'
+      - '.github/workflows/m4-common-logit.yml'
+      - 'scripts/m3_filter_sky130_liberty.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  m4b-digital-interface:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install RTL simulator and synthesizer
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq iverilog yosys
+          iverilog -V | head -2
+          yosys -V
+      - name: Verify exact candidate finite-precision contract
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests -p 'test_m3_sixbit_encoding.py' -v
+          python3 -m unittest discover -s tests -p 'test_m4_gain_folding_audit.py' -v
+          python3 -m unittest discover -s tests -p 'test_m4_common_logit.py' -v
+      - name: Fetch official original CAL graphs (checked by M3 source integrity gate)
+        run: |
+          set -euo pipefail
+          mkdir -p data/biqmac/raw/rudy data/biqmac/raw/ising
+          curl -fL --retry 3 --connect-timeout 12 --max-time 90 \
+            https://biqmac.aau.at/library/mac/rudy/w01_100.0 \
+            -o data/biqmac/raw/rudy/w01_100.0
+          for name in t2g10_5555 ising2.5-100_5555; do
+            curl -fL --retry 3 --connect-timeout 12 --max-time 90 \
+              "https://biqmac.aau.at/library/mac/ising/$name" \
+              -o "data/biqmac/raw/ising/$name"
+          done
+      - name: Generate graph SHA-linked M3 and M4B vectors with 3 anneal points
+        run: |
+          set -euo pipefail
+          mkdir -p hardware_reports/m4b
+          for graph in w01 t2g10 ising2p5; do
+            case "$graph" in
+              w01) src=data/biqmac/raw/rudy/w01_100.0 ;;
+              t2g10) src=data/biqmac/raw/ising/t2g10_5555 ;;
+              ising2p5) src=data/biqmac/raw/ising/ising2.5-100_5555 ;;
+            esac
+            python3 -m experiments.m3_actual_graph_row_vectors \
+              --graph "$src" --out "hardware_reports/m4b/m3_$graph"
+            python3 -m experiments.m4_common_logit \
+              --graph "$src" --m3-vectors "hardware_reports/m4b/m3_$graph" \
+              --out "hardware_reports/m4b/vectors_$graph"
+          done
+      - name: 27 clocked ORIGINAL graph row/gain tests (3 x 3 x 3)
+        run: |
+          set -euo pipefail
+          for fam in fp int bfp; do
+            case "$fam" in fp) idx=0;; int) idx=1;; bfp) idx=2;; esac
+            iverilog -g2012 -s tb_m4_common_logit -Ptb_m4_common_logit.FORMAT="$idx" \
+              -o "/tmp/m4b_tb_$fam" rtl/m3_local_field_row.v \
+              rtl/m4_common_logit_row.v rtl/tb_m4_common_logit.v
+            for graph in w01 t2g10 ising2p5; do
+              for point in begin middle end; do
+                vvp "/tmp/m4b_tb_$fam" \
+                  +VEC="hardware_reports/m4b/vectors_$graph/m4_${fam}6_${point}.txt" \
+                  | tee -a hardware_reports/m4b/clocked_rtl_pass.log
+              done
+            done
+          done
+          test "$(grep -c 'M4B RTL PASS' hardware_reports/m4b/clocked_rtl_pass.log)" = 27
+      - name: Reproduce M4B via submitted NUS one-command wrapper
+        run: bash scripts/m4b_run_nus.sh
+      - name: Fetch and verify same PINNED Sky130 HD Liberty used in M3
+        run: |
+          set -euo pipefail
+          mkdir -p pdk_libs hardware_reports/m4b/sky130
+          curl -fL --retry 3 --connect-timeout 15 --max-time 120 \
+            https://raw.githubusercontent.com/The-OpenROAD-Project/OpenROAD-flow-scripts/aef47dd6ed123b0ed7cedac372b00456722be327/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib \
+            -o pdk_libs/sky130_fd_sc_hd__tt_025C_1v80.lib
+          printf '%s  %s\n' \
+            ec0e1067a35c8bf20b11e58d1e8ac53326067e4dac84a125cc1b917a3518d0d9 \
+            pdk_libs/sky130_fd_sc_hd__tt_025C_1v80.lib | sha256sum -c
+          python3 scripts/m3_filter_sky130_liberty.py \
+            --input pdk_libs/sky130_fd_sc_hd__tt_025C_1v80.lib \
+            --output pdk_libs/sky130_digital_rows_filtered.lib \
+            --manifest hardware_reports/m4b/sky130/filter_manifest.json
+          printf '%s  %s\n' \
+            cd8abb502b47e96b31b0f179b8f16c34fd2f027c3cc4c7e0dbdbadc71030367b \
+            pdk_libs/sky130_digital_rows_filtered.lib | sha256sum -c
+          yosys -V > hardware_reports/m4b/sky130/yosys_version.txt
+      - name: Matched FP6 INT6 BFP6 full common-digital-interface mapping
+        run: |
+          set -euo pipefail
+          LIB=pdk_libs/sky130_digital_rows_filtered.lib
+          for fmt in fp6 int6 bfp6; do
+            yosys -Q -p "read_liberty -lib $LIB; read_verilog rtl/m3_local_field_row.v rtl/m4_common_logit_row.v; synth -top m4_$fmt"_"logit -flatten -noabc; dfflibmap -liberty $LIB; abc -liberty $LIB; clean; stat -liberty $LIB" \
+              > "hardware_reports/m4b/sky130/$fmt"_"mapped.log"
+            if sed -n '/^=== m4_/,$p' "hardware_reports/m4b/sky130/$fmt"_"mapped.log" |
+                grep -Eq 'sky130_fd_sc_hd__(lpflow_|clkinv_)'; then
+              echo "DISALLOWED mapped cells for $fmt" >&2
+              exit 1
+            fi
+            grep 'Chip area for module' "hardware_reports/m4b/sky130/$fmt"_"mapped.log"
+          done
+          python3 - <<'PY'
+          import csv, pathlib, re
+          root=pathlib.Path("hardware_reports/m4b/sky130")
+          rows=[]
+          for fmt in ("fp6","int6","bfp6"):
+              logfile=root/f"{fmt}_mapped.log"
+              txt=logfile.read_text()
+              areas=re.findall(r"Chip area for module [^\n]*?:\s*([0-9.]+)",txt)
+              counts=re.findall(r"Number of cells:\s+(\d+)",txt)
+              if not areas or not counts:
+                  raise RuntimeError(f"missing mapped area or cells for {fmt}")
+              rows.append(dict(format=fmt,cell_area_um2=areas[-1],
+                               mapped_cells=counts[-1],liberty="Sky130HD_tt_025C_1v80_filtered",
+                               scope="row+32bit_gain_register+digital_mul_RNE_sat; excludes SRAM gain-generator and pbit"))
+          with (root/"m4b_common_logit_cost.csv").open("w",newline="") as f:
+              out=csv.DictWriter(f,fieldnames=list(rows[0]))
+              out.writeheader()
+              out.writerows(rows)
+          print((root/"m4b_common_logit_cost.csv").read_text())
+          PY
+      - name: Archive original-source numeric contracts, RTL checks and mapped cell area
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m4b-common-logit-official-graph-sky130
+          path: hardware_reports/m4b/
+          if-no-files-found: warn
+
+# NO STA, no complete gain generator, memory macro, SRAM access energy,
+# DAC/p-bit physical response, power or end-to-end Max-Cut quality is implied.

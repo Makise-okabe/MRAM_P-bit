@@ -1,4 +1,41 @@
-# FYP Decision Feedback Loop — standing project rule (7 November 2026)
+# FYP Decision Feedback Loop — current lock, 8 November 2026
+
+**The user has LOCKED one joint research question:** coupling precision (design choice) × STT-MRAM p-bit switching nonideality (physical condition), evaluated on original Biq Mac weighted Max-Cut.
+
+Read the [authoritative locked roadmap](ROADMAP_LOCKED_2026-11-06.md) first. It takes precedence over all dated “next gate”, parked-response, hardware-first, three-graph or mandatory-BFP instructions preserved below.
+
+## Current decision
+
+- **Target / alignment:** precision-response regime maps, a conditional precision-selection rule, two held-out graph checks and one bounded supporting cost table.
+- **Evidence:** retain the 936 ideal CAL runs, graph-to-RTL verification, Sky130 row mapping and M4B digital interface. These are not physical MTJ/device-population or full-chip energy evidence.
+- **Hypothesis:** offset or gain variation may shift useful coupling precision, or leave it stable within the tested range. Neither FP superiority nor a ranking reversal is required.
+- **Scope:** two CAL + two held-out 100-spin graphs; core FP/INT 4/5/6 + FP64; existing 8-bit candidates under the predeclared rule. Preserve BFP evidence and the authored all-width gain pilot; optional BFP6 is a supporting control, not a new format/grouping search.
+- **Current next step:** finish and analyse the current conditional FP8/INT8 extension (192 currently prepared new runs), then close the existing 576-run primary offset study at d=0.8/1.6 with matched references reused. The 240-run FP64 offset scout is complete; do not repeat it or expand gain/offset to force a failure. Freeze the conclusion, validate on the two held-out graphs, and assemble the existing cost table.
+- **Model:** gain and offset remain separate. Preserve completed gain pilots; current offset levels are ideal plus scout-selected d=0.8/1.6 logit. These are assumed E2 stresses, not measured residuals. Full fixed-population semantics and thresholds are in the roadmap.
+- **Expected observable:** original-optimum gaps and conditional CIs, accepted/degraded/failed/uncertain regimes, same-response numerical penalty, and whether the lowest qualifying bit width changes.
+- **Prior art:** precision, p-bit variation and calibration already have literature; the specific validated conditional selection rule is the candidate contribution. No unsupported “nobody has studied it” claim.
+- **STOP / opportunity cost:** stop Genus/library repair, disk searches, extra RTL and alternate applications/solvers. Stop extending stress levels to rescue FP. Preserve negative and uncertain findings. Do not report a moved bit-width threshold from six-bit-only data or a whole-chip benefit from row area.
+- **Matrix semantics:** FP/INT encode the entries of symmetric J; H=Jhat*s is implemented by equivalent adjacency sums and incremental field updates. This remains a coupling-matrix study. A full physical matrix array or a dense-software rewrite is not a prerequisite.
+- **Direction lock:** keep the question, benchmark, formats, fixed solver and separate mechanisms. No new research axis, solver, application or hardware project without a new explicit user instruction. More bits and stronger stress need not improve quality; interaction does not require a failure-region crossing.
+- **Decision:** GO current precision-response closure → held-out validation → existing cost table. Hardware remains supporting evidence. This documentation lock runs no experiments.
+
+## Research synthesis pause — 8 November 2026, after all CAL offset results
+
+**Authoritative research-pause deliverable:** [COUPLING_MATRIX_RESEARCH_SYNTHESIS_20261108.md](COUPLING_MATRIX_RESEARCH_SYNTHESIS_20261108.md). This 15-source focused prior-art review and mechanism synthesis was authored AFTER the FP64 scout, 576 low-bit primary offset runs, all 192 conditional FP8/INT8 runs, and the 144-state / 3,888-row read-only J snapshot were completed in the user's NUS environment. All these results are PRESERVED. The previous "next step: run FP8/INT8" line in the historical 8-Nov lock above is superseded by this closure. It is not an instruction to rerun anything.
+
+**Current decision: STOP new CAL, new stress, extra codebooks, full-solver sweeps, hardware expansion and held-out graph inspection during this literature/mechanism pause.** The research question remains J representation -> local field -> assumed nonideal STT-MRAM p-bit response -> original-cut weighted Max-Cut quality, with existing hardware cost evidence supporting. The 15-paper review identifies strong closest prior art in coupling-error mechanisms, optimum-preserving compression, digital p-computer coupling architecture, and p-bit device-variation weight compensation; neither FP superiority nor response-by-format interaction is established. The E2 synthetic device population is not measured silicon.
+
+**Future dependent gate only:** after reviewing this synthesis, predeclare tests on the two untouched 7777 held-out instances; primary proposed prediction: dense FP6 has lower same-offset, same-FP64-state mean absolute decision-probability distortion than INT6 under the fixed frozen model. Pair seed-level CIs; report original-cut quality separately. No run is authorized by this documentation update.
+
+## Compact feedback loop
+
+Before a scientific step answer relevance, evidence, closest prior art, opportunity cost and stop condition. Afterward: prediction → observed evidence → fairness/counterexamples → continue/change/stop. Existing necessary correctness checks remain; another PASS label, report rewrite or environment check alone is not a research milestone.
+
+## Historical record
+
+The chronological entries below are preserved as evidence of completed work and past decisions. Their old prospective instructions do not override the locked roadmap.
+
+## Historical decisions and evidence — retained for provenance
 
 **MANDATORY for every subsequent scientific/engineering choice.**
 This file is the durable cross-chat record of the user's direct instruction:

@@ -1,0 +1,13 @@
+{
+  "device_populations": 1,
+  "evidence_level": "E2_ASSUMED_NOT_MEASURED",
+  "graph": "t2g10_7777",
+  "graph_sha256": "8f7dc4e791eb4893f7b7114b6ac51d29f37f652645ba58a22e3cd29b709fd4ef",
+  "limitations": "One sparse held-out graph and one assumed E2 device population; not hardware validation.",
+  "n_solver_runs": 216,
+  "n_static_snapshot_rows": 144,
+  "official_optimum": 6509837,
+  "protocol_sha256": "53fcbe51fd6da887c71254fe9352511efbdb4885efff5bbd6112f225cc6b0ae7",
+  "raw_runs_sha256": "fcfcef587299a75709d105cb86574c9cdf407a0e360243d651bb0ffc1286ba95",
+  "status": "SPARSE_7777_216_RUNS_COMPLETE"
+}
