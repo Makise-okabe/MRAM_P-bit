@@ -1,0 +1,111 @@
+% Prospective (not yet executed) research endpoint and E0 pilot, 12 Nov 2026.
+% Preserve M5/M6 historical 500-sweep results; do not re-label them.
+\section{Prospective research decision: bits worth storing}
+\label{sec:prospective-design}
+
+The completed M5/M6 evidence establishes that a six-bit
+floating-point representation is not uniformly preferable
+to a six-bit integer representation across weighted
+Max-Cut workloads. Static local-field and switching-probability
+fidelity rankings reverse between the two held-out graphs,
+while the finite-budget quality contrasts are partly
+inconclusive. This motivates a narrower, explicitly
+hardware-oriented \emph{next-stage} decision, distinct
+from the already completed experimental claims:
+\begin{quote}\itshape
+For digitally stored Ising couplings feeding STT-MRAM
+p-bits, how many coefficient payload bits, if any,
+can low-order floating point save relative to integer
+encoding at comparable original-weight Max-Cut
+quality, and does realistic p-bit variation change
+that minimum useful precision?
+\end{quote}
+For a fixed graph family, response condition, solver
+budget, pairing and \emph{prospectively} agreed
+quality criterion $\Delta$, denote the smallest
+eligible FP or integer payload width as
+$b^*_{\mathrm{FP}}$ and $b^*_{\mathrm{INT}}$.
+The proposed primary endpoint is
+\[
+  k=b^*_{\mathrm{INT}}-b^*_{\mathrm{FP}}
+  \quad\text{bits saved per stored coupling}.
+\]
+If a width is not certified at the sampled precision
+and statistical resolution, $b^*$ is reported as
+unresolved rather than assigned by interpolation.
+Previously observed non-monotonic quality outcomes
+also preclude assuming that every larger width
+must perform better without evidence. The
+proposed tolerance $\Delta=0.5$ percentage points
+of added original-optimum gap against same-response
+FP64 is a candidate for supervisor agreement;
+the completed M5/M6 trials used a different
+predeclared pair of 5\% absolute and $+1$ pp
+extra-gap screening bounds. They must not be
+retroactively re-scored as if the new criterion
+had been frozen beforehand.
+
+At 100 spins, symmetric triangular dense
+storage has $N(N-1)/2=4950$ unique off-diagonal
+positions, so a positive $k$ would represent
+$4950k$ \emph{nominal} payload bits saved,
+before index and scale metadata. An edge-list
+implementation for the 200-nonzero-edge M6
+instance would instead save $200k$ bits.
+Whether these payload differences compensate
+for FP decode/accumulate logic depends on
+the memory architecture and updated equal-quality
+synthesis; they are not measured energy savings.
+
+\subsection{First gate: FP64 operating-point audit on CAL graphs}
+The original 50,000-update, linear-$\beta$
+Gibbs operating point was selected with a
+bounded earlier reference study but its
+convergence was not established. The low
+retained original-weight solution quality and
+small observed flip fraction on dense M5
+motivate a controlled source-only comparison
+\emph{before} extending the coupling width.
+A new \emph{prospective} E0-A pilot has been
+specified on the previously viewed CAL graphs
+\texttt{ising2.5-100\_5555} and
+\texttt{t2g10\_5555}, without any fresh
+held-out graph access.
+
+At the \emph{same} 50,000 attempted updates,
+each graph will be evaluated with 20 matched
+FP64 seeds under (i) the unchanged
+linear schedule, and (ii) a geometric
+inverse-temperature schedule whose endpoints
+are fixed using the conditional probability
+of an \emph{uphill} attempted flip on unbiased
+random FP64 reference states. The two
+scheduled targets are 0.4 and 0.001
+conditional uphill probabilities, not the
+unconditional random-state spin-flip rate,
+whose expectation is 0.5 for any
+$\beta$ with zero diagonal and unbiased
+spin initialization. Time-resolved uphill
+acceptance, overall flip fraction and
+best-original-cut checkpoints will be recorded
+at fixed intervals, with a matched-seed
+confidence interval for the final gap difference.
+The preregistered protocol and code
+are on the
+\href{https://github.com/Makise-okabe/MRAM_P-bit/blob/research/m4-gain-fusion-20261107/docs/E0_FP64_TWO_CAL_PILOT_FREEZE_20261112.md}
+{research branch}. At the time of writing,
+the pilot is \emph{designed but not executed}.
+The already completed M5 and M6 results
+remain valid descriptions of the historical
+500-sweep solver condition; their operating
+point is not overwritten.
+
+Subsequently, any minimum-width study,
+independently sampled device gain/offset
+populations, and memory-inclusive
+equal-quality cost comparison will require
+separately frozen protocols. No
+floating-point storage advantage, device
+masking effect, solver-convergence target
+or post-calibration physical-device statistic
+is asserted by the prospective plan alone.
