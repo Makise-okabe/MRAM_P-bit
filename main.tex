@@ -51,12 +51,18 @@ further convert each local field into a switching probability,
 making the useful precision \emph{response- and workload-dependent}.
 Numerical coefficient error alone is not the desired endpoint.
 
-\noindent\textbf{Research question.}
-\emph{How do low-order floating-point coupling-matrix
-representations affect local-field accuracy, stochastic p-bit
-response, and weighted Max-Cut solution quality under specified
-STT-MRAM nonidealities?} Hardware cost remains a supporting,
-explicitly bounded comparison.
+\noindent\textbf{Current research question and prospective endpoint.}
+\emph{Under specified STT-MRAM p-bit switching responses,
+when can low-order floating-point coupling encodings
+match weighted Max-Cut solution quality using fewer
+stored coefficient bits than integer encodings?}
+The completed M5/M6 studies test the narrower
+format--field--response--quality relationship at
+a fixed 500-sweep operating point; a future
+equal-quality minimum-width endpoint, whose
+threshold must be agreed and frozen in advance,
+is defined separately in
+Section~\ref{sec:prospective-design}.
 
 \section{Prior art and scientific contribution boundary}
 Hizzani et al.\ show that coupling errors may deepen local
@@ -162,6 +168,7 @@ they are not estimates of manufacturing variability.
 \input{report/maxcut/20_heldout_m5_results.tex}
 \input{report/maxcut/30_heldout_m6_results.tex}
 \input{report/maxcut/40_m5_m6_discussion.tex}
+\input{report/maxcut/50_prospective_minimum_width_study.tex}
 
 \section{Cost evidence and limits of architecture inference}
 A 100-spin symmetric dense coupling matrix has
