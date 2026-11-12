@@ -13,6 +13,7 @@ Report file structure:
 - report/maxcut/20_heldout_m5_results.tex — independent M5 dense-held-out results, paired CIs and native PGFPlots figure
 - report/maxcut/30_heldout_m6_results.tex — independent M6 sparse-held-out results, cross-graph comparison and native PGFPlots figure
 - report/maxcut/40_m5_m6_discussion.tex — source-audited mechanism, field-error reversal, paired quality-CI bounds and mapped-cost interpretation
+- report/maxcut/50_prospective_minimum_width_study.tex — explicitly unexecuted solver-calibration gate and minimum-width thesis endpoint
 - docs/M5_HELDOUT_DENSE_20261109.md — validation and data provenance
 - report/maxcut/data — frozen source-reported means, documented CI subsets, and static numerical diagnostics
 - report/figures — five real rendered PNGs and vector PDFs, created by a figure-only GitHub workflow
