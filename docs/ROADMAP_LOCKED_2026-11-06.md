@@ -1,5 +1,18 @@
 # Locked FYP roadmap — coupling precision × STT-MRAM p-bit nonidealities
 
+## Change-control amendment — 12 November 2026 (newer user instruction)
+
+**This block takes precedence over the 8-November blanket solver-calibration HOLD, but only for the named new pilot.** The core weighted Max-Cut and digitally stored low-bit FP-versus-INT coupling direction remains unchanged. Dense M5 and sparse M6 are completed, archived historical 50,000-update results; they will not be rerun or retroactively reinterpreted as convergence evidence.
+
+**Authorized next stage:** one narrow **FP64-only calibration diagnostic** on the two already-viewed CAL graphs `ising2.5-100_5555` and `t2g10_5555`. First compare the unchanged 500-sweep linear schedule with a source-field-calibrated geometric beta schedule **at the same 50,000 attempted updates**, with 20 paired seeds per graph (80 solver runs total) and exact solver parity/synthetic tests. Trace unconditional flip fraction, **conditional uphill acceptance** and returned original-cut gap over time. Do not calibrate beta from random-state unconditional flip fraction (its expected value is 50% for any beta in the zero-diagonal unbiased model). 
+
+New controls are [E0-A pilot protocol](E0_FP64_TWO_CAL_PILOT_FREEZE_20261112.md) and [FP64 CAL-only runner](../experiments/e0_fp64_two_cal_pilot.py). **Current status: source committed, no on-host self-test/freeze and no E0 solver runs yet.** The protocol must be frozen on host before `--execute`. Any larger-budget extension requires a separately frozen protocol, not implicit authority from this amendment.
+
+**Later research direction (proposed, subject to supervisor agreement):** select the minimum useful coefficient bit width at equivalent weighted-Max-Cut quality, report `k=b*(INT)-b*(FP)` bits saved per undirected coupling, and test gain and offset separately with multiple independent device populations. The audit's additional-gap margin `Δ=0.5 percentage points` is only a proposal until agreed with Prof Fong. INT7 is not in the currently frozen 4/5/6/8 codebook and must be implemented/tested under a separate width-study freeze. Hardware comparison requires equal-quality, memory-inclusive accounting; mapped digital row area is not whole-chip power/energy.
+
+**Prohibited until later freeze:** FP8/INT8 or INT7 held-out width tests, reopening seen M5/M6 for schedule selection, fresh _6666/_7777 graph reads, new device stress experiments, BFP tile sweep or RTL expansion. CAL/gain data recovery may proceed separately without changing this protocol.
+
+
 **Locked by user instruction on 8 November 2026.** This is the authoritative current research scope on both main and the active research branch. It supersedes older execution instructions that prioritize further RTL/toolchain expansion, park device response indefinitely, or expand the benchmark/format/solver search. Completed evidence remains valid within its original scope.
 
 ## Current execution status — research pause after CAL closure (8 November 2026)
