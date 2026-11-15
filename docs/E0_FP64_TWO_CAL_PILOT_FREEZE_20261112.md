@@ -114,3 +114,9 @@ At the sparse 30,000-update checkpoint geometric was better than linear by −3.
 **GitHub archival boundary:** The local data have passed the host audit. The original E0 CSV/JSON output directory still needs to be committed from `schrodinger02` and its remote hashes verified. This document does not assert that a terminal audit alone is a GitHub raw-data archive.
 
 **Next authorization gate:** agree with Prof Fong on (1) linear 50k budget and (2) +0.5 pp additional gap tolerance. Only then design the narrow width comparison with prospective graph/seed selection, explicit width candidates, confidence bound and capped sample budget. No new solver runs are authorized by this closeout.
+
+## GitHub archive closeout (15 Nov 2026)
+
+**Raw-data GitHub archive confirmed:** the original host-side E0 output directory has been pushed to [`results/e0_fp64_two_cal_20261112/`](../results/e0_fp64_two_cal_20261112) on this research branch, with commit head after push `bdeaa67`. A follow-up remote lookup confirmed the frozen `protocol.json`, `manifest.json`, all 80 `run_rows.csv` records, 320 `checkpoint_rows.csv` records, 800 `trace_rows.csv` records, 16 `pilot_summary.csv` rows and 8 `paired_schedule_contrasts.csv` rows. The manifest records the protocol, raw-run, trace, checkpoint and contrast SHA256 hashes; the on-host read-only audit already checked these before upload. This dated addendum supersedes earlier pending-upload wording while leaving the original experimental design and its results unchanged.
+
+**E0 status: CLOSED and archived.** No further schedule search is planned. Next prerequisite for a new width protocol is supervisor agreement on the linear 50k operating point and the proposed +0.5 pp paired upper-CI additional-gap margin relative to FP64 under matching response conditions.
