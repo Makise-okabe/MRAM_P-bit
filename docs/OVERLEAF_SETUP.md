@@ -14,7 +14,7 @@ Report file structure:
 - report/maxcut/30_heldout_m6_results.tex — independent M6 sparse-held-out results, cross-graph comparison and native PGFPlots figure
 - report/maxcut/40_m5_m6_discussion.tex — source-audited mechanism, field-error reversal, paired quality-CI bounds and mapped-cost interpretation
 - report/maxcut/45_e0_fp64_solver_calibration.tex — completed FP64 CAL-only 80-run negative schedule comparison, paired uncertainty and acceptance diagnostics
-- report/maxcut/47_ex1_m5_exploratory_width.tex — 48 new FP5/INT8 exploratory trials on already-viewed M5 at d=0; raw EX1 archive pending and uncertainty bounds descriptive
+- report/maxcut/47_ex1_m5_exploratory_width.tex — 48 new FP5/INT8 exploratory trials on already-viewed M5 at d=0; original raw EX1 archive uploaded and paired direct-format CIs included, descriptive only
 - report/maxcut/50_prospective_minimum_width_study.tex — explicitly unexecuted solver-calibration gate and minimum-width thesis endpoint
 - docs/M5_HELDOUT_DENSE_20261109.md — validation and data provenance
 - report/maxcut/data — frozen source-reported means, documented CI subsets, and static numerical diagnostics
