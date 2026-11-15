@@ -13,6 +13,7 @@ Report file structure:
 - report/maxcut/20_heldout_m5_results.tex — independent M5 dense-held-out results, paired CIs and native PGFPlots figure
 - report/maxcut/30_heldout_m6_results.tex — independent M6 sparse-held-out results, cross-graph comparison and native PGFPlots figure
 - report/maxcut/40_m5_m6_discussion.tex — source-audited mechanism, field-error reversal, paired quality-CI bounds and mapped-cost interpretation
+- report/maxcut/45_e0_fp64_solver_calibration.tex — completed FP64 CAL-only 80-run negative schedule comparison, paired uncertainty and acceptance diagnostics
 - report/maxcut/50_prospective_minimum_width_study.tex — explicitly unexecuted solver-calibration gate and minimum-width thesis endpoint
 - docs/M5_HELDOUT_DENSE_20261109.md — validation and data provenance
 - report/maxcut/data — frozen source-reported means, documented CI subsets, and static numerical diagnostics
@@ -23,7 +24,7 @@ To view figures in the connected web editor, ensure it is linked to the
 MRAM_P-bit main branch, use its GitHub integration to PULL recent
 changes, set main.tex as the main document, and recompile. GitHub
 commits alone do not guarantee that the editor has synchronised.
-The M5, M6 and comparative-synthesis chapters are included from the root main.tex, so a fresh
+The M5, M6, E0 and prospective-design chapters are included from the root main.tex, so a fresh
 pull of the `main` branch followed by recompilation is sufficient to
 render their native plots; no host-generated PNG is required.
 
