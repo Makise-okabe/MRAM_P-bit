@@ -1,0 +1,98 @@
+% E0-A CAL-only FP64 pilot: fixed protocol, 80 solver evaluations.
+% Figures here transcribe the completed host audit output. Raw archive
+% is pending the separate research-branch upload as of this commit.
+\section{FP64 solver operating-point calibration (E0)}
+\label{sec:e0-calibration}
+
+The original 50,000-update linear inverse-temperature schedule
+was used in M5 and M6 as a \emph{finite-budget operating point},
+not as a claim of convergence to the published Max-Cut optimum.
+A preregistered CAL-only pilot therefore compared the same
+legacy linear schedule with a geometric annealing schedule
+calibrated from conditional \emph{uphill} acceptance probabilities
+on reference-weight random-spin states. Its temperature endpoints
+were fixed before any E0 solver execution; held-out instances
+were not accessed.
+
+The CAL graphs were \texttt{ising2.5-100\_5555} and
+\texttt{t2g10\_5555}, each with 100 spins. At each graph,
+20 exactly matched FP64 seeds were run for 50,000 attempted
+spin updates with either the historical linear schedule
+or the newly frozen geometric schedule. Thus E0 comprised
+$2\times2\times20=80$ solver evaluations. The on-host
+read-only audit passed for all 80 unique run records,
+320 checkpoint entries, 800 acceptance-trace bins,
+16 quality summary rows, eight paired difference
+rows, source and protocol hashes, and original optimum
+evaluation. It launched no further solver runs.
+
+\begin{table}[htbp]\centering\small
+\begin{tabular}{@{}l rrr@{}}\toprule
+CAL instance & Legacy mean gap (\%) &
+Geometric mean gap (\%) & Geometric--linear (pp)\\\midrule
+Dense & 4.713 & 4.388 & $-0.325$\\
+Sparse & 3.607 & 3.887 & $+0.280$\\\bottomrule
+\end{tabular}
+\caption{E0 original-weight optimum-gap means at 50,000
+attempted updates per run; 20 paired seeds per schedule and
+graph. Lower gap is better. Both schedule differences require
+their paired confidence intervals for inference.}
+\label{tab:e0-means}
+\end{table}
+
+The final 50,000-update paired geometric-minus-linear
+95\% seed-bootstrap confidence interval is
+$[-1.183,+0.533]$ pp on the dense CAL and
+$[-0.566,+1.084]$ pp on the sparse CAL. Both
+include zero. The equal-graph average mean gap is
+4.160\% for legacy linear and 4.138\% for geometric.
+These descriptive averages do not establish an
+overall schedule advantage. Neither schedule on
+either graph attained the exploratory 1\% mean
+optimum-gap target.
+
+The trace audit explains why schedule shape mattered.
+The geometric schedule was initially very hot,
+with first-5000-update observed spin-flip rates
+43.66\% (dense) and 44.00\% (sparse), but
+its last-bin flip rates fell to only 0.10\%
+and 0.15\%, respectively. The legacy linear
+last-bin rates were 2.34\% and 8.33\%.
+Similarly the geometric last-bin conditional
+uphill acceptance rates were 0.05\% (dense)
+and 0.08\% (sparse), compared with 1.19\%
+and 4.41\% under linear. These time-resolved
+data demonstrate strong late cooling but are
+not proof of convergence or a unique causal
+explanation for outcome quality.
+
+On sparse CAL, geometric had a matched-seed
+gap advantage of $-3.127$ pp at 30,000 updates
+(95\% CI $[-4.342,-1.922]$), but at 50,000
+updates the paired contrast was $+0.280$ pp
+($[-0.566,+1.084]$), reflecting the fixed-budget
+comparison's time dependence. Both graph
+final-contrast intervals include zero.
+
+\noindent\textbf{E0 decision.}
+The pilot does not support adopting the geometric
+schedule as the new reference. The original
+50,000-update \emph{linear} schedule will be
+retained as a reproducible, not-proven-converged
+finite-budget comparison condition for the
+\emph{prospective} minimum-width study, subject
+to supervisor confirmation. The E0 1\% optimum-gap
+aspiration is separate from the proposed $+0.5$
+percentage-point \emph{additional gap} tolerance
+used to certify new low-bit formats against
+same-budget, same-response FP64. No existing M5/M6
+results or quality screens have been revised.
+
+\noindent\textbf{Provenance.}
+The source-frozen E0 protocol and read-only audit
+utility are in the
+\href{https://github.com/Makise-okabe/MRAM_P-bit/tree/research/m4-gain-fusion-20261107}
+{research branch}. This chapter is grounded in
+the successful on-host integrity-audit console
+record; the full E0 raw CSV/manifest archive
+is to be pushed separately from that host.
