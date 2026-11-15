@@ -95,3 +95,19 @@ Static source-weight coefficient audit on dense M5: FP5 scale 30133.859, zeroed 
 **Science decision:** EX1's capped 48 runs are finished. **No INT7, no seed top-ups, no new graphs or offsets are authorized by this result.** FP5 and INT8 remain plausible candidates, but minimum useful widths and (k) are **not determined**. The raw EX1 protocol, `new_runs.csv`, `exploratory_summary.csv`, and `manifest.json` remain on the host until separately pushed; do not label the EX1 raw archive complete before verifying it remotely.
 
 The current FYP manuscript's [EX1 results section](https://github.com/Makise-okabe/MRAM_P-bit/blob/main/report/maxcut/47_ex1_m5_exploratory_width.tex) records these findings with that provenance limitation.
+
+## Archive verified and direct-format CIs read back (15 Nov 2026)
+
+**EX1 CLOSED AND ARCHIVED.** The host reported commit `7429cc9`, successfully pushed to `research/m4-gain-fusion-20261107`. A separate remote readback verified these four files: [`protocol.json`](../results/ex1_m5_fp5_int8_20261115/protocol.json), [`manifest.json`](../results/ex1_m5_fp5_int8_20261115/manifest.json), [`new_runs.csv`](../results/ex1_m5_fp5_int8_20261115/new_runs.csv), and [`exploratory_summary.csv`](../results/ex1_m5_fp5_int8_20261115/exploratory_summary.csv). The manifest records `new_solver_runs=48` and `baseline_solver_runs_reused=72`, and specifies raw/protocol/summary checksums. The original on-host audit was PASS. This later closeout **supersedes the earlier raw-archive-pending statements without modifying the frozen protocol or results**.
+
+Direct paired nominal 95% CI contrasts in `exploratory_summary.csv`, difference in original Max-Cut gap vs FP6 (positive = FP6 better):
+
+| Contrast | Mean (pp) | Paired 95% CI (pp) |
+|---|---:|---|
+| FP5 - FP6 | +0.165849 | [-0.380372,+0.719647] |
+| INT6 - FP6 | +0.786041 | [+0.309853,+1.271192] |
+| INT8 - FP6 | +0.224329 | [-0.253276,+0.689989] |
+
+The direct FP5 and INT8 intervals cross zero: **not evidence of equality**, and not certification that either achieves a predeclared noninferiority margin. INT6 has a supported direct gap disadvantage to FP6 on this one viewed graph at nominal 95%, not a proof of universal FP superiority. Relative to FP64, at the exploratory +0.5 pp threshold FP6 passes and FP5/INT6/INT8 are all **inconclusive**. At the +1.0 pp sensitivity margin, FP5/FP6/INT8 pass the descriptive upper-bound screen, while INT6 remains inconclusive.
+
+**No additional runs**: EX1 is closed after the frozen 48; no INT7, seeds, gain/offset or new graph exploration is authorized merely because EX1's intervals are unresolved. The next step is prospective independent validation design, including a check that a candidate graph was not inspected in prior experiment design or calibration.
