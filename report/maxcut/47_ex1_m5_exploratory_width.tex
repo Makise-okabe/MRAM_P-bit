@@ -1,0 +1,120 @@
+% EX1 is a viewed-graph exploratory study, not independent validation.
+% Raw EX1 archive not yet pushed at the date of first transcription.
+\section{Exploratory five- and eight-bit extension on viewed M5 (EX1)}
+\label{sec:ex1-m5-width}
+
+\paragraph{Scope and immutable reference.}
+Following E0's negative schedule-replacement finding,
+the original 50,000-update linear anneal was retained.
+EX1 tested \emph{only} FP5 (custom finite-only E2M2)
+and signed INT8 at ideal response $d=0$ on the
+previously viewed dense M5 graph
+\texttt{ising2.5-100\_7777}. Each new format reused
+all 24 historical M5 paired seeds, beta and
+global source-only MSE scaling rule. The frozen
+M5 FP64, FP6 and INT6 rows were reused
+without rerunning the solver. Thus EX1 adds
+exactly 48 new evaluations, not a fresh
+held-out test or a new device population.
+
+The user-supplied host execution reports
+48/48 new runs complete and strict M5 archive
+checks pass. At initial transcription, the
+new \texttt{new\_runs.csv}, frozen
+\texttt{protocol.json} and manifest still
+require separate GitHub archival verification.
+
+\begin{table}[htbp]\centering\small
+\begin{tabular}{@{}l rrrl@{}}\toprule
+Encoding & Mean gap (\%) & Extra gap vs FP64 (pp)
+& 95\% paired CI (pp) & $+0.5$ pp screen\\\midrule
+FP5 & 3.9827 & $+0.0926$ & $[-0.4860,+0.7573]$ & Inconclusive\\
+FP6 & 3.8169 & $-0.0732$ & $[-0.6463,+0.4824]$ & Non-inferior\\
+INT6 & 4.6029 & $+0.7128$ & $[+0.2036,+1.2424]$ & Inconclusive\\
+INT8 & 4.0412 & $+0.1511$ & $[-0.3335,+0.6504]$ & Inconclusive\\\bottomrule
+\end{tabular}
+\caption{Exploratory EX1 original-weight Max-Cut gaps on
+the \emph{already inspected} M5 dense graph at $d=0$,
+\emph{24} paired seeds per format. FP64 mean
+reference gap was 3.8901\%. The 95\% seed-bootstrap
+intervals are nominal, uncorrected and exploratory;
+they do not establish independent minimum useful
+bit widths or a family-wise inference.}
+\label{tab:ex1-quality}
+\end{table}
+
+Under the \emph{illustrative}, not physically
+derived, upper paired-CI margin of $+0.5$
+percentage points versus same-response,
+same-seed FP64, FP6 has a qualifying
+upper bound of $+0.4824$ pp, but the
+three other tested low-bit formats remain
+\emph{inconclusive}. Specifically, an
+uncertainty interval crossing $+0.5$ pp
+does not establish inferior quality.
+At the alternative exploratory $+1.0$
+pp margin, FP5, FP6 and INT8 pass this
+descriptive screening calculation while
+INT6 remains inconclusive.
+The $+0.5$ result for FP6 is near the
+threshold and must not be interpreted
+as a confirmatory pass after
+retrospective width/graph selection.
+The frozen M5 historical screens are
+unchanged.
+
+\begin{table}[htbp]\centering\small
+\begin{tabular}{@{}l rrr@{}}\toprule
+Encoding & Zeroed original nonzeros & Coefficient MSE
+& Triangular storage (bits)\\\midrule
+FP5 & $4652/4869$ & $616090$ & $24782$\\
+FP6 & $4152/4869$ & $247158$ & $29732$\\
+INT6 & $4638/4869$ & $371558$ & $29732$\\
+INT8 & $4450/4869$ & $43342.6$ & $39632$\\\bottomrule
+\end{tabular}
+\caption{Source-weight-only quantizer preflight for
+the same dense M5 graph, before the 48 new trials.
+Storage is $4950b+32$ nominal bits for one stored
+copy of each possible undirected coupling plus
+one 32-bit global scale. These counts exclude
+memory access logic, wiring and physical cell area.}
+\label{tab:ex1-quantization}
+\end{table}
+
+\paragraph{Interpretation and limitation.}
+INT8 has much lower raw coefficient MSE
+than FP6, yet not a lower \emph{observed
+mean} Max-Cut gap in this small viewed-graph
+study. Neither source coefficient error nor
+the fraction of zeroed low-magnitude
+coefficients fully determines the
+state-dependent local-field error or
+the stochastic trajectory. This
+descriptive mismatch is a motivation
+to assess quality directly, not
+a statistical proof that FP6 dominates
+INT8. The exact direct FP5-versus-FP6
+and INT8-versus-FP6 paired uncertainty
+is stored in the new EX1
+\texttt{exploratory\_summary.csv};
+the console excerpt used for
+the first transcription printed only
+comparisons against FP64, so
+no direct-format CI values are
+inferred here.
+
+EX1 deliberately holds the graph, solver
+and ideal device response fixed.
+It does not determine $b^*_{\mathrm{FP}}$,
+$b^*_{\mathrm{INT}}$, the sign of
+$k=b^*_{\mathrm{INT}}-b^*_{\mathrm{FP}}$,
+or a gain/offset interaction.
+The next credible precision claim
+requires a separate prospectively
+selected, genuinely unviewed graph
+split and confidence/multiplicity
+plan, with an explicit finite
+seed cap and an inconclusive outcome
+when the evidence does not resolve
+the boundary. No INT7 or follow-on
+seed top-up was launched here.
