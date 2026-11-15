@@ -74,3 +74,18 @@ After full completion, audit 80 unique run keys, 320 checkpoint rows, 800 trace-
 ## Proposed later thesis metric, distinct from E0
 
 Once E0 establishes the solver operating point, propose to Prof Fong a primary endpoint `k=b*(INT)-b*(FP)` bits saved per undirected coefficient at a **prospectively agreed equal-quality criterion**, where `b*` is the minimum certified useful width. `Delta=0.5` percentage points is a **proposed** tolerance, not a rule approved by Prof Fong or validated by the current studies. New width, device-population and hardware protocols remain unopened until E0 results and project scope are reviewed. For untested INT7, use the separately frozen symmetric signed codebook/RTL extension; it is not currently implemented by the frozen 4/5/6/8-bit pool.
+
+## Dated observation: user-reported E0 execution (15 Nov 2026; archival audit pending)
+
+The user ran the frozen E0 pilot on `schrodinger02` after successful synthetic solver parity and on-host `--freeze`. The console reported all four 20-seed cells completed (80/80 runs), E0 exit status 0, and no held-out access. **This is a terminal-output closeout pending raw CSV/manifest archival and independent post-run verification; it does not retroactively modify this frozen prospective protocol.**
+
+| CAL graph | Legacy linear 50k gap (95% seed-bootstrap CI) | New geometric-uphill 50k gap (95% seed-bootstrap CI) |
+|---|---|---|
+| `ising2.5-100_5555` | 4.713% [3.950, 5.436] | 4.388% [3.699, 5.112] |
+| `t2g10_5555` | 3.607% [2.944, 4.286] | 3.887% [3.239, 4.541] |
+
+The geometric schedule improves the *sample mean* on the dense CAL by about **0.325 pp** but worsens the sparse CAL by **0.280 pp**. Equal-graph mean gap is 4.160% for linear and 4.138% for geometric, so the average improvement is only ~0.023 pp. **No CAL condition reaches the proposed 1% mean-gap target.** This comparison alone does not establish geometric superiority: the direct paired geometric-minus-linear CIs must be taken from the original `paired_schedule_contrasts.csv`. The source/manifest audit and actual time-resolved acceptance diagnostics must also pass before deciding on a separately frozen longer-budget experiment.
+
+**New read-only post-run audit utility:** [`scripts/e0_audit_existing_results.py`](../scripts/e0_audit_existing_results.py). It compares frozen code/protocol hashes, run files, unique keys, all checkpoints, paired CSV values and first/last trace-bin flip and uphill acceptance. Execute on the host with `python3 scripts/e0_audit_existing_results.py` after pulling this research branch. It launches **zero solver runs**.
+
+The archived M5/M6 500-sweep data remain historical and unchanged; no wider-format or fresh-held-out work is authorized by these E0 results.
