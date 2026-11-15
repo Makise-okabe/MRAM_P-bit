@@ -1,5 +1,16 @@
 # Locked FYP roadmap — coupling precision × STT-MRAM p-bit nonidealities
 
+## 15 November 2026 amendment: bounded FP5 / INT8 exploration authorized
+
+**This newer user instruction supersedes the former requirement to wait for Prof Fong before doing every exploratory check.** E0 is complete and its original records archived; the historical linear 50,000-update condition stays fixed. There is no new solver-schedule search.
+
+**Next experiment is only EX1**: 48 new runs (FP5 E2M2 and INT8, each at the original 24 M5 seeds, d=0, one already-viewed `ising2.5-100_7777` instance). This reuses **72 original FP64/FP6/INT6 d=0 rows** without reruns. The new [protocol](EX1_M5_FP5_INT8_EXPLORATORY_PROTOCOL_20261115.md) and [selftest/preflight/frozen runner](../experiments/ex1_m5_fp5_int8_exploratory.py) are on the research branch. It is **exploratory**, not an independently held-out validation or proof of bit savings. The exact code/protocol and old M5 archive hashes must be checked before `--execute`.
+
+This narrowly authorizes EX1 on the viewed M5 graph only. Do **not** automatically run INT7, perform 72-seed top-ups, switch to new graphs, retry with more budgets, or change 50k linear. The +0.5 and +1.0 pp margins are **two exploratory sensitivity thresholds**; final confirmatory margins, multiplicity strategy, independent graph split, and minimum-width decision rule require their own prospectively frozen protocol. A discussion with Prof Fong can improve the study but is not a prerequisite for analyzing already-viewed evidence.
+
+**Current execution status:** runner and protocol committed. EX1 host self-test, static preflight, frozen on-host protocol, and 48 solver runs are pending at the time of this amendment. M5/M6/E0 archives are immutable.
+
+
 ## Change-control amendment — 12 November 2026 (newer user instruction)
 
 **This block takes precedence over the 8-November blanket solver-calibration HOLD, but only for the named new pilot.** The core weighted Max-Cut and digitally stored low-bit FP-versus-INT coupling direction remains unchanged. Dense M5 and sparse M6 are completed, archived historical 50,000-update results; they will not be rerun or retroactively reinterpreted as convergence evidence.
