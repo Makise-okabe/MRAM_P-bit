@@ -57,48 +57,58 @@ for FP decode/accumulate logic depends on
 the memory architecture and updated equal-quality
 synthesis; they are not measured energy savings.
 
-\subsection{First gate: FP64 operating-point audit on CAL graphs}
-The original 50,000-update, linear-$\beta$
-Gibbs operating point was selected with a
-bounded earlier reference study but its
-convergence was not established. The low
-retained original-weight solution quality and
-small observed flip fraction on dense M5
-motivate a controlled source-only comparison
-\emph{before} extending the coupling width.
-A new \emph{prospective} E0-A pilot has been
-specified on the previously viewed CAL graphs
-\texttt{ising2.5-100\_5555} and
-\texttt{t2g10\_5555}, without any fresh
-held-out graph access.
+\subsection{First gate completed: FP64 calibration on CAL graphs}
+The bounded E0-A reference solver audit is now
+\emph{complete} on the two already-viewed CAL
+graphs, under a source-frozen protocol.
+Section~\ref{sec:e0-calibration} gives the
+paired results and time-resolved acceptance
+diagnostics: the geometric schedule did not
+provide a statistically established final
+quality improvement over legacy linear at the
+same 50,000-update budget on either graph.
+Neither schedule reached the exploratory
+1\% mean optimum-gap aspiration. The existing
+linear 50,000-update condition is retained
+as a \emph{finite-budget reference}, not as
+an assertion of solver convergence.
 
-At the \emph{same} 50,000 attempted updates,
-each graph will be evaluated with 20 matched
-FP64 seeds under (i) the unchanged
-linear schedule, and (ii) a geometric
-inverse-temperature schedule whose endpoints
-are fixed using the conditional probability
-of an \emph{uphill} attempted flip on unbiased
-random FP64 reference states. The two
-scheduled targets are 0.4 and 0.001
-conditional uphill probabilities, not the
-unconditional random-state spin-flip rate,
-whose expectation is 0.5 for any
-$\beta$ with zero diagonal and unbiased
-spin initialization. Time-resolved uphill
-acceptance, overall flip fraction and
-best-original-cut checkpoints will be recorded
-at fixed intervals, with a matched-seed
-confidence interval for the final gap difference.
-The preregistered protocol and code
-are on the
-\href{https://github.com/Makise-okabe/MRAM_P-bit/blob/research/m4-gain-fusion-20261107/docs/E0_FP64_TWO_CAL_PILOT_FREEZE_20261112.md}
-{research branch}. At the time of writing,
-the pilot is \emph{designed but not executed}.
-The already completed M5 and M6 results
-remain valid descriptions of the historical
-500-sweep solver condition; their operating
-point is not overwritten.
+The next protocol should therefore focus on
+\emph{minimum certified coupling width},
+rather than on further ad hoc solver annealing
+tuning. Two decisions require supervisor
+agreement \emph{before} new precision trials:
+(i) fix the same 50,000-update linear solver
+budget for reference FP64 and all formats,
+and (ii) use a proposed upper 95\% paired
+confidence-bound tolerance of $+0.5$
+\emph{percentage points} of extra original-weight
+optimum gap relative to FP64 under the same
+graph, response, paired seeds and budget.
+For example, an FP64 mean gap of 4.0\% and
+a low-bit mean gap of 4.5\% imply a 0.5-pp
+\emph{mean} difference, but eligibility
+requires an upper confidence bound at most
+$+0.5$ pp; the means alone do not suffice.
+
+The completed M5 $d=0.8$ study illustrates
+the potential width decision without
+retroactively changing its protocol:
+FP6 had an extra-gap upper 95\% confidence
+bound of $+0.241$ pp and INT6 of
+$+1.287$ pp. A new, separately
+preregistered study must determine
+$b^*_{\mathrm{FP}}$ and
+$b^*_{\mathrm{INT}}$ across the
+specified candidate widths. It must
+not infer that INT7, INT8, or a lower
+FP width meets the tolerance
+without evidence. If the predetermined
+sample cap leaves a boundary-straddling
+confidence interval, the minimum
+useful width will be reported
+as \emph{unresolved}, not selected
+post hoc.
 
 Subsequently, any minimum-width study,
 independently sampled device gain/offset
