@@ -89,3 +89,28 @@ The geometric schedule improves the *sample mean* on the dense CAL by about **0.
 **New read-only post-run audit utility:** [`scripts/e0_audit_existing_results.py`](../scripts/e0_audit_existing_results.py). It compares frozen code/protocol hashes, run files, unique keys, all checkpoints, paired CSV values and first/last trace-bin flip and uphill acceptance. Execute on the host with `python3 scripts/e0_audit_existing_results.py` after pulling this research branch. It launches **zero solver runs**.
 
 The archived M5/M6 500-sweep data remain historical and unchanged; no wider-format or fresh-held-out work is authorized by these E0 results.
+
+## Dated audit closeout (15 Nov 2026; code and original experimental records unchanged)
+
+The second host report confirms **E0 READ-ONLY AUDIT COMPLETE — PASS**, without additional solver runs. The audit verified the frozen protocol and all code-file hashes, 80 unique solver rows, 320 checkpoint rows, 800 acceptance-trace bins, 16 quality summary rows, eight paired contrasts, original optimum scoring, and run/trace consistency.
+
+**Matched geometric-minus-linear final gap at 50,000 attempted updates:**
+- Dense CAL: **−0.3249 pp**, paired 95% CI **[−1.1834, +0.5333]**.
+- Sparse CAL: **+0.2799 pp**, paired 95% CI **[−0.5662, +1.0839]**.
+- Neither interval excludes zero. Equal-graph average improvement is ~0.023 pp, descriptive only; neither schedule attained the exploratory 1% mean-optimum-gap goal.
+
+**Observed first/last 5,000-update spin-flip rates:**
+- Dense linear 0.0867 / 0.0234; geometric 0.4366 / 0.0010.
+- Sparse linear 0.3343 / 0.0833; geometric 0.4400 / 0.0015.
+
+**Observed first/last 5,000-update conditional uphill acceptance:**
+- Dense linear 0.0429 / 0.0119; geometric 0.3390 / 0.0005.
+- Sparse linear 0.2213 / 0.0441; geometric 0.3426 / 0.0008.
+
+At the sparse 30,000-update checkpoint geometric was better than linear by −3.1272 pp (paired CI [−4.3419, −1.9218]), but by 50,000 updates the difference was inconclusive; schedule ranking is budget-dependent. This does not establish a universally superior schedule nor prove convergence.
+
+**Decision:** E0 solver-calibration exploration is **closed**. Retain the historical **linear, 50,000 attempted updates (500 sweeps)** reference as a fixed and not-proven-converged experimental operating point, subject to Prof Fong's confirmation for the new precision study. Keep E0's 1% mean gap aspiration distinct from the **proposed +0.5 percentage-point paired upper-CI additional gap relative to same-budget, same-response FP64** for minimum-width selection. The +0.5 criterion is not supervisor-approved and should not be retroactively used to redefine M5/M6's frozen gates.
+
+**GitHub archival boundary:** The local data have passed the host audit. The original E0 CSV/JSON output directory still needs to be committed from `schrodinger02` and its remote hashes verified. This document does not assert that a terminal audit alone is a GitHub raw-data archive.
+
+**Next authorization gate:** agree with Prof Fong on (1) linear 50k budget and (2) +0.5 pp additional gap tolerance. Only then design the narrow width comparison with prospective graph/seed selection, explicit width candidates, confidence bound and capped sample budget. No new solver runs are authorized by this closeout.
