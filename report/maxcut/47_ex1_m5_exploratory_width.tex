@@ -1,5 +1,5 @@
 % EX1 is a viewed-graph exploratory study, not independent validation.
-% Raw EX1 archive not yet pushed at the date of first transcription.
+% Raw EX1 archive verified on research branch after host SHA256 audit.
 \section{Exploratory five- and eight-bit extension on viewed M5 (EX1)}
 \label{sec:ex1-m5-width}
 
@@ -17,12 +17,15 @@ without rerunning the solver. Thus EX1 adds
 exactly 48 new evaluations, not a fresh
 held-out test or a new device population.
 
-The user-supplied host execution reports
-48/48 new runs complete and strict M5 archive
-checks pass. At initial transcription, the
-new \texttt{new\_runs.csv}, frozen
-\texttt{protocol.json} and manifest still
-require separate GitHub archival verification.
+The on-host read-only audit passed, and the four
+original EX1 files are now archived on the research
+branch:
+\href{https://github.com/Makise-okabe/MRAM_P-bit/tree/research/m4-gain-fusion-20261107/results/ex1_m5_fp5_int8_20261115}
+{EX1 raw source directory}. The remotely checked
+\texttt{manifest.json} records 48 new solver
+runs and reuse of 72 original M5 baseline rows,
+with SHA256 provenance for frozen protocol,
+new runs, summaries and original M5 archive.
 
 \begin{table}[htbp]\centering\small
 \begin{tabular}{@{}l rrrl@{}}\toprule
@@ -93,15 +96,34 @@ the stochastic trajectory. This
 descriptive mismatch is a motivation
 to assess quality directly, not
 a statistical proof that FP6 dominates
-INT8. The exact direct FP5-versus-FP6
-and INT8-versus-FP6 paired uncertainty
-is stored in the new EX1
-\texttt{exploratory\_summary.csv};
-the console excerpt used for
-the first transcription printed only
-comparisons against FP64, so
-no direct-format CI values are
-inferred here.
+INT8. The archived
+\texttt{exploratory\_summary.csv} additionally
+provides paired contrasts \emph{directly}
+against FP6:
+\begin{table}[htbp]\centering\small
+\begin{tabular}{@{}l rr@{}}\toprule
+Format minus FP6 gap & Mean (pp) & 95\% paired CI (pp)\\\midrule
+FP5 $-$ FP6 & $+0.1658$ & $[-0.3804,+0.7196]$\\
+INT6 $-$ FP6 & $+0.7860$ & $[+0.3099,+1.2712]$\\
+INT8 $-$ FP6 & $+0.2243$ & $[-0.2533,+0.6900]$\\\bottomrule
+\end{tabular}
+\caption{Nominal 95\% seed-bootstrap paired
+differences against FP6 at the same original
+M5 seeds, $d=0$, and 50,000 linear updates.
+Positive is worse Max-Cut gap than FP6.
+These are direct-format differences, not
+format-minus-FP64 tolerance tests.}
+\label{tab:ex1-direct}
+\end{table}
+
+The direct interval establishes an FP6 advantage
+over INT6 \emph{within this viewed graph and
+seed model} at a nominal 95\% level. Both
+FP5$-$FP6 and INT8$-$FP6 intervals
+span zero; neither confirms superiority,
+equivalence, nor an acceptable noninferiority
+margin. The exploratory intervals have not
+been adjusted for multiple hypotheses.
 
 EX1 deliberately holds the graph, solver
 and ideal device response fixed.
