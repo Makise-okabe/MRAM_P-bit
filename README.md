@@ -2,9 +2,9 @@
 
 **Research scope LOCKED, amended 12 November 2026:** [authoritative roadmap including the newer E0 allowance](docs/ROADMAP_LOCKED_2026-11-06.md) · [evidence rules](docs/RESEARCH_PROTOCOL.md).
 
-### E0 calibration completed — awaiting raw archive and supervisor width gate
+### E0 calibration completed and raw archive verified — supervisor width gate next
 
-The [E0 FP64 CAL-only protocol](docs/E0_FP64_TWO_CAL_PILOT_FREEZE_20261112.md) and [80-run audit utility](scripts/e0_audit_existing_results.py) have now **passed on-host execution and all hash/record-count audits** without new held-out access. Final paired geometric-minus-linear 50k contrasts: dense −0.325 pp 95% CI [−1.183,+0.533]; sparse +0.280 pp 95% CI [−0.566,+1.084]. No statistically established advantage of geometric; neither schedule met the exploratory 1% gap target. **Retain linear 50k** as the finite-budget baseline, not a convergence proof. **Original E0 CSV/JSON results must still be pushed to this research branch.**
+The [E0 FP64 CAL-only protocol](docs/E0_FP64_TWO_CAL_PILOT_FREEZE_20261112.md) and [80-run audit utility](scripts/e0_audit_existing_results.py) have now **passed on-host execution and all hash/record-count audits** without new held-out access. Final paired geometric-minus-linear 50k contrasts: dense −0.325 pp 95% CI [−1.183,+0.533]; sparse +0.280 pp 95% CI [−0.566,+1.084]. No statistically established advantage of geometric; neither schedule met the exploratory 1% gap target. **Retain linear 50k** as the finite-budget baseline, not a convergence proof. **[E0 original CSV/JSON evidence](results/e0_fp64_two_cal_20261112) is now archived on this research branch.** The archive contains the frozen protocol, manifest and all five CSV outputs.
 
 Next supervisor decision: approve or modify (i) **50,000 updates, linear** and (ii) **+0.5 percentage-point upper 95% paired CI tolerance** for added optimum gap versus same-response FP64. This is a **proposal**, not yet an authorization for new width trials, and not a change to past M5/M6 criteria. 
 
