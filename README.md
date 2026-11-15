@@ -2,11 +2,13 @@
 
 **Research scope LOCKED, amended 12 November 2026:** [authoritative roadmap including the newer E0 allowance](docs/ROADMAP_LOCKED_2026-11-06.md) · [evidence rules](docs/RESEARCH_PROTOCOL.md).
 
-### Next EX1: one viewed-graph, capped 48-run FP5/INT8 exploration (15 Nov 2026)
+### EX1 exploratory width study completed on host (15 Nov 2026)
 
 The [E0 FP64 solver audit](docs/E0_FP64_TWO_CAL_PILOT_FREEZE_20261112.md) is **complete, raw-archived and closed**. The original **linear 50,000-update** reference is retained without a claim of convergence. No further annealing schedule search is planned.
 
-The user has now authorized a single **exploratory** [EX1 frozen protocol](docs/EX1_M5_FP5_INT8_EXPLORATORY_PROTOCOL_20261115.md) and [runner](experiments/ex1_m5_fp5_int8_exploratory.py): FP5 E2M2 and INT8, 24 paired seeds each, original d=0 dense M5 graph already viewed, **48 new runs maximum**, reusing the archived 72 FP64/FP6/INT6 rows with strict hash validation. First run synthetic `--selftest` and read-only `--preflight`, then `--freeze` before any `--execute`. **EX1 has not yet run.** No INT7, new graph, seed top-up or new device condition is authorized.
+The user has now authorized a single **exploratory** [EX1 frozen protocol](docs/EX1_M5_FP5_INT8_EXPLORATORY_PROTOCOL_20261115.md) and [runner](experiments/ex1_m5_fp5_int8_exploratory.py): FP5 E2M2 and INT8, 24 paired seeds each, original d=0 dense M5 graph already viewed, **48 new runs maximum**, reusing the archived 72 FP64/FP6/INT6 rows with strict hash validation. First run synthetic `--selftest` and read-only `--preflight`, then `--freeze` before any `--execute`. **EX1 completed: FP5 24/24 + INT8 24/24 new runs and old-source gate PASS. Source-transcribed outcome below; raw EX1 archive still requires a separate GitHub push.** No INT7, new graph, seed top-up or new device condition is authorized.
+
+The host transcript reports mean FP5 gap 3.9827%, FP6 3.8169%, INT6 4.6029%, INT8 4.0412% on the viewed dense M5, d=0, 24 paired seeds; at +0.5 pp only FP6 is preliminarily noninferior, other three are inconclusive. INT8's coefficient MSE is far below FP6 but does not imply a better observed final gap. These results do not establish minimum width or a universal savings claim. **No further solver runs authorized as part of EX1.**
 
 The +0.5 and +1.0 pp paired upper-CI extra-gap margins are exploration-only sensitivity checks, **not certification of minimum useful width or an approved physical requirement**. Confirmatory graph split, familywise uncertainty, sample cap and width decision will need a separate prospective design after EX1 is interpreted. No supervisor approval is required merely to perform this bounded viewed-graph exploration.
 
