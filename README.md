@@ -8,11 +8,13 @@ and the [M5 dense](report/maxcut/20_heldout_m5_results.tex) plus
 including native vector figures.
 The separate earlier report repository is historical, not current.
 
-## Prospective next phase: first recalibrate the FP64 solver (12 November 2026)
+## E0 FP64 solver pilot closed; minimum-width decision next (15 November 2026)
 
-After completing and archiving both held-outs, the [research roadmap was amended](https://github.com/Makise-okabe/MRAM_P-bit/blob/research/m4-gain-fusion-20261107/docs/ROADMAP_LOCKED_2026-11-06.md) to permit one narrow [two-graph CAL-only FP64 pilot](https://github.com/Makise-okabe/MRAM_P-bit/blob/research/m4-gain-fusion-20261107/docs/E0_FP64_TWO_CAL_PILOT_FREEZE_20261112.md), not a fresh held-out sweep. The [prospective manuscript section](report/maxcut/50_prospective_minimum_width_study.tex) introduces an *unmeasured* minimum-useful-width endpoint `k=b*(INT)-b*(FP)` bits per coupling. The proposed +0.5 pp same-response FP64 tolerance is **not yet approved or measured** and does not alter any M5/M6 quality decision.
+The [E0 protocol and read-only audit](https://github.com/Makise-okabe/MRAM_P-bit/blob/research/m4-gain-fusion-20261107/docs/E0_FP64_TWO_CAL_PILOT_FREEZE_20261112.md) have been completed on the two previously viewed CAL graphs: 80/80 FP64 runs and full host integrity audit PASS. The new geometric schedule's paired final 50k gap contrasts against linear were **−0.325 pp** on dense (95% CI [−1.183, +0.533]) and **+0.280 pp** on sparse (95% CI [−0.566, +1.084]). Neither CI excludes zero, and neither schedule achieved the exploratory 1% mean optimum-gap target. **Keep the established linear, 50,000-update operating point** for prospective width design; it is a finite-budget baseline, not a converged solver. E0 original CSVs, manifests and protocol have been verified locally but **still need research-branch upload**.
 
-**E0 status: code and protocol documentation committed, but host self-test, host freeze, and all 80 FP64 CAL runs are pending.** Existing 500-sweep M5/M6 statistics remain historical, and FP8/INT8 width work is on HOLD until the E0 comparison is interpreted.
+The [new E0 results chapter](report/maxcut/45_e0_fp64_solver_calibration.tex) and [minimum useful width design](report/maxcut/50_prospective_minimum_width_study.tex) are included in `main.tex`. Next decision, **subject to Prof Fong's approval**, is (1) linear **50,000 attempted updates**, and (2) upper 95% paired CI of extra Max-Cut gap **≤+0.5 percentage points relative to same-budget, same-device-response FP64**. The +0.5 pp proposal is distinct from E0's 1% absolute-optimum aspiration and must not overwrite M5/M6's frozen screens.
+
+New width trials, INT7 implementation, extra device populations, and any higher-budget solver pilot are **on hold** until these two decisions and a separate width protocol are recorded. A format whose CI straddles the proposed cutoff at the predeclared sample cap will have its useful width reported as *unresolved*.
 
 ## Research question
 
