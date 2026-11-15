@@ -76,3 +76,22 @@ The frozen `+0.5` and `+1.0` pp thresholds are **sensitivity summaries**, not de
 The direct FP5–FP6 and INT8–FP6 intervals answer a different question from the FP64-reference additional gap: one does not imply the other. Multiple formats/thresholds and retrospective choice of this graph mean **none of these preliminary labels qualifies as a family-wise confirmation**. No sequential looks or top-ups. If FP5/INT8 gives uninformative intervals, report that limitation and use the result to design, not pre-empt, a later independent validation.
 
 **Interpretation to protect:** We are investigating if numerical field-fidelity changes are consequential for Max-Cut quality and therefore what storage widths are worth implementing. We are not required to find a positive FP bit-saving outcome.
+
+## Post-run observation — 15 November 2026 (EX1 48/48 completed on host; raw archive pending)
+
+Host terminal output confirms successful read-only M5 source/audit, exact frozen-protocol execution, and **FP5 24/24 plus INT8 24/24 new solver runs**. No legacy M5/M6/E0 solver runs were relaunched. The exploratory summary printed:
+
+| Format | Mean original-cut optimum gap | Mean extra gap vs same-seed FP64 (pp) | Paired nominal 95% CI (pp) | Exploratory +0.5 pp status |
+|---|---:|---:|---|---|
+| FP5 | 3.9827% | +0.0926 | [-0.4860,+0.7573] | Inconclusive |
+| FP6 | 3.8169% | -0.0732 | [-0.6463,+0.4824] | Noninferior (exploratory only) |
+| INT6 | 4.6029% | +0.7128 | [+0.2036,+1.2424] | Inconclusive |
+| INT8 | 4.0412% | +0.1511 | [-0.3335,+0.6504] | Inconclusive |
+
+The original FP64 mean optimum gap was 3.8901%. At the exploratory **+1.0 pp** alternative margin, FP5/FP6/INT8 have upper bounds below 1.0, while INT6 remains inconclusive. These are preexisting `d=0` M5 anchor rows plus two new formats on a **previously viewed graph**, not independent validation and not multiplicity-corrected.
+
+Static source-weight coefficient audit on dense M5: FP5 scale 30133.859, zeroed 4652/4869, MSE 616090; FP6 scale 8958.8506, zeroed 4152/4869, MSE 247158; INT6 scale 6804.4204, zeroed 4638/4869, MSE 371558; INT8 scale 1734.4568, zeroed 4450/4869, MSE 43342.6. INT8 has lower coefficient MSE yet a slightly higher *observed mean* final Max-Cut gap than FP6; this cannot establish a direct quality difference without the as-yet unread EX1 **FP6-anchored paired CIs**.
+
+**Science decision:** EX1's capped 48 runs are finished. **No INT7, no seed top-ups, no new graphs or offsets are authorized by this result.** FP5 and INT8 remain plausible candidates, but minimum useful widths and (k) are **not determined**. The raw EX1 protocol, `new_runs.csv`, `exploratory_summary.csv`, and `manifest.json` remain on the host until separately pushed; do not label the EX1 raw archive complete before verifying it remotely.
+
+The current FYP manuscript's [EX1 results section](https://github.com/Makise-okabe/MRAM_P-bit/blob/main/report/maxcut/47_ex1_m5_exploratory_width.tex) records these findings with that provenance limitation.
