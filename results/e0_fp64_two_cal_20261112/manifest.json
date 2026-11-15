@@ -1,0 +1,19 @@
+{
+  "acceptance_bin_rows": 800,
+  "checkpoint_rows": 320,
+  "checkpoint_rows_sha256": "38d38bd185d94f9dc2ae8bb95253be4e2ec8a3c69bf93892393a5ee9c9c2cf98",
+  "code_hashes": {
+    "docs/BIQMAC_OFFICIAL_OPTIMA_2007.json": "2f3e32145cfe2718f902c7d797ae334a4e4abb75ebd52992e8826c7e9c30352a",
+    "experiments/biqmac_maxcut.py": "b372b7d81e2ae406f223e1bd025373696fe3d3b4cbb9591d53b3fff917305f9d",
+    "experiments/e0_fp64_two_cal_pilot.py": "044f5e6e9f1ad4319184366a969ebff9be47a1f87049234ca1781af18e3fcca6",
+    "experiments/m0_ising_math.py": "b6b74fd0d068d856be7dc720b6e6430ccde2ba174597ec39cbaff925b1f2e7bb",
+    "experiments/m1_biqmac_ideal_pilot.py": "1c58a5b97d5e481d837fcdf1c94d9ea051c03f3ba2a17148ee3760b80ac6e0dc",
+    "experiments/m1_biqmac_reference_quality_gate.py": "c6c5fcec5b1299d6d0ebfe96d7e51cecf2cbf02fe51bd5736ed264b2c03f744c"
+  },
+  "paired_contrast_sha256": "52338c2f9253fe5815a208797ee1e8ae81858f90e23e383a21add74c6a1d5531",
+  "protocol_sha256": "ba5674d81d6537b4b66b69d143325f9147aa4cb6cac4756928872946f48bcd79",
+  "run_rows_sha256": "18857019bb2618b2d2eb0ff3e937f86fa0e01f75522e90d1cf3d1d58fcb7bb0e",
+  "runs": 80,
+  "status": "E0_FP64_CAL_PILOT_80_RUNS_COMPLETE",
+  "trace_rows_sha256": "fdef15e70104ac10f7876990282e30b7b09a4fa234f7b6ce4e197c4f27ddf30c"
+}
