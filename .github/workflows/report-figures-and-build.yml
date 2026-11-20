@@ -36,7 +36,7 @@ jobs:
           from pathlib import Path
           from PIL import Image, ImageStat
           root = Path("report/figures")
-          names = [f"F{i:02d}" for i in range(1,11)] + ["F12"]
+          names = [f"F{i:02d}" for i in range(1,13)]
           for name in names:
               matches = sorted(root.glob(f"{name}_*.png"))
               if len(matches) != 1:
@@ -52,8 +52,8 @@ jobs:
                   if max(bands) < 10:
                       raise RuntimeError(f"{name}: likely blank image")
               print(f"Rendered preview: {p.name} bytes={p.stat().st_size}")
-          if list(root.glob("F11_*.png")):
-              raise RuntimeError("No Stage B archive supplied; F11 must not exist")
+          if len(list(root.glob("F11_*.png"))) != 1:
+              raise RuntimeError("Verified device-offset figure F11 must exist exactly once")
           PY
       - name: Compile report with BibTeX
         uses: xu-cheng/latex-action@v4
