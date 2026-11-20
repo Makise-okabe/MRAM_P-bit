@@ -173,3 +173,7 @@ access/selection comparisons. It uses no alpha from the 18 core contrasts.
 Missing `R_last` in reused historical records remains explicitly unavailable;
 the authorized small parity sample is not a rerun of the first-block campaign.
 No distinct-energies-among-the-best-one-percent endpoint is added.
+
+## 21 November 2026 — authorized weak-tail mechanism extension
+
+The student authorized one bounded six-arm 2x2 mechanism experiment after the ideal checkpoint b8e6f28. See [the dated protocol](FYP_WEAK_TAIL_PROTOCOL_20261121.md) and the separate executable freeze. The original 18-contrast results and offset selection remain unchanged. This extension stops after 18,432 ideal-response mechanism trajectories and their registered analysis; offset, gain and hardware remain pending a later decision.

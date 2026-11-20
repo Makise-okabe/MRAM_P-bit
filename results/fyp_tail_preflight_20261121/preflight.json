@@ -1,0 +1,279 @@
+{
+  "archived_controls": 21,
+  "baseline_sources_sha256": {
+    "experiments/biqmac_maxcut.py": "b372b7d81e2ae406f223e1bd025373696fe3d3b4cbb9591d53b3fff917305f9d",
+    "experiments/fyp_first_block_20261120.py": "ffbaf666d4cb96cc6235c19e4f9e2ef267f2e2d66948302dcd6b1b17e38e9ced",
+    "experiments/fyp_first_block_stats.py": "4f872e66dac5bb6811fdd652bdffc380abd9f1cd1bd39faa9b51bbfedf19e781",
+    "experiments/fyp_ideal_analysis.py": "21011277b4d06f4e6a1cb08d701c3e904f8bc6e99191cee442a63655e872c761",
+    "experiments/fyp_ideal_campaign.py": "d4cf82315b04e8fb02909877d026e60bfb4c6b1ab42073a371fa0dac2f6d01d6",
+    "experiments/fyp_ideal_freeze.py": "858adb18d8f2f8b3621874c9e72c4f8df8a4ca880a60a30c2ab84e28bf20fa4c",
+    "experiments/fyp_ideal_solver.py": "0255aac10e9fac4eeaf0274603e9985fadc90cc772db1f9986bd71efecb4a6fc",
+    "experiments/fyp_ideal_sources.py": "22bc55013270d4a0bf40e5f4411de01ee77de4f14cf88546440597d77dfc7f72",
+    "experiments/m0_ising_math.py": "b6b74fd0d068d856be7dc720b6e6430ccde2ba174597ec39cbaff925b1f2e7bb",
+    "experiments/m1_biqmac_ideal_pilot.py": "1c58a5b97d5e481d837fcdf1c94d9ea051c03f3ba2a17148ee3760b80ac6e0dc",
+    "experiments/m1_biqmac_reference_quality_gate.py": "c6c5fcec5b1299d6d0ebfe96d7e51cecf2cbf02fe51bd5736ed264b2c03f744c",
+    "experiments/m1_coupling_formats.py": "23d751b01dca0f104b7430b450abcff57e4d10974ae6ab3567cf9acfc161784f",
+    "experiments/m1_precision_codebooks.py": "e6c323804417830747fc6d2db1eda046dd8b48e5b70bb497c8b095754cf4cf6f"
+  },
+  "checks": [
+    {
+      "all_archived_fields": "EXACT",
+      "archive_sha256": "ac373aa4d4e28855f03d9f6b5a5d71598536bf69727c583ea345d00d90680040",
+      "full_legacy_output": "EXACT",
+      "graph": "ising2.5-100_7777",
+      "representation": "ref64",
+      "seed": 20661201,
+      "source": "M5"
+    },
+    {
+      "all_archived_fields": "EXACT",
+      "archive_sha256": "ac373aa4d4e28855f03d9f6b5a5d71598536bf69727c583ea345d00d90680040",
+      "full_legacy_output": "EXACT",
+      "graph": "ising2.5-100_7777",
+      "representation": "ref64",
+      "seed": 20661202,
+      "source": "M5"
+    },
+    {
+      "all_archived_fields": "EXACT",
+      "archive_sha256": "ac373aa4d4e28855f03d9f6b5a5d71598536bf69727c583ea345d00d90680040",
+      "full_legacy_output": "EXACT",
+      "graph": "ising2.5-100_7777",
+      "representation": "ref64",
+      "seed": 20661203,
+      "source": "M5"
+    },
+    {
+      "all_archived_fields": "EXACT",
+      "archive_sha256": "ac373aa4d4e28855f03d9f6b5a5d71598536bf69727c583ea345d00d90680040",
+      "full_legacy_output": "EXACT",
+      "graph": "ising2.5-100_7777",
+      "representation": "fp6",
+      "seed": 20661201,
+      "source": "M5"
+    },
+    {
+      "all_archived_fields": "EXACT",
+      "archive_sha256": "ac373aa4d4e28855f03d9f6b5a5d71598536bf69727c583ea345d00d90680040",
+      "full_legacy_output": "EXACT",
+      "graph": "ising2.5-100_7777",
+      "representation": "fp6",
+      "seed": 20661202,
+      "source": "M5"
+    },
+    {
+      "all_archived_fields": "EXACT",
+      "archive_sha256": "ac373aa4d4e28855f03d9f6b5a5d71598536bf69727c583ea345d00d90680040",
+      "full_legacy_output": "EXACT",
+      "graph": "ising2.5-100_7777",
+      "representation": "fp6",
+      "seed": 20661203,
+      "source": "M5"
+    },
+    {
+      "all_archived_fields": "EXACT",
+      "archive_sha256": "ac373aa4d4e28855f03d9f6b5a5d71598536bf69727c583ea345d00d90680040",
+      "full_legacy_output": "EXACT",
+      "graph": "ising2.5-100_7777",
+      "representation": "int6",
+      "seed": 20661201,
+      "source": "M5"
+    },
+    {
+      "all_archived_fields": "EXACT",
+      "archive_sha256": "ac373aa4d4e28855f03d9f6b5a5d71598536bf69727c583ea345d00d90680040",
+      "full_legacy_output": "EXACT",
+      "graph": "ising2.5-100_7777",
+      "representation": "int6",
+      "seed": 20661202,
+      "source": "M5"
+    },
+    {
+      "all_archived_fields": "EXACT",
+      "archive_sha256": "ac373aa4d4e28855f03d9f6b5a5d71598536bf69727c583ea345d00d90680040",
+      "full_legacy_output": "EXACT",
+      "graph": "ising2.5-100_7777",
+      "representation": "int6",
+      "seed": 20661203,
+      "source": "M5"
+    },
+    {
+      "all_archived_fields": "EXACT",
+      "archive_sha256": "18857019bb2618b2d2eb0ff3e937f86fa0e01f75522e90d1cf3d1d58fcb7bb0e",
+      "full_legacy_output": "EXACT",
+      "graph": "ising2.5-100_5555",
+      "representation": "ref64",
+      "seed": 20261112,
+      "source": "E0"
+    },
+    {
+      "all_archived_fields": "EXACT",
+      "archive_sha256": "18857019bb2618b2d2eb0ff3e937f86fa0e01f75522e90d1cf3d1d58fcb7bb0e",
+      "full_legacy_output": "EXACT",
+      "graph": "ising2.5-100_5555",
+      "representation": "ref64",
+      "seed": 20261113,
+      "source": "E0"
+    },
+    {
+      "all_archived_fields": "EXACT",
+      "archive_sha256": "18857019bb2618b2d2eb0ff3e937f86fa0e01f75522e90d1cf3d1d58fcb7bb0e",
+      "full_legacy_output": "EXACT",
+      "graph": "t2g10_5555",
+      "representation": "ref64",
+      "seed": 20361112,
+      "source": "E0"
+    },
+    {
+      "all_archived_fields": "EXACT",
+      "archive_sha256": "18857019bb2618b2d2eb0ff3e937f86fa0e01f75522e90d1cf3d1d58fcb7bb0e",
+      "full_legacy_output": "EXACT",
+      "graph": "t2g10_5555",
+      "representation": "ref64",
+      "seed": 20361113,
+      "source": "E0"
+    },
+    {
+      "all_archived_fields": "EXACT",
+      "archive_sha256": "5146df3096376a74aa5e9538cdec6319f1044185c153af88234898852f16e0a0",
+      "full_legacy_output": "EXACT",
+      "graph": "ising2.5-100_5555",
+      "representation": "ref64",
+      "seed": 3000000000000,
+      "source": "first_block"
+    },
+    {
+      "all_archived_fields": "EXACT",
+      "archive_sha256": "5146df3096376a74aa5e9538cdec6319f1044185c153af88234898852f16e0a0",
+      "full_legacy_output": "EXACT",
+      "graph": "ising2.5-100_5555",
+      "representation": "ref64",
+      "seed": 3000000000001,
+      "source": "first_block"
+    },
+    {
+      "all_archived_fields": "EXACT",
+      "archive_sha256": "5146df3096376a74aa5e9538cdec6319f1044185c153af88234898852f16e0a0",
+      "full_legacy_output": "EXACT",
+      "graph": "ising2.5-100_5555",
+      "representation": "int6",
+      "seed": 3000000000000,
+      "source": "first_block"
+    },
+    {
+      "all_archived_fields": "EXACT",
+      "archive_sha256": "5146df3096376a74aa5e9538cdec6319f1044185c153af88234898852f16e0a0",
+      "full_legacy_output": "EXACT",
+      "graph": "ising2.5-100_5555",
+      "representation": "int6",
+      "seed": 3000000000001,
+      "source": "first_block"
+    },
+    {
+      "all_archived_fields": "EXACT",
+      "archive_sha256": "5146df3096376a74aa5e9538cdec6319f1044185c153af88234898852f16e0a0",
+      "full_legacy_output": "EXACT",
+      "graph": "ising2.5-100_7777",
+      "representation": "ref64",
+      "seed": 3000000020000,
+      "source": "first_block"
+    },
+    {
+      "all_archived_fields": "EXACT",
+      "archive_sha256": "5146df3096376a74aa5e9538cdec6319f1044185c153af88234898852f16e0a0",
+      "full_legacy_output": "EXACT",
+      "graph": "ising2.5-100_7777",
+      "representation": "ref64",
+      "seed": 3000000020001,
+      "source": "first_block"
+    },
+    {
+      "all_archived_fields": "EXACT",
+      "archive_sha256": "5146df3096376a74aa5e9538cdec6319f1044185c153af88234898852f16e0a0",
+      "full_legacy_output": "EXACT",
+      "graph": "ising2.5-100_7777",
+      "representation": "int6",
+      "seed": 3000000020000,
+      "source": "first_block"
+    },
+    {
+      "all_archived_fields": "EXACT",
+      "archive_sha256": "5146df3096376a74aa5e9538cdec6319f1044185c153af88234898852f16e0a0",
+      "full_legacy_output": "EXACT",
+      "graph": "ising2.5-100_7777",
+      "representation": "int6",
+      "seed": 3000000020001,
+      "source": "first_block"
+    }
+  ],
+  "fresh_graph_solver_runs": 0,
+  "numpy": "2.3.5",
+  "parity_plan_sha256": "107c9068c1fd9c7fedcdce73509336e809ffe105dd305b6081a2e84071e734dc",
+  "python": "3.12.14",
+  "scope": "viewed historical controls and synthetic checks only",
+  "status": "PASS",
+  "timing_runs": 12,
+  "timings": [
+    {
+      "arm": "ref64",
+      "seconds": 0.09330687300007412,
+      "viewed_graph": "ising2.5-100_7777"
+    },
+    {
+      "arm": "fp6",
+      "seconds": 0.09444811000003028,
+      "viewed_graph": "ising2.5-100_7777"
+    },
+    {
+      "arm": "int6",
+      "seconds": 0.09902456000008897,
+      "viewed_graph": "ising2.5-100_7777"
+    },
+    {
+      "arm": "fp6_mask",
+      "seconds": 0.08961477699995157,
+      "viewed_graph": "ising2.5-100_7777"
+    },
+    {
+      "arm": "int6_tail",
+      "seconds": 0.09160855799973433,
+      "viewed_graph": "ising2.5-100_7777"
+    },
+    {
+      "arm": "int6_keep",
+      "seconds": 0.09368531999962215,
+      "viewed_graph": "ising2.5-100_7777"
+    },
+    {
+      "arm": "ref64",
+      "seconds": 0.05715044899989152,
+      "viewed_graph": "t2g10_5555"
+    },
+    {
+      "arm": "fp6",
+      "seconds": 0.05154209300008006,
+      "viewed_graph": "t2g10_5555"
+    },
+    {
+      "arm": "int6",
+      "seconds": 0.05275547399969582,
+      "viewed_graph": "t2g10_5555"
+    },
+    {
+      "arm": "fp6_mask",
+      "seconds": 0.06149765300006038,
+      "viewed_graph": "t2g10_5555"
+    },
+    {
+      "arm": "int6_tail",
+      "seconds": 0.05632408300016323,
+      "viewed_graph": "t2g10_5555"
+    },
+    {
+      "arm": "int6_keep",
+      "seconds": 0.05581912399975408,
+      "viewed_graph": "t2g10_5555"
+    }
+  ],
+  "unit_test_methods": 9
+}
