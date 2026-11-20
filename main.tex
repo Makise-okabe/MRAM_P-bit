@@ -43,9 +43,12 @@ provides a counterexample to any individual-instance width guarantee.
 Full-ensemble passive-buffer certification passed exact parity on all 64,512
 main trajectories and certified FP5 and INT5 on both families under the
 buffered policy, removing the unbuffered ring's one-bit difference.
-Persistent synthetic logit-offset sensitivity remains a separately
-registered validation and is not given result labels until archived. No measured MTJ
-residuals, full-chip power reduction or universal FP superiority are claimed.
+A separate registered persistent-offset validation completed 41,472 model
+trajectories and all six corrected device-condition contrasts passed
+the $+0.5$ percentage-point tolerance. The dominant descriptive
+ideal-to-offset changes were in search access rather than output selection.
+These conditions are synthetic logit offsets, not physical measurements.
+No full-chip power benefit or universal FP superiority is claimed.
 \end{abstract}
 \tableofcontents
 
@@ -126,7 +129,13 @@ Gaussian-coupled counterparts
 Those papers motivate testing tie counts but do
 not prove a quantitative result for these Max-Cut graphs.
 Annealer sample post-processing also predates this work
-\cite{PbitAyanzadeh2021}. The distinctive question
+\cite{PbitAyanzadeh2021}. Related 2026 work by
+Ohno and Togawa further studies coefficient
+dynamic-range/precision reduction in quantum
+annealing \cite{PbitOhnoTogawa2026}.
+These distinct solvers and optimisation objectives
+must not be portrayed as identical to our p-bit
+buffer-rescoring method. The distinctive question
 here is how \emph{legal same-width} low-bit FP/INT stored-$J$
 codes affect a fixed-budget stochastic search
 \emph{and} its final output policy, and how a
@@ -370,15 +379,103 @@ rescoring and do not establish a free hardware
 implementation of the buffer. Missing first-block and
 official-anchor buffer observations remain missing.
 
-\section{Persistent logit-offset validation}
-\textbf{Evidence status at manuscript freeze:
-registered, not yet accepted as verified.}
-The offset condition is assumed and one
-fixed bank is shared across code formats
-for each graph. The six registered offset
-contrasts and ideal-to-offset decomposition
-will be filled from Checkpoint 1 only.
-\thesisfig{F11_offset_sensitivity}{Generated only when verified Stage B data are supplied: comparison of ideal and persistent assumed-offset results, not measured MTJ curves.}
+\section{Registered persistent logit-offset validation}
+\textbf{Checkpoint 1 completed and archived.}
+The predeclared Stage B executed 27,648
+selected-triple solver trajectories plus 13,824
+additional predeclared descriptive-arm
+trajectories, totaling 41,472.
+Each of the 72 graph instances in a family
+has a single persistent 100-device
+logit-offset bank shared by all paired
+solver seeds and representation formats.
+The FP64 reference \emph{also} experiences
+these same offsets. The normalisation
+denominator remains the graph's frozen
+ideal-source best-observed $B_g$.
+
+\begin{table}[htbp]\centering\small
+\begin{tabular}{@{}llrrrl@{}}\toprule
+Family & Contrast & Mean (pp) & Lower & Upper & +0.5\\\midrule
+Ring & FP5--INT6 & +0.023 & -0.119 & +0.164 & Pass\\
+Ring & FP5--FP64 & +0.294 & +0.173 & +0.449 & Pass\\
+Ring & INT6--FP64 & +0.271 & +0.179 & +0.381 & Pass\\
+Torus & FP5--INT5 & +0.032 & -0.074 & +0.151 & Pass\\
+Torus & FP5--FP64 & +0.166 & +0.080 & +0.263 & Pass\\
+Torus & INT5--FP64 & +0.134 & +0.030 & +0.242 & Pass\\\bottomrule
+\end{tabular}
+\caption{Six \emph{registered} persistent-offset
+non-inferiority contrasts. Bounds are Bonferroni
+simultaneous whole-graph-bank studentized
+bootstrap-$t$ intervals over 72 independent
+graph-bank units per family, 500,000
+resamples and familywise $\alpha=0.01$.
+A pass means upper bound $<+0.5$ pp;
+it is not a claim of FP superiority.}
+\label{tab:device-checkpoint}
+\end{table}
+
+\noindent\textbf{Search versus selection under offsets
+(descriptive).} On the ring, FP5 changes
+from $+0.312$ pp ideal extra loss
+to $+0.294$ pp under the persistent
+offset condition. Its search component
+decreases by 0.017 pp and selection
+decreases by 0.002 pp. In contrast,
+INT6 changes from $+0.234$ to
+$+0.271$ pp: its search component
+increases by 0.036 pp while selection
+changes by only $+0.001$ pp.
+On the torus, FP5 changes from
+$+0.095$ to $+0.166$ pp,
+with a $+0.072$ pp search shift and
+a $-0.0004$ pp selection shift.
+INT5 changes from $+0.165$ to
+$+0.134$ pp; its search shift is
+$-0.025$ pp and selection shift is
+$-0.005$ pp. These observed shifts
+do not imply an unregistered
+offset-by-format interaction significance
+test or a preferred direction for other
+offset distributions.
+
+\noindent\textbf{Descriptive FP6--INT6 persistence.}
+On the ring, FP6--INT6 extra loss
+is $-0.170$ pp in the matched ideal
+runs and approximately $-0.209$ pp
+in the assumed-offset runs. Under
+offsets, FP6 has $R_z\simeq0.018$
+pp versus $R_z\simeq0.152$ pp for
+INT6. Thus an FP6--INT6 quality and
+selection difference persists under
+this specified offset population.
+The causal weak-tail intervention
+was \emph{not} rerun with offsets,
+so the inference that tail restoration
+would generate the same offset response
+is not registered or demonstrated.
+On the torus the offset FP6--INT6
+quality difference reverses sign
+relative to the ring:
+$+0.071-0.031\simeq+0.040$ pp
+(descriptive). These graph-family
+differences constrain general claims.
+
+\noindent\textbf{Output policy under offsets
+(descriptive).} Ring FP5 buffer-policy
+extra loss is $+0.112$ pp, and ring
+INT6 is $+0.124$ pp. Torus FP5 is
+$+0.124$ pp and torus INT5 is
+$+0.049$ pp. No offset experiment
+was registered for ring INT5, so
+the new \emph{ideal buffered} ring
+$k=0$ certification cannot be
+extended automatically to this
+device-offset condition. The buffer
+still depends on source-objective
+access and does not recover
+unvisited states.
+\thesisfig{F11_offset_sensitivity}{Matched ideal-versus-persistent-offset extra loss across selected codes. These are descriptive mean changes under a software sensitivity condition, not measurements of MTJ residuals.}
 
 \section{Counterexamples and heterogeneity}
 The official \texttt{ising2.5-100\_6666}
@@ -461,45 +558,75 @@ device residuals, transistor-level
 device simulation, gain-variation population,
 fabricated MTJs, thermal correlation
 study, full memory macro, or silicon
-power measurement. Provisional
-implementation choices cannot claim
-physical savings. The next mandatory
-decision is to review the parity-checked
-buffer and offset validation at
-Checkpoint 1, before any new hardware work.
+power measurement. Provisional implementation choices
+cannot claim physical savings.
+Checkpoint 1's two registered validation
+stages are now complete and archived;
+their results are conditional on the
+fixed output policy, specified
+response population and generated
+graph families. Any additional
+hardware or cost study remains
+unstarted pending student approval.
 \thesisfig{F12_evidence_map}{The study sequence distinguishes archived exploration, registered inference, mechanism, output/device validation and pending cost.}
 
 \chapter{Conclusion and future work}
-\noindent\emph{The important coupling bits are the ones
-that change the stochastic search and final
-selection enough to matter. On the generated
-ring family, five-bit FP meets the selected
-tolerance with one less bit than INT; on
-the torus there is no certified reduction.
-A registered intervention shows why
-retaining a weak tail is relevant to
-selection loss.}
+\noindent\emph{The significant coupling bits are
+those that alter stochastic access or
+output selection enough to matter.
+An apparent one-bit advantage of
+five-bit floating point over integer
+on heavy-tailed generated rings
+vanishes when a passive top-16
+candidate buffer changes the output
+policy. A registered intervention
+still confirms a real weak-tail
+selection mechanism. The choice
+depends on graph family, controller
+and implementation costs.}
 
-The defensible claim is that accurately
-represented weak couplings reduce
-output-selection loss on the tested
-heavy-tailed ring instances (registered),
-and descriptively aid search. The top-16
-host selection rule recovers most
-selection loss in the fresh diagnostic
-set but cannot reach unvisited states.
-A hard official anchor defeats blanket
-instance-level width claims.
-The 64,512 frozen Stage A replay checks and buffered
-width certification are complete; the original ring
-one-bit difference disappears under top-16 host rescoring.
-The remaining Checkpoint 1 work is to verify
-six persistent-offset contrasts,
-with their search/selection shifts and
-uncertainty, then make a decision
-on whether implementation cost
-analysis is warranted. No new graphs,
-seeds, gain profiles or arms are added.
+At the frozen 50,000-attempt operating
+point, ideal-response family-level
+certification first identifies
+FP5 versus INT6 on ring graphs.
+The separately registered top-16
+policy replay reproduces all 64,512
+archival trajectories exactly and
+certifies FP5 and INT5 in both
+generated families at the
+$+0.5$ pp requirement, removing
+the ring bit-width advantage.
+
+The weak-tail mechanism retains
+registered positive selection effects;
+the associated search and
+host-rescoring effects are descriptive.
+Persistent synthetic offset validation
+completes 41,472 trajectories and
+all six registered selected-triple
+contrasts meet the same non-inferiority
+tolerance. It demonstrates no FP
+superiority or new device-level
+switching measurements. Under offsets,
+the descriptive quality shifts mainly
+follow search/access differences, and
+a ring FP6--INT6 contrast persists
+without repeating the causal
+weak-tail intervention.
+
+The outstanding engineering decision
+is whether reduced coefficient storage
+at a given output policy can offset
+floating-point decoding, memory
+organisation and original-objective
+buffer/rescoring costs. Those are
+\emph{not} yet full-chip synthesised
+or power-measured, and the frozen
+Checkpoint 1 is the required
+stop-and-review point. No additional
+device bank, gain distribution, graph
+or precision arm is justified solely
+by these results.
 
 \clearpage
 \bibliographystyle{unsrt}
