@@ -21,7 +21,11 @@ The [current study plan](docs/FYP_STUDY_LOCK_20261120.md) is authoritative. It i
 
 Generated-instance contrasts use a fixed-pool best-observed feasible cut reference and are labelled accordingly. Official anchors retain published-optimum gaps. The reference is not assumed within 1% of the unknown optimum. Adding INT7 and its direct FP6 comparison gives **18 core confirmatory contrasts**, plus six device contrasts.
 
-**Next implementation work.** Integrate trajectory logging and verify unchanged solver outputs. Test the analysis script, then run the bounded **1,280-run viewed-dense block**. Freeze executable sources before the independent main campaign and official _6666 access. The INT7 extension has four passing targeted tests and 600 legacy scalar/scale parity checks. New ensemble/device outcomes are still prospective. The complete planned workload is 116,480 unique runs, including the first block.
+**Ideal-response checkpoint COMPLETE.** The [checkpoint report](results/fyp_ideal_20261120/RESULTS.md) records all 18 registered contrasts, absolute quality, descriptive mechanisms and official-anchor exceptions. The executable freeze is [d217ab5](https://github.com/Makise-okabe/MRAM_P-bit/commit/d217ab54fc41a3a84d6a500f3ab0f3aa433059dd), committed before official `_6666` access and main-campaign execution. All 88,320 ideal records passed integrity checks: 87,552 new trajectories and exactly 768 reused first-block records. No first-block results were changed.
+
+At the registered +0.5 pp family-mean tolerance, the lowest tested certified choices are **FP5/INT6 on the ring (one coupling bit saved)** and **FP5/INT5 on the torus (no bit saving)**. The unseen ring `_6666` case is a substantial counterexample to an individual-instance guarantee. The descriptive prediction that FP6 has greater total selection loss than INT7 also fails on the ring. Read the report before using the family-average choices.
+
+**STOPPED at the requested checkpoint.** The selected future offset-stage triples are ring FP5/INT6/FP64 and torus FP5/INT5/FP64. No offset, gain or hardware work is authorized beyond this checkpoint without the student's confirmation. The previous 116,480-run full plan remains the workload including the unexecuted device phase.
 
 Method choices are owned by the student and justified in methods. The protocol records the uncertainty, comparison set and stopping conditions. A positive bits-saved result is one possible contribution alongside an equal-width quality benefit or supported integer sufficiency.
 
@@ -56,7 +60,8 @@ The working implementation is on [research/m4-gain-fusion-20261107](https://gith
 
 - Ideal precision: experiments/m1_biqmac_precision_sweep.py.
 - Existing codebooks: experiments/m1_precision_codebooks.py.
-- Current scientific gate: experiments/m2_precision_gain_regime.py.
+- Completed locked ideal study: experiments/fyp_ideal_campaign.py and experiments/fyp_ideal_analysis.py; source/code/seed registries are in docs/FYP_IDEAL_FREEZE_20261120.json.
+- Historical gain-only implementation: experiments/m2_precision_gain_regime.py; it is not authorization to run a new gain campaign.
 - Earlier six-bit combined-response screen: historical supporting code, not the current regime-map campaign.
 - Current report: https://github.com/Makise-okabe/MRAM_P-bit/blob/main/main.tex (Overleaf sync via `main`). Earlier report repository is archived.
 

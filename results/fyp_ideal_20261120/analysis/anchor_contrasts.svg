@@ -1,0 +1,231 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1150" height="2133" viewBox="0 0 1150 2133">
+<rect width="1150" height="2133" fill="white"/>
+<text x="28" y="35" font-family="sans-serif" font-size="22" font-weight="bold">Descriptive official-anchor contrasts</text>
+<text x="28" y="59" font-family="sans-serif" font-size="13">Ordinary paired-seed 95% bootstrap-t; published-optimum-normalized gaps (pp)</text>
+<line x1="350.0" x2="350.0" y1="80" y2="2093" stroke="#ddd"/>
+<text x="350.0" y="2116" text-anchor="middle" font-family="sans-serif" font-size="12">-2.10</text>
+<line x1="593.8447859924171" x2="593.8447859924171" y1="80" y2="2093" stroke="#ddd"/>
+<text x="593.8447859924171" y="2116" text-anchor="middle" font-family="sans-serif" font-size="12">-0.50</text>
+<line x1="670.0" x2="670.0" y1="80" y2="2093" stroke="#666"/>
+<text x="670.0" y="2116" text-anchor="middle" font-family="sans-serif" font-size="12">+0.00</text>
+<line x1="746.155214007583" x2="746.155214007583" y1="80" y2="2093" stroke="#ddd"/>
+<text x="746.155214007583" y="2116" text-anchor="middle" font-family="sans-serif" font-size="12">+0.50</text>
+<line x1="990.0" x2="990.0" y1="80" y2="2093" stroke="#ddd"/>
+<text x="990.0" y="2116" text-anchor="middle" font-family="sans-serif" font-size="12">+2.10</text>
+<text x="28" y="104" font-family="sans-serif" font-size="13">ising2.5-100_5555 fp6-int6</text>
+<line x1="549.4101576278589" x2="617.5741310318036" y1="100" y2="100" stroke="#226e94" stroke-width="3"/>
+<circle cx="583.6900097226692" cy="100" r="4" fill="#163b53"/>
+<text x="1004" y="104" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="141" font-family="sans-serif" font-size="13">ising2.5-100_5555 fp5-int6</text>
+<line x1="698.2781261094335" x2="784.0749847282802" y1="137" y2="137" stroke="#226e94" stroke-width="3"/>
+<circle cx="741.5411841650496" cy="137" r="4" fill="#163b53"/>
+<text x="1004" y="141" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="178" font-family="sans-serif" font-size="13">ising2.5-100_5555 fp6-int7</text>
+<line x1="569.9057318667235" x2="638.0818776203332" y1="174" y2="174" stroke="#226e94" stroke-width="3"/>
+<circle cx="603.5852598365357" cy="174" r="4" fill="#163b53"/>
+<text x="1004" y="178" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="215" font-family="sans-serif" font-size="13">ising2.5-100_5555 fp5-ref64</text>
+<line x1="774.7165458249277" x2="853.6416680519848" y1="211" y2="211" stroke="#226e94" stroke-width="3"/>
+<circle cx="815.1192765742753" cy="211" r="4" fill="#163b53"/>
+<text x="1004" y="215" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="252" font-family="sans-serif" font-size="13">ising2.5-100_5555 fp6-ref64</text>
+<line x1="628.0616058818683" x2="686.8653648353178" y1="248" y2="248" stroke="#226e94" stroke-width="3"/>
+<circle cx="657.2681021318947" cy="248" r="4" fill="#163b53"/>
+<text x="1004" y="252" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="289" font-family="sans-serif" font-size="13">ising2.5-100_5555 int5-ref64</text>
+<line x1="831.3174995884859" x2="922.7381991821064" y1="285" y2="285" stroke="#226e94" stroke-width="3"/>
+<circle cx="876.7019040668235" cy="285" r="4" fill="#163b53"/>
+<text x="1004" y="289" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="326" font-family="sans-serif" font-size="13">ising2.5-100_5555 int6-ref64</text>
+<line x1="707.1236451793075" x2="779.6941046900997" y1="322" y2="322" stroke="#226e94" stroke-width="3"/>
+<circle cx="743.5780924092257" cy="322" r="4" fill="#163b53"/>
+<text x="1004" y="326" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="363" font-family="sans-serif" font-size="13">ising2.5-100_5555 int7-ref64</text>
+<line x1="695.646661500178" x2="750.5794451431448" y1="359" y2="359" stroke="#226e94" stroke-width="3"/>
+<circle cx="723.6828422953591" cy="359" r="4" fill="#163b53"/>
+<text x="1004" y="363" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="400" font-family="sans-serif" font-size="13">ising2.5-100_5555 int8-ref64</text>
+<line x1="689.7283010412262" x2="731.0852694725256" y1="396" y2="396" stroke="#226e94" stroke-width="3"/>
+<circle cx="709.5820256122548" cy="396" r="4" fill="#163b53"/>
+<text x="1004" y="400" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="437" font-family="sans-serif" font-size="13">ising2.5-100_6666 fp6-int6</text>
+<line x1="426.3974482603684" x2="550.6973220819887" y1="433" y2="433" stroke="#226e94" stroke-width="3"/>
+<circle cx="492.60403295432275" cy="433" r="4" fill="#163b53"/>
+<text x="1004" y="437" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="474" font-family="sans-serif" font-size="13">ising2.5-100_6666 fp5-int6</text>
+<line x1="658.6687905613725" x2="750.7473613571715" y1="470" y2="470" stroke="#226e94" stroke-width="3"/>
+<circle cx="706.613034088204" cy="470" r="4" fill="#163b53"/>
+<text x="1004" y="474" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="511" font-family="sans-serif" font-size="13">ising2.5-100_6666 fp6-int7</text>
+<line x1="558.569653660797" x2="658.3992033741376" y1="507" y2="507" stroke="#226e94" stroke-width="3"/>
+<circle cx="609.8956297932887" cy="507" r="4" fill="#163b53"/>
+<text x="1004" y="511" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="548" font-family="sans-serif" font-size="13">ising2.5-100_6666 fp5-ref64</text>
+<line x1="837.0474596218955" x2="932.1436233172814" y1="544" y2="544" stroke="#226e94" stroke-width="3"/>
+<circle cx="883.0228922538741" cy="544" r="4" fill="#163b53"/>
+<text x="1004" y="548" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="585" font-family="sans-serif" font-size="13">ising2.5-100_6666 fp6-ref64</text>
+<line x1="621.3255081404996" x2="713.7977133244374" y1="581" y2="581" stroke="#226e94" stroke-width="3"/>
+<circle cx="669.013891119993" cy="581" r="4" fill="#163b53"/>
+<text x="1004" y="585" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="622" font-family="sans-serif" font-size="13">ising2.5-100_6666 int5-ref64</text>
+<line x1="824.6251801198076" x2="960.909090909091" y1="618" y2="618" stroke="#226e94" stroke-width="3"/>
+<circle cx="892.5612534462718" cy="618" r="4" fill="#163b53"/>
+<text x="1004" y="622" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="659" font-family="sans-serif" font-size="13">ising2.5-100_6666 int6-ref64</text>
+<line x1="800.1121340053155" x2="898.8995177271186" y1="655" y2="655" stroke="#226e94" stroke-width="3"/>
+<circle cx="846.4098581656701" cy="655" r="4" fill="#163b53"/>
+<text x="1004" y="659" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="696" font-family="sans-serif" font-size="13">ising2.5-100_6666 int7-ref64</text>
+<line x1="695.4710673667379" x2="765.0499606097351" y1="692" y2="692" stroke="#226e94" stroke-width="3"/>
+<circle cx="729.1182613267043" cy="692" r="4" fill="#163b53"/>
+<text x="1004" y="696" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="733" font-family="sans-serif" font-size="13">ising2.5-100_6666 int8-ref64</text>
+<line x1="631.326874144267" x2="700.5391681942978" y1="729" y2="729" stroke="#226e94" stroke-width="3"/>
+<circle cx="668.1462348126333" cy="729" r="4" fill="#163b53"/>
+<text x="1004" y="733" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="770" font-family="sans-serif" font-size="13">ising2.5-100_7777 fp6-int6</text>
+<line x1="596.2601610688375" x2="650.4135058812974" y1="766" y2="766" stroke="#226e94" stroke-width="3"/>
+<circle cx="624.0763440386053" cy="766" r="4" fill="#163b53"/>
+<text x="1004" y="770" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="807" font-family="sans-serif" font-size="13">ising2.5-100_7777 fp5-int6</text>
+<line x1="585.5646153414335" x2="648.3043202333084" y1="803" y2="803" stroke="#226e94" stroke-width="3"/>
+<circle cx="616.8189334386642" cy="803" r="4" fill="#163b53"/>
+<text x="1004" y="807" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="844" font-family="sans-serif" font-size="13">ising2.5-100_7777 fp6-int7</text>
+<line x1="627.2661388131489" x2="687.9199546973739" y1="840" y2="840" stroke="#226e94" stroke-width="3"/>
+<circle cx="657.6263316322312" cy="840" r="4" fill="#163b53"/>
+<text x="1004" y="844" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="881" font-family="sans-serif" font-size="13">ising2.5-100_7777 fp5-ref64</text>
+<line x1="642.728777013681" x2="714.0202155315983" y1="877" y2="877" stroke="#226e94" stroke-width="3"/>
+<circle cx="678.6908487008874" cy="877" r="4" fill="#163b53"/>
+<text x="1004" y="881" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="918" font-family="sans-serif" font-size="13">ising2.5-100_7777 fp6-ref64</text>
+<line x1="660.665014135951" x2="712.4551747125472" y1="914" y2="914" stroke="#226e94" stroke-width="3"/>
+<circle cx="685.9482593008283" cy="914" r="4" fill="#163b53"/>
+<text x="1004" y="918" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="955" font-family="sans-serif" font-size="13">ising2.5-100_7777 int5-ref64</text>
+<line x1="695.7536486675167" x2="761.7300112337043" y1="951" y2="951" stroke="#226e94" stroke-width="3"/>
+<circle cx="727.8157259228924" cy="951" r="4" fill="#163b53"/>
+<text x="1004" y="955" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="992" font-family="sans-serif" font-size="13">ising2.5-100_7777 int6-ref64</text>
+<line x1="702.5161177534359" x2="762.9862758778063" y1="988" y2="988" stroke="#226e94" stroke-width="3"/>
+<circle cx="731.8719152622232" cy="988" r="4" fill="#163b53"/>
+<text x="1004" y="992" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="1029" font-family="sans-serif" font-size="13">ising2.5-100_7777 int7-ref64</text>
+<line x1="669.0183469428918" x2="727.1372816346283" y1="1025" y2="1025" stroke="#226e94" stroke-width="3"/>
+<circle cx="698.3219276685973" cy="1025" r="4" fill="#163b53"/>
+<text x="1004" y="1029" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="1066" font-family="sans-serif" font-size="13">ising2.5-100_7777 int8-ref64</text>
+<line x1="657.6251800702507" x2="701.0436967643669" y1="1062" y2="1062" stroke="#226e94" stroke-width="3"/>
+<circle cx="679.4228697871166" cy="1062" r="4" fill="#163b53"/>
+<text x="1004" y="1066" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="1103" font-family="sans-serif" font-size="13">t2g10_5555 fp6-int6</text>
+<line x1="603.3436918687737" x2="713.5047731219082" y1="1099" y2="1099" stroke="#226e94" stroke-width="3"/>
+<circle cx="658.2018532588502" cy="1099" r="4" fill="#163b53"/>
+<text x="1004" y="1103" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="1140" font-family="sans-serif" font-size="13">t2g10_5555 fp5-int6</text>
+<line x1="636.197145894068" x2="749.3945952192829" y1="1136" y2="1136" stroke="#226e94" stroke-width="3"/>
+<circle cx="693.6472976311408" cy="1136" r="4" fill="#163b53"/>
+<text x="1004" y="1140" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="1177" font-family="sans-serif" font-size="13">t2g10_5555 fp6-int7</text>
+<line x1="617.9719282838871" x2="714.5580488642518" y1="1173" y2="1173" stroke="#226e94" stroke-width="3"/>
+<circle cx="666.7665572667763" cy="1173" r="4" fill="#163b53"/>
+<text x="1004" y="1177" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="1214" font-family="sans-serif" font-size="13">t2g10_5555 fp5-ref64</text>
+<line x1="629.2081284359555" x2="727.1477819658353" y1="1210" y2="1210" stroke="#226e94" stroke-width="3"/>
+<circle cx="678.4157632385375" cy="1210" r="4" fill="#163b53"/>
+<text x="1004" y="1214" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="1251" font-family="sans-serif" font-size="13">t2g10_5555 fp6-ref64</text>
+<line x1="592.3077687124712" x2="690.5922486392058" y1="1247" y2="1247" stroke="#226e94" stroke-width="3"/>
+<circle cx="642.9703188662469" cy="1247" r="4" fill="#163b53"/>
+<text x="1004" y="1251" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="1288" font-family="sans-serif" font-size="13">t2g10_5555 int5-ref64</text>
+<line x1="612.5261203865106" x2="717.420897309021" y1="1284" y2="1284" stroke="#226e94" stroke-width="3"/>
+<circle cx="664.9928993010404" cy="1284" r="4" fill="#163b53"/>
+<text x="1004" y="1288" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="1325" font-family="sans-serif" font-size="13">t2g10_5555 int6-ref64</text>
+<line x1="606.0564772025575" x2="704.125461236817" y1="1321" y2="1321" stroke="#226e94" stroke-width="3"/>
+<circle cx="654.7684656073967" cy="1321" r="4" fill="#163b53"/>
+<text x="1004" y="1325" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="1362" font-family="sans-serif" font-size="13">t2g10_5555 int7-ref64</text>
+<line x1="605.3091931896752" x2="684.6927390080265" y1="1358" y2="1358" stroke="#226e94" stroke-width="3"/>
+<circle cx="646.2037615994705" cy="1358" r="4" fill="#163b53"/>
+<text x="1004" y="1362" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="1399" font-family="sans-serif" font-size="13">t2g10_5555 int8-ref64</text>
+<line x1="617.3791994502094" x2="679.5480771926025" y1="1395" y2="1395" stroke="#226e94" stroke-width="3"/>
+<circle cx="650.5733989526364" cy="1395" r="4" fill="#163b53"/>
+<text x="1004" y="1399" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="1436" font-family="sans-serif" font-size="13">t2g10_6666 fp6-int6</text>
+<line x1="603.2756852011407" x2="732.7947035523578" y1="1432" y2="1432" stroke="#226e94" stroke-width="3"/>
+<circle cx="668.3827351051989" cy="1432" r="4" fill="#163b53"/>
+<text x="1004" y="1436" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="1473" font-family="sans-serif" font-size="13">t2g10_6666 fp5-int6</text>
+<line x1="600.6469565129324" x2="745.5204431873949" y1="1469" y2="1469" stroke="#226e94" stroke-width="3"/>
+<circle cx="670.395837967147" cy="1469" r="4" fill="#163b53"/>
+<text x="1004" y="1473" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="1510" font-family="sans-serif" font-size="13">t2g10_6666 fp6-int7</text>
+<line x1="584.2300313953115" x2="722.864244503125" y1="1506" y2="1506" stroke="#226e94" stroke-width="3"/>
+<circle cx="652.5974717003722" cy="1506" r="4" fill="#163b53"/>
+<text x="1004" y="1510" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="1547" font-family="sans-serif" font-size="13">t2g10_6666 fp5-ref64</text>
+<line x1="616.0537364725956" x2="765.1330713373007" y1="1543" y2="1543" stroke="#226e94" stroke-width="3"/>
+<circle cx="687.6911920108687" cy="1543" r="4" fill="#163b53"/>
+<text x="1004" y="1547" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="1584" font-family="sans-serif" font-size="13">t2g10_6666 fp6-ref64</text>
+<line x1="617.9005917838758" x2="755.086195797198" y1="1580" y2="1580" stroke="#226e94" stroke-width="3"/>
+<circle cx="685.6780891489205" cy="1580" r="4" fill="#163b53"/>
+<text x="1004" y="1584" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="1621" font-family="sans-serif" font-size="13">t2g10_6666 int5-ref64</text>
+<line x1="631.3389973279251" x2="762.0564505808441" y1="1617" y2="1617" stroke="#226e94" stroke-width="3"/>
+<circle cx="695.5366327350018" cy="1617" r="4" fill="#163b53"/>
+<text x="1004" y="1621" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="1658" font-family="sans-serif" font-size="13">t2g10_6666 int6-ref64</text>
+<line x1="625.5329403233762" x2="751.2863911009817" y1="1654" y2="1654" stroke="#226e94" stroke-width="3"/>
+<circle cx="687.2953540437218" cy="1654" r="4" fill="#163b53"/>
+<text x="1004" y="1658" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="1695" font-family="sans-serif" font-size="13">t2g10_6666 int7-ref64</text>
+<line x1="648.5838323671194" x2="760.6327564923708" y1="1691" y2="1691" stroke="#226e94" stroke-width="3"/>
+<circle cx="703.0806174485483" cy="1691" r="4" fill="#163b53"/>
+<text x="1004" y="1695" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="1732" font-family="sans-serif" font-size="13">t2g10_6666 int8-ref64</text>
+<line x1="629.1360538168003" x2="722.2398055779314" y1="1728" y2="1728" stroke="#226e94" stroke-width="3"/>
+<circle cx="676.5193194693635" cy="1728" r="4" fill="#163b53"/>
+<text x="1004" y="1732" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="1769" font-family="sans-serif" font-size="13">t2g10_7777 fp6-int6</text>
+<line x1="605.9308784408909" x2="725.3485476199319" y1="1765" y2="1765" stroke="#226e94" stroke-width="3"/>
+<circle cx="666.8289435385288" cy="1765" r="4" fill="#163b53"/>
+<text x="1004" y="1769" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="1806" font-family="sans-serif" font-size="13">t2g10_7777 fp5-int6</text>
+<line x1="627.4659483993719" x2="753.1051976491323" y1="1802" y2="1802" stroke="#226e94" stroke-width="3"/>
+<circle cx="689.6027632135101" cy="1802" r="4" fill="#163b53"/>
+<text x="1004" y="1806" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="1843" font-family="sans-serif" font-size="13">t2g10_7777 fp6-int7</text>
+<line x1="614.0664225294631" x2="741.8336503672292" y1="1839" y2="1839" stroke="#226e94" stroke-width="3"/>
+<circle cx="679.1606794845795" cy="1839" r="4" fill="#163b53"/>
+<text x="1004" y="1843" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="1880" font-family="sans-serif" font-size="13">t2g10_7777 fp5-ref64</text>
+<line x1="580.8693110588771" x2="703.9232958965157" y1="1876" y2="1876" stroke="#226e94" stroke-width="3"/>
+<circle cx="640.8932799570191" cy="1876" r="4" fill="#163b53"/>
+<text x="1004" y="1880" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="1917" font-family="sans-serif" font-size="13">t2g10_7777 fp6-ref64</text>
+<line x1="558.674680260875" x2="676.1512804370682" y1="1913" y2="1913" stroke="#226e94" stroke-width="3"/>
+<circle cx="618.1194602820377" cy="1913" r="4" fill="#163b53"/>
+<text x="1004" y="1917" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="1954" font-family="sans-serif" font-size="13">t2g10_7777 int5-ref64</text>
+<line x1="613.8987832926861" x2="728.7601814020501" y1="1950" y2="1950" stroke="#226e94" stroke-width="3"/>
+<circle cx="671.0672671785683" cy="1950" r="4" fill="#163b53"/>
+<text x="1004" y="1954" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="1991" font-family="sans-serif" font-size="13">t2g10_7777 int6-ref64</text>
+<line x1="565.2178607774193" x2="679.2497465056924" y1="1987" y2="1987" stroke="#226e94" stroke-width="3"/>
+<circle cx="621.290516743509" cy="1987" r="4" fill="#163b53"/>
+<text x="1004" y="1991" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="2028" font-family="sans-serif" font-size="13">t2g10_7777 int7-ref64</text>
+<line x1="556.8046685334891" x2="660.7919627447934" y1="2024" y2="2024" stroke="#226e94" stroke-width="3"/>
+<circle cx="608.9587807974583" cy="2024" r="4" fill="#163b53"/>
+<text x="1004" y="2028" font-family="sans-serif" font-size="10"></text>
+<text x="28" y="2065" font-family="sans-serif" font-size="13">t2g10_7777 int8-ref64</text>
+<line x1="628.3552229051966" x2="701.0294113713023" y1="2061" y2="2061" stroke="#226e94" stroke-width="3"/>
+<circle cx="667.340185501216" cy="2061" r="4" fill="#163b53"/>
+<text x="1004" y="2065" font-family="sans-serif" font-size="10"></text>
+</svg>

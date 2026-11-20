@@ -1,0 +1,3387 @@
+{
+  "archives": [
+    {
+      "bundle_count": 12,
+      "bundles": [
+        "generated/ring/000",
+        "generated/ring/001",
+        "generated/ring/002",
+        "generated/ring/003",
+        "generated/ring/004",
+        "generated/ring/005",
+        "generated/ring/006",
+        "generated/ring/007",
+        "generated/ring/008",
+        "generated/ring/009",
+        "generated/ring/010",
+        "generated/ring/011"
+      ],
+      "bytes": 2998277,
+      "entries": [
+        {
+          "bytes": 135311,
+          "path": "generated/ring/000/fidelity.jsonl.gz",
+          "sha256": "99ed3379f7e7e9f311e79900d68499aad88483c3c1bd2ce507f3f9b1a171a4b2"
+        },
+        {
+          "bytes": 1482,
+          "path": "generated/ring/000/manifest.json",
+          "sha256": "4da3153e61321083be4f7f84c5b22d52d4e94cc585cf7c3ae6e77d344636faac"
+        },
+        {
+          "bytes": 109040,
+          "path": "generated/ring/000/records.jsonl.gz",
+          "sha256": "f53098d6afdb5d3c19a2c591da624c78cf2d158ef767f51847e76bb341a93ac1"
+        },
+        {
+          "bytes": 8947,
+          "path": "generated/ring/000/representation_metrics.json",
+          "sha256": "bfb9633ec487c31ae06b926863226489e833f7a6dcbd5dbcda8a6ae946edc8ee"
+        },
+        {
+          "bytes": 136011,
+          "path": "generated/ring/001/fidelity.jsonl.gz",
+          "sha256": "f1dbbca155340f31c540938a28e74d52877664713fc3d5f93768ae60df4d8bb0"
+        },
+        {
+          "bytes": 1482,
+          "path": "generated/ring/001/manifest.json",
+          "sha256": "90a99bb0ac172aea715e5334788b2f0d3eefa88f710f9a74bf91aa167c1b0254"
+        },
+        {
+          "bytes": 112075,
+          "path": "generated/ring/001/records.jsonl.gz",
+          "sha256": "9d7f805470f4bd0dbeb1e34d1439b67955539c4a765ec568175f282d69fa94b4"
+        },
+        {
+          "bytes": 8939,
+          "path": "generated/ring/001/representation_metrics.json",
+          "sha256": "8b1b4e0fe1bae09e9eaa442d226145848716ee54542ec3bd3aace3d9e06dc173"
+        },
+        {
+          "bytes": 136321,
+          "path": "generated/ring/002/fidelity.jsonl.gz",
+          "sha256": "630ba8ccc05ff6a2bfe559c5f04795c0efbb9360bdf916f44b1915dd6eef2006"
+        },
+        {
+          "bytes": 1476,
+          "path": "generated/ring/002/manifest.json",
+          "sha256": "7f3772a72d70b3d5b27c9ed6f919af937eee3c7d51a1dd860ecd763b062428fe"
+        },
+        {
+          "bytes": 112917,
+          "path": "generated/ring/002/records.jsonl.gz",
+          "sha256": "0ab9808123c2833bcf262ce52375cd4f27d48f229ed7279a6f5ef207e32a14e1"
+        },
+        {
+          "bytes": 8947,
+          "path": "generated/ring/002/representation_metrics.json",
+          "sha256": "3c3e823360c5aacd0cfb366568b901ed9f88b5ad0ab8ed1d1946b4c718001252"
+        },
+        {
+          "bytes": 136408,
+          "path": "generated/ring/003/fidelity.jsonl.gz",
+          "sha256": "cfd5ac3126e8b1d924d708bc79937097e543eca8a1818fa1d21396e89aae3425"
+        },
+        {
+          "bytes": 1482,
+          "path": "generated/ring/003/manifest.json",
+          "sha256": "97447573e75f53f26fcfa3e71ed0a8c3883d02f8f4f316303da0500867863a6b"
+        },
+        {
+          "bytes": 110973,
+          "path": "generated/ring/003/records.jsonl.gz",
+          "sha256": "f25cd4524dac066392ef1d95fcb883cf06d32c008c0ee8ae007e95d7bb5c37e2"
+        },
+        {
+          "bytes": 8947,
+          "path": "generated/ring/003/representation_metrics.json",
+          "sha256": "eacf05a4d1d4af80209049c8e0acd1df4233ea71d43b9adf228aaf208800497e"
+        },
+        {
+          "bytes": 136329,
+          "path": "generated/ring/004/fidelity.jsonl.gz",
+          "sha256": "6bfaed15173b4b0d29a44872c3f18e8f1686da9f73d2612ad997ad63df2288c1"
+        },
+        {
+          "bytes": 1473,
+          "path": "generated/ring/004/manifest.json",
+          "sha256": "cbfaf57d5aad6744114c4726ccc9e37821bfe534857b2aafad9e55f62d39ae71"
+        },
+        {
+          "bytes": 112870,
+          "path": "generated/ring/004/records.jsonl.gz",
+          "sha256": "f71aeb0ace76925be271f98f04a5c82434e66ac0b3b4dd4367bf0c1b4338181b"
+        },
+        {
+          "bytes": 8946,
+          "path": "generated/ring/004/representation_metrics.json",
+          "sha256": "f15f06c022c13c979922188085d09ee00170009539cd27e96865d27692f7f156"
+        },
+        {
+          "bytes": 137201,
+          "path": "generated/ring/005/fidelity.jsonl.gz",
+          "sha256": "b7617b5e8a82e8a64afeef39f77b2fb45fbb6262f6630eebd63b7c41a70ca438"
+        },
+        {
+          "bytes": 1482,
+          "path": "generated/ring/005/manifest.json",
+          "sha256": "ffea448ecc40e3935ce0e9356edc2274b44f60e02fba74195e5b5fecc87eac75"
+        },
+        {
+          "bytes": 113610,
+          "path": "generated/ring/005/records.jsonl.gz",
+          "sha256": "83b2bc932009686a3b4ec138355f110a117ce3cefc31bafba7fa277bad61c07a"
+        },
+        {
+          "bytes": 8943,
+          "path": "generated/ring/005/representation_metrics.json",
+          "sha256": "c867cd023ec1060431c522d65a47f07ec75bf83040e65d7650a7ab9e27da7de5"
+        },
+        {
+          "bytes": 137190,
+          "path": "generated/ring/006/fidelity.jsonl.gz",
+          "sha256": "4d9afb486afb4066cc2bb65864fe666f375b1affef7ef420d72d2e6a4640529b"
+        },
+        {
+          "bytes": 1482,
+          "path": "generated/ring/006/manifest.json",
+          "sha256": "b9a85f18cf9548213b7eeb4bd038540d86e52192b96a5fcd348f040b0f54741e"
+        },
+        {
+          "bytes": 112574,
+          "path": "generated/ring/006/records.jsonl.gz",
+          "sha256": "1de7e6add584143eeaf0647697f26872c4d4d94fc4e1cbb3957297e797473862"
+        },
+        {
+          "bytes": 8946,
+          "path": "generated/ring/006/representation_metrics.json",
+          "sha256": "8c0eb1865f2bbda728c62c16bb773364307b1974ebb29def916b18425a1d5f88"
+        },
+        {
+          "bytes": 137001,
+          "path": "generated/ring/007/fidelity.jsonl.gz",
+          "sha256": "f27d48badc51f1bed9d0a17bb5ce94fae05ce1d7dc448c3ea75318ae43237a2c"
+        },
+        {
+          "bytes": 1476,
+          "path": "generated/ring/007/manifest.json",
+          "sha256": "98f82562967d3961d20da8012343786f03c89f990088796b46a2e5f0bfee2489"
+        },
+        {
+          "bytes": 116013,
+          "path": "generated/ring/007/records.jsonl.gz",
+          "sha256": "522fdc86e9be80e81c79ebb89944a09193d254a1988539347d8b4e236a64ead3"
+        },
+        {
+          "bytes": 8949,
+          "path": "generated/ring/007/representation_metrics.json",
+          "sha256": "9fdea1387ad03e960e687b7cd91ad22aa8e7f79263eb82a7b6d350815cdff999"
+        },
+        {
+          "bytes": 137297,
+          "path": "generated/ring/008/fidelity.jsonl.gz",
+          "sha256": "eba3eb5a65fce48b435ad1d5fb6b2df5a1973527bf5236dd24b2961092f97637"
+        },
+        {
+          "bytes": 1476,
+          "path": "generated/ring/008/manifest.json",
+          "sha256": "cc59c10f0db3ed84894fc7f5bb7e963662091db4ec50a32d2903904e482a8b6a"
+        },
+        {
+          "bytes": 116470,
+          "path": "generated/ring/008/records.jsonl.gz",
+          "sha256": "1236abf10f595d290fcfb45452d30b4354b12be787177e372e24d2965c772a7e"
+        },
+        {
+          "bytes": 8951,
+          "path": "generated/ring/008/representation_metrics.json",
+          "sha256": "7b57403b0088076c264082c54c833b892312aa886449e0bcf605bc00b2d001de"
+        },
+        {
+          "bytes": 135670,
+          "path": "generated/ring/009/fidelity.jsonl.gz",
+          "sha256": "a2269891a3565a40d7b7898fe7848fdb704592a459441070d583c3c39878e3a1"
+        },
+        {
+          "bytes": 1476,
+          "path": "generated/ring/009/manifest.json",
+          "sha256": "db95b79a02587f48e1427014bcd4cf0de00075298102d712f1e7d8f1db50c759"
+        },
+        {
+          "bytes": 111181,
+          "path": "generated/ring/009/records.jsonl.gz",
+          "sha256": "f290f7727098968e937d71f4d5d954685851d68e1c25ca43aa0226799d9cea02"
+        },
+        {
+          "bytes": 8948,
+          "path": "generated/ring/009/representation_metrics.json",
+          "sha256": "a5c1bb5ed65ef373a0a53d4e0f4e71096ae7701ecab04d86a364952763713bfe"
+        },
+        {
+          "bytes": 135606,
+          "path": "generated/ring/010/fidelity.jsonl.gz",
+          "sha256": "08b21ecd1a25ecc96fcbbb2f06567516aa5b87bd3e2239324d4c4c36f7e7a75c"
+        },
+        {
+          "bytes": 1482,
+          "path": "generated/ring/010/manifest.json",
+          "sha256": "99f1074e4c4c0f4dc0961b074760100657f1a8f9ba4cb35e4c01c848d5648954"
+        },
+        {
+          "bytes": 108886,
+          "path": "generated/ring/010/records.jsonl.gz",
+          "sha256": "170724407a2a5ab3b567e07589e1a3b853fa0c9429d7edd9084a5b97a22a97e4"
+        },
+        {
+          "bytes": 8937,
+          "path": "generated/ring/010/representation_metrics.json",
+          "sha256": "3506f4506ed46677b6ee7a8d4222df473a48527bb247318844611d2d8e7a09e5"
+        },
+        {
+          "bytes": 136715,
+          "path": "generated/ring/011/fidelity.jsonl.gz",
+          "sha256": "5021939d6900fc4300c87b6e0c847adbdf7d83c674b0ce295fc84117d8924d5b"
+        },
+        {
+          "bytes": 1477,
+          "path": "generated/ring/011/manifest.json",
+          "sha256": "22b37ac592c602d22916feff30927bbefb277f84c49093c8bdf3462eb6a5703b"
+        },
+        {
+          "bytes": 113909,
+          "path": "generated/ring/011/records.jsonl.gz",
+          "sha256": "83cf8db08ce81def758293a1c20800ba373ca81941410cb8a2757792accdaf4f"
+        },
+        {
+          "bytes": 8947,
+          "path": "generated/ring/011/representation_metrics.json",
+          "sha256": "48403eada4555fdab17f63e765e05f7f284af8484be498f9522cdd2b5551f7f3"
+        }
+      ],
+      "file": "generated-ring-000-011.tar.gz",
+      "sha256": "f600aef62bab0009c84a1a97315bc2d22073e203db7eb0dab07d8773c280c44b",
+      "stage_counts": {
+        "main": 5376,
+        "reference": 1536
+      },
+      "trajectory_records": 6912
+    },
+    {
+      "bundle_count": 12,
+      "bundles": [
+        "generated/ring/012",
+        "generated/ring/013",
+        "generated/ring/014",
+        "generated/ring/015",
+        "generated/ring/016",
+        "generated/ring/017",
+        "generated/ring/018",
+        "generated/ring/019",
+        "generated/ring/020",
+        "generated/ring/021",
+        "generated/ring/022",
+        "generated/ring/023"
+      ],
+      "bytes": 2974360,
+      "entries": [
+        {
+          "bytes": 133196,
+          "path": "generated/ring/012/fidelity.jsonl.gz",
+          "sha256": "776d1446e096a0dcd66fb229b05c0638ced61ce932cb5382a82f7901829d05e0"
+        },
+        {
+          "bytes": 1483,
+          "path": "generated/ring/012/manifest.json",
+          "sha256": "22121e8e8f40b53c8dfd6fba1114bc75e95b3d7d9a256e59807ecee60a0b3b38"
+        },
+        {
+          "bytes": 105379,
+          "path": "generated/ring/012/records.jsonl.gz",
+          "sha256": "a02ec3888bc0d6bf73616cafa12533bacb67b86bf86b0fc012daa89abf48c629"
+        },
+        {
+          "bytes": 8940,
+          "path": "generated/ring/012/representation_metrics.json",
+          "sha256": "b03abf3c8035053cb4014c7450e5767dc5abed52268a9e5bd7bd8dd45c145971"
+        },
+        {
+          "bytes": 137194,
+          "path": "generated/ring/013/fidelity.jsonl.gz",
+          "sha256": "38936b7f4c7b4f1080258ca1d273772319202cf56982b4b6cf83121e145da70a"
+        },
+        {
+          "bytes": 1477,
+          "path": "generated/ring/013/manifest.json",
+          "sha256": "f960908c52f2762dcf541e1847c46af23f95f7ab3401c9d735590a6530ad37cd"
+        },
+        {
+          "bytes": 116698,
+          "path": "generated/ring/013/records.jsonl.gz",
+          "sha256": "c7fabee9e142ec8aeef0f978018ffa78eef6dbeb6c4c1b0a68fbcd1bff9d670b"
+        },
+        {
+          "bytes": 8940,
+          "path": "generated/ring/013/representation_metrics.json",
+          "sha256": "1e3a0ae0420022a25a3f81b1014de36e85a6c2c373db6ac3401987d4f00f046c"
+        },
+        {
+          "bytes": 135364,
+          "path": "generated/ring/014/fidelity.jsonl.gz",
+          "sha256": "67e04c08f39c8dcd279c0be0a6a8c531d82a4071874b99a2bd810632ec6773fe"
+        },
+        {
+          "bytes": 1483,
+          "path": "generated/ring/014/manifest.json",
+          "sha256": "c5b9410dbb387bc089bdbe86cadede3c0daab2e25db2c3e4810d148488ea6e31"
+        },
+        {
+          "bytes": 108307,
+          "path": "generated/ring/014/records.jsonl.gz",
+          "sha256": "213fa2a901dd31b5ae7ef59dd6ee163ffc3880af5bb1e9770423e0f7cc7d5cac"
+        },
+        {
+          "bytes": 8944,
+          "path": "generated/ring/014/representation_metrics.json",
+          "sha256": "0a2056915b75e95459ea74b994eab2cd1f8ee07186e7eb4f6bec6245a67effa5"
+        },
+        {
+          "bytes": 135262,
+          "path": "generated/ring/015/fidelity.jsonl.gz",
+          "sha256": "68e6a98fa40a49b500f03db797b91c22343f54a3244e2f85b42e2dda52db200d"
+        },
+        {
+          "bytes": 1477,
+          "path": "generated/ring/015/manifest.json",
+          "sha256": "fbc4c2fe09c3b6e3f86d6151e3ea66f077f3419d6c51b01c10748528848b5eda"
+        },
+        {
+          "bytes": 108254,
+          "path": "generated/ring/015/records.jsonl.gz",
+          "sha256": "29e09095ef5768a8255d5305b79d1a57fc38ba40b6b581b4c5b438b7dc461a98"
+        },
+        {
+          "bytes": 8949,
+          "path": "generated/ring/015/representation_metrics.json",
+          "sha256": "f3dd5f0f6a18754162e1f1ad2fc0ec379d524827cb5355408bcf86dfee784b4c"
+        },
+        {
+          "bytes": 135370,
+          "path": "generated/ring/016/fidelity.jsonl.gz",
+          "sha256": "fd7dd4bfaac6a2d2cd35d23a63219e40535108eb5e2d14a44fff2a20edd93f4e"
+        },
+        {
+          "bytes": 1483,
+          "path": "generated/ring/016/manifest.json",
+          "sha256": "c43dee269feceefd5a8c76f6fa43d897b9fe017f11a5b61de027bdee230ffb2f"
+        },
+        {
+          "bytes": 107953,
+          "path": "generated/ring/016/records.jsonl.gz",
+          "sha256": "c0d1416bd3e030e59aac38e876696e4d1b3033da710bc6a789873703d0b53f07"
+        },
+        {
+          "bytes": 8944,
+          "path": "generated/ring/016/representation_metrics.json",
+          "sha256": "186d75d83febbff9519ffcb9790347f516a1c3709d396e6dcc8900db147f1334"
+        },
+        {
+          "bytes": 137135,
+          "path": "generated/ring/017/fidelity.jsonl.gz",
+          "sha256": "64e4b95cbf5ffe37d9e39b1a5827c85fa5b047bd9366e16d8910e1721a7aa421"
+        },
+        {
+          "bytes": 1477,
+          "path": "generated/ring/017/manifest.json",
+          "sha256": "efd7f6ea24da9a25aaeaea67d3463ae4c5540b4229d8a65da80d6c4c69d7e13b"
+        },
+        {
+          "bytes": 117254,
+          "path": "generated/ring/017/records.jsonl.gz",
+          "sha256": "3538c2ded2840d3aa953d8c7c11b169ca748e4bd1e7c353d7ce4dafc7651c135"
+        },
+        {
+          "bytes": 8949,
+          "path": "generated/ring/017/representation_metrics.json",
+          "sha256": "85f7966e532d5b206ad66fabadcba1581f72ccf1e7cdbe8f8cc55d5c732e70a8"
+        },
+        {
+          "bytes": 135574,
+          "path": "generated/ring/018/fidelity.jsonl.gz",
+          "sha256": "8fda73ce45624246c43fac21c88f15ca88733bf678ec8a77ad5057218833e3be"
+        },
+        {
+          "bytes": 1476,
+          "path": "generated/ring/018/manifest.json",
+          "sha256": "8b26ff4890b90c547660ab7313bfd1d34578a10d3d925df538caf50243b69f71"
+        },
+        {
+          "bytes": 109775,
+          "path": "generated/ring/018/records.jsonl.gz",
+          "sha256": "78ec49bdefa8818abb7f70678e33f29385409ec68583db7124e0345dfd1440aa"
+        },
+        {
+          "bytes": 8950,
+          "path": "generated/ring/018/representation_metrics.json",
+          "sha256": "428ce40300ea8ea9add7e81699e999485322ab94f0308f150d8aeb3c0854f7ac"
+        },
+        {
+          "bytes": 138405,
+          "path": "generated/ring/019/fidelity.jsonl.gz",
+          "sha256": "50d1ae1b696ac4fdd3fb6dfe5e91bf074f5f1b9e86e08ca45e5a34632a3bd660"
+        },
+        {
+          "bytes": 1477,
+          "path": "generated/ring/019/manifest.json",
+          "sha256": "68cc0e823b312b74065d8c1d44c963df0e9ca0af6906525bf6b0fa33e918af64"
+        },
+        {
+          "bytes": 117083,
+          "path": "generated/ring/019/records.jsonl.gz",
+          "sha256": "d51c63b60d0bc3e6b79b9d27fab77c5803113b957337d7b0a72f3257b47a4057"
+        },
+        {
+          "bytes": 8946,
+          "path": "generated/ring/019/representation_metrics.json",
+          "sha256": "46ff1a6093d794587d9aa82f71c2fd2d647086a57f2b54c8f85d5e4cf2500a84"
+        },
+        {
+          "bytes": 136239,
+          "path": "generated/ring/020/fidelity.jsonl.gz",
+          "sha256": "0fc542389f643e8e9d7a6cf1ad7345bf13e1ab7a89dc5f97ee0d7329bdefd1db"
+        },
+        {
+          "bytes": 1483,
+          "path": "generated/ring/020/manifest.json",
+          "sha256": "3d6d255897b6944409456a9a871f6b8334eb1ad56fe4e779e09477f89b4d3730"
+        },
+        {
+          "bytes": 112600,
+          "path": "generated/ring/020/records.jsonl.gz",
+          "sha256": "648196c3a244d060a300f0f45792991463e70d3c245a87f05935108fc25cc8fd"
+        },
+        {
+          "bytes": 8951,
+          "path": "generated/ring/020/representation_metrics.json",
+          "sha256": "d52d379aebcf2e7fafbf2636c7d94d72e730726b59508294c598db12edbbdfad"
+        },
+        {
+          "bytes": 136835,
+          "path": "generated/ring/021/fidelity.jsonl.gz",
+          "sha256": "352b0de0eeba8c6f4b6afa76ea04370359ac44eb4ee99c111d6a9598b0239e91"
+        },
+        {
+          "bytes": 1476,
+          "path": "generated/ring/021/manifest.json",
+          "sha256": "449be65d73bc85bed0316e1fb2a775b619ff233cfdaefcfa6daaac24578ff844"
+        },
+        {
+          "bytes": 111649,
+          "path": "generated/ring/021/records.jsonl.gz",
+          "sha256": "3e729af742dd2f3b1a188ad821898f22a8bdb2a632f8ee8aa2d994abe8c6d7c6"
+        },
+        {
+          "bytes": 8941,
+          "path": "generated/ring/021/representation_metrics.json",
+          "sha256": "f9e6cdb89b18be6a0bf8bd8869c77dc30f61ba63ea004d38ab47c473435374ed"
+        },
+        {
+          "bytes": 137004,
+          "path": "generated/ring/022/fidelity.jsonl.gz",
+          "sha256": "8814ae13cffd647a36c8957f1525c92bca9ecebdc100e749c3f2d5803ae170e0"
+        },
+        {
+          "bytes": 1477,
+          "path": "generated/ring/022/manifest.json",
+          "sha256": "e35d59de96df87af68a24461f10a4f37ee64c21a30b46985e435f00fefb74945"
+        },
+        {
+          "bytes": 114932,
+          "path": "generated/ring/022/records.jsonl.gz",
+          "sha256": "c70c17d862adc27e5bf3150b8ac080814a8ecfea0b58fe29eaf533b5269751e8"
+        },
+        {
+          "bytes": 8948,
+          "path": "generated/ring/022/representation_metrics.json",
+          "sha256": "d545f960ba4c12b9c26ed858d0e6928f32d2f64d0433c13dac5a2c228c7cc083"
+        },
+        {
+          "bytes": 134074,
+          "path": "generated/ring/023/fidelity.jsonl.gz",
+          "sha256": "5d26f6f90dea50355625d853b0663ee2d53cddbed5d452b55133da055178e025"
+        },
+        {
+          "bytes": 1477,
+          "path": "generated/ring/023/manifest.json",
+          "sha256": "3eb6ba834537733ab862f98360664ab8817b4bb3db3bd6d29c786efbb51b0110"
+        },
+        {
+          "bytes": 107148,
+          "path": "generated/ring/023/records.jsonl.gz",
+          "sha256": "6d61a8804c78174a2db6af28396431bfac447bbc094672e97b1caf811b6a7b7b"
+        },
+        {
+          "bytes": 8940,
+          "path": "generated/ring/023/representation_metrics.json",
+          "sha256": "707370b208e15912e7af235ae6076fb57e588d8e9f905507fa15dd6193b12de2"
+        }
+      ],
+      "file": "generated-ring-012-023.tar.gz",
+      "sha256": "b0c28ff2c1e88eefc8193ed3a79e918cc6d91f2f431f411b57e6498866dae9dc",
+      "stage_counts": {
+        "main": 5376,
+        "reference": 1536
+      },
+      "trajectory_records": 6912
+    },
+    {
+      "bundle_count": 12,
+      "bundles": [
+        "generated/ring/024",
+        "generated/ring/025",
+        "generated/ring/026",
+        "generated/ring/027",
+        "generated/ring/028",
+        "generated/ring/029",
+        "generated/ring/030",
+        "generated/ring/031",
+        "generated/ring/032",
+        "generated/ring/033",
+        "generated/ring/034",
+        "generated/ring/035"
+      ],
+      "bytes": 2983278,
+      "entries": [
+        {
+          "bytes": 135047,
+          "path": "generated/ring/024/fidelity.jsonl.gz",
+          "sha256": "d7fa61dca846adf82d05ccf4c365368293ffb2156eaacb766ccb3c2603e8617d"
+        },
+        {
+          "bytes": 1477,
+          "path": "generated/ring/024/manifest.json",
+          "sha256": "e693ca7679851b3e35f4967db2d7b78bd9e0d39299d8f3cbe1691f4b7980755c"
+        },
+        {
+          "bytes": 109027,
+          "path": "generated/ring/024/records.jsonl.gz",
+          "sha256": "a710bea98419e764f030de9ef8edc3687e575cd491089703089256ca958d22b7"
+        },
+        {
+          "bytes": 8944,
+          "path": "generated/ring/024/representation_metrics.json",
+          "sha256": "54336f02124443282e3edd2c9bf2979631d023d13bccb8f38d7bad84edaca456"
+        },
+        {
+          "bytes": 138419,
+          "path": "generated/ring/025/fidelity.jsonl.gz",
+          "sha256": "bc8aa8250ac2274ce92293242233c7cb89b486848da6ad3735e692d5c60f3309"
+        },
+        {
+          "bytes": 1476,
+          "path": "generated/ring/025/manifest.json",
+          "sha256": "7feba534bf5ffde3d71c12104936aca409e4a5ce2119528e994eebf48125f45f"
+        },
+        {
+          "bytes": 118159,
+          "path": "generated/ring/025/records.jsonl.gz",
+          "sha256": "3a1f3bf9941dd2bb4b393405ee9bb3afd9fea952cb344cd2097edc1068840864"
+        },
+        {
+          "bytes": 8957,
+          "path": "generated/ring/025/representation_metrics.json",
+          "sha256": "2601cdceca2753c2f5ca9cdcc61400aa3907d305f571d9a7d7a8bb9d32667be0"
+        },
+        {
+          "bytes": 136767,
+          "path": "generated/ring/026/fidelity.jsonl.gz",
+          "sha256": "27f38c5199694e70c614f1890728160b30d6c104f00bb50e486aa377a002956a"
+        },
+        {
+          "bytes": 1483,
+          "path": "generated/ring/026/manifest.json",
+          "sha256": "ef1c72b14c084ad12448f06d9a1ec60c5c90d5fa787e3e3305c07d381b159a47"
+        },
+        {
+          "bytes": 116561,
+          "path": "generated/ring/026/records.jsonl.gz",
+          "sha256": "e719074dbcccb5649949476b65fbe4c6ebfcd5d376cd84d2650472cf6602980f"
+        },
+        {
+          "bytes": 8948,
+          "path": "generated/ring/026/representation_metrics.json",
+          "sha256": "3effc4034b75d680e79ad335ef9919c72f4018a1511ae7b682653538ad7063dc"
+        },
+        {
+          "bytes": 136064,
+          "path": "generated/ring/027/fidelity.jsonl.gz",
+          "sha256": "1db713af00ea67058628c27e9d3aa1267f20cdbf3f667725afe0239172fd9b52"
+        },
+        {
+          "bytes": 1476,
+          "path": "generated/ring/027/manifest.json",
+          "sha256": "6feabb6419672d370f79b33994d5704d153364ac10788881a0572f1f4d178f02"
+        },
+        {
+          "bytes": 109106,
+          "path": "generated/ring/027/records.jsonl.gz",
+          "sha256": "86a2f47d5a5bed717fe5d0d8f780ce523df993b7f25a57111f6655405809e1d4"
+        },
+        {
+          "bytes": 8943,
+          "path": "generated/ring/027/representation_metrics.json",
+          "sha256": "b688f18827edbdc2fd37b3a0d0397fb44d77e8e8a43c026a4e5763d7218ae9ad"
+        },
+        {
+          "bytes": 136485,
+          "path": "generated/ring/028/fidelity.jsonl.gz",
+          "sha256": "18f5f6a4263437bfa7682da80dffeca84517d0ded5838d05ad6291c63c00c3df"
+        },
+        {
+          "bytes": 1477,
+          "path": "generated/ring/028/manifest.json",
+          "sha256": "21720d6a18711b22b1a575af00e46beed3e7f38d13813bb767ad09890c25fe22"
+        },
+        {
+          "bytes": 112429,
+          "path": "generated/ring/028/records.jsonl.gz",
+          "sha256": "3b9ac8fdb0046e1c958cddff88b2c9e7c90e028b3b3ef3c838240f88061ad61c"
+        },
+        {
+          "bytes": 8941,
+          "path": "generated/ring/028/representation_metrics.json",
+          "sha256": "ba4a42cd388991c4538695c77cd367c2be1233ad0f64a44d9e13ba2560cf5fdd"
+        },
+        {
+          "bytes": 136932,
+          "path": "generated/ring/029/fidelity.jsonl.gz",
+          "sha256": "0a29a3affd771e9e971850c3ae6f0f6dea1c5353bcf7cfeafe4299d38100a1c7"
+        },
+        {
+          "bytes": 1478,
+          "path": "generated/ring/029/manifest.json",
+          "sha256": "f04d8db5ebaed704c53919821b336b521a799b02f45cee378f71e5f5fce19fd5"
+        },
+        {
+          "bytes": 112355,
+          "path": "generated/ring/029/records.jsonl.gz",
+          "sha256": "6d8fee92fa4ee952c60f360f39e9478fb0fec9d15260b9c8d53958c30030f0ed"
+        },
+        {
+          "bytes": 8943,
+          "path": "generated/ring/029/representation_metrics.json",
+          "sha256": "0972927f2e46dd6343f8755ae4786e5a69211d5a3230de846213b8cced2978a2"
+        },
+        {
+          "bytes": 133470,
+          "path": "generated/ring/030/fidelity.jsonl.gz",
+          "sha256": "e77403682210770191ab9aa0fbfbe28875c4a7577a8553c036946236d5c55128"
+        },
+        {
+          "bytes": 1476,
+          "path": "generated/ring/030/manifest.json",
+          "sha256": "6ab1d4311f8227d5247485740c4d16cb06e1540933cd5326821374105223c17e"
+        },
+        {
+          "bytes": 105190,
+          "path": "generated/ring/030/records.jsonl.gz",
+          "sha256": "c2fc2c6b4d2fade0d1a7e518a7b1b15d6530bb9e5c175d58a743b255861efc76"
+        },
+        {
+          "bytes": 8947,
+          "path": "generated/ring/030/representation_metrics.json",
+          "sha256": "cd1616341da18b75b0e7c49a9e797cadedcae5aa9432dcedc383560b561e36d7"
+        },
+        {
+          "bytes": 136431,
+          "path": "generated/ring/031/fidelity.jsonl.gz",
+          "sha256": "62caa552090f7502a3716944302f9efcaeb082219b9828522ccf797fba25b838"
+        },
+        {
+          "bytes": 1477,
+          "path": "generated/ring/031/manifest.json",
+          "sha256": "4681441dfd8a30f76c5722f287f8158adc4d90af493e9b70c7437fb05aea235c"
+        },
+        {
+          "bytes": 111809,
+          "path": "generated/ring/031/records.jsonl.gz",
+          "sha256": "cecb162bccd6b0cf1b9cd2e8e0da0c933df8ae096b27c0aefc3c02428ad1ee78"
+        },
+        {
+          "bytes": 8943,
+          "path": "generated/ring/031/representation_metrics.json",
+          "sha256": "cea8f062e4dbc25a4d47926c334df9c2ef4f807f20f759eaa59ff6cd606ebfaa"
+        },
+        {
+          "bytes": 135703,
+          "path": "generated/ring/032/fidelity.jsonl.gz",
+          "sha256": "fee6be422a7438502d6109845b53b8771859c9ef9b3861e6550387c491f88914"
+        },
+        {
+          "bytes": 1477,
+          "path": "generated/ring/032/manifest.json",
+          "sha256": "83c63e5c55073cee17f792ce15536568104af1e500eaed48ecccd0ea235e7cac"
+        },
+        {
+          "bytes": 110316,
+          "path": "generated/ring/032/records.jsonl.gz",
+          "sha256": "e4d3e88198ad99fd16734d6a23e35d308415ed5ed4d6b3648299140d8eaba913"
+        },
+        {
+          "bytes": 8946,
+          "path": "generated/ring/032/representation_metrics.json",
+          "sha256": "d209c9fcdf5bdedf940daa272928fa9a139bc3f9a7f5ff51e86f3f81fd21dbfa"
+        },
+        {
+          "bytes": 135029,
+          "path": "generated/ring/033/fidelity.jsonl.gz",
+          "sha256": "0e88697dc8b2ea960f18f2a11fbbc2670c43deca45b9aa576ed9d7b692081824"
+        },
+        {
+          "bytes": 1477,
+          "path": "generated/ring/033/manifest.json",
+          "sha256": "6e604772a14cd0899076f69d89cac8380924a1980d57a1b78e244a4ee04e2fa9"
+        },
+        {
+          "bytes": 110001,
+          "path": "generated/ring/033/records.jsonl.gz",
+          "sha256": "9b06305806fa294feac9a711619fc75d193ec8ef86f2f8bc4827728390311a67"
+        },
+        {
+          "bytes": 8931,
+          "path": "generated/ring/033/representation_metrics.json",
+          "sha256": "6b0009678c73d8ccd17bf4e100ee5fe21f9aad5d041828d60ceb3eb3810c8c1a"
+        },
+        {
+          "bytes": 136323,
+          "path": "generated/ring/034/fidelity.jsonl.gz",
+          "sha256": "254eaac6d73c7ea47494199942bbc46d412349df06da37f77b1787fa4e702019"
+        },
+        {
+          "bytes": 1477,
+          "path": "generated/ring/034/manifest.json",
+          "sha256": "abf1645efe4f9e194c26faff7684ef19e94ad66325c5c240b8a3ca0c96896b30"
+        },
+        {
+          "bytes": 108814,
+          "path": "generated/ring/034/records.jsonl.gz",
+          "sha256": "7a6a6a2e57c0c2113a0cabeca0ecc3265bc338e1e0e29290adebcabdab0797b6"
+        },
+        {
+          "bytes": 8942,
+          "path": "generated/ring/034/representation_metrics.json",
+          "sha256": "0c2f26af6cec1e011a1546884001983394ca07f82a15906b40725fee4b677ee2"
+        },
+        {
+          "bytes": 137670,
+          "path": "generated/ring/035/fidelity.jsonl.gz",
+          "sha256": "a0ea75ec2e9068a456155d6100ebdc7c949b103ff0662d36eed05da6f7a11c3e"
+        },
+        {
+          "bytes": 1483,
+          "path": "generated/ring/035/manifest.json",
+          "sha256": "1839f34fcad0e1c2767e26872e2514c89560e48fcfb2165f5a4013e22e665db6"
+        },
+        {
+          "bytes": 117810,
+          "path": "generated/ring/035/records.jsonl.gz",
+          "sha256": "2a9578d4b8b62bf3935d34179d7ab1b8ae4678b0b75bc247774571dd00f07e72"
+        },
+        {
+          "bytes": 8946,
+          "path": "generated/ring/035/representation_metrics.json",
+          "sha256": "eadb55f42968b175d03dfdda744a069fb25c72533a6ca5993a6bdad3aba2df58"
+        }
+      ],
+      "file": "generated-ring-024-035.tar.gz",
+      "sha256": "8fda5209514be64f68395a6922de58ae489f9ee635c2b6c81e6deb739898336b",
+      "stage_counts": {
+        "main": 5376,
+        "reference": 1536
+      },
+      "trajectory_records": 6912
+    },
+    {
+      "bundle_count": 12,
+      "bundles": [
+        "generated/ring/036",
+        "generated/ring/037",
+        "generated/ring/038",
+        "generated/ring/039",
+        "generated/ring/040",
+        "generated/ring/041",
+        "generated/ring/042",
+        "generated/ring/043",
+        "generated/ring/044",
+        "generated/ring/045",
+        "generated/ring/046",
+        "generated/ring/047"
+      ],
+      "bytes": 3002273,
+      "entries": [
+        {
+          "bytes": 135794,
+          "path": "generated/ring/036/fidelity.jsonl.gz",
+          "sha256": "72e14482fb45846e41d43050a8e946be196b00a0b54b12a7cee697a478ce8dbb"
+        },
+        {
+          "bytes": 1477,
+          "path": "generated/ring/036/manifest.json",
+          "sha256": "a026ada800293a13840133fa9479e63f5746998cc076e4eed221b1bd7261b7b4"
+        },
+        {
+          "bytes": 110496,
+          "path": "generated/ring/036/records.jsonl.gz",
+          "sha256": "c4193cd701feaa363f17197adeffb280347aef4d9896425d7ae04041e4eed261"
+        },
+        {
+          "bytes": 8946,
+          "path": "generated/ring/036/representation_metrics.json",
+          "sha256": "ff56966e01ac6e648b0805a6b4d1991fd8570b79ecb6a020338734a35ab5b6ab"
+        },
+        {
+          "bytes": 135729,
+          "path": "generated/ring/037/fidelity.jsonl.gz",
+          "sha256": "422ca808ddeadb652c39bf96d8de098126ac1358e5cee8871e5251fe2ceef07d"
+        },
+        {
+          "bytes": 1476,
+          "path": "generated/ring/037/manifest.json",
+          "sha256": "ce3770252251c58ed4ddb3c84555748d11bb734076270bd22b3dcb417a9fc834"
+        },
+        {
+          "bytes": 109059,
+          "path": "generated/ring/037/records.jsonl.gz",
+          "sha256": "b7ddaa5d85c000395d508f185a9d9b577c683d891ca7f6a7e31f412698a04b8e"
+        },
+        {
+          "bytes": 8945,
+          "path": "generated/ring/037/representation_metrics.json",
+          "sha256": "1cdd3b18d7470a39e9e6d7b90c01357f9698d716d344e81a8bdd8841839294e1"
+        },
+        {
+          "bytes": 136198,
+          "path": "generated/ring/038/fidelity.jsonl.gz",
+          "sha256": "0051389394d8eee1cb9495f89d103dc5b2c4a9909edd5992dc40308a14e42cec"
+        },
+        {
+          "bytes": 1477,
+          "path": "generated/ring/038/manifest.json",
+          "sha256": "7470fe44587a0cddb3b5cb598cdee5314233ce383e5f3e8ec5c454724985dd1b"
+        },
+        {
+          "bytes": 111531,
+          "path": "generated/ring/038/records.jsonl.gz",
+          "sha256": "9000fc5f140eaad331784ec4301c858b5908c62a3f94395a209eba899115b5a0"
+        },
+        {
+          "bytes": 8936,
+          "path": "generated/ring/038/representation_metrics.json",
+          "sha256": "0b3ba6d12bc72cacb3677dc97f3be58f5e7359d67dea6b79ed282cca22ef3bda"
+        },
+        {
+          "bytes": 136247,
+          "path": "generated/ring/039/fidelity.jsonl.gz",
+          "sha256": "aab827284221b22b1a7ff42e4b34543d6e20dceed0ff179c8f13ccb6e2c909bc"
+        },
+        {
+          "bytes": 1476,
+          "path": "generated/ring/039/manifest.json",
+          "sha256": "7943423413240524b6898af6015f01cf1661db773dedf80ce7aae9b0df693eec"
+        },
+        {
+          "bytes": 113218,
+          "path": "generated/ring/039/records.jsonl.gz",
+          "sha256": "a794620526692adebf3ebf8d0f21d969e60d48873b8384f128a5d7c461951260"
+        },
+        {
+          "bytes": 8944,
+          "path": "generated/ring/039/representation_metrics.json",
+          "sha256": "976b71b59de66f2d848e86f94c977774770755e360a579caac8a0aaff405a258"
+        },
+        {
+          "bytes": 136976,
+          "path": "generated/ring/040/fidelity.jsonl.gz",
+          "sha256": "50291dedefa43661e22e8270614e0765d7ec9e688d25f9da686955d1c03d14df"
+        },
+        {
+          "bytes": 1476,
+          "path": "generated/ring/040/manifest.json",
+          "sha256": "d9c046db558fd42c9453b9d17f09191be6c1626fd9c3914d284cb93c1eb4c7f9"
+        },
+        {
+          "bytes": 113322,
+          "path": "generated/ring/040/records.jsonl.gz",
+          "sha256": "14040309b429c39866f7e2e693bf27d240a00c7147a348b1726b0b29a2c0b93c"
+        },
+        {
+          "bytes": 8935,
+          "path": "generated/ring/040/representation_metrics.json",
+          "sha256": "ed83008443a9a573035b9dbaaa67cc9d2c18b28a616bbe7ece8e277d247e0317"
+        },
+        {
+          "bytes": 137572,
+          "path": "generated/ring/041/fidelity.jsonl.gz",
+          "sha256": "a3c54df330d9f9c2650b7a5f498213bc1ebf36d3ed1034e31abfcab7c2af668a"
+        },
+        {
+          "bytes": 1477,
+          "path": "generated/ring/041/manifest.json",
+          "sha256": "ebe463aa93e70c68ddf6ed2c71104b6bf56d62fba4fdafade6616754eecd35db"
+        },
+        {
+          "bytes": 115041,
+          "path": "generated/ring/041/records.jsonl.gz",
+          "sha256": "0b2f8709cbeac4efd70a5f1fe0cb69231328c81e2863e8eb83a05b1d7be6d883"
+        },
+        {
+          "bytes": 8953,
+          "path": "generated/ring/041/representation_metrics.json",
+          "sha256": "7c0b6e764ccc17f07e7eb900739bd1c442a6575ac052abf5e5d0c53abd36585a"
+        },
+        {
+          "bytes": 135583,
+          "path": "generated/ring/042/fidelity.jsonl.gz",
+          "sha256": "d8607d170618af9b57ced3331cd7a9545f1bafe7c6012a1d529b9ad6db6cde9f"
+        },
+        {
+          "bytes": 1476,
+          "path": "generated/ring/042/manifest.json",
+          "sha256": "5215bde5baad2fe17fdcf1591b897c2f73870a18544e18cacc9b27afaf46b36a"
+        },
+        {
+          "bytes": 110623,
+          "path": "generated/ring/042/records.jsonl.gz",
+          "sha256": "296354849aaebc56ec96df4064a40ebe118d62f06841f629e3490fe5a4de3245"
+        },
+        {
+          "bytes": 8949,
+          "path": "generated/ring/042/representation_metrics.json",
+          "sha256": "0fcc5e265c44529e1c61d50dc420beaf4d8067d4f4fb0556129e2caef65d20d3"
+        },
+        {
+          "bytes": 136396,
+          "path": "generated/ring/043/fidelity.jsonl.gz",
+          "sha256": "2bd26265acd64614ba492a2b4e1ba717d17b71ad8c795d030266056b6f410b73"
+        },
+        {
+          "bytes": 1476,
+          "path": "generated/ring/043/manifest.json",
+          "sha256": "f9ff4b0a79a373f67e312f8214e362815c772a1c8103c019b2b82443c394f93a"
+        },
+        {
+          "bytes": 111483,
+          "path": "generated/ring/043/records.jsonl.gz",
+          "sha256": "c83e78d360238a3de70512f719f4c3a83dde6bb63e84b4c44e29d9534fe634b9"
+        },
+        {
+          "bytes": 8943,
+          "path": "generated/ring/043/representation_metrics.json",
+          "sha256": "38a4707735898901f039671a977c17dfdea5c690c159a290686ea673263dfc98"
+        },
+        {
+          "bytes": 136037,
+          "path": "generated/ring/044/fidelity.jsonl.gz",
+          "sha256": "08befc77f766131cbc536f3941524c978b409ce4a2840abb09537e506627b578"
+        },
+        {
+          "bytes": 1476,
+          "path": "generated/ring/044/manifest.json",
+          "sha256": "a15d3743ee3a4084ae6d7d8b52deac40871ffdb6c30d51130768c1b4434c72bc"
+        },
+        {
+          "bytes": 110912,
+          "path": "generated/ring/044/records.jsonl.gz",
+          "sha256": "b4e51aba8279e769582df5681d4c1723bc9b02ef063d1f7e711b64a89d11d112"
+        },
+        {
+          "bytes": 8942,
+          "path": "generated/ring/044/representation_metrics.json",
+          "sha256": "0f38382dc498accd80e09f360491109a25a46ed816be60385096a01e61ac8b61"
+        },
+        {
+          "bytes": 136791,
+          "path": "generated/ring/045/fidelity.jsonl.gz",
+          "sha256": "23b4363875ef000206cc857a9ea38c397fcf2925b270071c4e538c39d322dafc"
+        },
+        {
+          "bytes": 1483,
+          "path": "generated/ring/045/manifest.json",
+          "sha256": "de4f5b552d7bd4532f45655b4cf6bf3c4c6676307c19c57294ccd42f3f7c9436"
+        },
+        {
+          "bytes": 112390,
+          "path": "generated/ring/045/records.jsonl.gz",
+          "sha256": "d2282867dd472a3022d339f5780be5d9a07ec0d132e57ec112005a94242627d5"
+        },
+        {
+          "bytes": 8935,
+          "path": "generated/ring/045/representation_metrics.json",
+          "sha256": "2815c7b7dab074a5e4806a988833ee594c41765dfac0e1f7453b431690a4d52b"
+        },
+        {
+          "bytes": 140730,
+          "path": "generated/ring/046/fidelity.jsonl.gz",
+          "sha256": "51be5e513d73d0bdb581199803d62e7af1ca1fbdba0144bc989b7c503e6e9512"
+        },
+        {
+          "bytes": 1483,
+          "path": "generated/ring/046/manifest.json",
+          "sha256": "ed923858b561524d54634c9bb1346f62a98fe07284a3068019d0ff554fac4e41"
+        },
+        {
+          "bytes": 125293,
+          "path": "generated/ring/046/records.jsonl.gz",
+          "sha256": "00fb6784c19cbf7a20810201efc60c1bdee1602f95eed33bf6666153a6a71deb"
+        },
+        {
+          "bytes": 8941,
+          "path": "generated/ring/046/representation_metrics.json",
+          "sha256": "e88a89255cb4b76f5be5ee7535a48007809baad60963290726242192ad7deed5"
+        },
+        {
+          "bytes": 135732,
+          "path": "generated/ring/047/fidelity.jsonl.gz",
+          "sha256": "b97d8039e807f0c307221d193577ba587113320accfa3b6bbd2f1b89fc2d6a73"
+        },
+        {
+          "bytes": 1477,
+          "path": "generated/ring/047/manifest.json",
+          "sha256": "67ed41c1b95caf8d87eaed2d2c24c60daa5e03d7161551b7f41ed0896d5d8d5c"
+        },
+        {
+          "bytes": 111399,
+          "path": "generated/ring/047/records.jsonl.gz",
+          "sha256": "69b4119d7020f2f1b7f2fad8be0c5b7d36c2cb6d97322fdc2b3d8e8102dcf326"
+        },
+        {
+          "bytes": 8942,
+          "path": "generated/ring/047/representation_metrics.json",
+          "sha256": "9b3166d81570a1d72961c37a4aa6352121ca827bc39571c041075a887a3a934f"
+        }
+      ],
+      "file": "generated-ring-036-047.tar.gz",
+      "sha256": "996f877c9adc3307a753f76f2517315a872d975d00281d83eda430c8e824f36c",
+      "stage_counts": {
+        "main": 5376,
+        "reference": 1536
+      },
+      "trajectory_records": 6912
+    },
+    {
+      "bundle_count": 12,
+      "bundles": [
+        "generated/ring/048",
+        "generated/ring/049",
+        "generated/ring/050",
+        "generated/ring/051",
+        "generated/ring/052",
+        "generated/ring/053",
+        "generated/ring/054",
+        "generated/ring/055",
+        "generated/ring/056",
+        "generated/ring/057",
+        "generated/ring/058",
+        "generated/ring/059"
+      ],
+      "bytes": 2986964,
+      "entries": [
+        {
+          "bytes": 133275,
+          "path": "generated/ring/048/fidelity.jsonl.gz",
+          "sha256": "98bc332ea112757654863ff7ea96aa7ed2cd4bb9e4f8b26837c02449fa2394fe"
+        },
+        {
+          "bytes": 1476,
+          "path": "generated/ring/048/manifest.json",
+          "sha256": "93cf382d3909fec37b4222c7b74891fa3e3d772202e0d2fb1cd189bb13291f43"
+        },
+        {
+          "bytes": 106091,
+          "path": "generated/ring/048/records.jsonl.gz",
+          "sha256": "7286470085994b6be6b7f11fa4e2927ac3de1cc52862ecf64480c6e44b6385e8"
+        },
+        {
+          "bytes": 8947,
+          "path": "generated/ring/048/representation_metrics.json",
+          "sha256": "b44f49a744119a9916fa2cda545e47a476e5effef586681d1340327dac177435"
+        },
+        {
+          "bytes": 135861,
+          "path": "generated/ring/049/fidelity.jsonl.gz",
+          "sha256": "32646496b3482ed1a35b47a35af704cec9f52b78a23320717aa0ba556cd33fa5"
+        },
+        {
+          "bytes": 1476,
+          "path": "generated/ring/049/manifest.json",
+          "sha256": "654aeb606cc0fdc8135faf17a4c424cf187b7e2505d09ec8a9660dc18be8034b"
+        },
+        {
+          "bytes": 109686,
+          "path": "generated/ring/049/records.jsonl.gz",
+          "sha256": "490e57ea6550a00020d9b54e659ced04a75a6c287f409fa387a44fe45ce57ed7"
+        },
+        {
+          "bytes": 8945,
+          "path": "generated/ring/049/representation_metrics.json",
+          "sha256": "4c601bb98aa5394f6678100f7dc9197d57cfcbca54d7f8477def05ac8f263a8a"
+        },
+        {
+          "bytes": 137041,
+          "path": "generated/ring/050/fidelity.jsonl.gz",
+          "sha256": "6caf61d331745e258ef0d7b0782d710faddd87afdb2856653669e67690ecec37"
+        },
+        {
+          "bytes": 1476,
+          "path": "generated/ring/050/manifest.json",
+          "sha256": "baacdd878dd2dc8f9b9830c6bb749a5b4396f3c1a31ab8f62c2fe84a667dc1ba"
+        },
+        {
+          "bytes": 112889,
+          "path": "generated/ring/050/records.jsonl.gz",
+          "sha256": "68dd291f8f8afe8357f42a1d5b0ef1e052a05b5c457486dda9d29fce2fa2dbf9"
+        },
+        {
+          "bytes": 8944,
+          "path": "generated/ring/050/representation_metrics.json",
+          "sha256": "e9800480b1b7234637bd916e40f2e7ac2024f8240fd1ba6ad356997cf89f1c6d"
+        },
+        {
+          "bytes": 138603,
+          "path": "generated/ring/051/fidelity.jsonl.gz",
+          "sha256": "25911d07eaa73bb4743e9660459fffc6c7d171e5d7dd5406902a2cac21f7bf43"
+        },
+        {
+          "bytes": 1476,
+          "path": "generated/ring/051/manifest.json",
+          "sha256": "51932ee708836e262e6b248288be813b60d52ec333220d6fe5d4e371b95175ac"
+        },
+        {
+          "bytes": 115629,
+          "path": "generated/ring/051/records.jsonl.gz",
+          "sha256": "289645d359069121ef12dac6f00205a13e849d2ae0413b00c6e201f7c60b0ff9"
+        },
+        {
+          "bytes": 8952,
+          "path": "generated/ring/051/representation_metrics.json",
+          "sha256": "8dad6d57684fab9206f80e1f3a0aa0ed3dd31849eacdbdf18f1851b484d28b04"
+        },
+        {
+          "bytes": 135443,
+          "path": "generated/ring/052/fidelity.jsonl.gz",
+          "sha256": "09d14289bbb97476b7ee1c7c08798caa5ceaca36d1882677b22d26e8aa7be22b"
+        },
+        {
+          "bytes": 1478,
+          "path": "generated/ring/052/manifest.json",
+          "sha256": "0c9f2f3df7e6b6959ce803cb7d2799cbc5a9b41472019fba624c9260134a109c"
+        },
+        {
+          "bytes": 111329,
+          "path": "generated/ring/052/records.jsonl.gz",
+          "sha256": "c17166a2dde3890979b192584d0c38f3f04b1108f7099d4cd3c1fc2ea3b1d4c4"
+        },
+        {
+          "bytes": 8952,
+          "path": "generated/ring/052/representation_metrics.json",
+          "sha256": "eb501b2e10cfbab57c98c0d02bc5be377a8a0ef50e5ac4a702e86b5d0a6ab1fa"
+        },
+        {
+          "bytes": 135494,
+          "path": "generated/ring/053/fidelity.jsonl.gz",
+          "sha256": "e2df0fb99d71b47f8356f1697f5597d15ee79e8f184018b0eed7d3ad3368ce1c"
+        },
+        {
+          "bytes": 1477,
+          "path": "generated/ring/053/manifest.json",
+          "sha256": "b6bbe1dc5b6b38c64c9f809fb3b0da41a94c5de3f4cef258dd56f79e22a52c51"
+        },
+        {
+          "bytes": 109966,
+          "path": "generated/ring/053/records.jsonl.gz",
+          "sha256": "b917fb9500d33ca881f55498a21275648308a2436b47867e28e50460a76d1581"
+        },
+        {
+          "bytes": 8941,
+          "path": "generated/ring/053/representation_metrics.json",
+          "sha256": "572a7321a5e7cf013fb6715e8dfbb313314fc64dcfa58b1206af5354b68415bb"
+        },
+        {
+          "bytes": 137750,
+          "path": "generated/ring/054/fidelity.jsonl.gz",
+          "sha256": "20381f2c1da39ba434e99f5428491b151db5ae0fe6d4ec2c0f64db4fc66a3daa"
+        },
+        {
+          "bytes": 1476,
+          "path": "generated/ring/054/manifest.json",
+          "sha256": "087ab867473163f654ba67d713b0f281bb07888d7120f6afa77f91f593233bd5"
+        },
+        {
+          "bytes": 115288,
+          "path": "generated/ring/054/records.jsonl.gz",
+          "sha256": "3c8128c4eaedccadd6c4c5bb74697024b39f2961f03ce8bf0255a2a6b29b5cfd"
+        },
+        {
+          "bytes": 8949,
+          "path": "generated/ring/054/representation_metrics.json",
+          "sha256": "1c92d4b92ea69e9c2b0712e91b03056908102342e2961eaa35195684e0917f79"
+        },
+        {
+          "bytes": 137592,
+          "path": "generated/ring/055/fidelity.jsonl.gz",
+          "sha256": "3ed64d2e5d47d7732f7b27f89b3047978e88009640814786d72881a08e671c8d"
+        },
+        {
+          "bytes": 1483,
+          "path": "generated/ring/055/manifest.json",
+          "sha256": "faeb469a256e597963c6de776c71e313f31dbdd9ba2fc4726c7465153c281eed"
+        },
+        {
+          "bytes": 116765,
+          "path": "generated/ring/055/records.jsonl.gz",
+          "sha256": "393ffb725d24af616005ad0d6dbb63528b89389f6ff15e6528ec7ada3be0c40d"
+        },
+        {
+          "bytes": 8949,
+          "path": "generated/ring/055/representation_metrics.json",
+          "sha256": "c997855e2a3f782a2e59bda3688e8dccc1577061c3f21c6dffc4e4a0bca121c2"
+        },
+        {
+          "bytes": 134861,
+          "path": "generated/ring/056/fidelity.jsonl.gz",
+          "sha256": "61708d44c822ad01df2b32052c0f81acd6d902804dfef6edbfe1f3768d389cdc"
+        },
+        {
+          "bytes": 1477,
+          "path": "generated/ring/056/manifest.json",
+          "sha256": "e67353f9a8871464b9c5c0e689e34c6e90fa9c1bc3bc724e9daa78cd80839944"
+        },
+        {
+          "bytes": 105505,
+          "path": "generated/ring/056/records.jsonl.gz",
+          "sha256": "09f86828fd2e85834153ce11e8995f60e66245e14ef1107980f5d2129ab5b8e7"
+        },
+        {
+          "bytes": 8947,
+          "path": "generated/ring/056/representation_metrics.json",
+          "sha256": "f364b1509095816bfaafe5da98ad48c22b104700a28b7f9b5944858c30445997"
+        },
+        {
+          "bytes": 136859,
+          "path": "generated/ring/057/fidelity.jsonl.gz",
+          "sha256": "e5cf583ec2cfe01cc0768c81d0e26aaefef4a920bdb9f2b6b1586a8b37bffa16"
+        },
+        {
+          "bytes": 1476,
+          "path": "generated/ring/057/manifest.json",
+          "sha256": "7ae6d52000682391b9a19ef7d8cac9e31c46f06d1d26fa4af6c83c726d9deab2"
+        },
+        {
+          "bytes": 115697,
+          "path": "generated/ring/057/records.jsonl.gz",
+          "sha256": "acecadcb99198d5850768be59757285abb33a73fce037bbdd4f591d07595fc52"
+        },
+        {
+          "bytes": 8946,
+          "path": "generated/ring/057/representation_metrics.json",
+          "sha256": "e8077a226dd5d051dc15b26a04de0731d3dfcb00ae4cc93f49a657fb4157f0f6"
+        },
+        {
+          "bytes": 137095,
+          "path": "generated/ring/058/fidelity.jsonl.gz",
+          "sha256": "6b293ccc6e2b6d72c27691ee1ff20df5315f6c5bc849b450e5bf4d359b657899"
+        },
+        {
+          "bytes": 1475,
+          "path": "generated/ring/058/manifest.json",
+          "sha256": "49b33530560f7bcfbaaa44767bd916637a14dfad145da3c67ced2efa8c7b3170"
+        },
+        {
+          "bytes": 116782,
+          "path": "generated/ring/058/records.jsonl.gz",
+          "sha256": "870ad2c67b4cf1607640d34146ea89e3759532a0540a8c0ac143d132ab138266"
+        },
+        {
+          "bytes": 8950,
+          "path": "generated/ring/058/representation_metrics.json",
+          "sha256": "c4beafdfbcda0f08eae6d9627e463ec2a9a3395c5ef93438415f55e2f0c6dadc"
+        },
+        {
+          "bytes": 133989,
+          "path": "generated/ring/059/fidelity.jsonl.gz",
+          "sha256": "4c79e58b5e13c779b413f89878332e698563201a28b8929745687916f8ecf878"
+        },
+        {
+          "bytes": 1476,
+          "path": "generated/ring/059/manifest.json",
+          "sha256": "381157d1caee33c2d32ca4956b555c9e2c8fe3f471d80b45aaa8d3153c3355ea"
+        },
+        {
+          "bytes": 108376,
+          "path": "generated/ring/059/records.jsonl.gz",
+          "sha256": "5f0a0ada4aac4b5718a0ec7deb8e883262fa7ba2392f261f2f50a236e55e94ea"
+        },
+        {
+          "bytes": 8948,
+          "path": "generated/ring/059/representation_metrics.json",
+          "sha256": "5b0283d51a10618fddfb8e5d9228c0a876b1d6996ca1244a9630ebd06b62b646"
+        }
+      ],
+      "file": "generated-ring-048-059.tar.gz",
+      "sha256": "da3970dfd6ebed0e359604d1db3e4c2e3d604cc00322d8fecfd3d66680a99553",
+      "stage_counts": {
+        "main": 5376,
+        "reference": 1536
+      },
+      "trajectory_records": 6912
+    },
+    {
+      "bundle_count": 12,
+      "bundles": [
+        "generated/ring/060",
+        "generated/ring/061",
+        "generated/ring/062",
+        "generated/ring/063",
+        "generated/ring/064",
+        "generated/ring/065",
+        "generated/ring/066",
+        "generated/ring/067",
+        "generated/ring/068",
+        "generated/ring/069",
+        "generated/ring/070",
+        "generated/ring/071"
+      ],
+      "bytes": 2972951,
+      "entries": [
+        {
+          "bytes": 136962,
+          "path": "generated/ring/060/fidelity.jsonl.gz",
+          "sha256": "969d75ddf693c30a2a8d00806cb17a4130327dae52625477a76b28c350e868c4"
+        },
+        {
+          "bytes": 1476,
+          "path": "generated/ring/060/manifest.json",
+          "sha256": "9bec17fd7b28469600d97bbd5c3859baeb57de69286e4101af363ed1e63d20b7"
+        },
+        {
+          "bytes": 112442,
+          "path": "generated/ring/060/records.jsonl.gz",
+          "sha256": "c8492053f26472a65c7846795fcd5610563d8bcce9d14da5831470771fcdb7d9"
+        },
+        {
+          "bytes": 8936,
+          "path": "generated/ring/060/representation_metrics.json",
+          "sha256": "e9ea5bfdfe000e4bc85c9896e20c804a877e185038f83615afc2c041bb96f3af"
+        },
+        {
+          "bytes": 134122,
+          "path": "generated/ring/061/fidelity.jsonl.gz",
+          "sha256": "77b017a54cc832e5e2ac4116b7ebca85d5d6998afb554d01a80d45e73ebd6bf7"
+        },
+        {
+          "bytes": 1476,
+          "path": "generated/ring/061/manifest.json",
+          "sha256": "4c457d92af974ceff68ec354bea3a3946984429cbf1d344cf4f3bfbeea90c7ea"
+        },
+        {
+          "bytes": 107193,
+          "path": "generated/ring/061/records.jsonl.gz",
+          "sha256": "287a91caae2006d00ea735c734f2b3afe588d678676114406bf6f2e8e3520385"
+        },
+        {
+          "bytes": 8935,
+          "path": "generated/ring/061/representation_metrics.json",
+          "sha256": "60266782e50577709268b13e2c01fd86295c76d322f1259d7b55d767b619dcfa"
+        },
+        {
+          "bytes": 135679,
+          "path": "generated/ring/062/fidelity.jsonl.gz",
+          "sha256": "8c430f6e9ca0190f82629f45ba9cfb10ecffedb53055e068c914ae4d363a9524"
+        },
+        {
+          "bytes": 1477,
+          "path": "generated/ring/062/manifest.json",
+          "sha256": "d14244541782b470fdba0e9d12349abbb118d282f6a7abac2b98a6d38a523d0e"
+        },
+        {
+          "bytes": 109233,
+          "path": "generated/ring/062/records.jsonl.gz",
+          "sha256": "5fa58b2765f3da4b185965b6669e01a589b5b118f3e9ff7f7e232d60b5340321"
+        },
+        {
+          "bytes": 8940,
+          "path": "generated/ring/062/representation_metrics.json",
+          "sha256": "f484f170ebb891acc29bc2c9e5fe61b70731f0230c284cdb968993f34ba0e6a8"
+        },
+        {
+          "bytes": 136463,
+          "path": "generated/ring/063/fidelity.jsonl.gz",
+          "sha256": "c25ea863e4a283c7dc5be67f9f9da39a6f78849cfe4b3d9ce3208d726195e51a"
+        },
+        {
+          "bytes": 1483,
+          "path": "generated/ring/063/manifest.json",
+          "sha256": "f0715a2a26e15446a0dcca6ce580ed390fb1a3e90ff5a249f871216b83c88944"
+        },
+        {
+          "bytes": 110449,
+          "path": "generated/ring/063/records.jsonl.gz",
+          "sha256": "6119cf2a7953a645cf8fdbce40f70a7f3a56f18e5e8acad23f930b30de42016b"
+        },
+        {
+          "bytes": 8946,
+          "path": "generated/ring/063/representation_metrics.json",
+          "sha256": "05f0fcf6181a541115d1867c11595f9afd34aef46368f019e7e6e8ea7280afff"
+        },
+        {
+          "bytes": 137176,
+          "path": "generated/ring/064/fidelity.jsonl.gz",
+          "sha256": "cd296dfdc7af9f62accb9b007864f17cedb60c001b5bfee2f30ecbb144ef9b0d"
+        },
+        {
+          "bytes": 1483,
+          "path": "generated/ring/064/manifest.json",
+          "sha256": "0dc7dca49c58d0cb1590777768fa698d6676f5a38127fba02c34cfe286e8c231"
+        },
+        {
+          "bytes": 113081,
+          "path": "generated/ring/064/records.jsonl.gz",
+          "sha256": "88c13c1e68ac9b89913b0018125eec54d088b9338bbfcab9e51643eb9184440c"
+        },
+        {
+          "bytes": 8946,
+          "path": "generated/ring/064/representation_metrics.json",
+          "sha256": "5aea426299a12d7b08b58781fba4efaade31f137d61915cb23fd80272ceaf743"
+        },
+        {
+          "bytes": 135398,
+          "path": "generated/ring/065/fidelity.jsonl.gz",
+          "sha256": "1a4882b842a244c0ba31d9f1b9da233f597e772cfcf43bfda83b4960dd1013d2"
+        },
+        {
+          "bytes": 1476,
+          "path": "generated/ring/065/manifest.json",
+          "sha256": "361859f14a29d3f3fa363e34701de1d41c3729e0fd8d51f5b2b625325487dbc5"
+        },
+        {
+          "bytes": 108451,
+          "path": "generated/ring/065/records.jsonl.gz",
+          "sha256": "975c9d6af30e9d8799ced540f7cb69fd392ddce09074141173c4dbdad4fc338a"
+        },
+        {
+          "bytes": 8944,
+          "path": "generated/ring/065/representation_metrics.json",
+          "sha256": "ced940f9880c840e57b331d4a7e6d9087987ff858487e136c9d50cf60c111f81"
+        },
+        {
+          "bytes": 137472,
+          "path": "generated/ring/066/fidelity.jsonl.gz",
+          "sha256": "2c4bdcb33156a722984fc605653485e45c2879d932398a536148939e8aa2d115"
+        },
+        {
+          "bytes": 1477,
+          "path": "generated/ring/066/manifest.json",
+          "sha256": "6b08534fc9498318ffebce77828bf7e63348cf00ecae759e2f7ac81da64aa535"
+        },
+        {
+          "bytes": 112954,
+          "path": "generated/ring/066/records.jsonl.gz",
+          "sha256": "2015e6756b083db31080bf2f81157e5906eac7c02bd42ce01f9bc58db2e6088d"
+        },
+        {
+          "bytes": 8947,
+          "path": "generated/ring/066/representation_metrics.json",
+          "sha256": "2ab2f2989e2e4656e03074020e719f31a1bdc6fdf9822bd834589e68bf292ae3"
+        },
+        {
+          "bytes": 134471,
+          "path": "generated/ring/067/fidelity.jsonl.gz",
+          "sha256": "04576c81c2947e2f80cec23e0af11f369786a1ee9a373968b748c296e3597eed"
+        },
+        {
+          "bytes": 1477,
+          "path": "generated/ring/067/manifest.json",
+          "sha256": "c92fcd745b663ecc50fbca4be507212903efa2aaead76e344c34a44b0d77e9d7"
+        },
+        {
+          "bytes": 109077,
+          "path": "generated/ring/067/records.jsonl.gz",
+          "sha256": "0f1a7fb1c20041c0130c4a83c6d11556417ff9bc98ebf7777e79c3184a90f809"
+        },
+        {
+          "bytes": 8935,
+          "path": "generated/ring/067/representation_metrics.json",
+          "sha256": "ade5159b4015a21210c0fb578e414b9b6918d0724854c2ecfa20ddea2cf7632d"
+        },
+        {
+          "bytes": 135422,
+          "path": "generated/ring/068/fidelity.jsonl.gz",
+          "sha256": "0fb8268fc25947d1408d280a1f9df662bbdd5ee2b3cdb65d3b93a91695331fc3"
+        },
+        {
+          "bytes": 1477,
+          "path": "generated/ring/068/manifest.json",
+          "sha256": "299da6505eedb9578a9c323919fe6c6ab1267a3ea3e6dc3d4ce343f20b47ebea"
+        },
+        {
+          "bytes": 109714,
+          "path": "generated/ring/068/records.jsonl.gz",
+          "sha256": "840e38c2f68e4bf49137eb2eb79cc06ffaf9848df95a868c38e991be6af154e5"
+        },
+        {
+          "bytes": 8945,
+          "path": "generated/ring/068/representation_metrics.json",
+          "sha256": "8381b80a3109ce295993d761e745f33f83ae87a60665a11aa17d08ec11341336"
+        },
+        {
+          "bytes": 136461,
+          "path": "generated/ring/069/fidelity.jsonl.gz",
+          "sha256": "318c42a37b5b7572647431dc8ed2f3413ff83cd7c314b1e21fd78daf2742927f"
+        },
+        {
+          "bytes": 1477,
+          "path": "generated/ring/069/manifest.json",
+          "sha256": "7bdf28a2fe8187c5ad4405fa9c647338d9bf3fbb3244044994408e99dbe2e16d"
+        },
+        {
+          "bytes": 111565,
+          "path": "generated/ring/069/records.jsonl.gz",
+          "sha256": "554e20407d4a9f610a2e87b75ba84cd6808665429d6fc0647418eb6147b7b2db"
+        },
+        {
+          "bytes": 8941,
+          "path": "generated/ring/069/representation_metrics.json",
+          "sha256": "792a2a4ae39b78d54df163cdbae8c17ff3f003d56df47f57bc5a09bc3c59b367"
+        },
+        {
+          "bytes": 134432,
+          "path": "generated/ring/070/fidelity.jsonl.gz",
+          "sha256": "69232e606e46550f06cf11c35cec6aa8d758e16bb9376f0d45bd0da2c3c4720d"
+        },
+        {
+          "bytes": 1478,
+          "path": "generated/ring/070/manifest.json",
+          "sha256": "fa00ae220f36e785c0a6cbfe0dabc550324fa9e203dc2977ffc838a47f355c7b"
+        },
+        {
+          "bytes": 108402,
+          "path": "generated/ring/070/records.jsonl.gz",
+          "sha256": "fe887ee2bedb8cd959babcaa086183e87879692c599cb5abbe8f35fe9ddbf2ad"
+        },
+        {
+          "bytes": 8940,
+          "path": "generated/ring/070/representation_metrics.json",
+          "sha256": "30676a28f508993d26633e629aecd9aa7dd08611a523c6b1946bba0351756be8"
+        },
+        {
+          "bytes": 138665,
+          "path": "generated/ring/071/fidelity.jsonl.gz",
+          "sha256": "16876f3631ee128bc4cd565bd70eaf9d63f722bd7d96eb1e0b13416c6eaded5d"
+        },
+        {
+          "bytes": 1483,
+          "path": "generated/ring/071/manifest.json",
+          "sha256": "f96d67fcad572d6b6905e9396492d8bb5e137c6751c968a7092b563a7b6ba2a1"
+        },
+        {
+          "bytes": 119696,
+          "path": "generated/ring/071/records.jsonl.gz",
+          "sha256": "2543748da33cd14740fff0a240dcfa4884a8e68c92d134446a94f83ed88d0ed9"
+        },
+        {
+          "bytes": 8946,
+          "path": "generated/ring/071/representation_metrics.json",
+          "sha256": "865d5ce7a0ba57cd8f5cc3502db05204b76d45a300f9942ece6c2215a07a7a3d"
+        }
+      ],
+      "file": "generated-ring-060-071.tar.gz",
+      "sha256": "911568a796bc4039316a7b5316c26e640559cfe8e3ef51c69c232413435090b3",
+      "stage_counts": {
+        "main": 5376,
+        "reference": 1536
+      },
+      "trajectory_records": 6912
+    },
+    {
+      "bundle_count": 12,
+      "bundles": [
+        "generated/torus/000",
+        "generated/torus/001",
+        "generated/torus/002",
+        "generated/torus/003",
+        "generated/torus/004",
+        "generated/torus/005",
+        "generated/torus/006",
+        "generated/torus/007",
+        "generated/torus/008",
+        "generated/torus/009",
+        "generated/torus/010",
+        "generated/torus/011"
+      ],
+      "bytes": 3430755,
+      "entries": [
+        {
+          "bytes": 147046,
+          "path": "generated/torus/000/fidelity.jsonl.gz",
+          "sha256": "2f5dfa9acca8eea560247ec8f89f83250e2c70881387243b0a549d24d9ce5bf7"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/000/manifest.json",
+          "sha256": "e19f3a6cd37d8f3d1317b1c7b2aceae3e20dd820f385f88520bb30c4d35aa9bf"
+        },
+        {
+          "bytes": 140217,
+          "path": "generated/torus/000/records.jsonl.gz",
+          "sha256": "ea23ce62e01328c84c8ef680ec7495e3a02f6077ec1a7f42868eec213a36f540"
+        },
+        {
+          "bytes": 8904,
+          "path": "generated/torus/000/representation_metrics.json",
+          "sha256": "093776ba43400b02ee4dfc4f37a978bce7c7d3542e87da36ac0e2ecc7f404c29"
+        },
+        {
+          "bytes": 146237,
+          "path": "generated/torus/001/fidelity.jsonl.gz",
+          "sha256": "81f4c511ebe0233c32f61f10bb95030a46453c6b2f78fe019042d0ece3e45049"
+        },
+        {
+          "bytes": 1478,
+          "path": "generated/torus/001/manifest.json",
+          "sha256": "57fd002087477d9ea64b543404dc183fbc79f80f6af4dbcb37e640a2523fa125"
+        },
+        {
+          "bytes": 139265,
+          "path": "generated/torus/001/records.jsonl.gz",
+          "sha256": "05174b47f0cc12804516b6b817473acb2fbeb22cc6b5c42028ff5f5226888e69"
+        },
+        {
+          "bytes": 8877,
+          "path": "generated/torus/001/representation_metrics.json",
+          "sha256": "80f82a074ea54d2532158e87f9557cee05b5bdbfa4398c163990e27b3c347dc3"
+        },
+        {
+          "bytes": 146842,
+          "path": "generated/torus/002/fidelity.jsonl.gz",
+          "sha256": "abe99ea7a02865086b8cb914bd7c1365df2f1cbc765491358644d3448e57d40a"
+        },
+        {
+          "bytes": 1478,
+          "path": "generated/torus/002/manifest.json",
+          "sha256": "2ea32344574f40f55c0cbf79966f94e3ba0eb2c6997fb2c894f438dc624f1230"
+        },
+        {
+          "bytes": 141539,
+          "path": "generated/torus/002/records.jsonl.gz",
+          "sha256": "3984d7b9e24cd2848112896caa8cf61f9f5ebef10c39f982345e595134fa6fd5"
+        },
+        {
+          "bytes": 8812,
+          "path": "generated/torus/002/representation_metrics.json",
+          "sha256": "2f967eb193fbb2819c30c203a95b5a02f8a4dce10b902c9c2c73cabac4c03b9b"
+        },
+        {
+          "bytes": 147425,
+          "path": "generated/torus/003/fidelity.jsonl.gz",
+          "sha256": "8088f05b053c6709249e874a9b15afdbf7892c4dc0ab15588f109aac4fedd81b"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/003/manifest.json",
+          "sha256": "4b338ebdbd34fdfda550234546126f12588941ba6d85fe851b04ce10a57ffb23"
+        },
+        {
+          "bytes": 141221,
+          "path": "generated/torus/003/records.jsonl.gz",
+          "sha256": "72c554259b5a56ff078fa3da8c9556b5cc135a776bf4036f46f7dfa9cddcf85f"
+        },
+        {
+          "bytes": 8918,
+          "path": "generated/torus/003/representation_metrics.json",
+          "sha256": "56332f2d2539f676d408182f4637e3f52c99868ae89e8ebbcde5827c0b36c4a0"
+        },
+        {
+          "bytes": 146482,
+          "path": "generated/torus/004/fidelity.jsonl.gz",
+          "sha256": "03e8b5e8ce844c42f795ee565720e60ef52ac8381989aa091dfbc56924482aca"
+        },
+        {
+          "bytes": 1478,
+          "path": "generated/torus/004/manifest.json",
+          "sha256": "d307fe81108daf9dbb0da6ca2d89fc574b4df4b66ac5b453c8ffe1b0e30a9a56"
+        },
+        {
+          "bytes": 139810,
+          "path": "generated/torus/004/records.jsonl.gz",
+          "sha256": "96a5e23b3575a81b369816061fa637c32923048a16a51dec3e6dfa9489b584fd"
+        },
+        {
+          "bytes": 8878,
+          "path": "generated/torus/004/representation_metrics.json",
+          "sha256": "63c7faa232c5275116a78913d9b7174ce38f6c28340f8944d710cdeb0f28b1ac"
+        },
+        {
+          "bytes": 146970,
+          "path": "generated/torus/005/fidelity.jsonl.gz",
+          "sha256": "b5619643049639a8f9cfacb883304ad83cab1c5cc5f8302b71890198f627953b"
+        },
+        {
+          "bytes": 1478,
+          "path": "generated/torus/005/manifest.json",
+          "sha256": "d7808e0ad32a8e7bff540ad80f98f65efc6405268d101128b347ba565c6f8c94"
+        },
+        {
+          "bytes": 141549,
+          "path": "generated/torus/005/records.jsonl.gz",
+          "sha256": "caa887e8a7657864c7c345e06c3ec251fcb37300a8bd7763c35a7e8bd16b29a2"
+        },
+        {
+          "bytes": 8875,
+          "path": "generated/torus/005/representation_metrics.json",
+          "sha256": "1dee631dc0c6a3954058138b3bf0bc3cfcfe9c824dd26b6ec5f4b37567fad52a"
+        },
+        {
+          "bytes": 147065,
+          "path": "generated/torus/006/fidelity.jsonl.gz",
+          "sha256": "968f0370867e34e02d35c36401465b1efc471c185970a3165c47291deade3b1b"
+        },
+        {
+          "bytes": 1478,
+          "path": "generated/torus/006/manifest.json",
+          "sha256": "105c95dbd85b99fed1981a7b390531b79cabcaca5e366fe1d53f44a976d0ae81"
+        },
+        {
+          "bytes": 143375,
+          "path": "generated/torus/006/records.jsonl.gz",
+          "sha256": "278db97b9a2b2d5778110f938b2e00d6a2528662778ebc6980db9de4a59422e7"
+        },
+        {
+          "bytes": 8924,
+          "path": "generated/torus/006/representation_metrics.json",
+          "sha256": "5ce0abc2e4075f0495e62d0ffe8e8c69f4ac0c64fcda4645087f923f61ce917c"
+        },
+        {
+          "bytes": 147141,
+          "path": "generated/torus/007/fidelity.jsonl.gz",
+          "sha256": "ea45a2fa92c9144df6db0ee4ee40a10d28c17f86ff5a1207f977971083f0af61"
+        },
+        {
+          "bytes": 1478,
+          "path": "generated/torus/007/manifest.json",
+          "sha256": "b3b6b668852ad5d3a73e2e931ebb894754bbc9152aacfc2bd6e92b85d77e7fc7"
+        },
+        {
+          "bytes": 141802,
+          "path": "generated/torus/007/records.jsonl.gz",
+          "sha256": "da3a0db5d5d08c3817bed08b0ec18f2335b6544d8b500a5e5b9fbfae48264a83"
+        },
+        {
+          "bytes": 8886,
+          "path": "generated/torus/007/representation_metrics.json",
+          "sha256": "016b9c04fa3dc8ddd490bb73b4b8240fa021e94ab28bed18aa0ce450145543db"
+        },
+        {
+          "bytes": 147254,
+          "path": "generated/torus/008/fidelity.jsonl.gz",
+          "sha256": "7f047aeec301a17a7df2fa8ac2461da10ae722d3d63c583e95eb332fab279318"
+        },
+        {
+          "bytes": 1478,
+          "path": "generated/torus/008/manifest.json",
+          "sha256": "c5956ee940968c73c17f0c982761651a4ee4c6d8ac232ff5dfbc55664dbeaa67"
+        },
+        {
+          "bytes": 142202,
+          "path": "generated/torus/008/records.jsonl.gz",
+          "sha256": "bd5c031daabe1d397e93ff3354803420a09aef1098c83faa902b7387c5f5d996"
+        },
+        {
+          "bytes": 8925,
+          "path": "generated/torus/008/representation_metrics.json",
+          "sha256": "286b93cf68c8ec9e42e47fbad5c7352ccca6c8943258a62abc4a51949ea88973"
+        },
+        {
+          "bytes": 147248,
+          "path": "generated/torus/009/fidelity.jsonl.gz",
+          "sha256": "ee89002f05d3289b42501b0a0b29531cb5ab3c35b3f482f651e4454b2889f6e3"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/009/manifest.json",
+          "sha256": "0dc24b3a53217133ac5cd2d5dde7c05dc551ed288b66108c9be01ba396a0c834"
+        },
+        {
+          "bytes": 142582,
+          "path": "generated/torus/009/records.jsonl.gz",
+          "sha256": "7a423e08f61e6544662932d9248d5edf6bf8ba81aac4029766f67fcbff320f22"
+        },
+        {
+          "bytes": 8939,
+          "path": "generated/torus/009/representation_metrics.json",
+          "sha256": "670ccc6a3f18face0526f6067274ce15d0b23e5a2693e02cd42e653d6f95e27b"
+        },
+        {
+          "bytes": 146621,
+          "path": "generated/torus/010/fidelity.jsonl.gz",
+          "sha256": "364076e106082dcc1d980537fc3f9f22399e341cc8b1f460407483562d81556f"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/010/manifest.json",
+          "sha256": "5dc98a118ea42fb1c583e4d45d2f6dadee9da8405b6af2fde7320b1c5e978d62"
+        },
+        {
+          "bytes": 140126,
+          "path": "generated/torus/010/records.jsonl.gz",
+          "sha256": "46d1038a6e52aee85715cf48243e7d97dfa7ae148a1f3bb18a195573f541419a"
+        },
+        {
+          "bytes": 8917,
+          "path": "generated/torus/010/representation_metrics.json",
+          "sha256": "5b0821e7addce1cf6608834fc3ddad42d686eb441e46730ba01a35515ce302a4"
+        },
+        {
+          "bytes": 147370,
+          "path": "generated/torus/011/fidelity.jsonl.gz",
+          "sha256": "badc22c24fd89382c0e55fe198a9b220a2f68050b4798f4b6039607c3ab404c9"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/011/manifest.json",
+          "sha256": "68a7cbdf715b7d1b5c0a3936ad98ac2f437d675879e2c041b9107468d298b531"
+        },
+        {
+          "bytes": 141773,
+          "path": "generated/torus/011/records.jsonl.gz",
+          "sha256": "fefeac344b3ca57e33afddce37eb4f84055f49127bbc9bdf32b4435963b4695e"
+        },
+        {
+          "bytes": 8938,
+          "path": "generated/torus/011/representation_metrics.json",
+          "sha256": "85da9345840c3d3c6c39a08552862c216c2681cd9ab9248d990fad4197de7d5e"
+        }
+      ],
+      "file": "generated-torus-000-011.tar.gz",
+      "sha256": "f2bc6d732bea2ef1887f317f6ed9f65c8528acef372efa0993a3a40a2af34db5",
+      "stage_counts": {
+        "main": 5376,
+        "reference": 1536
+      },
+      "trajectory_records": 6912
+    },
+    {
+      "bundle_count": 12,
+      "bundles": [
+        "generated/torus/012",
+        "generated/torus/013",
+        "generated/torus/014",
+        "generated/torus/015",
+        "generated/torus/016",
+        "generated/torus/017",
+        "generated/torus/018",
+        "generated/torus/019",
+        "generated/torus/020",
+        "generated/torus/021",
+        "generated/torus/022",
+        "generated/torus/023"
+      ],
+      "bytes": 3425768,
+      "entries": [
+        {
+          "bytes": 146689,
+          "path": "generated/torus/012/fidelity.jsonl.gz",
+          "sha256": "1506b20cea6283175d27837365842e892b318b44730d50759edbc918f47e6a2f"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/012/manifest.json",
+          "sha256": "0de74189d8fdce5adb43d809f525d3b02f5ea78fb8e60f79fdec2cdb7d35baca"
+        },
+        {
+          "bytes": 138711,
+          "path": "generated/torus/012/records.jsonl.gz",
+          "sha256": "43b47f50ef781ef51e07fe0ade44c4621962ac2a5bb655a3861ab34ad3ebd024"
+        },
+        {
+          "bytes": 8925,
+          "path": "generated/torus/012/representation_metrics.json",
+          "sha256": "426b3c40105269e12ccf813fab7d2860522f5fc09ece441c55e44364d245d270"
+        },
+        {
+          "bytes": 146713,
+          "path": "generated/torus/013/fidelity.jsonl.gz",
+          "sha256": "5b5230164dcd87033fdd241913dd9bc796103c292ad33d8fefcb62250a85e812"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/013/manifest.json",
+          "sha256": "ee6bc9d502900896c7a2dd3812fbfaa8d58da46bd7557b21c3f6458eade8c845"
+        },
+        {
+          "bytes": 139045,
+          "path": "generated/torus/013/records.jsonl.gz",
+          "sha256": "fce861ea6c26ac2573a2a2bd378683ffcf781a3ab158b4bcadcc46b8c1ac64ea"
+        },
+        {
+          "bytes": 8933,
+          "path": "generated/torus/013/representation_metrics.json",
+          "sha256": "beb398d092c4611e26fc41b76acb8758d8289a8c51cd14990f71d650430fba2c"
+        },
+        {
+          "bytes": 146511,
+          "path": "generated/torus/014/fidelity.jsonl.gz",
+          "sha256": "6cbeee8e103158d6ad8632a1b72432d4b9bd23c95f1b919329ea54f4ffafc5cc"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/014/manifest.json",
+          "sha256": "c0b2bfda3aa85cd5eb15503f4003dc4927d8c4342ab240db118dcb65ac096aef"
+        },
+        {
+          "bytes": 140286,
+          "path": "generated/torus/014/records.jsonl.gz",
+          "sha256": "c439013bea488d6f94d14cda4090bcca96bb323a690f741ee67fb52cbc1913d1"
+        },
+        {
+          "bytes": 8919,
+          "path": "generated/torus/014/representation_metrics.json",
+          "sha256": "941be68982f1fca5a5c871ce6dd39e5b1fb0ee7de4cc85465e44602cf8a00f7f"
+        },
+        {
+          "bytes": 146742,
+          "path": "generated/torus/015/fidelity.jsonl.gz",
+          "sha256": "516526d05df44df46af6c887a745312def7397cc25c6a8ddbf5522a94fc3b992"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/015/manifest.json",
+          "sha256": "4cdbba9ecee3a63e0d867942dc7ae896c3c6e9ce96f046096c5981ddd76e9e89"
+        },
+        {
+          "bytes": 140285,
+          "path": "generated/torus/015/records.jsonl.gz",
+          "sha256": "26a9326a9c8e55a4dc6d6ca7081453a8a3de538df1de01761435026bf9455a22"
+        },
+        {
+          "bytes": 8921,
+          "path": "generated/torus/015/representation_metrics.json",
+          "sha256": "67ecac35dfeef03f523a37fbf25cea790360f0f6d5ec29244deff2de23d53771"
+        },
+        {
+          "bytes": 147425,
+          "path": "generated/torus/016/fidelity.jsonl.gz",
+          "sha256": "3aeae99c764ba931c65783c83ffc0a3357e09dc8ec31014282cabfc65faed450"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/016/manifest.json",
+          "sha256": "8a5f04b3cc456c44d04d140a050405fde510988895119b11a71b29467f40929c"
+        },
+        {
+          "bytes": 142810,
+          "path": "generated/torus/016/records.jsonl.gz",
+          "sha256": "e232389031cbb8568d27d7d9b77d6fcbe26c09b2c5c5935db92a138f2e3ca1b5"
+        },
+        {
+          "bytes": 8930,
+          "path": "generated/torus/016/representation_metrics.json",
+          "sha256": "a58011ba99f0c0198a88cd63dcc132655db4794926249e9e98c6e4d2acbe2416"
+        },
+        {
+          "bytes": 147291,
+          "path": "generated/torus/017/fidelity.jsonl.gz",
+          "sha256": "a394492e8f20938c3d3528981d61704beb7e305d7eccb4d3de2d06639c01c705"
+        },
+        {
+          "bytes": 1480,
+          "path": "generated/torus/017/manifest.json",
+          "sha256": "17f88b6631bdc591dba22de1ffaa0a75f01cbf85cc2293ecd47664be715a059d"
+        },
+        {
+          "bytes": 142110,
+          "path": "generated/torus/017/records.jsonl.gz",
+          "sha256": "63831b9b6f442d1613009e53f27abf5520558e5bd873ebfad072eb2794127e12"
+        },
+        {
+          "bytes": 8805,
+          "path": "generated/torus/017/representation_metrics.json",
+          "sha256": "f6f618454945605e9c3a4297e754eb9e9ece3a951f524e1484ec265bc982d1ad"
+        },
+        {
+          "bytes": 146344,
+          "path": "generated/torus/018/fidelity.jsonl.gz",
+          "sha256": "d4f1ad194b854d3c803a89353cbfb7c9f657c6f1a89ff23a6785666aab74a83d"
+        },
+        {
+          "bytes": 1480,
+          "path": "generated/torus/018/manifest.json",
+          "sha256": "c1d2f4ee9d31834abe1d12ff8b95adc8a0d45977709cba592187e9bc290437f2"
+        },
+        {
+          "bytes": 140539,
+          "path": "generated/torus/018/records.jsonl.gz",
+          "sha256": "b4947e1e6eac0522185060c087db63173534b4f77d6aa46e822c46c2b8b836bd"
+        },
+        {
+          "bytes": 8920,
+          "path": "generated/torus/018/representation_metrics.json",
+          "sha256": "d0e775f4b515acf90e13a3d1ac8567c09ff6c1cdfe0ecd76e980e9376995ea13"
+        },
+        {
+          "bytes": 147636,
+          "path": "generated/torus/019/fidelity.jsonl.gz",
+          "sha256": "7c04267b8bec2baadc89f03888b24159a577cb164b9392e086c3a9270c9bc324"
+        },
+        {
+          "bytes": 1480,
+          "path": "generated/torus/019/manifest.json",
+          "sha256": "9016becf5fc88de4d6123837fef77fc3170e5e4a918aa9f2ad17d82cc43c6cee"
+        },
+        {
+          "bytes": 143529,
+          "path": "generated/torus/019/records.jsonl.gz",
+          "sha256": "5aaa00a5cd206789df9323965ec2dd83c5db4ef1a6869e42e05c08dc3e935e9d"
+        },
+        {
+          "bytes": 8879,
+          "path": "generated/torus/019/representation_metrics.json",
+          "sha256": "467d558a932caf51680722cf789021a6e535f2eeaf24057d818b64f3da550e53"
+        },
+        {
+          "bytes": 146587,
+          "path": "generated/torus/020/fidelity.jsonl.gz",
+          "sha256": "f081160aec1ab72ea97a1fbbe83fb5fc3bf0dea8e32a561eab6eab87bf521747"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/020/manifest.json",
+          "sha256": "b978f8fa0dcce5a51626009878206c43cb306383436091719be1be26164d1968"
+        },
+        {
+          "bytes": 141622,
+          "path": "generated/torus/020/records.jsonl.gz",
+          "sha256": "c9661f0266b4319a07abd5607f67813b2acbeda1e976ffa760e103d479685521"
+        },
+        {
+          "bytes": 8813,
+          "path": "generated/torus/020/representation_metrics.json",
+          "sha256": "a2f84b8e75871001a3d6947d607630498a4d87f3837b3de034ac55c1a960e38b"
+        },
+        {
+          "bytes": 147272,
+          "path": "generated/torus/021/fidelity.jsonl.gz",
+          "sha256": "5a31b0b585ff402e8cc9d34848d7df7df43095f8bde0c09ffa50bbd36e937a5d"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/021/manifest.json",
+          "sha256": "40323e343bc0b1459e21390d8809bcd7edbaec6d3f8f000c4fbee6efdb9a6ca8"
+        },
+        {
+          "bytes": 141647,
+          "path": "generated/torus/021/records.jsonl.gz",
+          "sha256": "6ca4f4828bb2cbd29ca2b997a8ed0a5643763bb652b5912c44825ad5d00d3cd1"
+        },
+        {
+          "bytes": 8921,
+          "path": "generated/torus/021/representation_metrics.json",
+          "sha256": "420057b6945181d8f965b6ea6075067041a5983b94cb211b679d0d722a2aff56"
+        },
+        {
+          "bytes": 147239,
+          "path": "generated/torus/022/fidelity.jsonl.gz",
+          "sha256": "78eaa70e2cbd09550374e6661157c908985460b80f5e5e17949faa101d92e970"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/022/manifest.json",
+          "sha256": "caeb7724bb9b86e79a4d2e82698b2dceb035c5c5070cabe936df94eb61aeb1c4"
+        },
+        {
+          "bytes": 140627,
+          "path": "generated/torus/022/records.jsonl.gz",
+          "sha256": "381eec755ade16f2b1a7debef915b034755a36eec0113f4ebec3250caa169811"
+        },
+        {
+          "bytes": 8875,
+          "path": "generated/torus/022/representation_metrics.json",
+          "sha256": "31ea27bf65c39bae43f61c683b60e1f6e6ecb18f0131c55405f5d1bd1d760a25"
+        },
+        {
+          "bytes": 147088,
+          "path": "generated/torus/023/fidelity.jsonl.gz",
+          "sha256": "40137828e7b5a3e38bfe39a4f148acfb4b27587e8549d7f8dab493ee974e7618"
+        },
+        {
+          "bytes": 1480,
+          "path": "generated/torus/023/manifest.json",
+          "sha256": "c19ee4c25350d0d5808c1133bd8e28f1ea52e7f8a8c2d0a681d23e70a9dc5742"
+        },
+        {
+          "bytes": 141519,
+          "path": "generated/torus/023/records.jsonl.gz",
+          "sha256": "5927aff8c5ff081eae81586291a77ede12dd5a4753d9fb7bd01075150e5f9cc3"
+        },
+        {
+          "bytes": 8936,
+          "path": "generated/torus/023/representation_metrics.json",
+          "sha256": "cb8d9c3aba44277a917c2bd7e18753eb2ea1462c5e040c6317ca6686074feabb"
+        }
+      ],
+      "file": "generated-torus-012-023.tar.gz",
+      "sha256": "1ef85dbd1a5781fcd081f8909989452b155aac636d56ce2a771ec369dc55e361",
+      "stage_counts": {
+        "main": 5376,
+        "reference": 1536
+      },
+      "trajectory_records": 6912
+    },
+    {
+      "bundle_count": 12,
+      "bundles": [
+        "generated/torus/024",
+        "generated/torus/025",
+        "generated/torus/026",
+        "generated/torus/027",
+        "generated/torus/028",
+        "generated/torus/029",
+        "generated/torus/030",
+        "generated/torus/031",
+        "generated/torus/032",
+        "generated/torus/033",
+        "generated/torus/034",
+        "generated/torus/035"
+      ],
+      "bytes": 3426054,
+      "entries": [
+        {
+          "bytes": 146784,
+          "path": "generated/torus/024/fidelity.jsonl.gz",
+          "sha256": "584c3fe8b05a1732f3bc9bafffe77d32f89f3704480d51571df90d668281ecf6"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/024/manifest.json",
+          "sha256": "d90506f938aa77b24b139d40456f1c9ed3a16cfbb1c71c54ebd3af6e006b4942"
+        },
+        {
+          "bytes": 138816,
+          "path": "generated/torus/024/records.jsonl.gz",
+          "sha256": "1e10f977d1a66f137c5859b3ceba5dae434594198e3abcdea14ed1ef58ca1617"
+        },
+        {
+          "bytes": 8926,
+          "path": "generated/torus/024/representation_metrics.json",
+          "sha256": "442fb6ac1fd3e993464bc1338730069962a1c1eb3a2d4a7740841821d0c2504d"
+        },
+        {
+          "bytes": 147325,
+          "path": "generated/torus/025/fidelity.jsonl.gz",
+          "sha256": "bee9b2575a9df7bdc65d695e35abf3b446b18748bdbb0573db98abf8389c3c1a"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/025/manifest.json",
+          "sha256": "c83422ff265f446df59dcaf5d167fe75457348fd1d63ad8830f2f6a9e24219e0"
+        },
+        {
+          "bytes": 144290,
+          "path": "generated/torus/025/records.jsonl.gz",
+          "sha256": "348284b4a882d35955c011663bd4c979b9fcf4bb879fab8e3eda0e2fcc94e43c"
+        },
+        {
+          "bytes": 8935,
+          "path": "generated/torus/025/representation_metrics.json",
+          "sha256": "82d65eeb200051452c8305204b6b39f9a8148021232a5bf76913312e8f524c89"
+        },
+        {
+          "bytes": 147223,
+          "path": "generated/torus/026/fidelity.jsonl.gz",
+          "sha256": "44432fc5debca88c793e09ab5641d4dc40b98663942896321e6fac95b04dc936"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/026/manifest.json",
+          "sha256": "2d122b6ab7314ec095ec9c78428553fcd70e62a2898d35a90e0a0d81a3a082a6"
+        },
+        {
+          "bytes": 141143,
+          "path": "generated/torus/026/records.jsonl.gz",
+          "sha256": "952d6df8908096a072a9b1d4f5d22a51b33464b770578cf67b5ed4b4da0a47c3"
+        },
+        {
+          "bytes": 8872,
+          "path": "generated/torus/026/representation_metrics.json",
+          "sha256": "0ae27e85cd94970608814b17173a994f1e258aafd192f7045fa0ae086475a2c9"
+        },
+        {
+          "bytes": 146659,
+          "path": "generated/torus/027/fidelity.jsonl.gz",
+          "sha256": "cff02044f44e1a5b1efb80fe63dacf8a72d0735e3bda96acc6a9d490b118c36e"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/027/manifest.json",
+          "sha256": "90ec3c8bd70c430f6922a07c42373675cad0c84efc26a6b865539fea428b6157"
+        },
+        {
+          "bytes": 137970,
+          "path": "generated/torus/027/records.jsonl.gz",
+          "sha256": "118eb70d770bec37484afe71cbecac31642a34090fe35461cd7b73752bc3fa0c"
+        },
+        {
+          "bytes": 8850,
+          "path": "generated/torus/027/representation_metrics.json",
+          "sha256": "a673ed6ff17352b19966618f7b9fcee477eec1768ecace486de3b5518cfb9915"
+        },
+        {
+          "bytes": 147272,
+          "path": "generated/torus/028/fidelity.jsonl.gz",
+          "sha256": "bb07389fe22c71940ff5c27601abfb6c4fe3efad954fd8132b2d9c28b2ab70ac"
+        },
+        {
+          "bytes": 1478,
+          "path": "generated/torus/028/manifest.json",
+          "sha256": "d3da33e6e95b6e70d27aa30f4f412abf47ace7c16583c2f47200195f20f65c17"
+        },
+        {
+          "bytes": 142891,
+          "path": "generated/torus/028/records.jsonl.gz",
+          "sha256": "554272a4080051ad4c14bab796fa0518e38f1a67a03d4bd92657595dd9647fec"
+        },
+        {
+          "bytes": 8817,
+          "path": "generated/torus/028/representation_metrics.json",
+          "sha256": "76d29c0f90a127996ed85699b2f52bb416509fe59613a4bc4799db1b1cbe1dc2"
+        },
+        {
+          "bytes": 147200,
+          "path": "generated/torus/029/fidelity.jsonl.gz",
+          "sha256": "650859c822ed649da6d029382021563428bd0119935e3a96ca28c023a6ecb1c0"
+        },
+        {
+          "bytes": 1480,
+          "path": "generated/torus/029/manifest.json",
+          "sha256": "5fde02a6d7763b62d6b7997e10d3376f8339e170f96dbe34816e7a822e5295c5"
+        },
+        {
+          "bytes": 142049,
+          "path": "generated/torus/029/records.jsonl.gz",
+          "sha256": "2f968480aa21da716be55218f27e8eb0a0e1225006ce10b85b8a462785b22e35"
+        },
+        {
+          "bytes": 8908,
+          "path": "generated/torus/029/representation_metrics.json",
+          "sha256": "df5962212c93ba5f0815a25b382e6c2cbed73db404f4280bfb3ba063e20e24e6"
+        },
+        {
+          "bytes": 146690,
+          "path": "generated/torus/030/fidelity.jsonl.gz",
+          "sha256": "e5ff25809985800d841ce1c21418664df6ae8e95bd618d7a1721bda97b7d385c"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/030/manifest.json",
+          "sha256": "30f0bd3b01959fbe0349a76a18e62d7c96f1cae912a1aaf05a6d41234e84af2c"
+        },
+        {
+          "bytes": 141055,
+          "path": "generated/torus/030/records.jsonl.gz",
+          "sha256": "e2cec2a531da365e00abf604dbd22a33ce95ccbd242f7fcf14a4b1d14295217b"
+        },
+        {
+          "bytes": 8938,
+          "path": "generated/torus/030/representation_metrics.json",
+          "sha256": "87ad307dade48bf6953709770b03b8ed99170b4c13457b2793438b8bd12874f8"
+        },
+        {
+          "bytes": 146461,
+          "path": "generated/torus/031/fidelity.jsonl.gz",
+          "sha256": "d80b1940da67eecc4fe0f345e5ef9986c3f68a3c064910d55adc4a61ac469215"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/031/manifest.json",
+          "sha256": "2bc8672f94dc302e0f3aadd8ebe3ef41ba7395b9400ce7351f1be90ef110bfc8"
+        },
+        {
+          "bytes": 140350,
+          "path": "generated/torus/031/records.jsonl.gz",
+          "sha256": "11cb9d0522c67b076d0855eb0d318f1b90972f5e72c15c7f3185a1f3c46f854d"
+        },
+        {
+          "bytes": 8868,
+          "path": "generated/torus/031/representation_metrics.json",
+          "sha256": "cdbfcdc3751e604607a365e8c04779a3eb0c00cf91c85ea2b92c00863c5dd313"
+        },
+        {
+          "bytes": 146962,
+          "path": "generated/torus/032/fidelity.jsonl.gz",
+          "sha256": "4af81bde291c2144a3eccd169403dcfc3253d59392c81efd3a7bfdfbcce98b72"
+        },
+        {
+          "bytes": 1486,
+          "path": "generated/torus/032/manifest.json",
+          "sha256": "7dadca01dc26b4f15cfdba1e60015dc6a2c76e8bb0586babee0c032dd2a2bd31"
+        },
+        {
+          "bytes": 141699,
+          "path": "generated/torus/032/records.jsonl.gz",
+          "sha256": "0b169c9d50fbe243b8dbf9ea6e67054fbe02354839a0a676844c6c601972e9e3"
+        },
+        {
+          "bytes": 8923,
+          "path": "generated/torus/032/representation_metrics.json",
+          "sha256": "34a6956b3e80f7455a4b8dea2a8f93956f6d992769a694ad3fe278bc811e9c89"
+        },
+        {
+          "bytes": 147098,
+          "path": "generated/torus/033/fidelity.jsonl.gz",
+          "sha256": "3d4e3a55f2cce27ed962e48396d69bb081a49474883194fc8c07ffff8fbca1c9"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/033/manifest.json",
+          "sha256": "c74cbd0dedd8d855c8b340a0dd893c654101584f9d9ef88f0993159867ec5b66"
+        },
+        {
+          "bytes": 142192,
+          "path": "generated/torus/033/records.jsonl.gz",
+          "sha256": "32b1734b8ea0c778936c49203a3960e15dc355fc8e7db797601442d4f7785c8b"
+        },
+        {
+          "bytes": 8930,
+          "path": "generated/torus/033/representation_metrics.json",
+          "sha256": "21f8908b67ddcd8fde405379723fa1b8bdd593dd3db0973ec9374838c7c5dac9"
+        },
+        {
+          "bytes": 147200,
+          "path": "generated/torus/034/fidelity.jsonl.gz",
+          "sha256": "dff469b61d0c8d050b0ed7ec55c138c00d3aa3c4e2d5050770e5a68664d429d3"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/034/manifest.json",
+          "sha256": "6fa58c199435dc75b5545850db2ea3669e40e66ac7063c171c9184a0ac50fa79"
+        },
+        {
+          "bytes": 140956,
+          "path": "generated/torus/034/records.jsonl.gz",
+          "sha256": "352ec7ea4079022d886c66b26a1bec60bdaf7da72592d1a5f3d4efc91462e706"
+        },
+        {
+          "bytes": 8872,
+          "path": "generated/torus/034/representation_metrics.json",
+          "sha256": "538c04faae2d19d366709b1c29c64ab05f3c593a165f575e7beeaeb774d20028"
+        },
+        {
+          "bytes": 146384,
+          "path": "generated/torus/035/fidelity.jsonl.gz",
+          "sha256": "ab8ea134944329d1f13929b71709766259f6514a85b991a83b71607d6dc3702b"
+        },
+        {
+          "bytes": 1478,
+          "path": "generated/torus/035/manifest.json",
+          "sha256": "abfc6f19fd65d7b73758502ff68e0a161a4e2ceb7791b7c8343ce501fe44eb69"
+        },
+        {
+          "bytes": 133714,
+          "path": "generated/torus/035/records.jsonl.gz",
+          "sha256": "59e00c047a2e8095cfde11a592f584bc3336a9728bfb3821dfe176aa4fa217ec"
+        },
+        {
+          "bytes": 8933,
+          "path": "generated/torus/035/representation_metrics.json",
+          "sha256": "db497f0ac3e248c9d95e77bd6804b98b2182f5645f6b27ed96df284b76297eb9"
+        }
+      ],
+      "file": "generated-torus-024-035.tar.gz",
+      "sha256": "cba00269daeb07a27acce2a773f303394d07ffc5df5f938fee80f22abf05a3c8",
+      "stage_counts": {
+        "main": 5376,
+        "reference": 1536
+      },
+      "trajectory_records": 6912
+    },
+    {
+      "bundle_count": 12,
+      "bundles": [
+        "generated/torus/036",
+        "generated/torus/037",
+        "generated/torus/038",
+        "generated/torus/039",
+        "generated/torus/040",
+        "generated/torus/041",
+        "generated/torus/042",
+        "generated/torus/043",
+        "generated/torus/044",
+        "generated/torus/045",
+        "generated/torus/046",
+        "generated/torus/047"
+      ],
+      "bytes": 3437258,
+      "entries": [
+        {
+          "bytes": 147896,
+          "path": "generated/torus/036/fidelity.jsonl.gz",
+          "sha256": "1cf136650cd22d6aed14e16183ce9df9d2048e7a29926afa9d4d2ff8cdaa5dd5"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/036/manifest.json",
+          "sha256": "75a83bfaf287b1c5bf92575b0ce8989b522896977de7dd5ec71734d56345075d"
+        },
+        {
+          "bytes": 144782,
+          "path": "generated/torus/036/records.jsonl.gz",
+          "sha256": "dbdb19ac315c8ae4ec34e6bf9379fbd35293e346cb0b7ee74e7c9e8086812cd7"
+        },
+        {
+          "bytes": 8937,
+          "path": "generated/torus/036/representation_metrics.json",
+          "sha256": "c705eca9545412a2523625968bd0f3da7ef624775007f36a07b55460aef23e56"
+        },
+        {
+          "bytes": 146775,
+          "path": "generated/torus/037/fidelity.jsonl.gz",
+          "sha256": "2f3cf46d57e5538f08b55da405ba8fbf1154b0251b025ca8c69f5b5e782c628a"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/037/manifest.json",
+          "sha256": "502e4f19de9af8b014fdb9c62cadfaf17f194053268009b27b7b68c4390ba9d7"
+        },
+        {
+          "bytes": 140016,
+          "path": "generated/torus/037/records.jsonl.gz",
+          "sha256": "57844184c37bf509b9250285e622175f3c46c74aab8173f61f4dae4303d4acc1"
+        },
+        {
+          "bytes": 8873,
+          "path": "generated/torus/037/representation_metrics.json",
+          "sha256": "2f9e403f7763b95afc422f473d5d973e5cc1dee90e9b28d7204b0953af00e0e3"
+        },
+        {
+          "bytes": 147194,
+          "path": "generated/torus/038/fidelity.jsonl.gz",
+          "sha256": "9dce95ec9491a59a891f31ce330e93ca01d7e27ffd96f96908d2b0ca9729c679"
+        },
+        {
+          "bytes": 1480,
+          "path": "generated/torus/038/manifest.json",
+          "sha256": "a364b1e94b182c7845337f4e68f81655fdc41f25b73deaef30b2ecf649c70895"
+        },
+        {
+          "bytes": 144192,
+          "path": "generated/torus/038/records.jsonl.gz",
+          "sha256": "effde32f711e725fd54798b18ab1304b407f96146177c4520a457772df00e8f7"
+        },
+        {
+          "bytes": 8922,
+          "path": "generated/torus/038/representation_metrics.json",
+          "sha256": "e328fc7a07d0f227092b91a7990385c601af8c7967818a1efe628a73a15ba690"
+        },
+        {
+          "bytes": 146998,
+          "path": "generated/torus/039/fidelity.jsonl.gz",
+          "sha256": "b3a98114f827af111ed363aa60c2ac286b100cc6fcb34022fedbf14ec6d99067"
+        },
+        {
+          "bytes": 1481,
+          "path": "generated/torus/039/manifest.json",
+          "sha256": "4978e77ab5b13086c8d6ce1fbd361a332754089b65b760db95ba380593aec5e9"
+        },
+        {
+          "bytes": 141616,
+          "path": "generated/torus/039/records.jsonl.gz",
+          "sha256": "1a9f34d8f70d05d9a81476bd3cda99747cdd6e239f5d7c96bbd8a3865893584b"
+        },
+        {
+          "bytes": 8932,
+          "path": "generated/torus/039/representation_metrics.json",
+          "sha256": "b7541bda62dc8cb8100712ddedf5d48056368d6e30d7e237f70eee1502f19374"
+        },
+        {
+          "bytes": 147615,
+          "path": "generated/torus/040/fidelity.jsonl.gz",
+          "sha256": "7c55c3b6c94ab0a21d525192132f4a0d2ce349dadcd58f15c0eb6a846637de4c"
+        },
+        {
+          "bytes": 1480,
+          "path": "generated/torus/040/manifest.json",
+          "sha256": "6989481152ca9c522490f6e133f4ab656de547957a0181bc47023be68f0818b3"
+        },
+        {
+          "bytes": 142810,
+          "path": "generated/torus/040/records.jsonl.gz",
+          "sha256": "fc095f203adef9c7e185d682ec08bd212753a403b7f356660d7fd3536f692e2e"
+        },
+        {
+          "bytes": 8803,
+          "path": "generated/torus/040/representation_metrics.json",
+          "sha256": "716f79eea73a213bbde9e6334edb6ea190a666d0e3efdab96f2cb9c3a62bb300"
+        },
+        {
+          "bytes": 147033,
+          "path": "generated/torus/041/fidelity.jsonl.gz",
+          "sha256": "e0337592a7859d3a6dd599b33ab64a0a6ca99fa1d1ac9bc8e820f6cd264b170a"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/041/manifest.json",
+          "sha256": "ab6dbeac60c85c8155fdd268dc9b7b79f31f472178bfda2e42218a4297d5ba3e"
+        },
+        {
+          "bytes": 140656,
+          "path": "generated/torus/041/records.jsonl.gz",
+          "sha256": "cee3506d9dede5e2af0d5cb8f0d4efb559e049c0e349c82d065f6f46e3984438"
+        },
+        {
+          "bytes": 8861,
+          "path": "generated/torus/041/representation_metrics.json",
+          "sha256": "6581baa4b38e02165852eeff54b38a7f486e459cfd2e7546878bab06842e63a6"
+        },
+        {
+          "bytes": 147006,
+          "path": "generated/torus/042/fidelity.jsonl.gz",
+          "sha256": "b6bec01b19f173b21bb33e75f81eaaa02156904d8aa9275d041622f8456b4636"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/042/manifest.json",
+          "sha256": "a3cd8f8a75b803d81f85a172582b5d65767c4531ea0572d63adb5ef252133039"
+        },
+        {
+          "bytes": 137327,
+          "path": "generated/torus/042/records.jsonl.gz",
+          "sha256": "8004f94db9a16734bd3af876f083e584076dd5dd8655f9e57e0ea6c8baee0ff5"
+        },
+        {
+          "bytes": 8925,
+          "path": "generated/torus/042/representation_metrics.json",
+          "sha256": "d4689e2453cd3e9825187d00aa9551aeaba8b667a85cae5ed9aed5044da94e99"
+        },
+        {
+          "bytes": 145969,
+          "path": "generated/torus/043/fidelity.jsonl.gz",
+          "sha256": "d0436b9cc3bd1eb0783f27a5b15932f04418b0f5e89c391efce7976b97b1a07e"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/043/manifest.json",
+          "sha256": "112b06c50d251ad05fb6cb1fb618b4706ba9c86ffe66fb1cc91fd225dc412a2a"
+        },
+        {
+          "bytes": 139105,
+          "path": "generated/torus/043/records.jsonl.gz",
+          "sha256": "3b8ec16cb2cb59863c48bb15dd923fc462e6e23c86be7dcfc7118b7ca89e1289"
+        },
+        {
+          "bytes": 8809,
+          "path": "generated/torus/043/representation_metrics.json",
+          "sha256": "b65d9379103513127440f087da829696511f85c65a04033e84aa88e4ea9181a9"
+        },
+        {
+          "bytes": 147005,
+          "path": "generated/torus/044/fidelity.jsonl.gz",
+          "sha256": "00ce0ac766a4c600ee84fc9bd4923f53a23bce02d751ee1879633f872e17a945"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/044/manifest.json",
+          "sha256": "6822ef95b1068469e2a5945fd4a4033d3fb7f84727a7faa0e0e593a40a160f4f"
+        },
+        {
+          "bytes": 142502,
+          "path": "generated/torus/044/records.jsonl.gz",
+          "sha256": "e5066cfdb80fa980424e57cda4f52ce23116243fbbcb358ef188850a7ff9b109"
+        },
+        {
+          "bytes": 8920,
+          "path": "generated/torus/044/representation_metrics.json",
+          "sha256": "14a99ea89ebfd3f69e3fb999a886bf6d571d262f4eaab705b12652105c3c21b6"
+        },
+        {
+          "bytes": 146889,
+          "path": "generated/torus/045/fidelity.jsonl.gz",
+          "sha256": "10277de294e4b3839291288d15a06d1d07643240e24c9669726a56fc718ec4d9"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/045/manifest.json",
+          "sha256": "bc1dc21f66e52bbc8833080d1b1d6d52470610aae5ac4ddbea527ddff9c9e6ea"
+        },
+        {
+          "bytes": 141658,
+          "path": "generated/torus/045/records.jsonl.gz",
+          "sha256": "2e830aa2b3b2d5075f8be7559df5e4efb401929a891640f978fab81d9beadad7"
+        },
+        {
+          "bytes": 8928,
+          "path": "generated/torus/045/representation_metrics.json",
+          "sha256": "de4996ab5f3b7c22e8948ad95e10a01b485da55c998597278cd174ca153e46ea"
+        },
+        {
+          "bytes": 147110,
+          "path": "generated/torus/046/fidelity.jsonl.gz",
+          "sha256": "ff1c373626ec58efaae5cf1b71415c793b5314c2f605d1ccce55e66624daecaf"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/046/manifest.json",
+          "sha256": "d508611cbc8a38f90cdb285f7da22189d9afb439be700142b9badaa70eba9ff8"
+        },
+        {
+          "bytes": 142322,
+          "path": "generated/torus/046/records.jsonl.gz",
+          "sha256": "6b03da590fd8b52252d08e5613d19cc246a8934c4d7f8c2096eb05206b65c8cf"
+        },
+        {
+          "bytes": 8922,
+          "path": "generated/torus/046/representation_metrics.json",
+          "sha256": "11e5facc1615e5071edffe2ba0b60028333f327b9bce145d53f8fafe2f142cea"
+        },
+        {
+          "bytes": 147457,
+          "path": "generated/torus/047/fidelity.jsonl.gz",
+          "sha256": "24958d31224f9aef5af99931b51be1f1501a9cca5960fa483a90f5ee1608b100"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/047/manifest.json",
+          "sha256": "ec9812b4b62f4e33d2a5ba09ab196bec1e76657e0638b9f5e5bccd64b3e28a2b"
+        },
+        {
+          "bytes": 142902,
+          "path": "generated/torus/047/records.jsonl.gz",
+          "sha256": "ddb4acf650a1c9502a906ce575a1d4ef831e1c7fc261d7f38da2ff5583bde0a1"
+        },
+        {
+          "bytes": 8942,
+          "path": "generated/torus/047/representation_metrics.json",
+          "sha256": "0dd34d1700b16b7c1f62e915772ba231c654e19bf00390521956dd2128c31026"
+        }
+      ],
+      "file": "generated-torus-036-047.tar.gz",
+      "sha256": "4515796b350a3d6575a80acbe63a6a492d7bbbc4a987c1f00c5fb062a16910ff",
+      "stage_counts": {
+        "main": 5376,
+        "reference": 1536
+      },
+      "trajectory_records": 6912
+    },
+    {
+      "bundle_count": 12,
+      "bundles": [
+        "generated/torus/048",
+        "generated/torus/049",
+        "generated/torus/050",
+        "generated/torus/051",
+        "generated/torus/052",
+        "generated/torus/053",
+        "generated/torus/054",
+        "generated/torus/055",
+        "generated/torus/056",
+        "generated/torus/057",
+        "generated/torus/058",
+        "generated/torus/059"
+      ],
+      "bytes": 3439678,
+      "entries": [
+        {
+          "bytes": 147387,
+          "path": "generated/torus/048/fidelity.jsonl.gz",
+          "sha256": "92f38d4f5435e1126b99a4ac2cb3993aa8a97e4e04a468af130b0fd12b84e272"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/048/manifest.json",
+          "sha256": "25265103bf7f8cdb7800bc8a6a025d8c45db4a009f6b7bdb961f0cc40df33103"
+        },
+        {
+          "bytes": 142577,
+          "path": "generated/torus/048/records.jsonl.gz",
+          "sha256": "1ceaa005c1841903593a230260dcb716472f69cb9fae9df97e768a038018881a"
+        },
+        {
+          "bytes": 8870,
+          "path": "generated/torus/048/representation_metrics.json",
+          "sha256": "3ed252e37617d14a7f5c5c90fa824954ce9a7c92769f7c01b42e493777102d3d"
+        },
+        {
+          "bytes": 146769,
+          "path": "generated/torus/049/fidelity.jsonl.gz",
+          "sha256": "2b2bb8bb96592d4c438f5166713bca199175140687de0689aaec4ba75ec30754"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/049/manifest.json",
+          "sha256": "8fe6c4754880fc8e60a42b4efe99bfbb21d2fb893b31a455efb83eabf59835d5"
+        },
+        {
+          "bytes": 138610,
+          "path": "generated/torus/049/records.jsonl.gz",
+          "sha256": "e774f4817be9d0b52a81b2274a6c927d3ed9dd945aef5862bca19c0b0990ac18"
+        },
+        {
+          "bytes": 8861,
+          "path": "generated/torus/049/representation_metrics.json",
+          "sha256": "a14026056e90b26bc9f3428d022a981254560d140f544598374b5c875de5946c"
+        },
+        {
+          "bytes": 147489,
+          "path": "generated/torus/050/fidelity.jsonl.gz",
+          "sha256": "7d7d116c60a294a63640645431fb236d5034b6ba4a8d6089ef56386c2c85381b"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/050/manifest.json",
+          "sha256": "f63b046cfad98dcc393a8d598555abe018a2c9093ba33b885eb2e644d0aac7d4"
+        },
+        {
+          "bytes": 143100,
+          "path": "generated/torus/050/records.jsonl.gz",
+          "sha256": "6c1281ac24ef96e5d0c1eb3aa8fb642845139b40d4ac2c5789a93306510df41e"
+        },
+        {
+          "bytes": 8848,
+          "path": "generated/torus/050/representation_metrics.json",
+          "sha256": "909a3f0a245aa66a2d00213a911224ee461a0c4ca04f528539cb8a5dd05a2f59"
+        },
+        {
+          "bytes": 146765,
+          "path": "generated/torus/051/fidelity.jsonl.gz",
+          "sha256": "bce23b8e38d0299261654000b8c9e3a8e71453c6be3de1d177d97409c85a5e45"
+        },
+        {
+          "bytes": 1480,
+          "path": "generated/torus/051/manifest.json",
+          "sha256": "71f3c6b97ee34740df29148931fbcb367abec193116fd63d098891666bd224da"
+        },
+        {
+          "bytes": 141215,
+          "path": "generated/torus/051/records.jsonl.gz",
+          "sha256": "cdde9d6263656c5582e440849cf39650d7ecd53d3f850302c3d1d5305bf1e8fc"
+        },
+        {
+          "bytes": 8875,
+          "path": "generated/torus/051/representation_metrics.json",
+          "sha256": "78c46cdebf8b3aa0f184ae20e671aa7ed37865923a5cf169e4f1555e12053614"
+        },
+        {
+          "bytes": 147174,
+          "path": "generated/torus/052/fidelity.jsonl.gz",
+          "sha256": "3ccbdb0ae79a6bf69f4cfe8f8ff99d6c65e3b4cb6296db2f7f0052c76f616481"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/052/manifest.json",
+          "sha256": "c49f1d4612647ed3ac48bb01a3319f20647beccda82df1a223f590adf1f42d18"
+        },
+        {
+          "bytes": 139894,
+          "path": "generated/torus/052/records.jsonl.gz",
+          "sha256": "19b12d4baea97bcd30679610d49fe40df8a7f6f333b5b195e0981459f5d55611"
+        },
+        {
+          "bytes": 8922,
+          "path": "generated/torus/052/representation_metrics.json",
+          "sha256": "1a90708c2cc0509b86e34d3ca4d6817705c9ea04e0fab59a1e417a18fd679f94"
+        },
+        {
+          "bytes": 147917,
+          "path": "generated/torus/053/fidelity.jsonl.gz",
+          "sha256": "dd4f08d99a7ef872408a09a38e210657acde1412260026f10b78816c966dc72e"
+        },
+        {
+          "bytes": 1480,
+          "path": "generated/torus/053/manifest.json",
+          "sha256": "1f129bb9af84c3bb9e361741264145ed753a3aac14642a67fd8d056fc7f763b5"
+        },
+        {
+          "bytes": 145725,
+          "path": "generated/torus/053/records.jsonl.gz",
+          "sha256": "c214c8cb6bfe1982691df405c9592003bfe9876a0e5b3e8e5c04e2dabfa4424d"
+        },
+        {
+          "bytes": 8870,
+          "path": "generated/torus/053/representation_metrics.json",
+          "sha256": "fb55ffd262c8c9abd7ccffe468082c633c7022a7ed6167682c2c452d61c35ca2"
+        },
+        {
+          "bytes": 147653,
+          "path": "generated/torus/054/fidelity.jsonl.gz",
+          "sha256": "c7f46d76e6c8ca747063f3c7587e2685ef3d900275bace614364f6455b2c8089"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/054/manifest.json",
+          "sha256": "d318d51c0d0953459584b7affb31d88f0cc18803a64e2463e72616a86ab99599"
+        },
+        {
+          "bytes": 142777,
+          "path": "generated/torus/054/records.jsonl.gz",
+          "sha256": "ae224feb9947e7b907db0030b5fd2eb96980ba986cb3246787068532771a7833"
+        },
+        {
+          "bytes": 8756,
+          "path": "generated/torus/054/representation_metrics.json",
+          "sha256": "bec8deab8b6d556b8630bb8570d887f040906d3b00fa2f3f92a234783bd3d297"
+        },
+        {
+          "bytes": 146786,
+          "path": "generated/torus/055/fidelity.jsonl.gz",
+          "sha256": "a95ecd11a39e9bc40f33f679229ced4a259c39294a29439b645bc9e2c4be5a4c"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/055/manifest.json",
+          "sha256": "3e7f742c2b827c1070da29210ca9cd1893269ff7cc8bdaf73fd5590473b9599f"
+        },
+        {
+          "bytes": 140817,
+          "path": "generated/torus/055/records.jsonl.gz",
+          "sha256": "cabaa171bda11eb1e656a24cd19754d46e3316b628514688f04fa8bd166ca447"
+        },
+        {
+          "bytes": 8929,
+          "path": "generated/torus/055/representation_metrics.json",
+          "sha256": "24d38ec7c9f79f2ea53b524666c842a20bac247bb6c60448a28abe2f4f3dc5a6"
+        },
+        {
+          "bytes": 147189,
+          "path": "generated/torus/056/fidelity.jsonl.gz",
+          "sha256": "a2cb0a20bbc7183ead21e29bc7422aeedfe1062a625f5ba6cec0885bb4d559b6"
+        },
+        {
+          "bytes": 1486,
+          "path": "generated/torus/056/manifest.json",
+          "sha256": "4257c18b10f49d3e0984084fda2f07415157e951e569160620941b907ea9a86e"
+        },
+        {
+          "bytes": 142629,
+          "path": "generated/torus/056/records.jsonl.gz",
+          "sha256": "237a99c746996f8a982af85944aeba56df56692897cc1a6ba8ed1621b1e2a673"
+        },
+        {
+          "bytes": 8923,
+          "path": "generated/torus/056/representation_metrics.json",
+          "sha256": "e48144611ffc9e8afaa2bbe4d7910f77448d1640fddb3b247d6511ef56dc9659"
+        },
+        {
+          "bytes": 147334,
+          "path": "generated/torus/057/fidelity.jsonl.gz",
+          "sha256": "28aa208b740e446bff9ad1231149ac18068e14ad9e93616307b1f2ad9060d5fd"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/057/manifest.json",
+          "sha256": "c09c2e3259253fb0751e1ae8c7f3a168fbf8b23b756f5f455a975c816453f031"
+        },
+        {
+          "bytes": 140967,
+          "path": "generated/torus/057/records.jsonl.gz",
+          "sha256": "42224dc2e2e37178ce8b4ed870b9de0ed519c92af073a872481d66294c259e10"
+        },
+        {
+          "bytes": 8874,
+          "path": "generated/torus/057/representation_metrics.json",
+          "sha256": "b747c714346eccca163a98e6027875d3306edbb0685d0275a0b6d523ab8df86c"
+        },
+        {
+          "bytes": 147286,
+          "path": "generated/torus/058/fidelity.jsonl.gz",
+          "sha256": "37538dd320793daf6a9d320b60cf2f66317b9b35ec94e7bb4779f65a72dcaad9"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/058/manifest.json",
+          "sha256": "7bc61b4f342f3dde560f3fc007a09f25dfd26551c9c9baa043bc4275410388c9"
+        },
+        {
+          "bytes": 142088,
+          "path": "generated/torus/058/records.jsonl.gz",
+          "sha256": "bc4b3b0cdabb6b1f69a81984d6366b26c4937962aea2b08b10348de7e720bc99"
+        },
+        {
+          "bytes": 8814,
+          "path": "generated/torus/058/representation_metrics.json",
+          "sha256": "7f0d5d7c2c32752f4fa2e7cbc89558498f200b2b2acb541d732a393cb8e7e0e7"
+        },
+        {
+          "bytes": 146875,
+          "path": "generated/torus/059/fidelity.jsonl.gz",
+          "sha256": "22a88e35cd8e65777305710dbc89244eb9e7f37eabb2a1e5f755ce74d490a469"
+        },
+        {
+          "bytes": 1480,
+          "path": "generated/torus/059/manifest.json",
+          "sha256": "cd41d5efedd5eda651555c6f21922b290708340070e834c0d2ffbf499703d8ba"
+        },
+        {
+          "bytes": 142655,
+          "path": "generated/torus/059/records.jsonl.gz",
+          "sha256": "24f6ec0c1b78ecd1755165aaf72192014e134f9e6cdd0be8fd8a57edafe2336c"
+        },
+        {
+          "bytes": 8930,
+          "path": "generated/torus/059/representation_metrics.json",
+          "sha256": "c241975b5f2f01870a028c5250c809c3d120bdb105b4e44a38e52e908e262e7d"
+        }
+      ],
+      "file": "generated-torus-048-059.tar.gz",
+      "sha256": "f73ef9b09081c81bb2d4de99341cff9b23f0d27fc03bb709c8d57ac4cd6737ca",
+      "stage_counts": {
+        "main": 5376,
+        "reference": 1536
+      },
+      "trajectory_records": 6912
+    },
+    {
+      "bundle_count": 12,
+      "bundles": [
+        "generated/torus/060",
+        "generated/torus/061",
+        "generated/torus/062",
+        "generated/torus/063",
+        "generated/torus/064",
+        "generated/torus/065",
+        "generated/torus/066",
+        "generated/torus/067",
+        "generated/torus/068",
+        "generated/torus/069",
+        "generated/torus/070",
+        "generated/torus/071"
+      ],
+      "bytes": 3421072,
+      "entries": [
+        {
+          "bytes": 146589,
+          "path": "generated/torus/060/fidelity.jsonl.gz",
+          "sha256": "7589fb511d51b47dc12cd84015ed696605ef436b4fff87868100d3fff50313ad"
+        },
+        {
+          "bytes": 1480,
+          "path": "generated/torus/060/manifest.json",
+          "sha256": "e14ba12c5b1fd9826f46e4d56554f16ca494ec09bb56e23c55b6e1bdda94855a"
+        },
+        {
+          "bytes": 137991,
+          "path": "generated/torus/060/records.jsonl.gz",
+          "sha256": "32201929b128e49cda45a1cd0821f79ba0626c64358f1d157a08f1d9aec25259"
+        },
+        {
+          "bytes": 8868,
+          "path": "generated/torus/060/representation_metrics.json",
+          "sha256": "9f8f2557b09f3e9a1d066e811a66afc0e1c8e925107ee764b55362c7159f7a84"
+        },
+        {
+          "bytes": 146714,
+          "path": "generated/torus/061/fidelity.jsonl.gz",
+          "sha256": "9f51906ceef577d3641589dce06927bd499d943464c8d71a49d31a425b017c4b"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/061/manifest.json",
+          "sha256": "7828bc041a1a3269534c0b328c7342d806dadca861c6c111c8896bf016b87675"
+        },
+        {
+          "bytes": 138390,
+          "path": "generated/torus/061/records.jsonl.gz",
+          "sha256": "a9ecdd9f4a4262258fde3672a518b8ca442662eeca6b0e1e39b99ed60fce03dd"
+        },
+        {
+          "bytes": 8937,
+          "path": "generated/torus/061/representation_metrics.json",
+          "sha256": "1e089c626d7a0604872032ebf8fd846efba27daad1bc170dc35d2398a1f0bca2"
+        },
+        {
+          "bytes": 146351,
+          "path": "generated/torus/062/fidelity.jsonl.gz",
+          "sha256": "c076c7987d631cb98cef056efb21418cec357857d3a115576189c2f6b20ec4bc"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/062/manifest.json",
+          "sha256": "f7f64dcf6509fac919773ca25f01b0e392b5a7a7be17f84cc5f633c7eff7623b"
+        },
+        {
+          "bytes": 139424,
+          "path": "generated/torus/062/records.jsonl.gz",
+          "sha256": "d0b4a6eb266ace2d615b2a133b6d6619c1e9444f98ef86e7b10a2426d5df3c8f"
+        },
+        {
+          "bytes": 8874,
+          "path": "generated/torus/062/representation_metrics.json",
+          "sha256": "38139ffbeaf618b2c1e2fcdcffd00d39122df0abd8a1787c1558b55f3a4bf219"
+        },
+        {
+          "bytes": 146561,
+          "path": "generated/torus/063/fidelity.jsonl.gz",
+          "sha256": "71920e87413b2161980de30fc60a757b22b5328cb7b77ad18ba1231dde1ad24a"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/063/manifest.json",
+          "sha256": "6172c298b61187bbc8fa0e0b7acc923d591987f106edec6f7c4a2d198dff8f80"
+        },
+        {
+          "bytes": 139899,
+          "path": "generated/torus/063/records.jsonl.gz",
+          "sha256": "3ee14f4f3054e9a7b09e7685e8e3d408f92021d23ac847e2b3218fbed520fc27"
+        },
+        {
+          "bytes": 8865,
+          "path": "generated/torus/063/representation_metrics.json",
+          "sha256": "85a21a2810063afe2d6e7cfa7b5bc7d6cf050db4498a487193606d3f5baead44"
+        },
+        {
+          "bytes": 147167,
+          "path": "generated/torus/064/fidelity.jsonl.gz",
+          "sha256": "25fff586f877d62d7899d4964f9f4db436561cdf231f8c99d825883daead5a3c"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/064/manifest.json",
+          "sha256": "ad6f233a3689b5a25533f01335f1b993af4e710cc796bcc3e0bd614a8305808d"
+        },
+        {
+          "bytes": 144001,
+          "path": "generated/torus/064/records.jsonl.gz",
+          "sha256": "32dca62a4aa79b35148808186ec725616826f70a49c257bb018fb4ac14b9a8e1"
+        },
+        {
+          "bytes": 8926,
+          "path": "generated/torus/064/representation_metrics.json",
+          "sha256": "fdce105f5d97324506a6085019a93fbf578c13f605665adb9588281731da517f"
+        },
+        {
+          "bytes": 147374,
+          "path": "generated/torus/065/fidelity.jsonl.gz",
+          "sha256": "63c0db84e34bc20de0faaeeadda4b43f1ddb0e52d701184a6d8b897bad0af254"
+        },
+        {
+          "bytes": 1480,
+          "path": "generated/torus/065/manifest.json",
+          "sha256": "d7e9ef9119c6bafd8a9e94a6b69245bba003fe36291375951bb8ab78b15bd387"
+        },
+        {
+          "bytes": 142748,
+          "path": "generated/torus/065/records.jsonl.gz",
+          "sha256": "c3ff7d19c6d36e774d308075df23ffe5c02cd741a043da462ecece706e3cd0c6"
+        },
+        {
+          "bytes": 8928,
+          "path": "generated/torus/065/representation_metrics.json",
+          "sha256": "b3cf58f0c9b86c747b2aee153c2e56e3f46aa292ec4583179517e85c78e597fa"
+        },
+        {
+          "bytes": 146573,
+          "path": "generated/torus/066/fidelity.jsonl.gz",
+          "sha256": "147c80188935d5b71d9a90aab2196b2bf2be6ddea797bb6ac6040d1c0e22e7c2"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/066/manifest.json",
+          "sha256": "d32038237b86098fbc07117d86e38bda4a15f6044e08947660a9d395efb60a02"
+        },
+        {
+          "bytes": 138371,
+          "path": "generated/torus/066/records.jsonl.gz",
+          "sha256": "bbdc2fbe1045f14b792fb8edae4ae567e001abe49d392ed54d91fc587af114e6"
+        },
+        {
+          "bytes": 8925,
+          "path": "generated/torus/066/representation_metrics.json",
+          "sha256": "6e3a88abc36e37a027cfdc330bbddd51eb4324d5a0b6e8ac4c973e0107317950"
+        },
+        {
+          "bytes": 146418,
+          "path": "generated/torus/067/fidelity.jsonl.gz",
+          "sha256": "f11ca015445539b33d4e0c665abfc1d1cb6dbf88f29e282038868afbcc941946"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/067/manifest.json",
+          "sha256": "644ede31d6c8c999f8059aa7d4d98d40d895bf18058c53ef2b6e19a7ce5f7dce"
+        },
+        {
+          "bytes": 138416,
+          "path": "generated/torus/067/records.jsonl.gz",
+          "sha256": "e904e55e5fc36bde32d2cc78c54f6ceb90dfeafc34a2e9cff608f6fef21ef886"
+        },
+        {
+          "bytes": 8933,
+          "path": "generated/torus/067/representation_metrics.json",
+          "sha256": "bc4f4c544e241fb77595aebf8eff9d27e4b764ce6ab694f711612da11be64ed1"
+        },
+        {
+          "bytes": 147456,
+          "path": "generated/torus/068/fidelity.jsonl.gz",
+          "sha256": "6f9d42ed7499ab6091400c7bf137dacfda6c7df7dd25278aa54cff19a0629ff4"
+        },
+        {
+          "bytes": 1480,
+          "path": "generated/torus/068/manifest.json",
+          "sha256": "c3a639522e71129549745099212c5ac1fa105a7080194d642c51e345306ef538"
+        },
+        {
+          "bytes": 144238,
+          "path": "generated/torus/068/records.jsonl.gz",
+          "sha256": "9c718f341fd7e43284b850b0a840294eed16827dff29d6f9bfccb19ff3251e16"
+        },
+        {
+          "bytes": 8871,
+          "path": "generated/torus/068/representation_metrics.json",
+          "sha256": "57593360680660328b800173bdd552a03c0a47b9ea07d92d8b5e4879dbcbcd69"
+        },
+        {
+          "bytes": 146885,
+          "path": "generated/torus/069/fidelity.jsonl.gz",
+          "sha256": "0c011f508db97e5e41470231c080700455e4a9cc827cbaea2d6920750922b990"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/069/manifest.json",
+          "sha256": "766b08eebf4a1d2abc92377bc50ba9f5b7fae1de9c39cfea569acb7568b99080"
+        },
+        {
+          "bytes": 139789,
+          "path": "generated/torus/069/records.jsonl.gz",
+          "sha256": "fc3440b3a06a695c72b253b3774f2707954d577d7975265eff30470504b8e4ea"
+        },
+        {
+          "bytes": 8923,
+          "path": "generated/torus/069/representation_metrics.json",
+          "sha256": "58b94a6c2ddd63d733d9f4c96e2a0c86e162499106aea4c933e9010c4d62b54e"
+        },
+        {
+          "bytes": 147440,
+          "path": "generated/torus/070/fidelity.jsonl.gz",
+          "sha256": "ec3b017d8065cd2694560c67095ec8fd59e61d7431aa5be48224d2be0b8e389e"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/070/manifest.json",
+          "sha256": "2212b558d03b5e37860ff9557bcbb2db8519f4d4669b97081ad327f16cc4d56e"
+        },
+        {
+          "bytes": 142224,
+          "path": "generated/torus/070/records.jsonl.gz",
+          "sha256": "7bebbd7da8573ad712d0b570aa753adb14191725461d51fca80c97824158a4ce"
+        },
+        {
+          "bytes": 8793,
+          "path": "generated/torus/070/representation_metrics.json",
+          "sha256": "c149f4e3a4fe39c84a3e4fb2556be4c2cb7d0c6830ea49bbff31e51230afef8c"
+        },
+        {
+          "bytes": 146765,
+          "path": "generated/torus/071/fidelity.jsonl.gz",
+          "sha256": "49563cbb1d811c0779ba43a5ab4626de0f1a51d86ad5677ff373b6d2768f1f37"
+        },
+        {
+          "bytes": 1479,
+          "path": "generated/torus/071/manifest.json",
+          "sha256": "dfbf996e121183b474be2cb7ab5b6c567dfc6210416814b937b529c7f217b6ee"
+        },
+        {
+          "bytes": 138837,
+          "path": "generated/torus/071/records.jsonl.gz",
+          "sha256": "40bad7fc49e1183dfb0a905c25f45dc1f859bbe2ee8c0d68d34c366b7bffd46c"
+        },
+        {
+          "bytes": 8925,
+          "path": "generated/torus/071/representation_metrics.json",
+          "sha256": "55eed4edf1357be611d9262dcad7252cab1f759e68b463833c6e9700bcde1d4f"
+        }
+      ],
+      "file": "generated-torus-060-071.tar.gz",
+      "sha256": "18b64349a41daa8fa182fab6da80da3cbe8954f88612d424322bdd648a609a8c",
+      "stage_counts": {
+        "main": 5376,
+        "reference": 1536
+      },
+      "trajectory_records": 6912
+    },
+    {
+      "bundle_count": 6,
+      "bundles": [
+        "anchors/ising2.5-100_5555",
+        "anchors/ising2.5-100_6666",
+        "anchors/ising2.5-100_7777",
+        "anchors/t2g10_5555",
+        "anchors/t2g10_6666",
+        "anchors/t2g10_7777"
+      ],
+      "bytes": 3008942,
+      "entries": [
+        {
+          "bytes": 278215,
+          "path": "anchors/ising2.5-100_5555/fidelity.jsonl.gz",
+          "sha256": "2114ceeba36e6059d3c50067fc75274d0b8c4cb248bbe7d4ab8625adf5672b31"
+        },
+        {
+          "bytes": 1403,
+          "path": "anchors/ising2.5-100_5555/manifest.json",
+          "sha256": "e683d2cb863315b257536119451a46e8134eb4e38d270901bb9d33fb55e69f97"
+        },
+        {
+          "bytes": 216219,
+          "path": "anchors/ising2.5-100_5555/records.jsonl.gz",
+          "sha256": "205dd2653abf6d25ba7729dc6bffa0f4c850512a3d341c119f60f657cb725621"
+        },
+        {
+          "bytes": 8935,
+          "path": "anchors/ising2.5-100_5555/representation_metrics.json",
+          "sha256": "b8c3423ceb2475fa9f8fe4fa4babe7eb6c46c150d0f4ebbdaba0869c890499b2"
+        },
+        {
+          "bytes": 272967,
+          "path": "anchors/ising2.5-100_6666/fidelity.jsonl.gz",
+          "sha256": "182a23916f09c839a9d4ca999685d945645751a22493315030f1f1e8a998ce35"
+        },
+        {
+          "bytes": 1400,
+          "path": "anchors/ising2.5-100_6666/manifest.json",
+          "sha256": "0ae5fd97a9cd7ae1aa68be96ef290dc3821af2f04756e7095e09a24085c95332"
+        },
+        {
+          "bytes": 196690,
+          "path": "anchors/ising2.5-100_6666/records.jsonl.gz",
+          "sha256": "129d116b0a295faffb7f5096e8d549c132aac09285d314a799e6215e760b924c"
+        },
+        {
+          "bytes": 8946,
+          "path": "anchors/ising2.5-100_6666/representation_metrics.json",
+          "sha256": "b26abd4d6fa959116f19169b091993bfda8044935e9e9ddb811db5996609bf32"
+        },
+        {
+          "bytes": 271346,
+          "path": "anchors/ising2.5-100_7777/fidelity.jsonl.gz",
+          "sha256": "c6564f44c3dacb48ec58bd444ceba7c011e8b312043299d7f146cffe9997b0b9"
+        },
+        {
+          "bytes": 1403,
+          "path": "anchors/ising2.5-100_7777/manifest.json",
+          "sha256": "44030bd0a256f3a5d659b23fc3027e8b46954e3d5b91f58f0b2405c68ccafd50"
+        },
+        {
+          "bytes": 201687,
+          "path": "anchors/ising2.5-100_7777/records.jsonl.gz",
+          "sha256": "0ea6af42ac0265d2f802b9d7f44cec75e2ab661944f0737c3fcdce6c04ad441f"
+        },
+        {
+          "bytes": 8948,
+          "path": "anchors/ising2.5-100_7777/representation_metrics.json",
+          "sha256": "f76983ecbd49697d651771d31c0e908b373a2e6d65a583e10cba22b4c0690805"
+        },
+        {
+          "bytes": 293596,
+          "path": "anchors/t2g10_5555/fidelity.jsonl.gz",
+          "sha256": "e8484435f57aa8228b3959d3a65c1275e9ba2a05c712af3b4f7e7230a02bcf30"
+        },
+        {
+          "bytes": 1387,
+          "path": "anchors/t2g10_5555/manifest.json",
+          "sha256": "ae6968ebdfb85125c2a2349c98cd234d2ef12bfee2920c7f3fb49eac71b3b200"
+        },
+        {
+          "bytes": 237476,
+          "path": "anchors/t2g10_5555/records.jsonl.gz",
+          "sha256": "5bf8fd3f79df79f057b222389db25b5b43ed65418107b336420585b3c44f3b5d"
+        },
+        {
+          "bytes": 8925,
+          "path": "anchors/t2g10_5555/representation_metrics.json",
+          "sha256": "9db7613dea0b47fcb02e8d62e923500179a7d9d4c5dfa6d96ceb8de684692cfd"
+        },
+        {
+          "bytes": 293789,
+          "path": "anchors/t2g10_6666/fidelity.jsonl.gz",
+          "sha256": "c64bd999fd6da4a4bfee2b5d6ed560cc99b442b878f58fd4ac8c11c8f1bd5e87"
+        },
+        {
+          "bytes": 1386,
+          "path": "anchors/t2g10_6666/manifest.json",
+          "sha256": "3c050002803c7b90592abb665ab762d4a9c723b99d1dc9fe82df1fb5d9d87601"
+        },
+        {
+          "bytes": 235273,
+          "path": "anchors/t2g10_6666/records.jsonl.gz",
+          "sha256": "39c98d25730086d53b0c3cbcb1c73d8255cfbb51b26a3c24a61b03e5af3ba7d6"
+        },
+        {
+          "bytes": 8880,
+          "path": "anchors/t2g10_6666/representation_metrics.json",
+          "sha256": "ccac1d720f47f8ad3468cf6e96b3284fd0ff9fa59a799ed0a98ee3509dfab4d7"
+        },
+        {
+          "bytes": 292536,
+          "path": "anchors/t2g10_7777/fidelity.jsonl.gz",
+          "sha256": "a6bdc8974be211711a0c9760fc0b87b31f6096c7b50d39a7eeefc458303dc440"
+        },
+        {
+          "bytes": 1386,
+          "path": "anchors/t2g10_7777/manifest.json",
+          "sha256": "45eac4010d2efbe8958fbfca646997d17383aeb0662dc19e7ffeaba9ae6d616a"
+        },
+        {
+          "bytes": 232180,
+          "path": "anchors/t2g10_7777/records.jsonl.gz",
+          "sha256": "7c8d2fcf9e7cd625458f6ab2dce7759036c6fe42156e2729442b5285c93939a0"
+        },
+        {
+          "bytes": 8755,
+          "path": "anchors/t2g10_7777/representation_metrics.json",
+          "sha256": "caca70e75d2a6a00a7e13682941ccd8835aaecc9ca1fbf2c557d552c3f257cd2"
+        }
+      ],
+      "file": "official-anchors.tar.gz",
+      "sha256": "c1a60dd1e8afba50f883fb09f7495fceec09344e911a4220774a6a70c8346f6f",
+      "stage_counts": {
+        "anchor": 5376
+      },
+      "trajectory_records": 5376
+    }
+  ],
+  "campaign_counts": {
+    "anchor_bundles": 6,
+    "archive_count": 13,
+    "archived_files": 600,
+    "bundles": 150,
+    "fidelity_records": 239616,
+    "generated_bundles": 144,
+    "generated_main_records": 64512,
+    "independent_fp64_reference_records": 18432,
+    "new_solver_trajectories": 87552,
+    "official_anchor_records": 5376,
+    "represented_trajectory_records": 88320,
+    "reused_first_block_records": 768
+  },
+  "excluded": [
+    "timings",
+    "operational files",
+    "analysis outputs",
+    "original graph sources"
+  ],
+  "format": {
+    "gzip_compresslevel": 9,
+    "gzip_filename": "",
+    "gzip_mtime": 0,
+    "tar": "USTAR",
+    "tar_gid": 0,
+    "tar_gname": "",
+    "tar_mode": "0644",
+    "tar_mtime": 0,
+    "tar_order": "lexicographic result-relative paths",
+    "tar_uid": 0,
+    "tar_uname": ""
+  },
+  "freeze_manifest_sha256": "459acfbed1a5b4115211010de0964d48020c37c13f24123b7f8eed50be9c6f3f",
+  "frozen_commit": "d217ab54fc41a3a84d6a500f3ab0f3aa433059dd",
+  "full_campaign_verification": "Prerequisite: frozen campaign runner --verify-all passed",
+  "schema": "fyp-ideal-raw-archives-v1",
+  "scope": "Exact raw scientific bytes and manifest/count verification; no quality analysis",
+  "status": "COMPLETE_VERIFIED_RAW_ARCHIVES"
+}

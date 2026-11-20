@@ -1,0 +1,189 @@
+{
+  "alpha_core": 0.04,
+  "anchor_seed_sequences": "[20261120,940,family,2,anchor_label_index]; labels 5555=0,6666=1,7777=2",
+  "core": [
+    {
+      "contrast": "fp6-int6",
+      "family": "ring",
+      "left": "fp6",
+      "right": "int6"
+    },
+    {
+      "contrast": "fp5-int6",
+      "family": "ring",
+      "left": "fp5",
+      "right": "int6"
+    },
+    {
+      "contrast": "fp6-int7",
+      "family": "ring",
+      "left": "fp6",
+      "right": "int7"
+    },
+    {
+      "contrast": "fp5-ref64",
+      "family": "ring",
+      "left": "fp5",
+      "right": "ref64"
+    },
+    {
+      "contrast": "fp6-ref64",
+      "family": "ring",
+      "left": "fp6",
+      "right": "ref64"
+    },
+    {
+      "contrast": "int5-ref64",
+      "family": "ring",
+      "left": "int5",
+      "right": "ref64"
+    },
+    {
+      "contrast": "int6-ref64",
+      "family": "ring",
+      "left": "int6",
+      "right": "ref64"
+    },
+    {
+      "contrast": "int7-ref64",
+      "family": "ring",
+      "left": "int7",
+      "right": "ref64"
+    },
+    {
+      "contrast": "int8-ref64",
+      "family": "ring",
+      "left": "int8",
+      "right": "ref64"
+    },
+    {
+      "contrast": "fp6-int6",
+      "family": "torus",
+      "left": "fp6",
+      "right": "int6"
+    },
+    {
+      "contrast": "fp5-int6",
+      "family": "torus",
+      "left": "fp5",
+      "right": "int6"
+    },
+    {
+      "contrast": "fp6-int7",
+      "family": "torus",
+      "left": "fp6",
+      "right": "int7"
+    },
+    {
+      "contrast": "fp5-ref64",
+      "family": "torus",
+      "left": "fp5",
+      "right": "ref64"
+    },
+    {
+      "contrast": "fp6-ref64",
+      "family": "torus",
+      "left": "fp6",
+      "right": "ref64"
+    },
+    {
+      "contrast": "int5-ref64",
+      "family": "torus",
+      "left": "int5",
+      "right": "ref64"
+    },
+    {
+      "contrast": "int6-ref64",
+      "family": "torus",
+      "left": "int6",
+      "right": "ref64"
+    },
+    {
+      "contrast": "int7-ref64",
+      "family": "torus",
+      "left": "int7",
+      "right": "ref64"
+    },
+    {
+      "contrast": "int8-ref64",
+      "family": "torus",
+      "left": "int8",
+      "right": "ref64"
+    }
+  ],
+  "core_count_per_family": 9,
+  "core_count_total": 18,
+  "core_seed_sequences": {
+    "ring": [
+      20261120,
+      940,
+      0
+    ],
+    "torus": [
+      20261120,
+      940,
+      1
+    ]
+  },
+  "descriptive": {
+    "R_last_missing": "not reconstructed or zero-filled for reused first-block rows",
+    "Rz_sign_caveat": "Rz is nonnegative by definition; its sign is not mechanism evidence",
+    "alpha_from_core": 0,
+    "contrasts": [
+      {
+        "left": "fp5",
+        "right": "int6",
+        "rz_prediction": "positive"
+      },
+      {
+        "left": "fp6",
+        "right": "int7",
+        "rz_prediction": "positive"
+      },
+      {
+        "left": "fp6",
+        "right": "int6",
+        "rz_prediction": "none"
+      }
+    ],
+    "endpoints": [
+      "Rz difference",
+      "access A difference",
+      "graph sign counts",
+      "SD of graph means",
+      "median within-graph standard error",
+      "per-candidate Spearman(Rz/A,probability_mae/field_rms/zeroed_weight_mass_fraction)",
+      "signed R_last-R"
+    ],
+    "interval": "ordinary two-sided 95% bootstrap-t, whole-graph-vector resampling",
+    "no_direction": [
+      "fp6-int6"
+    ]
+  },
+  "descriptive_seed_sequences": {
+    "ring": [
+      20261120,
+      940,
+      0,
+      1
+    ],
+    "torus": [
+      20261120,
+      940,
+      1,
+      1
+    ]
+  },
+  "deterministic_equality": "requires external algebraic/kernel proof; observed zero variance alone is unresolved",
+  "one_tail_q": 0.0011111111111111111,
+  "primary_margin_pp": 0.5,
+  "quantile": "numpy linear",
+  "reference": "B_g=max(0,V) over exactly 128 reference and 7*64 main trajectories",
+  "resamples": 500000,
+  "resampling_unit": "whole graph vector; no nested seed resampling",
+  "rng": "PCG64DXSM",
+  "sensitivity_margins_pp": [
+    0.25,
+    1.0
+  ]
+}
