@@ -91,6 +91,9 @@ class TestFirstBlock(unittest.TestCase):
         self.assertFalse(claims(-0.6,-1.1,0.1)["statistical_superiority"])
         # A change in significance labels alone cannot establish interaction.
         self.assertFalse(claims(0.0,-0.2,0.2)["statistical_superiority"])
+        self.assertTrue(claims(+0.47,+0.186,+0.751)["statistical_inferiority"])
+        self.assertTrue(claims(+0.47,+0.186,+0.751)["noninferiority_unresolved"])
+        self.assertFalse(claims(-0.349,-0.554,-0.142)["true_benefit_gt_0p5pp"])
 
 
 if __name__=="__main__":unittest.main()

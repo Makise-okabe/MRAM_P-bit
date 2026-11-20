@@ -52,12 +52,14 @@ def claims(mu,lo,hi,tol=0.5):
         return {"status":"UNRESOLVED_STUDENTIZATION"}
     # Multiple claims are not mutually exclusive: e.g. superiority and NI.
     return {"statistical_superiority":hi<0,
+            "statistical_inferiority":lo>0,
             "estimated_benefit_gt_0p5pp":mu < -tol,
             "true_benefit_gt_0p5pp":hi < -tol,
             "non_inferior":hi < tol,
             "practically_equivalent":lo > -tol and hi < tol,
             "penalty_exceeds_tolerance":lo > tol,
-            "unresolved":(lo<=0<=hi) and not (lo > -tol and hi < tol)}
+            "unresolved":not (hi < tol or lo > tol),
+            "noninferiority_unresolved":not (hi < tol or lo > tol)}
 
 
 def write_csv(path,rows):

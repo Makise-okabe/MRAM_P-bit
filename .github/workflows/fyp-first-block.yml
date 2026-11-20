@@ -1,13 +1,6 @@
 name: FYP first viewed-dense 1280-run locked block
 
 on:
-  push:
-    branches: ['research/m4-gain-fusion-20261107']
-    paths:
-      - 'experiments/fyp_first_block_20261120.py'
-      - 'experiments/fyp_first_block_stats.py'
-      - 'tests/test_fyp_first_block.py'
-      - '.github/workflows/fyp-first-block.yml'
   workflow_dispatch:
 
 permissions:
