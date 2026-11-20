@@ -1,8 +1,5 @@
 name: FYP weak-tail mechanism — frozen study
 on:
-  push:
-    branches: ['research/m4-gain-fusion-20261107']
-    paths: ['.github/workflows/fyp-weak-tail-locked.yml']
   workflow_dispatch:
 permissions:
   contents: write
@@ -53,6 +50,6 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add results/fyp_tail_probe_20261121 results/fyp_tail_preflight_20261121 README.md
+          git add -f results/fyp_tail_probe_20261121 results/fyp_tail_preflight_20261121 README.md
           git commit -m 'Archive frozen weak-tail mechanism checkpoint; stop before device work'
           git push origin HEAD:research/m4-gain-fusion-20261107

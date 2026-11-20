@@ -1,0 +1,38 @@
+name: Archive completed weak-tail artifact — no solver
+on:
+  push:
+    branches: ['research/m4-gain-fusion-20261107']
+    paths: ['.github/workflows/fyp-tail-archive-only.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Recover the completed immutable artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: fyp-weak-tail-20261121-44797500337
+          run-id: 44797500337
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: results
+      - name: Independently verify raw counts and point estimates
+        run: python scripts/fyp_tail_archive_only.py
+      - name: Commit the existing results
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f results/fyp_tail_probe_20261121 results/fyp_tail_preflight_20261121 README.md
+          git commit -m 'Archive verified weak-tail artifact without rerunning simulations'
+          git push origin HEAD:research/m4-gain-fusion-20261107
