@@ -3,7 +3,7 @@
 
 No hardcoded observed results. Requires Python 3.12+, matplotlib and numpy.
 Example: python scripts/make_thesis_figures.py
-Optionally add --checkpoint results/fyp_policy_device_20261121 after Checkpoint 1.
+The completed checkpoint is read from immutable committed research-branch JSON.
 
 Reads version-pinned CSV/JSON and one source tar archive from the research
 branch, never regenerates scientific trajectories or alters a frozen study.
@@ -29,6 +29,9 @@ from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
 
 PIN = "bf710c5ece7b7a6435ede73905127abda9be0660"
 RAW = "https://raw.githubusercontent.com/Makise-okabe/MRAM_P-bit/" + PIN + "/"
+CHECKPOINT_PIN = "6c20537a24711c1fca53092808e38eca8c2bdf61"
+CHECKPOINT_RAW = ("https://raw.githubusercontent.com/Makise-okabe/MRAM_P-bit/"
+                  + CHECKPOINT_PIN + "/results/fyp_policy_device_20261121/analysis/")
 IDEAL = "results/fyp_ideal_20261120/analysis/"
 TAIL = "results/fyp_tail_probe_20261121/analysis/"
 COLOUR = {"fp": "#2166ac", "int": "#d95f02", "ref": "#6d6e71", "other": "#7c6aa6"}
@@ -47,6 +50,11 @@ def read_csv(path):
 
 def read_json(path):
     return json.loads(fetch(path))
+
+
+def checkpoint_json(name):
+    with urllib.request.urlopen(CHECKPOINT_RAW + name, timeout=90) as handle:
+        return json.loads(handle.read())
 
 
 def f(row, key):
@@ -172,30 +180,26 @@ def forest(out, core):
     save(fig, out, "F04_ideal_forest")
 
 
-def width_ladder(out, selected, checkpoint=None):
+def width_ladder(out, selected, stage_a):
     original = {fam: selected[fam]["qualification"] for fam in ("ring","torus")}
-    buffer = None
-    if checkpoint:
-        p = checkpoint/"analysis"/"stage_a_certification.json"
-        if p.exists():
-            buffer = json.loads(p.read_text())["certification"]
-    stages = ["No buffer"] + (["Top-16 host rescoring"] if buffer is not None else [])
-    fig, axes = plt.subplots(1, len(stages), figsize=(6.2*len(stages), 3.9), squeeze=False)
+    buffer = stage_a["certification"]
+    fig, axes = plt.subplots(1, 2, figsize=(12.6, 4), squeeze=False)
     formats = ["fp5","fp6","int5","int6","int7","int8"]
-    for ax, stage in zip(axes[0], stages):
+    for ax, stage in zip(axes[0], ("Original earliest-energy output", "Host top-16 rescoring")):
         for i, fam in enumerate(("ring", "torus")):
-            labels = original[fam] if stage == "No buffer" else buffer[fam]["0.5"]["formats"]
+            labels = (original[fam] if stage.startswith("Original")
+                      else buffer[fam]["0.5"]["formats"])
             for j, fmt in enumerate(formats):
                 label = labels.get(fmt, "UNRESOLVED")
                 color = "#d9ece5" if label == "PASS" else "#f9d7d0" if label == "FAIL" else "#f2ebcc"
                 ax.add_patch(plt.Rectangle((j-.48, 1-i-.42), .96, .84, facecolor=color, edgecolor="white"))
-                ax.text(j, 1-i, label, va="center", ha="center", fontsize=7)
+                ax.text(j, 1-i, label, va="center", ha="center", fontsize=7.2)
         ax.set_xticks(range(6), [x.upper() for x in formats])
         ax.set_yticks([1,0],["Ring","Torus"])
         ax.set(xlim=(-.5, 5.5), ylim=(-.5,1.5), title=stage)
         ax.tick_params(length=0)
         for spine in ax.spines.values(): spine.set_visible(False)
-    fig.suptitle("Certified width depends on problem family and output policy (+0.5 pp)", fontsize=11)
+    fig.suptitle("A passive output buffer changes the certified ring width ladder (+0.5 pp)", fontsize=11)
     save(fig, out, "F05_width_ladder")
 
 
@@ -325,32 +329,48 @@ def evidence_map(out):
     save(fig,out,"F12_evidence_map")
 
 
-def device_plot(out, checkpoint):
-    if not checkpoint: return
-    path=checkpoint/"analysis"/"stage_b_graph_mechanisms.json"
-    if not path.exists(): return
-    records=json.loads(path.read_text())
-    fig, axes=plt.subplots(1,2,figsize=(10.5,4.5),sharey=True)
-    for ax,fam in zip(axes,("ring","torus")):
-        group=[r for r in records if r["family"]==fam]
-        formats=sorted(set(r["format"] for r in group))
-        for i,fmt in enumerate(formats):
-            rows=[r for r in group if r["format"]==fmt]
-            ideal=np.mean([float(r["ideal_extra_loss_pp"]) for r in rows])
-            now=np.mean([float(r["offset_extra_loss_pp"]) for r in rows])
-            ax.plot([0,1],[ideal,now],marker="o",color=colour(fmt),label=fmt.upper())
-        ax.set_xticks([0,1],["Ideal","Persistent offsets"])
-        ax.set(xlabel="Response",ylabel="Extra loss (pp)",title=fam.capitalize())
-        ax.legend(frameon=False,fontsize=7)
-        tidy(ax)
-    fig.suptitle("Offset sensitivity: software model, not measured MTJ residuals", fontsize=11)
+def device_plot(out, records):
+    fig, axes = plt.subplots(2, 2, figsize=(11.1, 8.0))
+    for col, fam in enumerate(("ring", "torus")):
+        group = [r for r in records if r["family"] == fam]
+        formats = ("fp5","int6","fp6") if fam=="ring" else ("fp5","int5","fp6","int6")
+        upper, lower = axes[0,col], axes[1,col]
+        for fmt in formats:
+            rows = [r for r in group if r["format"] == fmt]
+            if len(rows) != 72:
+                raise ValueError("Missing frozen graph-bank mechanism summaries for " + fam + fmt)
+            ideal = np.mean([float(r["ideal_extra_loss_pp"]) for r in rows])
+            now = np.mean([float(r["offset_extra_loss_pp"]) for r in rows])
+            upper.plot([0,1],[ideal,now],marker="o",color=colour(fmt),
+                       label=fmt.upper(),linewidth=1.8)
+        upper.set_xticks([0,1],["Ideal","Assumed offsets"])
+        upper.set(xlim=(-.2,1.2),title=f"{fam.capitalize()}: original-policy extra loss")
+        upper.set_ylabel("Extra loss vs matched FP64 (pp)")
+        upper.legend(frameon=False,fontsize=8)
+        tidy(upper)
+        for j, fmt in enumerate(formats):
+            rows = [r for r in group if r["format"] == fmt]
+            da = np.mean([float(r["shift_access_A_pp"]) for r in rows])
+            dz = np.mean([float(r["shift_selection_Rz_pp"]) for r in rows])
+            lower.bar(j-.18,da,width=.34,color=colour(fmt),alpha=.86)
+            lower.bar(j+.18,dz,width=.34,color=colour(fmt),alpha=.35,hatch="//")
+        lower.set_xticks(range(len(formats)), [x.upper() for x in formats])
+        lower.axhline(0,color="#555",linewidth=.8)
+        lower.set(ylabel="Offset - ideal loss component (pp)",
+                  title="Search/access (solid) vs selection (hatched) shifts")
+        tidy(lower)
+    fig.suptitle("Persistent synthetic logit offsets: mean response shifts, descriptive (72 graphs/family)",
+                 fontsize=11)
+    fig.tight_layout(rect=[0,.02,1,.95])
+    fig.text(.5,0,"Not measured STT-MRAM offsets; no registered interaction test.",
+             ha="center",fontsize=9)
     save(fig,out,"F11_offset_sensitivity")
 
 
 def main():
     p=argparse.ArgumentParser()
     p.add_argument("--out",type=Path,default=Path("report/figures"))
-    p.add_argument("--checkpoint",type=Path,default=None)
+    # Stage A/B source pin is fixed above; results are fetched, not re-simulated.
     args=p.parse_args()
     args.out.mkdir(parents=True,exist_ok=True)
     core=read_csv(IDEAL+"core_contrasts.csv")
@@ -361,21 +381,21 @@ def main():
     weak=read_csv(TAIL+"graph_summary.csv")
     selected=read_json(IDEAL+"selected_pairs.json")
     graphs=source_graphs()
+    stage_a=checkpoint_json("stage_a_certification.json")
+    stage_b=checkpoint_json("stage_b_graph_mechanisms.json")
     draw_pipeline(args.out)
     weights_distribution(args.out,graphs,quality)
     ring_distance(args.out,graphs)
     forest(args.out,core)
-    width_ladder(args.out,selected,args.checkpoint)
+    width_ladder(args.out,selected,stage_a)
     mechanisms(args.out,family)
     retained_vs_loss(args.out,quality)
     tail_intervention(args.out,weak)
     output_policy(args.out,weak)
     heterogeneity(args.out,graph_contrasts,anchors)
     evidence_map(args.out)
-    device_plot(args.out,args.checkpoint)
-    print("Created available F01-F12 figures from pinned CSV/JSON/source archives.")
-    if args.checkpoint is None or not (args.checkpoint/"analysis"/"stage_b_graph_mechanisms.json").exists():
-        print("F11 omitted: verified Stage B archive not provided; no fabricated device result.")
+    device_plot(args.out,stage_b)
+    print("Created F01-F12 figures from pinned scientific CSV/JSON/source archives.")
 
 
 if __name__=="__main__":
