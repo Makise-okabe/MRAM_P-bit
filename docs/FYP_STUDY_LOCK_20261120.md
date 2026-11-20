@@ -157,3 +157,19 @@ Keep one stable question throughout. Further experiment requests must identify a
 - Round 2 protocol and Yanzhang's six-amendment review, 20 November 2026.
 - Closest engineering comparison — Bratenkov et al. (2026), DOI 10.15514/ISPRAS-2026-38(4)-23.
 - Mechanism boundary — Hizzani et al. (2026), DOI 10.1038/s44335-026-00082-4.
+
+## Dated amendment — 20 November 2026: descriptive mechanism endpoints
+
+The student's next-stage instruction adds the descriptive endpoints specified in
+[FYP_MECHANISM_AMENDMENT_20261120.md](FYP_MECHANISM_AMENDMENT_20261120.md).
+It preserves this lock's research question, seven candidates, solver, source
+generators, reference procedure, tolerance, nine core contrasts per family
+(18 total), alpha allocations, seed namespaces and run caps. It does not reopen
+or rerun the completed first block. The decomposition explains the engineering
+answer; it is not a separate thesis or an additional confirmatory test family.
+
+The amendment adds a passive `R_last` field and descriptive across-instance
+access/selection comparisons. It uses no alpha from the 18 core contrasts.
+Missing `R_last` in reused historical records remains explicitly unavailable;
+the authorized small parity sample is not a rerun of the first-block campaign.
+No distinct-energies-among-the-best-one-percent endpoint is added.
