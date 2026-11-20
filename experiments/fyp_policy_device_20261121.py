@@ -95,6 +95,10 @@ def gate():
     for family, names in ARMS_B.items():
         if tuple(spec["stage_b"]["arms"][FAMILIES[family]]) != names:
             raise ValueError("Changed Stage B arms")
+    for path, expected_blob in spec["source_blob_sha1"].items():
+        observed = subprocess.check_output(["git", "hash-object", path], cwd=ROOT, text=True).strip()
+        if observed != expected_blob:
+            raise ValueError("Registered file Git blob hash differs: " + path)
     current = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
     expected = os.environ.get("FYP_POLICY_FREEZE_SHA")
     if expected and expected != current:
