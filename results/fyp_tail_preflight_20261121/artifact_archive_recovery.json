@@ -1,0 +1,15 @@
+{
+  "administrative_failure": "Original archive step omitted git add -f for ignored results directories.",
+  "archive_only_run_id": "44799133098",
+  "confirmatory_point_estimates_recomputed": 2,
+  "freeze_commit": "54c06ff593c8acded95f7e4ce6f04a347c6164f7",
+  "frozen_files": 74,
+  "independently_recomputed_graph_mean_cells": 1728,
+  "scientific_data_modified": false,
+  "solver_calls": 0,
+  "source_artifact_id": 14659628343,
+  "source_run_id": 44797500337,
+  "status": "PASS",
+  "unique_scientific_records": 18432,
+  "verified_deliverable_files": 202
+}

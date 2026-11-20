@@ -78,3 +78,10 @@ The [sparse M6 frozen protocol](docs/M6_SPARSE_HELDOUT_PROTOCOL_20261110.md) pas
 [Audited M6 results and dense/sparse contrast](docs/M6_SPARSE_RESULTS_20261110.md): the static probability-fidelity ranking reverses, with sparse INT6 beating FP6 on matched reference states at d=0/0.8/1.6 (95% paired CI support), whereas dense M5 favours FP6. The sparse direct paired FP6–INT6 Max-Cut gap contrasts remain inconclusive at all d. This contradicts the predeclared sparse direction and is not proof that sparsity alone causes the reversal.
 
 **Archive COMPLETE:** [M6 raw CSVs, source/protocol manifest and all six figures](results/m2_heldout_sparse_fp6_int6_20261110) are now on this research branch. The new [cross-instance manuscript synthesis](https://github.com/Makise-okabe/MRAM_P-bit/blob/main/report/maxcut/40_m5_m6_discussion.tex) connects the raw-field error, screening margins, and bounded hardware area. M5 remains archived and separate; CAL 36/36 CI import and gain-data recovery are separate. A potential 48-run FP8/INT8 width experiment stays on hold until the new width protocol is explicitly frozen.
+
+
+## Weak-tail mechanism checkpoint — 21 November 2026
+
+The frozen 2x2 mechanism experiment completed 18,432 unique trajectories on 48 fresh graphs. Both registered ring contrasts were supported: removing the accurate FP6 tail raised selection loss by 0.07562 pp (98.75% one-sided lower bound 0.04719), and restoring the tail to INT6 reduced it by 0.09132 pp (lower bound 0.06210). See [the full checkpoint report](results/fyp_tail_probe_20261121/RESULTS.md) and [registered contrasts](results/fyp_tail_probe_20261121/analysis/confirmatory.csv).
+
+The workspace failure required a disclosed replay of the same fixed keys on GitHub Actions; inaccessible local outputs were not pooled. The subsequent ignored-directory archive error was repaired from the existing artifact with zero additional solver calls. All raw bundles and source hashes are archived. Offset, gain and hardware work remain stopped at the requested checkpoint.

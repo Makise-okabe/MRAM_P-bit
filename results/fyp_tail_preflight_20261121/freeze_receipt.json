@@ -1,0 +1,6 @@
+{
+  "freeze_commit": "54c06ff593c8acded95f7e4ce6f04a347c6164f7",
+  "freeze_sha256": "f4e6121e8b3caa3653702268e36d25c063decf8e1ce91eece4f32a37252bab29",
+  "remote_bytes_verified": true,
+  "verification_method": "Native git-show at exact previously published freeze; all file SHA256 values checked before fresh execution"
+}

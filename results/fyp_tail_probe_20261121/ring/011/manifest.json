@@ -1,0 +1,19 @@
+{
+  "B_control": 3207473.0,
+  "B_witness": {
+    "representation": "fp6",
+    "seed": 4000000011030,
+    "state_hex": "1adbfd3651d91d60db8bd95da"
+  },
+  "family": "ring",
+  "files": {
+    "common_bank.json.gz": "2ab4398e388d7c5819a02ca502791d1c6af8f2692899bfa4ec8f5c96119a2004",
+    "records.json.gz": "9c52e39e3f719968bcf40456d5e6af19c5b5eb781060f335f4bcace82923b136",
+    "representations.json": "67538b387ae73406d258ea20b21d59ddc1f05ec6b9caa9127d272fd007e6f3e3"
+  },
+  "freeze_commit": "54c06ff593c8acded95f7e4ce6f04a347c6164f7",
+  "graph_sha256": "871d590ba4035d94fd24845a3e17485e37857553f113a0e26cc9d7db480d721c",
+  "index": 11,
+  "records": 384,
+  "reference_pool": "best V over exactly FP64/FP6/INT6 x64; not a known optimum"
+}
