@@ -1,0 +1,202 @@
+name: FYP frozen buffer policy and offset Checkpoint 1
+on:
+  push:
+    branches: [research/m4-gain-fusion-20261107]
+    paths: [docs/FYP_POLICY_DEVICE_REGISTRY_20261121.json]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: fyp-policy-device-20261121
+  cancel-in-progress: false
+env:
+  FYP_POLICY_FREEZE_SHA: ${{ github.sha }}
+  PYTHONHASHSEED: '0'
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install numpy==2.3.5
+      - run: |
+          python -m py_compile experiments/fyp_policy_device_20261121.py experiments/fyp_output_device_solver.py
+          python -m experiments.fyp_policy_device_20261121 preflight
+      - uses: actions/upload-artifact@v4
+        with:
+          name: policy-preflight
+          path: results/fyp_policy_device_20261121/preflight.json
+          retention-days: 90
+  stage-a:
+    needs: preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: true
+      max-parallel: 12
+      matrix:
+        family: [ring, torus]
+        segment:
+          - {start: 0, stop: 12}
+          - {start: 12, stop: 24}
+          - {start: 24, stop: 36}
+          - {start: 36, stop: 48}
+          - {start: 48, stop: 60}
+          - {start: 60, stop: 72}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install numpy==2.3.5
+      - run: python -m experiments.fyp_policy_device_20261121 extract
+      - run: |
+          python -u -m experiments.fyp_policy_device_20261121 a \
+            --family ${{ matrix.family }} --start ${{ matrix.segment.start }} --stop ${{ matrix.segment.stop }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: a-${{ matrix.family }}-${{ matrix.segment.start }}
+          path: results/fyp_policy_device_20261121/stage_a/
+          if-no-files-found: error
+          retention-days: 90
+  analyse-a:
+    needs: stage-a
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install numpy==2.3.5
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: a-*
+          path: results/fyp_policy_device_20261121/stage_a/
+          merge-multiple: true
+      - uses: actions/download-artifact@v4
+        with:
+          name: policy-preflight
+          path: results/fyp_policy_device_20261121/
+      - run: python -m experiments.fyp_policy_device_20261121 analyse-a
+      - uses: actions/upload-artifact@v4
+        with:
+          name: a-complete
+          path: results/fyp_policy_device_20261121/
+          if-no-files-found: error
+          retention-days: 90
+  stage-b:
+    needs: analyse-a
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: true
+      max-parallel: 12
+      matrix:
+        family: [ring, torus]
+        segment:
+          - {start: 0, stop: 12}
+          - {start: 12, stop: 24}
+          - {start: 24, stop: 36}
+          - {start: 36, stop: 48}
+          - {start: 48, stop: 60}
+          - {start: 60, stop: 72}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install numpy==2.3.5
+      - uses: actions/download-artifact@v4
+        with:
+          name: a-complete
+          path: results/fyp_policy_device_20261121/
+      - run: python -m experiments.fyp_policy_device_20261121 extract
+      - run: |
+          python -u -m experiments.fyp_policy_device_20261121 b \
+            --family ${{ matrix.family }} --start ${{ matrix.segment.start }} --stop ${{ matrix.segment.stop }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: b-${{ matrix.family }}-${{ matrix.segment.start }}
+          path: results/fyp_policy_device_20261121/stage_b/
+          if-no-files-found: error
+          retention-days: 90
+  analyse-b:
+    needs: stage-b
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install numpy==2.3.5
+      - uses: actions/download-artifact@v4
+        with:
+          name: a-complete
+          path: results/fyp_policy_device_20261121/
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: b-*
+          path: results/fyp_policy_device_20261121/stage_b/
+          merge-multiple: true
+      - run: |
+          python -m experiments.fyp_policy_device_20261121 analyse-b
+          python -m experiments.fyp_policy_device_20261121 summarize
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fyp-checkpoint-1-full
+          path: results/fyp_policy_device_20261121/
+          if-no-files-found: error
+          retention-days: 90
+  archive:
+    needs: analyse-b
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          name: fyp-checkpoint-1-full
+          path: results/fyp_policy_device_20261121/
+      - name: Verify and archive only on unchanged research branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f results/fyp_policy_device_20261121/RESULTS.md
+          test -f results/fyp_policy_device_20261121/preflight.json
+          test -f results/fyp_policy_device_20261121/analysis/stage_a_certification.json
+          test -f results/fyp_policy_device_20261121/analysis/stage_b_device_contrasts.json
+          git fetch origin research/m4-gain-fusion-20261107
+          test "$(git rev-parse FETCH_HEAD)" = "$FYP_POLICY_FREEZE_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f results/fyp_policy_device_20261121/
+          git commit -m 'Archive frozen policy and offset Checkpoint 1 with full parity'
+          git push origin HEAD:refs/heads/research/m4-gain-fusion-20261107
