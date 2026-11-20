@@ -1,0 +1,18 @@
+{
+  "details": "test_all_seven_codes_preserve_legacy_outputs (tests.test_fyp_ideal_solver.TestIdealSolver.test_all_seven_codes_preserve_legacy_outputs) ... ok\ntest_common_state_self_fidelity_is_exactly_zero (tests.test_fyp_ideal_solver.TestIdealSolver.test_common_state_self_fidelity_is_exactly_zero) ... ok\ntest_exact_score_and_zeroed_weight_mass (tests.test_fyp_ideal_solver.TestIdealSolver.test_exact_score_and_zeroed_weight_mass) ... ok\ntest_latest_tie_difference_has_either_sign (tests.test_fyp_ideal_solver.TestIdealSolver.test_latest_tie_difference_has_either_sign) ... ok\ntest_noninteger_sources_are_rejected (tests.test_fyp_ideal_solver.TestIdealSolver.test_noninteger_sources_are_rejected) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.020s\n\nOK\n",
+  "generated_source_manifest_sha256": "3950867acc9a9ab2e3687b7e15ac37546682824184f5b8410d85147ba4b2a215",
+  "numpy": "2.3.5",
+  "python": "3.12.14",
+  "source_sha256": {
+    "experiments/biqmac_maxcut.py": "b372b7d81e2ae406f223e1bd025373696fe3d3b4cbb9591d53b3fff917305f9d",
+    "experiments/fyp_first_block_20261120.py": "ffbaf666d4cb96cc6235c19e4f9e2ef267f2e2d66948302dcd6b1b17e38e9ced",
+    "experiments/fyp_ideal_solver.py": "0255aac10e9fac4eeaf0274603e9985fadc90cc772db1f9986bd71efecb4a6fc",
+    "experiments/m0_ising_math.py": "b6b74fd0d068d856be7dc720b6e6430ccde2ba174597ec39cbaff925b1f2e7bb",
+    "experiments/m1_biqmac_ideal_pilot.py": "1c58a5b97d5e481d837fcdf1c94d9ea051c03f3ba2a17148ee3760b80ac6e0dc",
+    "experiments/m1_biqmac_reference_quality_gate.py": "c6c5fcec5b1299d6d0ebfe96d7e51cecf2cbf02fe51bd5736ed264b2c03f744c",
+    "experiments/m1_precision_codebooks.py": "e6c323804417830747fc6d2db1eda046dd8b48e5b70bb497c8b095754cf4cf6f",
+    "tests/test_fyp_ideal_solver.py": "267c8701fb272b36106a2b2dbae898a2b9168b8502ad6d5051811a698904278c"
+  },
+  "status": "PASS",
+  "tests_run": 5
+}

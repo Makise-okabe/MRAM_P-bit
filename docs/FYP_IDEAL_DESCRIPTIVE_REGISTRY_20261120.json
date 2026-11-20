@@ -1,0 +1,57 @@
+{
+  "R_last_missing": "not reconstructed or zero-filled for reused first-block rows",
+  "Rz_sign_caveat": "Rz is nonnegative by definition; its sign is not mechanism evidence",
+  "alpha_from_core": 0,
+  "anchor_intervals": "ordinary paired-seed 95% bootstrap-t, no core alpha",
+  "anchor_reference": "max(0,V) over 7*128 anchor trajectories; published optimum remains primary; pool differs from generated 576",
+  "anchor_seed_sequences": "[20261120,940,family,2,anchor_label_index]; labels 5555=0,6666=1,7777=2",
+  "anchor_spread": "all nine contrast means and seven candidate mean shortfalls; empirical min/max and linear 2.5/97.5 percentiles; not prediction intervals",
+  "contrasts": [
+    {
+      "left": "fp5",
+      "right": "int6",
+      "rz_prediction": "positive"
+    },
+    {
+      "left": "fp6",
+      "right": "int7",
+      "rz_prediction": "positive"
+    },
+    {
+      "left": "fp6",
+      "right": "int6",
+      "rz_prediction": "none"
+    }
+  ],
+  "endpoints": [
+    "Rz difference",
+    "access A difference",
+    "graph sign counts",
+    "SD of graph means",
+    "median within-graph standard error",
+    "per-candidate Spearman(Rz/A,probability_mae/field_rms/zeroed_weight_mass_fraction)",
+    "signed R_last-R"
+  ],
+  "family_seed_sequences": {
+    "ring": [
+      20261120,
+      940,
+      0,
+      1
+    ],
+    "torus": [
+      20261120,
+      940,
+      1,
+      1
+    ]
+  },
+  "interval": "ordinary two-sided 95% bootstrap-t, whole-graph-vector resampling",
+  "no_direction": [
+    "fp6-int6"
+  ],
+  "quantile": "numpy linear",
+  "resamples": 500000,
+  "rng": "PCG64DXSM",
+  "source_spread": "max absolute raw weight and raw zero count; no exclusions"
+}
