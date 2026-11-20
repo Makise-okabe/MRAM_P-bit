@@ -217,21 +217,27 @@ def mechanisms(out, family_mechanisms):
 
 
 def retained_vs_loss(out, quality):
-    fig, ax = plt.subplots(figsize=(8.7, 5))
-    for fam, marker in (("ring","o"),("torus","s")):
-        for fmt in ("fp5","fp6","int5","int6","int7","int8"):
-            rows = [r for r in quality if r["kind"]=="generated" and r["family"]==fam and r["representation"]==fmt]
-            if not rows: continue
+    fig, axes = plt.subplots(1, 2, figsize=(11, 4.8))
+    markers = {"fp5": "o", "fp6": "^", "int5": "s",
+               "int6": "D", "int7": "v", "int8": "P"}
+    for ax, fam in zip(axes, ("ring", "torus")):
+        for fmt in ("fp5", "fp6", "int5", "int6", "int7", "int8"):
+            rows = [r for r in quality if r["kind"] == "generated"
+                    and r["family"] == fam and r["representation"] == fmt]
+            if not rows:
+                continue
             x = np.mean([f(r, "nonzero_count") for r in rows])
             y = np.mean([f(r, "mean_Rz_pp") for r in rows])
-            ax.scatter(x,y,s=85,marker=marker,color=colour(fmt),edgecolors="white",zorder=3)
-            ax.annotate(fmt.upper()+"/"+fam, (x,y), xytext=(5,4),
-                        textcoords="offset points", fontsize=8)
-    ax.set(xlabel="Mean nonzero encoded couplings / graph", ylabel="Mean selection loss Rz (pp)",
-           title="Retained coupling count is informative but not a sufficient mechanism")
-    tidy(ax)
-    ax.text(.02,.02,"Descriptive format means; not a registered causal contrast.",
-            transform=ax.transAxes,fontsize=8)
+            ax.scatter(x, y, s=75, marker=markers[fmt], color=colour(fmt),
+                       label=fmt.upper(), edgecolors="white", zorder=3)
+        ax.set(title=fam.capitalize(), xlabel="Mean retained coefficients / graph",
+               ylabel="Mean selection loss Rz (pp)")
+        ax.legend(ncol=2, frameon=False, loc="upper right", fontsize=8)
+        tidy(ax)
+    fig.suptitle("Retained coefficient count alone does not determine selection loss",
+                 fontsize=11)
+    fig.text(.5, -.025, "Descriptive format means; not a registered causal contrast.",
+             ha="center", fontsize=9)
     save(fig, out, "F07_retained_vs_selection")
 
 
