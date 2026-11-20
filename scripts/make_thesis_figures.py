@@ -16,6 +16,8 @@ import csv
 import io
 import json
 import math
+import struct
+import bisect
 from pathlib import Path
 import tarfile
 import urllib.request
@@ -121,9 +123,77 @@ def source_graphs():
     return result
 
 
+def figure_codebook(fmt):
+    """Exact finite-only value levels from frozen research codebook equations."""
+    kind, width = fmt[:-1], int(fmt[-1])
+    if kind == "int":
+        return np.arange(0, 2**(width-1), dtype=float)
+    exponent_bits, mantissa_bits = {5:(2,2), 6:(3,2)}[width]
+    bias = 2**(exponent_bits-1)-1
+    codes = [0.0]
+    for fraction in range(1,2**mantissa_bits):
+        codes.append((fraction/(2**mantissa_bits))*2.0**(1-bias))
+    for exponent in range(1,2**exponent_bits):
+        for fraction in range(2**mantissa_bits):
+            codes.append((1+fraction/2**mantissa_bits)*2.0**(exponent-bias))
+    return np.asarray(sorted(set(codes)))
+
+
+def figure_scale(source, fmt, positive):
+    """Mirror the frozen one-global-scale source-MSE grid, independent of solver."""
+    kind, width = fmt[:-1], int(fmt[-1])
+    values = [-float(v) for v in source]
+    vmax = max(abs(v) for v in values)
+    upper = positive[-1]
+    nominal = vmax/upper if vmax else 1.0
+    def f32(value):
+        q = struct.unpack(">f",struct.pack(">f",float(value)))[0]
+        if not math.isfinite(q) or q <= 0:
+            raise ValueError("Unrepresentable binary32 scale")
+        return q
+    base = f32(nominal)
+    if base < nominal:
+        raw = struct.unpack(">I",struct.pack(">f",base))[0]
+        if raw >= 0x7f7fffff: raise ValueError("Fullscale overflow")
+        base = struct.unpack(">f",struct.pack(">I",raw+1))[0]
+    choices = set()
+    for k in range(-48,33):
+        try:
+            choices.add(f32(base*2.0**(k/16.0)))
+        except (OverflowError,ValueError,struct.error):
+            pass
+    choices.add(base)
+    if kind == "int" and vmax <= upper and all(v == round(v) for v in values):
+        choices.add(1.0)
+    best = None
+    for scale in sorted(choices):
+        mse, l1 = 0.0, 0.0
+        for value in values:
+            mag = abs(value)/scale
+            if kind == "int":
+                q = min(upper, round(mag))*scale
+            else:
+                j = bisect.bisect_left(positive,mag)
+                if j == 0: selected = positive[0]
+                elif j >= len(positive): selected = positive[-1]
+                else:
+                    lo,hi = positive[j-1],positive[j]
+                    dl,dh = mag-lo, hi-mag
+                    if dl < dh: selected = lo
+                    elif dh < dl: selected = hi
+                    else: selected = lo if (j-1)%2 == 0 else hi
+                q = selected*scale
+            err = value - math.copysign(q,value) if q else value
+            mse += err*err
+            l1 += abs(err)
+        key = mse,l1,scale
+        if best is None or key < best:
+            best = key
+    return best[2]
+
+
 def weights_distribution(out, graphs, quality):
-    """Use the identical stored-J codebooks and source-MSE scale fits as the experiment."""
-    from experiments.m1_precision_codebooks import fit_global_scale, levels
+    """Recompute exact level-placement from pinned source and frozen scale rule."""
     fig, axes = plt.subplots(2, 2, figsize=(12.3, 7.2),
                              height_ratios=[2.8, 1.5], sharex="col")
     names = ("fp5", "fp6", "int6", "int7")
@@ -134,13 +204,8 @@ def weights_distribution(out, graphs, quality):
         weights = np.array([abs(w) for w in source if w != 0.0], dtype=float)
         row_minmax = []
         def get_levels(fmt):
-            family = "fp" if fmt.startswith("fp") else "int"
-            bits = int(fmt[-1])
-            scale, _ = fit_global_scale(source, family, bits)
-            code = (np.array(levels(bits)[1:], dtype=float)
-                    if family == "fp"
-                    else np.arange(1, 2**(bits-1), dtype=float))
-            return scale * code
+            positive = figure_codebook(fmt)
+            return positive[1:] * figure_scale(source, fmt, positive)
         for row, fmt in enumerate(names):
             positive = get_levels(fmt)
             threshold = float(positive[0] / 2.0)
