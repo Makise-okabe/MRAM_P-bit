@@ -1,4 +1,4 @@
-\documentclass[11pt,a4paper]{article}
+\documentclass[11pt,a4paper,oneside]{report}
 \usepackage[margin=23mm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern,microtype}
@@ -12,159 +12,489 @@
 \setlength{\parskip}{.27em}
 \setlength{\parindent}{1.1em}
 \renewcommand{\arraystretch}{1.13}
-\title{\vspace{-1em}\bfseries Low-Order Floating-Point Representations of\\
-Ising Coupling Matrices for STT-MRAM p-Bit Optimization}
+\title{\vspace{-1em}\bfseries Bits Worth Storing:\\ Low-Order Floating-Point versus Integer Coupling Matrices for Nonideal STT-MRAM p-Bit Ising Machines}
 \author{Du Yanzhang\\Electrical Engineering Final-Year Project\\Supervisor: Prof.\ Kelvin Fong}
-\date{Completed evidence and prospective study locked --- 20 November 2026}
+\date{Thesis draft, 21 November 2026}
+\newcommand{\thesisfig}[2]{\IfFileExists{report/figures/#1.pdf}{%
+\begin{figure}[!htbp]\centering\includegraphics[width=\linewidth]{report/figures/#1.pdf}
+\caption{#2}\label{fig:#1}\end{figure}}{}}
+
 \begin{document}
 \maketitle
 \begin{abstract}
-Low-order numerical representation of the symmetric Ising coupling matrix
-$\mathbf J$ can reduce coefficient storage, but may disturb local
-fields, stochastic p-bit switching decisions, and finite-budget
-optimisation quality. We compare FP4/5/6/8 against matched INT
-representations on original weighted Max-Cut graphs, using a
-fixed global source-MSE scale, a 50,000-update asynchronous Gibbs
-solver, and specified STT-MRAM-inspired switching-response assumptions.
-The evidence comprises 936 completed ideal runs, a 240-run FP64 offset
-scout, 576 low-bit offset runs and 192 conditional eight-bit runs.
-A separate read-only diagnostic evaluates 3,888 format/state/beta
-combinations on 144 already-returned FP64 states. On one dense
-calibration graph, FP6 has lower static mean absolute switching
-probability distortion than INT6 at the largest assumed offset, but
-the experiment does not establish a general FP advantage, a causal
-trajectory mechanism, measured physical offset statistics, or
-whole-processor hardware savings. Two predesignated held-out graphs (one dense and one sparse)
-have now each completed 216 solver runs. Their FP6-versus-INT6
-static switching-probability fidelity rankings have opposite signs;
-neither this contrast nor the optimization-quality outcomes establish
-one universally optimal representation, or prove a causal sparsity effect.
+This thesis evaluates whether low-order floating-point (FP) codes for the
+symmetric Ising coupling matrix can preserve useful stochastic optimisation
+quality more efficiently than integer (INT) codes. Its fixed-budget software
+p-bit controller solves original signed weighted Max-Cut and separates
+search/access loss from represented-energy output-selection loss.
+
+On 72 independently generated graphs per family, the lowest certified
+representations under a $+0.5$ percentage-point family-mean
+non-inferiority tolerance are FP5/INT6 for heavy-tailed rings and
+FP5/INT5 for periodic torus graphs. In a separate registered weak-tail
+intervention, masking weak FP6 coefficients increases output-selection
+loss by $0.0756$ percentage points; restoring those coefficients to
+INT6 decreases it by $0.0913$ percentage points. The differences have
+positive corrected one-sided lower confidence bounds. Search recovery,
+top-16 original-objective rescoring and format-level mechanisms are
+distinguished as descriptive evidence. An official hard ring instance
+provides a counterexample to any individual-instance width guarantee.
+
+Separate full-ensemble passive-buffer certification and persistent synthetic
+p-bit logit-offset validation are frozen but are not given result labels
+until parity-checked archive analysis is completed. No measured MTJ
+residuals, full-chip power reduction or universal FP superiority are claimed.
 \end{abstract}
 \tableofcontents
+\listoffigures
 
-\section{Motivation and research question}
-The coupling matrix of an Ising optimiser maps a combinatorial
-objective into local fields. A low-bit coefficient representation
-trades matrix storage and arithmetic complexity against changes
-in the represented energy landscape. Stochastic p-bit devices
-further convert each local field into a switching probability,
-making the useful precision \emph{response- and workload-dependent}.
-Numerical coefficient error alone is not the desired endpoint.
+\chapter{Introduction}
+\noindent\emph{Stochastic p-bit optimisers store couplings that control their
+local fields. Saving coefficient bits is useful only when the changed
+energy landscape preserves acceptable finite-budget solution quality.
+The output-selection rule may matter as much as the format itself.}
 
-\noindent\textbf{Current research question and locked prospective study.}
-\emph{How do low-order floating-point representations of the
-coupling matrix $J$ affect local fields, stochastic p-bit responses
-and weighted Max-Cut solution quality under specified STT-MRAM
-nonidealities, and when do those effects justify implementation cost?}
-The engineering outcomes include quality at equal width,
-a named lower-width replacement and supported integer sufficiency.
-The completed M5/M6 studies provide conditional evidence at the
-fixed 50,000-update operating point. The independently replicated
-prospective study was locked by the student on 20 November 2026,
-with the candidate set, response assumptions, tolerance and
-uncertainty rules specified in Section~\ref{sec:prospective-design}.
-The new campaign remains prospective.
+\section{Problem and fixed question}
+For a dense symmetric $N$-spin system, storing each off-diagonal
+coupling once requires $N(N-1)/2$ coefficients. Smaller stored words
+reduce raw capacity but alter representable weights, local fields,
+switching decisions, visited states and returned solutions. The
+question is: \emph{How do low-order FP representations of the symmetric
+Ising coupling matrix $J$ affect local fields, p-bit response and
+weighted Max-Cut quality under specified STT-MRAM nonidealities,
+and when do the effects justify their implementation cost?}
+\section{Contribution and evidence boundary}
+Four contributions are evaluated: a registered family-level FP/INT
+width certification; a registered weak-tail intervention on output
+selection; a separately registered passive top-16 output policy;
+and a specified persistent logit-offset sensitivity study. Prior
+hardware cost evidence is component-level only. Registered effects,
+descriptive mechanisms and pending observations are labelled separately.
+The report moves from background to methods and evidence, then
+implementation implications, limitations and the next checkpoint.
+\thesisfig{F01_pipeline}{The original weighted graph becomes a stored coupling matrix and a stochastic update field; search access and final represented-energy selection are separate quality mechanisms.}
 
-\section{Prior art and scientific contribution boundary}
-Hizzani et al.\ show that coupling errors may deepen local
-energy traps even when the true optimum is preserved
-\cite{PbitHizzani2026}. M\"ucke et al.\ analyse
-optimum-preserving QUBO compression, demonstrating that coefficient
-fidelity and minimiser preservation are different objectives
-\cite{PbitMuecke2025}. Zhang et al.\ already examine
-p-bit gain/offset variation and compensating coupling-weight
-changes \cite{PbitZhang2025}. Floating-point Ising arithmetic,
-pipelined fixed-point coupling memory and bit-plane coupling
-organisation also have prior art \cite{PbitTao2023,S33,S32}.
-The measured switching curves and calibration of a
-250-STT-MTJ machine motivate our stochastic response model
-but cannot validate the synthetic post-nominal offsets here
-\cite{PbitYang2502026}.
+\chapter{Background and prior research}
+\noindent\emph{An Ising mapping makes weighted Max-Cut accessible to p-bit
+dynamics. Linear integer and exponent-bearing floating-point codebooks
+preserve different subsets of the same coefficients. This idea sits
+within existing Ising precision, degeneracy and sample-selection literature,
+so the novelty claim must be specific.}
 
-The FP4 E2M1 and FP6 E3M2 \emph{element value sets} have an
-OCP MX specification precedent \cite{PbitOCPMX2023}.
-Our complete representations are nevertheless \emph{not}
-OCP MX: they use a single source-fitted graph-wide binary32
-scale, not 32-element shared-scale blocks. FP5 is custom,
-and FP8 uses a custom finite-only E4M3 codebook with maximum
-unscaled magnitude 480 rather than the OCP E4M3 maximum 448.
-The BFP control uses one global power-of-two scale, not
-arbitrary BFP tiling. Format novelty and physical-device
-novelty must not be overstated.
+\section{Ising p-bits, encoding and nonideality}
+The controller represents binary spins $s_i\in\{-1,+1\}$ and
+takes a random-site stochastic update with response
+\begin{equation}
+P(s_i=+1)=\sigma\left(2\beta(t)g_i\widehat H_i+\delta_i\right),
+\quad \widehat H_i=\sum_j\widehat J_{ij}s_j,\quad
+\sigma(x)=(1+e^{-x})^{-1}.
+\end{equation}
+Here $\widehat J$ denotes stored quantised couplings,
+$\beta(t)$ the annealing inverse-temperature multiplier,
+$g_i$ a gain, and $\delta_i$ a logit offset.
+Reports of STT-MTJ p-bit machines motivate the response
+\cite{PbitYang2502026}, but do not certify the assumed
+device offset distribution used in this thesis.
 
-Our candidate contribution is narrower: a matched-bit FP
-versus INT matrix-encoding comparison connected explicitly
-to state-conditioned local-field error, one-step stochastic
-decision fidelity and independently observed finite-budget
-original-weight solution quality. Whether this yields a
-transferable design rule remains unproven.
+Finite-only FP5 (E2M2) and FP6 (E3M2) use exponent and
+mantissa bits, including subnormals; symmetric INT5--INT8
+have uniformly spaced magnitude codes. Both use one
+graph-wide 32-bit source-only fitted scale. On heavy-tailed
+graphs, FP may retain weak coefficients rounded away by INT;
+that is a \emph{mechanistic hypothesis}, not an
+automatic optimisation guarantee.
+\thesisfig{F02_weight_histograms}{Distribution of source-weight magnitudes in pinned ring and torus examples, with observed retained-edge counts from archival representation metrics.}
+\thesisfig{F03_ring_distance}{The ring generator's original weak long-distance coupling tail is a potential target of low-bit encoding.}
 
-\section{Problem formulation and evaluation convention}
-With original signed edge weights $w_{ij}$ and spins
-$s_i\in\{-1,+1\}$, define
+\section{Prior work and the actual research gap}
+Hizzani et al.\ study precision-induced changes in optimisation
+traps \cite{PbitHizzani2026}; M\"ucke et al.\ consider
+optimum-preserving QUBO compression \cite{PbitMuecke2025}.
+FP and fixed-point Ising arithmetic have precedents
+\cite{PbitTao2023,S32,S33}. Especially relevant,
+Yao et al.\ compare INT8 quantisation with floating-point
+Ising-machine behaviour on FPGA, including varied
+weight distributions \cite{PbitYao2026}. This directly
+prevents claiming that finite-precision Ising comparisons
+or quantisation hardware tradeoffs are new.
+
+Discrete $\pm J$ spin-glass models can possess
+highly degenerate low-energy states in contrast to
+Gaussian-coupled counterparts
+\cite{PbitLundowCampbell2016,PbitXu2017}.
+Those papers motivate testing tie counts but do
+not prove a quantitative result for these Max-Cut graphs.
+Annealer sample post-processing also predates this work
+\cite{PbitAyanzadeh2021}. The distinctive question
+here is how \emph{legal same-width} low-bit FP/INT stored-$J$
+codes affect a fixed-budget stochastic search
+\emph{and} its final output policy, and how a
+registered weak-tail intervention separates mechanisms.
+
+\chapter{Methods and frozen protocol}
+\noindent\emph{The study fixes source graphs, scaling rules,
+random streams and solver budget while varying coupling codes.
+A graph rather than a repeated solver seed is the independent
+statistical unit. Two separate registered blocks investigate
+output-policy certification and offset sensitivity.}
+
+\section{Weighted Max-Cut mapping}
+For signed source weights $w_{ij}$ and spins $s_i$,
 \begin{align}
-C_w(\mathbf s)&=\sum_{i<j}w_{ij}\frac{1-s_i s_j}{2},\\
-J_{ij}&=J_{ji}=-w_{ij},\qquad J_{ii}=0,\qquad h_i=0,\\
-E_J(\mathbf s)&=-\sum_{i<j}J_{ij}s_i s_j
-               =W-2C_w(\mathbf s),\\
-H_i(\mathbf s)&=\sum_jJ_{ij}s_j,\qquad
-\widehat H_i(\mathbf s)=\sum_j\widehat J_{ij}s_j.
+C_w(\mathbf{s})&=\sum_{i<j}w_{ij}(1-s_i s_j)/2,\\
+J_{ij}=J_{ji}&=-w_{ij},\qquad J_{ii}=0,\quad h_i=0,\\
+E_J(\mathbf{s})&=-\sum_{i<j}J_{ij}s_i s_j
+=\sum_{i<j}w_{ij}-2C_w(\mathbf{s}).
 \end{align}
-The sparse adjacency lists in the software represent the
-same symmetric matrix as $\widehat{\mathbf J}$: each
-undirected coefficient is encoded once, then mirrored.
-The numerical local-field accumulator is high precision.
-This does not represent a fabricated MRAM array,
-finite-precision mixed-signal input interface, or
-a full-system device-level timing result.
+A unique undirected $J_{ij}$ is encoded only once,
+then mirrored. Regardless of its represented energy,
+every returned state is evaluated against the
+\emph{original} weighted Max-Cut objective.
 
-The stochastic response is
-\[
-P_i(s_i=+1)
-=\sigma\bigl(2\beta(t)g_i\widehat H_i+\delta_i\bigr).
-\]
-A physical sigmoid approximation
-$P(+1|V)=\sigma(a_i(V-V_{50,i}))$ can motivate gain as
-$a_i/a_0$ and logit offset as
-$a_i(V_{50,0}-V_{50,i})$ under a nominal field-to-voltage
-mapping. The E2 experiments instead hold gain equal to one
-and assume $\delta_i=dv_i$ with one frozen synthetic
-device population and $d=0.8$ or $1.6$ logit.
-These levels are not measured residuals in volts.
+\section{Graphs, formats and the solver}
+Each family has 72 generated $N=100$ instances.
+The ring contains 4,950 potential undirected edges;
+$r_{ij}=(N/\pi)\sin(\pi|i-j|/N)$ and
+$w_{ij}=\operatorname{round}_{\rm even}
+(10^5c_N z_{ij}/r_{ij}^{2.5})$, where
+$c_N\simeq0.69407$ and $z_{ij}$ are independent
+standard normal draws. The torus is a periodic
+$10\times10$ nearest-neighbour grid with 200 edges
+and $w_{ij}=\operatorname{round}_{\rm even}(10^5z_{ij})$.
+Source random draws use NumPy 2.3.5 PCG64DXSM
+SeedSequence([20261120,910,family,index]).
+Six original Biq Mac graphs are independent
+\emph{descriptive anchors}; they are never counted
+as generated-family replicates.
 
-\section{Frozen calibration campaign and uncertainty policy}
-Two original 100-spin calibration graphs are
-\texttt{t2g10\_5555} (200 source edges, sparse)
-and \texttt{ising2.5-100\_5555}
-(4950 off-diagonal source edges, dense).
-A small-integer graph is included in the ideal baseline.
-Each comparison has 24 matched solver seeds, 50,000
-attempted asynchronous updates and a fixed linear
-beta schedule from $0.5$ to $2.0$ times the original
-graph beta. The incumbent is selected by earliest
-minimum \emph{represented} Ising energy but always
-scored on the \emph{original} weighted cut.
+The seven codes are FP64 reference, FP5, FP6,
+and INT5 through INT8. A single graph-wide source-MSE
+scale is chosen for each low-bit code on a frozen candidate
+grid, without consulting Max-Cut solution quality.
+With 64 paired Python random seeds per graph, the
+controller runs 50,000 attempted random-site Gibbs
+updates and a linear schedule from $0.5\beta_G$
+to $2.0\beta_G$. The default output is the
+\emph{earliest} visited state attaining minimum
+represented energy. This is a fixed-budget
+heuristic, not a converged optimiser.
 
-\begin{table}[htbp]\centering\small
-\begin{tabularx}{\linewidth}{@{}l r X@{}}\toprule
-Evidence & Count & Experimental meaning\\\midrule
-Ideal precision E1 & 936 runs & 3 original graphs, 13 formats, 24 paired seeds.\\
-FP64 offset scout & 240 runs & 2 graphs and 5 assumed offset magnitudes.\\
-Primary E2 precision & 576 runs & 2 graphs, 2 offsets, 6 FP/INT 4--6-bit formats.\\
-Conditional E2 8-bit & 192 runs & The same 4 graph--offset cells, FP8/INT8.\\
-Static response diagnostic & 3888 rows & 144 already-returned FP64 states, 9 representations, 3 beta checkpoints; zero new solver trials.\\\bottomrule
-\end{tabularx}
-\caption{Completed evidence counts. The static rows share
-reference states and are not independent trials.}
+\section{Search and selection decomposition}
+The graph-specific normalisation $B_g$ is the highest
+\emph{observed} original-weight cut in the frozen pool
+of 128 independent FP64 reference runs and the seven
+codes' main trajectories. It is not a known optimum.
+For each run, $V$ is the highest original cut ever visited,
+$M$ is the highest original cut among states reaching
+minimum represented energy, and $R$ is the earliest
+minimum-represented-energy returned cut. In percentage
+points relative to $B_g$:
+\begin{equation}
+R_z=\frac{100(V-R)}{B_g}
+=\underbrace{\frac{100(V-M)}{B_g}}_{\rm represented\ selection}
++\underbrace{\frac{100(M-R)}{B_g}}_{\rm earliest\ tie}.
+\end{equation}
+For the matched FP64 seed, access loss is
+$A=100(V_{\rm ref}-V)/B_g$.
+Because exact FP64 selects its best original cut,
+total candidate extra loss is $A+R_z
+=100(R_{\rm ref}-R)/B_g$.
+Thus a good original state can either be
+\emph{unvisited} or \emph{visited but rejected}.
+
+\section{Inferential decision rules}
+The 64 seed values are averaged within each graph;
+72 graphs per family form independent bootstrap units.
+A whole-graph studentized bootstrap-$t$ procedure
+uses 500,000 resamples with Bonferroni correction.
+The ideal core has 18 contrasts and familywise
+$\alpha=0.04$; the buffered policy separately
+has 12 contrasts and $\alpha=0.01$; the offset
+study has six contrasts and $\alpha=0.01$.
+An FP/INT candidate is non-inferior to matched FP64
+at tolerance $m=+0.5$ pp only if its simultaneous
+\emph{upper} confidence bound is strictly below $m$.
+A lower bound above $m$ is failure; otherwise the
+comparison is unresolved. Sensitivities $+0.25$
+and $+1.0$ pp do not replace the main tolerance.
+Superiority below zero does not necessarily imply
+a practical benefit larger than $0.5$ pp.
+
+\section{Registered weak-tail intervention}
+A separate 24-ring/24-torus fresh-graph study
+uses FP64, FP6, INT6, FP6\_mask (remove only the
+weak FP6 couplings that INT6 zeroes),
+INT6\_tail (put those FP6 weak values back
+onto INT6), and diagnostic INT6\_keep (inflate
+those weak values to a full INT step).
+The registered ring hypotheses are positive
+selection-loss changes under masking and positive
+selection-loss improvement under restoration;
+search contributions are descriptive.
+
+\section{Locked output and device validations}
+A top-$K=16$ buffer passively retains distinct
+lowest-represented-energy states, with earliest
+first-visit tie order; original source-cut scores
+are used only \emph{after} search. Its extra
+memory and original-$J$ host access must be costed.
+Stage A deterministically replays exactly
+64,512 archived generated-main trajectories,
+requires exact equality of original $R,V,M$,
+flips, improvements, checkpoints and returned
+states, then certifies six buffered candidate--FP64
+contrasts per family. It does not backfill missing
+original first-block or official-anchor buffer outputs.
+
+Stage B reuses the same main solver seeds and
+graph sources, assigning one persistent 100-p-bit
+offset bank per graph:
+$\delta_i\sim\mathrm{Uniform}[-0.8,+0.8]$
+with PCG64DXSM SeedSequence([20261120,930,family,index]);
+gain remains one. The registered triples are
+ring FP5/INT6/FP64 and torus FP5/INT5/FP64.
+Ring FP6 and torus FP6/INT6 are only
+predeclared descriptive additions.
+Access, represented selection, earliest-tie
+loss, tied-state counts, buffer output and
+paired ideal-to-offset changes are logged.
+These are \emph{assumed logit sensitivity}
+conditions, not measured MTJ calibration residuals.
+
+\chapter{Results}
+\noindent\emph{The ideal generated-family experiment supports
+a conditional one-bit FP advantage on heavy-tailed
+rings but not on the periodic torus. The registered
+weak-tail intervention identifies a positive
+output-selection effect. The output policy can
+substantially change these comparisons, and
+difficult official instances limit generalisation.}
+
+\section{Exploratory calibration and baseline}
+Historical M5, M6, E0 and EX1 experiments motivated
+the registered designs but do not add inferential
+graph samples. The M5 dense result depended on offset,
+while M6's sparse static field comparison could
+favour INT6. A geometric schedule did not justify
+replacing the 50,000-attempt linear controller.
+The FP64 mean best-observed shortfalls were
+4.75\% (generated ring) and 2.90\% (generated torus).
+The exact archived pilot tables appear in the appendix.
+
+\section{Ideal width certification and family dependence}
+Under the registered $+0.5$ pp non-inferiority
+tolerance, FP5 and INT6 were the lowest certified
+tested codes on the ring ($k=6-5=1$ bit),
+while FP5 and INT5 were both certified on the torus
+($k=0$). Ring INT5 fails, with mean additional loss
+$+0.69$ pp and a simultaneous interval
+$[+0.54,+0.87]$ pp. In the core registry
+17 of 18 contrasts passed, one failed.
+Ring FP6--INT6 mean contrast was $-0.170$
+pp, interval $[-0.298,-0.047]$ pp:
+statistically superior but not a demonstrated
+$0.5$ pp benefit. Torus FP6--INT7 was
+$+0.096$ pp, interval $[+0.002,+0.202]$ pp.
+These statements concern \emph{family means}
+under the frozen controller.
+\thesisfig{F04_ideal_forest}{Registered simultaneous candidate-minus-FP64 intervals with the practical tolerance band; pass is determined by the upper $+0.5$ pp boundary.}
+\thesisfig{F05_width_ladder}{The registered ideal width ladder. A second buffer-policy panel is generated only when Stage A certified results are supplied.}
+
+\section{Where the quality loss arises}
+The total loss is split into search access $A$
+and output selection $R_z$. The format-mean
+retained-coupling association with $R_z$ is
+\emph{post hoc and descriptive}; count alone
+cannot explain differences between codes.
+\thesisfig{F06_search_selection}{Descriptive search versus output-selection breakdown from the 144-graph ideal ensemble.}
+\thesisfig{F07_retained_vs_selection}{Retained nonzero coefficients and selection loss, shown as descriptive format means rather than a registered causal correlation.}
+
+\section{Registered weak-tail mechanism}
+On 24 fresh ring graphs with 64 seeds per graph,
+the registered selection contrasts both support
+the predicted sign:
+\begin{table}[htbp]\centering
+\begin{tabular}{@{}lrr@{}}\toprule
+Registered selection contrast & Mean (pp) & One-sided lower bound (pp)\\\midrule
+$R_z(\mathrm{FP6\_mask})-R_z(\mathrm{FP6})$ & +0.07562 & +0.04719\\
+$R_z(\mathrm{INT6})-R_z(\mathrm{INT6\_tail})$ & +0.09132 & +0.06210\\\bottomrule
+\end{tabular}
+\caption{Registered weak-tail selection-loss tests.
+Corrected lower bounds are 98.75\% one-sided bounds.}
 \end{table}
+Descriptively, masking/restoring the tail changes
+total loss by about 0.18 pp, about half via
+search and half via selection. Restoring the tail
+to INT6 \emph{closed about 85\% of the observed
+mean FP6--INT6 gap in those tests}, from
+0.216 to 0.033 pp. This does not establish a
+universal 85\% causal explanation. Artificially
+inflating weak edges is harmful, and equal edge
+counts do not imply equal output-selection loss.
+\thesisfig{F08_weak_tail}{The intervention supports the registered selection-loss mechanism; overview error bars are descriptive normal-SE intervals, not the registered bootstrap test bounds.}
 
-The predeclared eligibility rule requires both a 95\% bootstrap
-seed-CI upper bound on the mean original optimum gap of at
-most 5\%, and a matched-FP64 mean quantisation-penalty
-upper bound of at most $+1$ percentage point. These CIs
-are conditional on the same assumed device population;
-they are not estimates of manufacturing variability.
+\section{Top-16 output policy}
+On the fresh weak-tail ring sample, selecting
+the highest original cut from the passive
+lowest-represented-energy top 16 recovers about
+99.97\% of FP6 and 93.93\% of INT6 mean
+selection loss (descriptive). The FP6--INT6
+extra-loss difference falls from 0.216 to
+0.080 pp and its descriptive interval spans zero.
+The buffer cannot undo the roughly 0.10 pp
+remaining search component.
+\thesisfig{F09_output_policy}{Descriptive pre/post host-rescoring changes in the frozen fresh weak-tail sample; this is not the new Stage A family-wide certification.}
+\subsection{Stage A: separate family-wide certification}
+\textbf{Evidence status at manuscript freeze:
+completion and archive verification pending.}
+Only the locked Stage A replay of all
+64,512 generated-main archived runs and its
+12 registered contrasts may determine the
+new output-policy certified width ladder.
+First-block and official-anchor buffer data
+remain unavailable, not silently reconstructed.
 
+\section{Persistent logit-offset validation}
+\textbf{Evidence status at manuscript freeze:
+registered, not yet accepted as verified.}
+The offset condition is assumed and one
+fixed bank is shared across code formats
+for each graph. The six registered offset
+contrasts and ideal-to-offset decomposition
+will be filled from Checkpoint 1 only.
+\thesisfig{F11_offset_sensitivity}{Generated only when verified Stage B data are supplied: comparison of ideal and persistent assumed-offset results, not measured MTJ curves.}
+
+\section{Counterexamples and heterogeneity}
+The official \texttt{ising2.5-100\_6666}
+ring anchor has an FP64 gap of 9.67\%:
+FP5 and INT6 have extra losses of
+$+1.40$ and $+1.16$ pp and both fail
+the $+0.5$ pp screen on that instance.
+FP6 and INT8 pass; INT7 is unresolved.
+These official-anchor observations are
+\emph{descriptive}, not replicated
+generated-family inference.
+\thesisfig{F10_instance_heterogeneity}{Generated graph-to-graph heterogeneity and official anchor contrasts show why mean certification is not an instance guarantee.}
+
+\chapter{Implementation implications}
+\noindent\emph{Saving bits in stored couplings is not the
+same as saving chip area or energy. Decoding and
+coupling access can outweigh nominal density,
+particularly when the output buffer must retain
+source-objective information. Existing synthesis
+is useful but component-specific.}
+
+\section{Storage arithmetic}
+A dense symmetric 100-spin instance has
+$100(99)/2=4950$ independent off-diagonal
+positions; one-copy storage costs
+$4950b+32$ nominal bits at width $b$,
+including one 32-bit shared scale.
+A one-bit width reduction saves 4,950
+coefficient bits but ignores routing,
+indexing, sparsity, scale access,
+buffer storage and original-$J$ rescoring.
+Sparse indexing can reverse a conclusion
+because FP may retain many more edges.
+
+\section{Component synthesis and limitations}
+In the earlier 99-term serial row synthesis,
+FP6 used $1438.88\,\mu\mathrm{m}^2$
+and INT6 $929.64\,\mu\mathrm{m}^2$.
+A separate common row plus 32-bit
+digital-logit/gain interface was about
+$23{,}481$ versus $18{,}061\,\mu\mathrm{m}^2$.
+These are components, not a completed
+STT-MRAM p-bit processor or energy-to-solution
+estimate. The serial hardware row also differs
+from the incrementally cached field in the
+software controller. \emph{Full system cost
+work is pending Checkpoint 1 approval.}
+
+\chapter{Discussion and limitations}
+\noindent\emph{The weak-tail test confirms a conditional
+selection mechanism; the post-hoc correlations
+and search explanation are more limited.
+The device model, finite controller budget
+and instance distribution define the
+validity of every quality claim. No
+format should be recommended in isolation.}
+
+\section{Inference versus mechanism}
+Family-mean width non-inferiority is not
+instance-by-instance certification.
+The registered ring weak-tail intervention
+changes selection loss in the predicted
+direction, but it does not prove that
+edge count alone governs dynamics.
+A host buffer can correct visited-state
+selection while leaving stochastic access
+unchanged. Its storage and source-objective
+cost are real engineering requirements.
+The original FP64 already falls short of
+the observed reference by several percent,
+so this study compares \emph{fixed-budget
+heuristic outputs}, not equilibrated
+optimal solutions.
+
+\section{Physical boundary and research gate}
+The response is an assumed sigmoid;
+the field is accumulated numerically.
+There are no measured post-calibration
+device residuals, transistor-level
+device simulation, gain-variation population,
+fabricated MTJs, thermal correlation
+study, full memory macro, or silicon
+power measurement. Provisional
+implementation choices cannot claim
+physical savings. The next mandatory
+decision is to review the parity-checked
+buffer and offset validation at
+Checkpoint 1, before any new hardware work.
+\thesisfig{F12_evidence_map}{The study sequence distinguishes archived exploration, registered inference, mechanism, output/device validation and pending cost.}
+
+\chapter{Conclusion and future work}
+\noindent\emph{The important coupling bits are the ones
+that change the stochastic search and final
+selection enough to matter. On the generated
+ring family, five-bit FP meets the selected
+tolerance with one less bit than INT; on
+the torus there is no certified reduction.
+A registered intervention shows why
+retaining a weak tail is relevant to
+selection loss.}
+
+The defensible claim is that accurately
+represented weak couplings reduce
+output-selection loss on the tested
+heavy-tailed ring instances (registered),
+and descriptively aid search. The top-16
+host selection rule recovers most
+selection loss in the fresh diagnostic
+set but cannot reach unvisited states.
+A hard official anchor defeats blanket
+instance-level width claims.
+The next work is precisely the frozen
+Stage A/B Checkpoint 1: 64,512 exact
+archive-parity buffer replays and
+six persistent-offset comparisons,
+with search/selection shifts and
+their uncertainty, then a decision
+on whether implementation cost
+analysis is warranted. No new graphs,
+seeds, gain profiles or arms are added.
+
+\clearpage
+\bibliographystyle{unsrt}
+\bibliography{references}
+\appendix
+\chapter{Preserved historical experiment record}
+The following source sections are retained from the
+previous report, without substituting their historical
+screens for the new registered study. A complete
+top-level version of the former manuscript is
+archived at
+\texttt{report/history/MAIN\_20261120\_ARCHIVED.tex}.
 \input{report/maxcut/10_coupling_matrix_cal_results.tex}
 \input{report/maxcut/20_heldout_m5_results.tex}
 \input{report/maxcut/30_heldout_m6_results.tex}
@@ -172,61 +502,4 @@ they are not estimates of manufacturing variability.
 \input{report/maxcut/45_e0_fp64_solver_calibration.tex}
 \input{report/maxcut/47_ex1_m5_exploratory_width.tex}
 \input{report/maxcut/50_prospective_minimum_width_study.tex}
-
-\section{Cost evidence and limits of architecture inference}
-A 100-spin symmetric dense coupling matrix has
-$100(99)/2=4950$ distinct off-diagonal coefficient positions,
-giving $4950b$ nominal coefficient bits at width $b$.
-This excludes scale metadata, index/access hardware,
-memory read bandwidth, device interface and update scheduling.
-A bit-true 99-term generic row synthesis reported
-274 flattened generic cells for FP6 and 138 for INT6/BFP6.
-A separate matched open-standard-cell row-only mapping
-produced FP6 $1438.88\,\mu\mathrm{m}^2$ versus INT6/BFP6
-$929.6416\,\mu\mathrm{m}^2$.
-A non-optimised common digital-logit row-plus-interface
-comparison gave $23481.2704\,\mu\mathrm{m}^2$ versus
-$18061.0720\,\mu\mathrm{m}^2$. These are component-specific,
-not full-chip power, physical MTJ performance or
-energy-to-solution estimates. Serial recomputation hardware
-also differs from cached incremental fields in the
-numerical solver; combining those costs as if equivalent
-would be misleading.
-
-\section{Mechanism, originality and validation boundary}
-For a fixed state and offset,
-$\Delta H_i=\sum_j(\widehat J_{ij}-J_{ij})s_j$.
-The logistic sigmoid derivative is bounded by $1/4$, so
-$|\Delta P_i|\le\beta|\Delta H_i|/2$ at matched gain one.
-When both reference and quantised updates share the
-same uniform random number, the exact probability
-that their \emph{one-step} choices differ is
-$|\Delta P_i|$. After a disagreement, the trajectories
-may diverge; the static statistic cannot be interpreted
-as the number of incorrect updates in a full anneal.
-This is why a lower snapshot $\Delta P$ cannot,
-on its own, certify better finite-budget Max-Cut quality.
-
-The supported contribution is a bounded, response-conditioned
-representation--field--probability--quality relationship, with
-explicit component-level hardware cost. FP6 is not declared
-universally superior to INT6. Both designated held-out graphs have now been evaluated under
-frozen procedures: dense M5 in Section~\ref{sec:m5-heldout}
-and sparse M6 in Section~\ref{sec:m6-heldout}. The sparse
-probability-fidelity ranking contradicts the predeclared
-FP6-favouring prediction and limits graph-independent claims.
-Direct sparse FP6-versus-INT6 solver-quality contrasts remain
-inconclusive, and neither a causal sparsity mechanism nor an
-offset-by-format interaction has been established.
-\noindent\textbf{Error-bar integrity.}
-The result figure contains 36 previously reported
-mean values. Only 15 plotted confidence intervals
-have traceable bounds in the currently accessible
-archived source summaries. We show no whisker for
-the other 21 points, rather than treating unknown
-uncertainty as zero. A separate host-side recovery has now verified all 36 source intervals,
-but the additional 21 interval values have not yet been imported into
-this manuscript's plotted data. They are not silently estimated.
-\bibliographystyle{unsrt}
-\bibliography{references}
 \end{document}
