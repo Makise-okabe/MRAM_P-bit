@@ -40,13 +40,14 @@ top-16 original-objective rescoring and format-level mechanisms are
 distinguished as descriptive evidence. An official hard ring instance
 provides a counterexample to any individual-instance width guarantee.
 
-Separate full-ensemble passive-buffer certification and persistent synthetic
-p-bit logit-offset validation are frozen but are not given result labels
-until parity-checked archive analysis is completed. No measured MTJ
+Full-ensemble passive-buffer certification passed exact parity on all 64,512
+main trajectories and certified FP5 and INT5 on both families under the
+buffered policy, removing the unbuffered ring's one-bit difference.
+Persistent synthetic logit-offset sensitivity remains a separately
+registered validation and is not given result labels until archived. No measured MTJ
 residuals, full-chip power reduction or universal FP superiority are claimed.
 \end{abstract}
 \tableofcontents
-\listoffigures
 
 \chapter{Introduction}
 \noindent\emph{Stochastic p-bit optimisers store couplings that control their
@@ -344,15 +345,30 @@ extra-loss difference falls from 0.216 to
 The buffer cannot undo the roughly 0.10 pp
 remaining search component.
 \thesisfig{F09_output_policy}{Descriptive pre/post host-rescoring changes in the frozen fresh weak-tail sample; this is not the new Stage A family-wide certification.}
-\subsection{Stage A: separate family-wide certification}
-\textbf{Evidence status at manuscript freeze:
-completion and archive verification pending.}
-Only the locked Stage A replay of all
-64,512 generated-main archived runs and its
-12 registered contrasts may determine the
-new output-policy certified width ladder.
-First-block and official-anchor buffer data
-remain unavailable, not silently reconstructed.
+\subsection{Stage A: registered buffer-policy certification}
+\textbf{Completed:} all 64,512 generated-main trajectories
+passed exact parity checks against the frozen archival fields,
+including returned state, $R,V,M$, flips, improvements and
+checkpoints. The separate 12 candidate--FP64 buffered
+comparisons use simultaneous whole-graph bootstrap-$t$
+bounds with familywise $\alpha=0.01$.
+At the prespecified $+0.5$ pp tolerance, every one of
+the six tested candidates is certified non-inferior to
+FP64 on both generated families. On the ring, the lowest
+certified integer width becomes INT5, changing the
+unbuffered comparison FP5/INT6 ($k=1$) into buffered
+FP5/INT5 ($k=0$). The torus stays FP5/INT5 ($k=0$).
+For the decisive ring INT5--FP64 buffered contrast,
+mean additional loss is $+0.30066$ pp with simultaneous
+interval $[+0.14905,+0.46629]$ pp, strictly below the
+upper $+0.5$ pp non-inferiority gate.
+At the tighter $+0.25$ pp tolerance, ring FP6/INT6
+are lowest certified, while torus FP5/INT5 remain
+certified. At $+1.0$ pp, both families certify
+FP5/INT5. These results concern \emph{host-side}
+rescoring and do not establish a free hardware
+implementation of the buffer. Missing first-block and
+official-anchor buffer observations remain missing.
 
 \section{Persistent logit-offset validation}
 \textbf{Evidence status at manuscript freeze:
@@ -474,12 +490,13 @@ selection loss in the fresh diagnostic
 set but cannot reach unvisited states.
 A hard official anchor defeats blanket
 instance-level width claims.
-The next work is precisely the frozen
-Stage A/B Checkpoint 1: 64,512 exact
-archive-parity buffer replays and
-six persistent-offset comparisons,
-with search/selection shifts and
-their uncertainty, then a decision
+The 64,512 frozen Stage A replay checks and buffered
+width certification are complete; the original ring
+one-bit difference disappears under top-16 host rescoring.
+The remaining Checkpoint 1 work is to verify
+six persistent-offset contrasts,
+with their search/selection shifts and
+uncertainty, then make a decision
 on whether implementation cost
 analysis is warranted. No new graphs,
 seeds, gain profiles or arms are added.
