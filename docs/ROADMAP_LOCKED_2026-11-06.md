@@ -1,3 +1,13 @@
+# FYP roadmap — current study locked 20 November 2026
+
+The [20 November study lock](FYP_STUDY_LOCK_20261120.md) is the current research and execution plan. The student approved the Round 2 direction and six amendments. It replaces the old EX1-only authorization, mandatory supervisor-agreement wording, old graph/format restrictions and plans to reopen completed E0/M5/M6 work.
+
+The next implementation work is the trajectory logger and tested analysis script, followed by the bounded 1,280-run dense block. INT7 has now been implemented and tested. The main study uses 144 independent generated graphs, seven candidates and one persistent offset bank per generated graph. There are 18 core confirmatory contrasts. See the linked plan for source normalization, metric interpretation, budgets and stopping conditions.
+
+All sections below are retained as dated research history. Their former pending/hold statements describe the state at those dates and do not override the current study lock. Archived results keep their original conditions.
+
+## Historical roadmap and amendments
+
 # Locked FYP roadmap — coupling precision × STT-MRAM p-bit nonidealities
 
 **Locked by user instruction on 8 November 2026.** This is the authoritative current research scope on both main and the active research branch. It supersedes older execution instructions that prioritize further RTL/toolchain expansion, park device response indefinitely, or expand the benchmark/format/solver search. Completed evidence remains valid within its original scope.

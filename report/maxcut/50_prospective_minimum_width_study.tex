@@ -1,121 +1,126 @@
-% Prospective (not yet executed) research endpoint and E0 pilot, 12 Nov 2026.
-% Preserve M5/M6 historical 500-sweep results; do not re-label them.
-\section{Prospective research decision: bits worth storing}
+% Prospective study locked by the student on 20 November 2026.
+% Historical M5/M6 results retain their original criteria.
+\section{Prospective study of low-order FP coupling matrices}
 \label{sec:prospective-design}
 
-The completed M5/M6 evidence establishes that a six-bit
-floating-point representation is not uniformly preferable
-to a six-bit integer representation across weighted
-Max-Cut workloads. Static local-field and switching-probability
-fidelity rankings reverse between the two held-out graphs,
-while the finite-budget quality contrasts are partly
-inconclusive. This motivates a narrower, explicitly
-hardware-oriented \emph{next-stage} decision, distinct
-from the already completed experimental claims:
-\begin{quote}\itshape
-For digitally stored Ising couplings feeding STT-MRAM
-p-bits, how many coefficient payload bits, if any,
-can low-order floating point save relative to integer
-encoding at comparable original-weight Max-Cut
-quality, and does realistic p-bit variation change
-that minimum useful precision?
-\end{quote}
-For a fixed graph family, response condition, solver
-budget, pairing and \emph{prospectively} agreed
-quality criterion $\Delta$, denote the smallest
-eligible FP or integer payload width as
-$b^*_{\mathrm{FP}}$ and $b^*_{\mathrm{INT}}$.
-The proposed primary endpoint is
+The research question concerns how low-order floating-point
+representations of the symmetric coupling matrix $J$ affect local
+fields, stochastic p-bit responses and original-weight Max-Cut
+quality under specified STT-MRAM response conditions, and when their
+implementation cost is justified. Outcomes include quality at equal
+width, a named lower-width replacement, and supported integer
+sufficiency. Bits saved is one engineering outcome.
+
+The student locked the prospective study on 20 November 2026 after
+the Round 2 review and six amendments. The authoritative protocol is
+\texttt{docs/FYP\_STUDY\_LOCK\_20261120.md}. Routine methodological
+choices are justified in this study. E0, M5, M6 and EX1 remain
+completed evidence under their original conditions. Their historical
+screening rules are preserved.
+
+\subsection{Independent instances and specified encodings}
+The candidate set is FP5 E2M2, FP6 E3M2, INT5, INT6, INT7, INT8 and
+FP64. INT7 uses symmetric codes from $-63$ to $+63$, with $-64$
+unused and the existing source-MSE scale search. The legacy
+4/5/6/8 campaign roster is preserved.
+
+The main experiment uses 72 independently generated 100-spin
+instances per model and 64 paired seeds per instance. One model is a
+Gaussian ring with chord-distance decay exponent 2.5 and the
+documented mean-field normalization. The other is a periodic
+$10\times10$ Gaussian torus with 200 unique edges. Both use multiplier
+$10^5$ before integer rounding. Historical source magnitudes and
+distance-adjusted spreads support this scale and ring normalization.
+The declared generators are not claimed to reproduce the historical
+RNG exactly. The six official Biq Mac cases remain separate anchors,
+with 128 paired seeds per encoding.
+
+The original 50,000-attempt random-site sequential Gibbs solver,
+source-derived linear schedule, symmetric edge quantization and
+represented-energy retention remain the specified controller.
+Initialization, sites and uniforms are paired across representations.
+
+\subsection{Quality decisions and uncertainty}
+Official cases retain their published-optimum gaps. For each
+generated instance, define $B_g$ as the best feasible original cut in
+a fixed pool of 128 independent FP64 reference runs and all seven
+encodings' 64 ideal-response runs. Freeze this reference before
+selecting encodings or running the device validation. Generated
+shortfalls are $100(B_g-C)/B_g$, and a paired encoding contrast is
 \[
-  k=b^*_{\mathrm{INT}}-b^*_{\mathrm{FP}}
-  \quad\text{bits saved per stored coupling}.
+ D_{A-B,g}=\frac{100(\overline C_{B,g}-\overline C_{A,g})}{B_g}.
 \]
-If a width is not certified at the sampled precision
-and statistical resolution, $b^*$ is reported as
-unresolved rather than assigned by interpolation.
-Previously observed non-monotonic quality outcomes
-also preclude assuming that every larger width
-must perform better without evidence. The
-proposed tolerance $\Delta=0.5$ percentage points
-of added original-optimum gap against same-response
-FP64 is a candidate for supervisor agreement;
-the completed M5/M6 trials used a different
-predeclared pair of 5\% absolute and $+1$ pp
-extra-gap screening bounds. They must not be
-retroactively re-scored as if the new criterion
-had been frozen beforehand.
+These are best-observed-reference quantities. No bound of one
+percent from the unknown optimum is assumed. Optional certified
+references provide additional descriptive checks.
 
-At 100 spins, symmetric triangular dense
-storage has $N(N-1)/2=4950$ unique off-diagonal
-positions, so a positive $k$ would represent
-$4950k$ \emph{nominal} payload bits saved,
-before index and scale metadata. An edge-list
-implementation for the 200-nonzero-edge M6
-instance would instead save $200k$ bits.
-Whether these payload differences compensate
-for FP decode/accumulate logic depends on
-the memory architecture and updated equal-quality
-synthesis; they are not measured energy savings.
+The primary non-inferiority tolerance is $+0.5$ percentage points,
+with $+0.25$ and $+1.0$ sensitivities on the same bounds. Report
+absolute cuts, continuous contrasts and uncertainty as well as
+qualification labels. Statistical superiority has an upper
+FP-minus-INT bound below zero. Establishing a true benefit larger
+than 0.5 points requires an upper bound below $-0.5$.
 
-\subsection{First gate completed: FP64 calibration on CAL graphs}
-The bounded E0-A reference solver audit is now
-\emph{complete} on the two already-viewed CAL
-graphs, under a source-frozen protocol.
-Section~\ref{sec:e0-calibration} gives the
-paired results and time-resolved acceptance
-diagnostics: the geometric schedule did not
-provide a statistically established final
-quality improvement over legacy linear at the
-same 50,000-update budget on either graph.
-Neither schedule reached the exploratory
-1\% mean optimum-gap aspiration. The existing
-linear 50,000-update condition is retained
-as a \emph{finite-budget reference}, not as
-an assertion of solver convergence.
+Six candidate-minus-FP64 contrasts and the direct FP6--INT6,
+FP5--INT6 and FP6--INT7 contrasts give nine comparisons per family,
+18 core comparisons in total. The analysis resamples complete
+independent graph vectors after averaging seeds. Studentized
+bootstrap bounds use a prospective Bonferroni allocation, with
+$\alpha_{\mathrm{core}}=0.04$ and
+$\alpha_{\mathrm{device}}=0.01$ across six later device contrasts.
+Coverage is nominal and subject to the statistical approximation.
+The script and registry are tested before executable freeze.
 
-The next protocol should therefore focus on
-\emph{minimum certified coupling width},
-rather than on further ad hoc solver annealing
-tuning. Two decisions require supervisor
-agreement \emph{before} new precision trials:
-(i) fix the same 50,000-update linear solver
-budget for reference FP64 and all formats,
-and (ii) use a proposed upper 95\% paired
-confidence-bound tolerance of $+0.5$
-\emph{percentage points} of extra original-weight
-optimum gap relative to FP64 under the same
-graph, response, paired seeds and budget.
-For example, an FP64 mean gap of 4.0\% and
-a low-bit mean gap of 4.5\% imply a 0.5-pp
-\emph{mean} difference, but eligibility
-requires an upper confidence bound at most
-$+0.5$ pp; the means alone do not suffice.
+Report the lowest tested certified width, with smaller unresolved
+alternatives listed. A certified-width difference does not establish
+an intrinsic minimum precision. A named replacement also needs its
+direct comparison. Conclusions concern equal-instance mean
+performance for the specified models and budget.
 
-The completed M5 $d=0.8$ study illustrates
-the potential width decision without
-retroactively changing its protocol:
-FP6 had an extra-gap upper 95\% confidence
-bound of $+0.241$ pp and INT6 of
-$+1.287$ pp. A new, separately
-preregistered study must determine
-$b^*_{\mathrm{FP}}$ and
-$b^*_{\mathrm{INT}}$ across the
-specified candidate widths. It must
-not infer that INT7, INT8, or a lower
-FP width meets the tolerance
-without evidence. If the predetermined
-sample cap leaves a boundary-straddling
-confidence interval, the minimum
-useful width will be reported
-as \emph{unresolved}, not selected
-post hoc.
+\subsection{Mechanism and response validation}
+On every trajectory, track best original cut visited $V$, best
+original cut among minimum represented-energy states $M$, and actual
+returned cut $R$. The identity
+\[
+ C^*-R=(C^*-V)+(V-M)+(M-R)
+\]
+accounts for quality not reached, represented-objective selection
+and earliest-tie loss. Paired access differences cancel the unknown
+$C^*$. Passive logging must preserve update RNG use and returned
+states. Common FP64 states at four checkpoints provide field, logit
+and switching-probability fidelity measurements. A restricted
+$\beta/a$ control on the two viewed dense cases tests global
+operating-point sensitivity.
 
-Subsequently, any minimum-width study,
-independently sampled device gain/offset
-populations, and memory-inclusive
-equal-quality cost comparison will require
-separately frozen protocols. No
-floating-point storage advantage, device
-masking effect, solver-convergence target
-or post-calibration physical-device statistic
-is asserted by the prospective plan alone.
+After the ideal study, select the lowest tested certified FP and INT
+per family, or use the declared FP6/INT6 fallback if qualification
+is unresolved. Compare those choices with FP64 under one independent
+persistent offset bank per generated graph. Use
+$\delta_i\sim U[-0.8,0.8]$, unit gain and 64 paired seeds. Each of the
+72 graph--bank pairs per family is an independent unit. This estimates
+mean behavior over the joint graph and assumed response
+distribution. The offset distribution is not measured
+post-calibration STT-MRAM variability. Gain remains a limitation.
+
+\subsection{Implementation outcome and schedule}
+A dense fixed all-to-all array is the primary architecture.
+For one-copy triangular storage at 100 spins, payload and scale
+occupy $4950b+32$ bits. State coefficient duplication, datapath
+replication, memory organization and access costs. Bitmap and
+indexed layouts are sensitivity analyses. Existing Sky130 rows are
+component-level evidence. Additional synthesis is justified for a
+qualified pair when its decoder cost can change the engineering
+choice.
+
+The first bounded block contains 768 raw runs on the two viewed
+dense cases and 512 matched $\beta/a$ controls, 1280 runs total.
+It closes at 128 paired seeds per case regardless of the reversal's
+sign. The complete prospective study contains 116,480 unique runs,
+including the first block. Actual implementation and analysis time
+are separate from simulation-time estimates.
+
+Late November work fits around examinations and covers implementation
+and the first block. December covers the ideal ensemble, official
+anchors and a methods draft. January covers analysis and offset
+validation. February covers cost and results drafting. March closes
+the thesis, figures and reproducibility package.
