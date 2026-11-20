@@ -1,0 +1,23 @@
+{
+  "RESULTS.md_sha256": "b0b3914e9bfabe6e5e39f02e9df6a64a08d0c05043101c730eb648e4702ef84b",
+  "bootstrap_quantile_method": "numpy linear",
+  "bootstrap_resamples": 500000,
+  "common_reference_checkpoint_records": 2048,
+  "common_state_fidelity.csv_sha256": "299203e8928aff8dd813ff4c483b585ebb30ce536ae4ce40c5ee9b68c829cfdd",
+  "core_one_tail_q": 0.0011111111111111111,
+  "core_registry_count": 18,
+  "device_one_tail_q": 0.0008333333333333334,
+  "device_registry_count": 6,
+  "fidelity.jsonl_sha256": "e899c821421d498d2c220856cd7439e831d24c76552cb29235b9aff88f70d4f6",
+  "frozen_settings.json_sha256": "7b91ec6a1839f0b23f903f86d43c28314b438362919562155ec22b0fc3166d5f",
+  "graph_count": 2,
+  "paired_contrasts.csv_sha256": "50db301808369a64068111d95be8b2d9d865de80b111c89d44d89584ab6c849a",
+  "quality_calibration.svg_sha256": "109e2be55c8ccd0b1930cc0beb709f4c86243a8c343a76ce22b4332656e1ab45",
+  "quality_summary.csv_sha256": "ab706b3cf7f972ee141fbf625831eca62c2385771f9393a4c5578f0e9e10083f",
+  "records.jsonl_sha256": "5146df3096376a74aa5e9538cdec6319f1044185c153af88234898852f16e0a0",
+  "source_commit": "79bb061654d8fdf92b2645183023ac7f0780dea7",
+  "status": "FIRST_VIEWED_DENSE_1280_COMPLETE",
+  "total_unique_solver_runs": 1280,
+  "trajectory_components.csv_sha256": "1f8356f910e146b29e975cafb593d282e280c47c7a7afb798351667a555bceb5",
+  "trajectory_loss.svg_sha256": "102f05e21b31ed3f1a0f6b7cc106eae5c06c5caa7b69c74bd403d3f3f537fe42"
+}

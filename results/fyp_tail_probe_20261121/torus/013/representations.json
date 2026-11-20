@@ -1,0 +1,44 @@
+{
+  "fp6": {
+    "coefficient_mse": 22746027.12509922,
+    "diagnostic": false,
+    "energy_denominator": 8192,
+    "nonzero_count": 199,
+    "probe_only": false
+  },
+  "fp6_mask": {
+    "coefficient_mse": 23359468.18664061,
+    "diagnostic": false,
+    "energy_denominator": 8192,
+    "nonzero_count": 189,
+    "probe_only": true
+  },
+  "int6": {
+    "coefficient_mse": 11040804.605918426,
+    "diagnostic": false,
+    "energy_denominator": 256,
+    "nonzero_count": 189,
+    "probe_only": false
+  },
+  "int6_keep": {
+    "coefficient_mse": 14353898.514472732,
+    "diagnostic": true,
+    "energy_denominator": 256,
+    "nonzero_count": 200,
+    "probe_only": true
+  },
+  "int6_tail": {
+    "coefficient_mse": 10427363.544377036,
+    "diagnostic": false,
+    "energy_denominator": 8192,
+    "nonzero_count": 199,
+    "probe_only": true
+  },
+  "ref64": {
+    "coefficient_mse": 0.0,
+    "diagnostic": false,
+    "energy_denominator": 1,
+    "nonzero_count": 200,
+    "probe_only": false
+  }
+}

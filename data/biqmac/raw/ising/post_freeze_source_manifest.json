@@ -1,0 +1,127 @@
+{
+  "acquired_at_utc": "2026-11-20T16:18:33.049012+00:00",
+  "frozen_commit": "d217ab54fc41a3a84d6a500f3ab0f3aa433059dd",
+  "graphs": [
+    {
+      "bytes": 46529,
+      "graph": "ising2.5-100_5555",
+      "hash_status": "KNOWN_VIEWED_HASH_VERIFIED",
+      "sha256": "c8fa3ce4df1997b89aad6199525a66e55699c259680483b62cc5fd3cfc1e316e",
+      "source_statistics": {
+        "effective_nonzero_edges": 4881,
+        "family": 0,
+        "family_name": "ring",
+        "graph": "ising2.5-100_5555",
+        "max_abs_weight": 239752,
+        "n": 100,
+        "raw_edge_count": 4950,
+        "sha256": "c8fa3ce4df1997b89aad6199525a66e55699c259680483b62cc5fd3cfc1e316e",
+        "sum_abs_weights": 6922411,
+        "sum_weights": -158427,
+        "zero_count": 69
+      },
+      "url": "https://biqmac.aau.at/library/mac/ising/ising2.5-100_5555"
+    },
+    {
+      "bytes": 46584,
+      "graph": "ising2.5-100_6666",
+      "hash_status": "FIRST_POST_FREEZE_FETCH_HASH",
+      "sha256": "647447f59b79efecda903732b5d2e9cada03226daf3d08871746787496b3f647",
+      "source_statistics": {
+        "effective_nonzero_edges": 4877,
+        "family": 0,
+        "family_name": "ring",
+        "graph": "ising2.5-100_6666",
+        "max_abs_weight": 212231,
+        "n": 100,
+        "raw_edge_count": 4950,
+        "sha256": "647447f59b79efecda903732b5d2e9cada03226daf3d08871746787496b3f647",
+        "sum_abs_weights": 7461181,
+        "sum_weights": -1768187,
+        "zero_count": 73
+      },
+      "url": "https://biqmac.aau.at/library/mac/ising/ising2.5-100_6666"
+    },
+    {
+      "bytes": 46581,
+      "graph": "ising2.5-100_7777",
+      "hash_status": "KNOWN_VIEWED_HASH_VERIFIED",
+      "sha256": "109e1ed2edc71d5f43d623367410d9257a72662d665c7a0c71af4cdd8babaf99",
+      "source_statistics": {
+        "effective_nonzero_edges": 4869,
+        "family": 0,
+        "family_name": "ring",
+        "graph": "ising2.5-100_7777",
+        "max_abs_weight": 220276,
+        "n": 100,
+        "raw_edge_count": 4950,
+        "sha256": "109e1ed2edc71d5f43d623367410d9257a72662d665c7a0c71af4cdd8babaf99",
+        "sum_abs_weights": 7480500,
+        "sum_weights": 808608,
+        "zero_count": 81
+      },
+      "url": "https://biqmac.aau.at/library/mac/ising/ising2.5-100_7777"
+    },
+    {
+      "bytes": 2515,
+      "graph": "t2g10_5555",
+      "hash_status": "KNOWN_VIEWED_HASH_VERIFIED",
+      "sha256": "c742b78ebdebb47ad7146bffd657d42fab814a7fa82c4a17942b37f2f7fa96cb",
+      "source_statistics": {
+        "effective_nonzero_edges": 200,
+        "family": 1,
+        "family_name": "torus",
+        "graph": "t2g10_5555",
+        "max_abs_weight": 294541,
+        "n": 100,
+        "raw_edge_count": 200,
+        "sha256": "c742b78ebdebb47ad7146bffd657d42fab814a7fa82c4a17942b37f2f7fa96cb",
+        "sum_abs_weights": 15939018,
+        "sum_weights": -834802,
+        "zero_count": 0
+      },
+      "url": "https://biqmac.aau.at/library/mac/ising/t2g10_5555"
+    },
+    {
+      "bytes": 2524,
+      "graph": "t2g10_6666",
+      "hash_status": "FIRST_POST_FREEZE_FETCH_HASH",
+      "sha256": "8e9f42291665df989bd5422343b3b4ddf845b5cad33e98c2d9250dc7aee8a4cc",
+      "source_statistics": {
+        "effective_nonzero_edges": 200,
+        "family": 1,
+        "family_name": "torus",
+        "graph": "t2g10_6666",
+        "max_abs_weight": 239344,
+        "n": 100,
+        "raw_edge_count": 200,
+        "sha256": "8e9f42291665df989bd5422343b3b4ddf845b5cad33e98c2d9250dc7aee8a4cc",
+        "sum_abs_weights": 14566268,
+        "sum_weights": -303960,
+        "zero_count": 0
+      },
+      "url": "https://biqmac.aau.at/library/mac/ising/t2g10_6666"
+    },
+    {
+      "bytes": 2520,
+      "graph": "t2g10_7777",
+      "hash_status": "KNOWN_VIEWED_HASH_VERIFIED",
+      "sha256": "8f7dc4e791eb4893f7b7114b6ac51d29f37f652645ba58a22e3cd29b709fd4ef",
+      "source_statistics": {
+        "effective_nonzero_edges": 200,
+        "family": 1,
+        "family_name": "torus",
+        "graph": "t2g10_7777",
+        "max_abs_weight": 301004,
+        "n": 100,
+        "raw_edge_count": 200,
+        "sha256": "8f7dc4e791eb4893f7b7114b6ac51d29f37f652645ba58a22e3cd29b709fd4ef",
+        "sum_abs_weights": 15379109,
+        "sum_weights": 11523,
+        "zero_count": 0
+      },
+      "url": "https://biqmac.aau.at/library/mac/ising/t2g10_7777"
+    }
+  ],
+  "status": "POST_FREEZE_OFFICIAL_SOURCES_HASHED"
+}

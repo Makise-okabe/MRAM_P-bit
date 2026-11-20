@@ -1,0 +1,726 @@
+{
+  "graph_count": 48,
+  "graphs": [
+    {
+      "family": 0,
+      "file": "data/fyp_tail_probe_20261121/ring/000.rudy",
+      "index": 0,
+      "max_abs_weight": 170766,
+      "raw_edges": 4950,
+      "raw_zeros": 78,
+      "seed_sequence": [
+        20261121,
+        910,
+        0,
+        0
+      ],
+      "sha256": "c67b0472758749f42a23637ef6de412f9b428f9d8a6df08e07f146a2abdfa563"
+    },
+    {
+      "family": 0,
+      "file": "data/fyp_tail_probe_20261121/ring/001.rudy",
+      "index": 1,
+      "max_abs_weight": 200290,
+      "raw_edges": 4950,
+      "raw_zeros": 68,
+      "seed_sequence": [
+        20261121,
+        910,
+        0,
+        1
+      ],
+      "sha256": "1afb228e5dc99380650ee70a004ade768ae1591b7c0d7fa23b7aef2cf71cdfce"
+    },
+    {
+      "family": 0,
+      "file": "data/fyp_tail_probe_20261121/ring/002.rudy",
+      "index": 2,
+      "max_abs_weight": 203556,
+      "raw_edges": 4950,
+      "raw_zeros": 73,
+      "seed_sequence": [
+        20261121,
+        910,
+        0,
+        2
+      ],
+      "sha256": "3eb82f2654066bfd8b734ef4d5d986e253ec58f3bcecb7425f5c6658009e27a7"
+    },
+    {
+      "family": 0,
+      "file": "data/fyp_tail_probe_20261121/ring/003.rudy",
+      "index": 3,
+      "max_abs_weight": 164745,
+      "raw_edges": 4950,
+      "raw_zeros": 73,
+      "seed_sequence": [
+        20261121,
+        910,
+        0,
+        3
+      ],
+      "sha256": "526b5240dbfade8f1434b29353e96f454b761028b3f98faa367055c1c066a033"
+    },
+    {
+      "family": 0,
+      "file": "data/fyp_tail_probe_20261121/ring/004.rudy",
+      "index": 4,
+      "max_abs_weight": 203903,
+      "raw_edges": 4950,
+      "raw_zeros": 67,
+      "seed_sequence": [
+        20261121,
+        910,
+        0,
+        4
+      ],
+      "sha256": "d72774ea1455e2ddc7be6d4941f3794716775ae880ee41c050c42fc30c812321"
+    },
+    {
+      "family": 0,
+      "file": "data/fyp_tail_probe_20261121/ring/005.rudy",
+      "index": 5,
+      "max_abs_weight": 167899,
+      "raw_edges": 4950,
+      "raw_zeros": 79,
+      "seed_sequence": [
+        20261121,
+        910,
+        0,
+        5
+      ],
+      "sha256": "530228d0549fdeb036e0cb5cf8d87de34cea39ceabacacf1dd89ca2aa0369b86"
+    },
+    {
+      "family": 0,
+      "file": "data/fyp_tail_probe_20261121/ring/006.rudy",
+      "index": 6,
+      "max_abs_weight": 196847,
+      "raw_edges": 4950,
+      "raw_zeros": 73,
+      "seed_sequence": [
+        20261121,
+        910,
+        0,
+        6
+      ],
+      "sha256": "d06595d6a03b37eebf7fb2f0a3288cc8d8b02d2de7b841a0cde5f6c539892a6e"
+    },
+    {
+      "family": 0,
+      "file": "data/fyp_tail_probe_20261121/ring/007.rudy",
+      "index": 7,
+      "max_abs_weight": 203297,
+      "raw_edges": 4950,
+      "raw_zeros": 62,
+      "seed_sequence": [
+        20261121,
+        910,
+        0,
+        7
+      ],
+      "sha256": "81841c8ed3b0cec244847af404d3d20cc3bfcf0453541a5a17c9d700a745160f"
+    },
+    {
+      "family": 0,
+      "file": "data/fyp_tail_probe_20261121/ring/008.rudy",
+      "index": 8,
+      "max_abs_weight": 164846,
+      "raw_edges": 4950,
+      "raw_zeros": 74,
+      "seed_sequence": [
+        20261121,
+        910,
+        0,
+        8
+      ],
+      "sha256": "46e188035b1ce29bdde0741f75c1aa70beb37ec31c9db9ccc27d8342da13108d"
+    },
+    {
+      "family": 0,
+      "file": "data/fyp_tail_probe_20261121/ring/009.rudy",
+      "index": 9,
+      "max_abs_weight": 188870,
+      "raw_edges": 4950,
+      "raw_zeros": 80,
+      "seed_sequence": [
+        20261121,
+        910,
+        0,
+        9
+      ],
+      "sha256": "5af3c5419faadb3c8e7f4223492fddef8294f23190fdb731ec6f49cd5ee586de"
+    },
+    {
+      "family": 0,
+      "file": "data/fyp_tail_probe_20261121/ring/010.rudy",
+      "index": 10,
+      "max_abs_weight": 168310,
+      "raw_edges": 4950,
+      "raw_zeros": 78,
+      "seed_sequence": [
+        20261121,
+        910,
+        0,
+        10
+      ],
+      "sha256": "10e4f36d550d1f7c91be2efde296993886c095ea8cfa9dd20c7f8cac8d49ab17"
+    },
+    {
+      "family": 0,
+      "file": "data/fyp_tail_probe_20261121/ring/011.rudy",
+      "index": 11,
+      "max_abs_weight": 193277,
+      "raw_edges": 4950,
+      "raw_zeros": 85,
+      "seed_sequence": [
+        20261121,
+        910,
+        0,
+        11
+      ],
+      "sha256": "871d590ba4035d94fd24845a3e17485e37857553f113a0e26cc9d7db480d721c"
+    },
+    {
+      "family": 0,
+      "file": "data/fyp_tail_probe_20261121/ring/012.rudy",
+      "index": 12,
+      "max_abs_weight": 171823,
+      "raw_edges": 4950,
+      "raw_zeros": 75,
+      "seed_sequence": [
+        20261121,
+        910,
+        0,
+        12
+      ],
+      "sha256": "211f99e8019aa30224333daa244b18cdc67a44a9fbae6dceaf6e8ba98fabc440"
+    },
+    {
+      "family": 0,
+      "file": "data/fyp_tail_probe_20261121/ring/013.rudy",
+      "index": 13,
+      "max_abs_weight": 184067,
+      "raw_edges": 4950,
+      "raw_zeros": 66,
+      "seed_sequence": [
+        20261121,
+        910,
+        0,
+        13
+      ],
+      "sha256": "e92bc0602e8b8a2bcc70debcdc141cfdac5ae2f6d163c2792856496a74b15706"
+    },
+    {
+      "family": 0,
+      "file": "data/fyp_tail_probe_20261121/ring/014.rudy",
+      "index": 14,
+      "max_abs_weight": 208580,
+      "raw_edges": 4950,
+      "raw_zeros": 70,
+      "seed_sequence": [
+        20261121,
+        910,
+        0,
+        14
+      ],
+      "sha256": "3510b1f89b877d105d238a43aaa8c36f0c99a0e64100ee2900a67d4e1726a059"
+    },
+    {
+      "family": 0,
+      "file": "data/fyp_tail_probe_20261121/ring/015.rudy",
+      "index": 15,
+      "max_abs_weight": 187110,
+      "raw_edges": 4950,
+      "raw_zeros": 73,
+      "seed_sequence": [
+        20261121,
+        910,
+        0,
+        15
+      ],
+      "sha256": "d9ea97265573705c5905b0a3102a2c86fbafeb4cc5953eddc13d63c62ace049e"
+    },
+    {
+      "family": 0,
+      "file": "data/fyp_tail_probe_20261121/ring/016.rudy",
+      "index": 16,
+      "max_abs_weight": 192152,
+      "raw_edges": 4950,
+      "raw_zeros": 71,
+      "seed_sequence": [
+        20261121,
+        910,
+        0,
+        16
+      ],
+      "sha256": "a011456188eb06fb773a3bee331850a5d9ede66ac240c7d47d6d5f8c0128fe3b"
+    },
+    {
+      "family": 0,
+      "file": "data/fyp_tail_probe_20261121/ring/017.rudy",
+      "index": 17,
+      "max_abs_weight": 169689,
+      "raw_edges": 4950,
+      "raw_zeros": 90,
+      "seed_sequence": [
+        20261121,
+        910,
+        0,
+        17
+      ],
+      "sha256": "237feb4a036d45dcac2bbabeb46f03d256e5af1f8bce48ec496dad70805660e2"
+    },
+    {
+      "family": 0,
+      "file": "data/fyp_tail_probe_20261121/ring/018.rudy",
+      "index": 18,
+      "max_abs_weight": 198356,
+      "raw_edges": 4950,
+      "raw_zeros": 70,
+      "seed_sequence": [
+        20261121,
+        910,
+        0,
+        18
+      ],
+      "sha256": "47a63e364eca38257222722885e75ce591f59ae4f3b32e2c23731b36263cb278"
+    },
+    {
+      "family": 0,
+      "file": "data/fyp_tail_probe_20261121/ring/019.rudy",
+      "index": 19,
+      "max_abs_weight": 197255,
+      "raw_edges": 4950,
+      "raw_zeros": 78,
+      "seed_sequence": [
+        20261121,
+        910,
+        0,
+        19
+      ],
+      "sha256": "65e4ed6993f5a6ddec76986bf3106d7d25567c0aaaa45629a468767d650ae66b"
+    },
+    {
+      "family": 0,
+      "file": "data/fyp_tail_probe_20261121/ring/020.rudy",
+      "index": 20,
+      "max_abs_weight": 199560,
+      "raw_edges": 4950,
+      "raw_zeros": 80,
+      "seed_sequence": [
+        20261121,
+        910,
+        0,
+        20
+      ],
+      "sha256": "7bca23580da147b2f1391ef926acba0a52c0a9b6e90cdc7d8ae766947042201c"
+    },
+    {
+      "family": 0,
+      "file": "data/fyp_tail_probe_20261121/ring/021.rudy",
+      "index": 21,
+      "max_abs_weight": 157278,
+      "raw_edges": 4950,
+      "raw_zeros": 60,
+      "seed_sequence": [
+        20261121,
+        910,
+        0,
+        21
+      ],
+      "sha256": "252b2bcf2a75495ea4a008220e51a7650f918f919043ac27c0733db913fd4993"
+    },
+    {
+      "family": 0,
+      "file": "data/fyp_tail_probe_20261121/ring/022.rudy",
+      "index": 22,
+      "max_abs_weight": 135831,
+      "raw_edges": 4950,
+      "raw_zeros": 85,
+      "seed_sequence": [
+        20261121,
+        910,
+        0,
+        22
+      ],
+      "sha256": "2d55382e9021cfd42f365eca43524fec11ef51e21a8270fcb82263d46e851543"
+    },
+    {
+      "family": 0,
+      "file": "data/fyp_tail_probe_20261121/ring/023.rudy",
+      "index": 23,
+      "max_abs_weight": 202978,
+      "raw_edges": 4950,
+      "raw_zeros": 81,
+      "seed_sequence": [
+        20261121,
+        910,
+        0,
+        23
+      ],
+      "sha256": "3359221aaf9f8cfc1ad72957769ca8a01f03eb8623af188b1e027114ea21d24b"
+    },
+    {
+      "family": 1,
+      "file": "data/fyp_tail_probe_20261121/torus/000.rudy",
+      "index": 0,
+      "max_abs_weight": 363581,
+      "raw_edges": 200,
+      "raw_zeros": 0,
+      "seed_sequence": [
+        20261121,
+        910,
+        1,
+        0
+      ],
+      "sha256": "a64b7df6eb88b9c00a249ba30133290559400f153e6d8470733249a12e4b56f0"
+    },
+    {
+      "family": 1,
+      "file": "data/fyp_tail_probe_20261121/torus/001.rudy",
+      "index": 1,
+      "max_abs_weight": 333908,
+      "raw_edges": 200,
+      "raw_zeros": 0,
+      "seed_sequence": [
+        20261121,
+        910,
+        1,
+        1
+      ],
+      "sha256": "85c0bccc11448ca7857e6a103d0d2d76fee4d3e61fb3533989eba2b2fb980a62"
+    },
+    {
+      "family": 1,
+      "file": "data/fyp_tail_probe_20261121/torus/002.rudy",
+      "index": 2,
+      "max_abs_weight": 381754,
+      "raw_edges": 200,
+      "raw_zeros": 0,
+      "seed_sequence": [
+        20261121,
+        910,
+        1,
+        2
+      ],
+      "sha256": "e48172c424e247f324a7ca0d8b8b5a269cef5d5ae2e5ee4fbe47a838f845d33a"
+    },
+    {
+      "family": 1,
+      "file": "data/fyp_tail_probe_20261121/torus/003.rudy",
+      "index": 3,
+      "max_abs_weight": 316861,
+      "raw_edges": 200,
+      "raw_zeros": 0,
+      "seed_sequence": [
+        20261121,
+        910,
+        1,
+        3
+      ],
+      "sha256": "059b65d0d19b9005398a66db73ca218db80df24e6bbe1268043e5046bbd1422a"
+    },
+    {
+      "family": 1,
+      "file": "data/fyp_tail_probe_20261121/torus/004.rudy",
+      "index": 4,
+      "max_abs_weight": 381575,
+      "raw_edges": 200,
+      "raw_zeros": 0,
+      "seed_sequence": [
+        20261121,
+        910,
+        1,
+        4
+      ],
+      "sha256": "af4f346e3e0f616203204dbd2e46ab15d973e4861a079ffbf53d57d80a9d8cf0"
+    },
+    {
+      "family": 1,
+      "file": "data/fyp_tail_probe_20261121/torus/005.rudy",
+      "index": 5,
+      "max_abs_weight": 332972,
+      "raw_edges": 200,
+      "raw_zeros": 0,
+      "seed_sequence": [
+        20261121,
+        910,
+        1,
+        5
+      ],
+      "sha256": "18315d4575f6f6812dfe4261ff2475f96528e675c501b14ba76f93badfebefd8"
+    },
+    {
+      "family": 1,
+      "file": "data/fyp_tail_probe_20261121/torus/006.rudy",
+      "index": 6,
+      "max_abs_weight": 257292,
+      "raw_edges": 200,
+      "raw_zeros": 0,
+      "seed_sequence": [
+        20261121,
+        910,
+        1,
+        6
+      ],
+      "sha256": "6cd9ee84f1e09212a422f2792489ead49a048a7787eaf36c5d3427137bd10fb7"
+    },
+    {
+      "family": 1,
+      "file": "data/fyp_tail_probe_20261121/torus/007.rudy",
+      "index": 7,
+      "max_abs_weight": 287240,
+      "raw_edges": 200,
+      "raw_zeros": 0,
+      "seed_sequence": [
+        20261121,
+        910,
+        1,
+        7
+      ],
+      "sha256": "fe80cc6ffa785e6ccd5bbe21b94de41c726aa148c679dd8cde7cbb38ae482481"
+    },
+    {
+      "family": 1,
+      "file": "data/fyp_tail_probe_20261121/torus/008.rudy",
+      "index": 8,
+      "max_abs_weight": 287380,
+      "raw_edges": 200,
+      "raw_zeros": 0,
+      "seed_sequence": [
+        20261121,
+        910,
+        1,
+        8
+      ],
+      "sha256": "928bbbfc1ccffca1d8f03cde26d9eae2bbb698ad120050f8566654f89c6e4a3c"
+    },
+    {
+      "family": 1,
+      "file": "data/fyp_tail_probe_20261121/torus/009.rudy",
+      "index": 9,
+      "max_abs_weight": 284618,
+      "raw_edges": 200,
+      "raw_zeros": 0,
+      "seed_sequence": [
+        20261121,
+        910,
+        1,
+        9
+      ],
+      "sha256": "fcd1b1c1b0417e4999c67612210840b07199f3df8f6de5b4c35bc2da77677ec9"
+    },
+    {
+      "family": 1,
+      "file": "data/fyp_tail_probe_20261121/torus/010.rudy",
+      "index": 10,
+      "max_abs_weight": 292698,
+      "raw_edges": 200,
+      "raw_zeros": 0,
+      "seed_sequence": [
+        20261121,
+        910,
+        1,
+        10
+      ],
+      "sha256": "d8ecdc7899d360c6f8017e8c547bb4f6504b62f5e4cf3842e120505ee81dbcc8"
+    },
+    {
+      "family": 1,
+      "file": "data/fyp_tail_probe_20261121/torus/011.rudy",
+      "index": 11,
+      "max_abs_weight": 305223,
+      "raw_edges": 200,
+      "raw_zeros": 0,
+      "seed_sequence": [
+        20261121,
+        910,
+        1,
+        11
+      ],
+      "sha256": "0b55343e28fc75322afb9cde7a6224d185bac84ed7e128ec2b91cdb3c9522ead"
+    },
+    {
+      "family": 1,
+      "file": "data/fyp_tail_probe_20261121/torus/012.rudy",
+      "index": 12,
+      "max_abs_weight": 281746,
+      "raw_edges": 200,
+      "raw_zeros": 0,
+      "seed_sequence": [
+        20261121,
+        910,
+        1,
+        12
+      ],
+      "sha256": "dbfcff9e1d7ea4af8e78bfe0c75e9675e2c9514d0637c623039f476ec52c0f30"
+    },
+    {
+      "family": 1,
+      "file": "data/fyp_tail_probe_20261121/torus/013.rudy",
+      "index": 13,
+      "max_abs_weight": 364313,
+      "raw_edges": 200,
+      "raw_zeros": 0,
+      "seed_sequence": [
+        20261121,
+        910,
+        1,
+        13
+      ],
+      "sha256": "49baa4badee7d3f2974171c0a8a773e1ffc93feb0c78673c218c83c289dea84e"
+    },
+    {
+      "family": 1,
+      "file": "data/fyp_tail_probe_20261121/torus/014.rudy",
+      "index": 14,
+      "max_abs_weight": 257292,
+      "raw_edges": 200,
+      "raw_zeros": 0,
+      "seed_sequence": [
+        20261121,
+        910,
+        1,
+        14
+      ],
+      "sha256": "4db143904da93eb2d1cce8574770abd076c16d026df4ac4c6994dad8a78c103b"
+    },
+    {
+      "family": 1,
+      "file": "data/fyp_tail_probe_20261121/torus/015.rudy",
+      "index": 15,
+      "max_abs_weight": 273457,
+      "raw_edges": 200,
+      "raw_zeros": 0,
+      "seed_sequence": [
+        20261121,
+        910,
+        1,
+        15
+      ],
+      "sha256": "0f13fa2a3ef81cba48bf4132a907d35e34c62c044d0444052eed0e7cc3e8594f"
+    },
+    {
+      "family": 1,
+      "file": "data/fyp_tail_probe_20261121/torus/016.rudy",
+      "index": 16,
+      "max_abs_weight": 335610,
+      "raw_edges": 200,
+      "raw_zeros": 0,
+      "seed_sequence": [
+        20261121,
+        910,
+        1,
+        16
+      ],
+      "sha256": "3ed05c4a56cbd14ed79a4c4abc3e1319bd844eee2cca3d5a95421f987ff29e4f"
+    },
+    {
+      "family": 1,
+      "file": "data/fyp_tail_probe_20261121/torus/017.rudy",
+      "index": 17,
+      "max_abs_weight": 286186,
+      "raw_edges": 200,
+      "raw_zeros": 0,
+      "seed_sequence": [
+        20261121,
+        910,
+        1,
+        17
+      ],
+      "sha256": "a5d5a891d7cd6e7fdeaf8a3919df52b4726d0d508b8ee85d313a794c67ea6cda"
+    },
+    {
+      "family": 1,
+      "file": "data/fyp_tail_probe_20261121/torus/018.rudy",
+      "index": 18,
+      "max_abs_weight": 263153,
+      "raw_edges": 200,
+      "raw_zeros": 0,
+      "seed_sequence": [
+        20261121,
+        910,
+        1,
+        18
+      ],
+      "sha256": "2a6b33f2fb9dded7883b6079d625f92a0a4e33e7b5f95417102444eacea0e108"
+    },
+    {
+      "family": 1,
+      "file": "data/fyp_tail_probe_20261121/torus/019.rudy",
+      "index": 19,
+      "max_abs_weight": 400992,
+      "raw_edges": 200,
+      "raw_zeros": 0,
+      "seed_sequence": [
+        20261121,
+        910,
+        1,
+        19
+      ],
+      "sha256": "c9b9c4184e943662fd8227cca562e7f09473339aaf59b6a4676bfbae1f02a65f"
+    },
+    {
+      "family": 1,
+      "file": "data/fyp_tail_probe_20261121/torus/020.rudy",
+      "index": 20,
+      "max_abs_weight": 239215,
+      "raw_edges": 200,
+      "raw_zeros": 0,
+      "seed_sequence": [
+        20261121,
+        910,
+        1,
+        20
+      ],
+      "sha256": "8d90bc7e78ff08d23efe8193c56b33addb03e867eb90726ed83d332e9dc9b551"
+    },
+    {
+      "family": 1,
+      "file": "data/fyp_tail_probe_20261121/torus/021.rudy",
+      "index": 21,
+      "max_abs_weight": 316431,
+      "raw_edges": 200,
+      "raw_zeros": 0,
+      "seed_sequence": [
+        20261121,
+        910,
+        1,
+        21
+      ],
+      "sha256": "7e392ba86772e24fae15384aec0c0c2f7a9f59546f0760bab8765f3fc83c28d8"
+    },
+    {
+      "family": 1,
+      "file": "data/fyp_tail_probe_20261121/torus/022.rudy",
+      "index": 22,
+      "max_abs_weight": 354529,
+      "raw_edges": 200,
+      "raw_zeros": 0,
+      "seed_sequence": [
+        20261121,
+        910,
+        1,
+        22
+      ],
+      "sha256": "400b9711778044a96903a42504f8d5519ba3c0b155a2a619a19a65b3d7ce1534"
+    },
+    {
+      "family": 1,
+      "file": "data/fyp_tail_probe_20261121/torus/023.rudy",
+      "index": 23,
+      "max_abs_weight": 283433,
+      "raw_edges": 200,
+      "raw_zeros": 0,
+      "seed_sequence": [
+        20261121,
+        910,
+        1,
+        23
+      ],
+      "sha256": "3f7e875553dcb4de765a6f3d07feb2bc17e9360d514dc6b9230ecc9ad38dc0c3"
+    }
+  ],
+  "numpy": "2.3.5"
+}

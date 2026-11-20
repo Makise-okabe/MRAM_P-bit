@@ -1,0 +1,55 @@
+name: FYP weak-tail mechanism — frozen study
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: fyp-weak-tail-20261121
+  cancel-in-progress: false
+jobs:
+  mechanism:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install the frozen NumPy version
+        run: python -m pip install numpy==2.3.5
+      - name: Verify freeze and cross-environment parity
+        run: python scripts/fyp_tail_cloud.py preflight
+      - name: Execute the fixed 18432-key dataset
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -u -m experiments.fyp_tail_probe --run --freeze-commit 54c06ff593c8acded95f7e4ce6f04a347c6164f7 --workers 6 | tee results/fyp_tail_preflight_20261121/cloud_execution.log
+      - name: Run frozen analysis
+        run: python -m experiments.fyp_tail_analysis --freeze-commit 54c06ff593c8acded95f7e4ce6f04a347c6164f7
+      - name: Prepare checkpoint report and file hashes
+        run: python scripts/fyp_tail_cloud.py finalize
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fyp-weak-tail-20261121-${{ github.run_id }}
+          if-no-files-found: error
+          retention-days: 90
+          path: |
+            results/fyp_tail_probe_20261121/
+            results/fyp_tail_preflight_20261121/
+      - name: Archive successful results on the research branch
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f results/fyp_tail_probe_20261121 results/fyp_tail_preflight_20261121 README.md
+          git commit -m 'Archive frozen weak-tail mechanism checkpoint; stop before device work'
+          git push origin HEAD:research/m4-gain-fusion-20261107

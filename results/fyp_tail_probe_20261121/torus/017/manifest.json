@@ -1,0 +1,19 @@
+{
+  "B_control": 5911862.0,
+  "B_witness": {
+    "representation": "ref64",
+    "seed": 4000000117043,
+    "state_hex": "2dcce21ca391b3dccfbceedb3"
+  },
+  "family": "torus",
+  "files": {
+    "common_bank.json.gz": "93dcc2cfb53ce4636fb6fc998dc3850a2fd8ef3cf3d9aef8fdc9732028ab907d",
+    "records.json.gz": "c71fa3b708fc69157c8564ec039c44d8b9ceff458df57d5ab99d99ff4434c1d1",
+    "representations.json": "c4e8ad3b997e9eadd9a4ccbed14b6b85b691d38b232f17b5071d43ab2ef61f27"
+  },
+  "freeze_commit": "54c06ff593c8acded95f7e4ce6f04a347c6164f7",
+  "graph_sha256": "a5d5a891d7cd6e7fdeaf8a3919df52b4726d0d508b8ee85d313a794c67ea6cda",
+  "index": 17,
+  "records": 384,
+  "reference_pool": "best V over exactly FP64/FP6/INT6 x64; not a known optimum"
+}

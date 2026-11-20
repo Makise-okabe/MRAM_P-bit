@@ -1,0 +1,80 @@
+{
+  "baseline_archive_sha256": "ac373aa4d4e28855f03d9f6b5a5d71598536bf69727c583ea345d00d90680040",
+  "baseline_formats": [
+    "ref64",
+    "fp6",
+    "int6"
+  ],
+  "baseline_manifest_sha256": "78060ea81b64e921fe0820314b240b84bac3e4e459ae3ef3fb8883c4fb8b7d07",
+  "baseline_protocol_sha256": "859e0bb240f88c2ffb26c8922020c3de86fc09c344b3ff257703c6a3a54ebaba",
+  "baseline_seed_rule": "20261201 + 100000*4 + k; k=0..23",
+  "baseline_source_gate_sha256": "60e8fc6b1e8b1d30b9d5fe4dc4f4ccf3a2b88e8d2e82cd014aada59a222bec11",
+  "beta": 6.595903029235422e-05,
+  "bootstrap_resamples": 4000,
+  "code_hashes": {
+    "experiments/biqmac_maxcut.py": "b372b7d81e2ae406f223e1bd025373696fe3d3b4cbb9591d53b3fff917305f9d",
+    "experiments/ex1_m5_fp5_int8_exploratory.py": "664e667e9b76464b0a37eacbe7a0f817d31c32f3ab7ea619959b258a66b05fa8",
+    "experiments/m0_ising_math.py": "b6b74fd0d068d856be7dc720b6e6430ccde2ba174597ec39cbaff925b1f2e7bb",
+    "experiments/m1_biqmac_ideal_pilot.py": "1c58a5b97d5e481d837fcdf1c94d9ea051c03f3ba2a17148ee3760b80ac6e0dc",
+    "experiments/m1_biqmac_precision_sweep.py": "b5c751e98ad2db65af64297c43a1c7d88152901129e2cd35c55480e445ef93bc",
+    "experiments/m1_biqmac_reference_quality_gate.py": "c6c5fcec5b1299d6d0ebfe96d7e51cecf2cbf02fe51bd5736ed264b2c03f744c",
+    "experiments/m1_coupling_formats.py": "23d751b01dca0f104b7430b450abcff57e4d10974ae6ab3567cf9acfc161784f",
+    "experiments/m1_precision_codebooks.py": "8aabba6954e49589c9690a6e4a0b71f80c16765fbca907a1dd57ee75bc606b02",
+    "experiments/m2_e2_response_gate.py": "4309aa5bdf8066f6ba9c2f1b3de9b4ec3befac638cdeeee8fba9c738c7824f0f",
+    "experiments/m2_heldout_dense_sixbit.py": "b26ca0f60909855b37d80962de7de64ca33de17288b3d32e6eab2b0a91f8c4af",
+    "experiments/m2_offset_fp64_scout.py": "6ba76532af095cab51031a8f08f93c1fd6d50193e2e4340945e81e35ed8bdc9e",
+    "experiments/m2_stt_pbit_transfer_preflight.py": "e40932677c3a093a6c75ec3dba661bb8f38edf0bc16daa208828e3f368c0478b"
+  },
+  "device_model_hash_0": "c4cb569672f1ac1f845885741219b56546c264695916cf72b9955428093fac9e",
+  "evaluation": "original signed weighted Max-Cut only",
+  "exploratory_margins_pp": [
+    0.5,
+    1.0
+  ],
+  "graph": "ising2.5-100_7777",
+  "graph_index": 4,
+  "graph_sha256": "109e1ed2edc71d5f43d623367410d9257a72662d665c7a0c71af4cdd8babaf99",
+  "limitations": "Viewed graph; 24 paired seeds; single ideal d=0 population; intervals exploratory and not familywise adjusted; cannot establish b*/k.",
+  "new_formats": [
+    "fp5",
+    "int8"
+  ],
+  "new_runs": 48,
+  "official_optimum": 3363230,
+  "return_policy": "best represented energy visited",
+  "scale_policy": "source_mse_loggrid_v1",
+  "scales": {
+    "fp5": 30133.859375,
+    "int8": 1734.456787109375
+  },
+  "schedule": "linear 0.5*beta_G to 2.0*beta_G; same seed and d=0 E2 model",
+  "scope": "VIEWED M5 instance; exploratory ONLY; no independent holdout; d=0",
+  "seeds": [
+    20661201,
+    20661202,
+    20661203,
+    20661204,
+    20661205,
+    20661206,
+    20661207,
+    20661208,
+    20661209,
+    20661210,
+    20661211,
+    20661212,
+    20661213,
+    20661214,
+    20661215,
+    20661216,
+    20661217,
+    20661218,
+    20661219,
+    20661220,
+    20661221,
+    20661222,
+    20661223,
+    20661224
+  ],
+  "status": "EX1_FROZEN_BEFORE_EXPLORATORY_RUNS",
+  "updates": 50000
+}

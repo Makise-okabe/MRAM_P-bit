@@ -1,0 +1,57 @@
+{
+  "bootstrap": "studentized bootstrap-t; PCG64DXSM; NumPy linear quantiles",
+  "buffer": "K16 distinct raw spin vectors; earliest first visit breaks represented-energy ties; original quality never retains a candidate",
+  "coefficient_factorization": "S={INT6 nonzero}; T=FP6 values outside S; four cells F_S+T, F_S, I_S+T, I_S",
+  "common_bank": "pooled top16 states from all six arms and all64 seeds per graph; smallest state-integer breaks represented-energy ties",
+  "confirmatory": [
+    {
+      "endpoint": "Rz_pp",
+      "left": "fp6_mask",
+      "name": "C1",
+      "one_sided_alpha": 0.0125,
+      "prediction": ">0",
+      "right": "fp6"
+    },
+    {
+      "endpoint": "Rz_pp",
+      "left": "int6",
+      "name": "C2",
+      "one_sided_alpha": 0.0125,
+      "prediction": ">0",
+      "right": "int6_tail"
+    }
+  ],
+  "confirmatory_family": "ring",
+  "confirmatory_familywise_alpha": 0.025,
+  "confirmatory_seed_sequence": [
+    20261121,
+    940,
+    0
+  ],
+  "counterfactual_cost": "original J accessible on host plus state transfer and host rescoring; no measured implementation saving",
+  "date": "2026-11-21",
+  "descriptive_metrics": [
+    "Rz_pp",
+    "A_pp",
+    "extra_pp",
+    "selection_pp",
+    "tie_pp",
+    "buffer_gain_pp",
+    "buffer_extra_pp",
+    "minimum_distinct_states",
+    "visited_distinct_states",
+    "bank_Rz_pp",
+    "bank_selection_pp",
+    "bank_tie_pp",
+    "bank_minimum_distinct_states"
+  ],
+  "descriptive_seed_sequence": "[20261121,940,family,1]",
+  "diagnostic": "INT6_keep cannot refute the accurate-weak-tail hypothesis",
+  "interaction": "(FP6_mask-FP6)-(INT6-INT6_tail), reported for Rz/A/extra",
+  "no_material_torus_effect": "descriptive prediction only; no equivalence margin registered",
+  "outcomes": "lower bound>0 supports directional hypothesis; otherwise NOT_ESTABLISHED; failure is not proof of a probability-error mechanism",
+  "reference": "B_control=max(0,V) over only FP64/FP6/INT6 x64, fixed once per graph; not an optimum",
+  "resamples": 500000,
+  "resampling_unit": "whole 24-graph vectors after paired-seed averaging",
+  "stop": "after mechanism checkpoint; no offset/gain/hardware work"
+}

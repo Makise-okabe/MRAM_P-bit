@@ -1,0 +1,299 @@
+name: FYP locked ideal campaign (manual, frozen commit)
+
+on:
+  workflow_dispatch:
+    inputs:
+      frozen_commit:
+        description: Full 40-character executable-freeze commit SHA
+        required: true
+        type: string
+
+# No shard, merge job, or artifact publisher can write the repository.
+permissions:
+  contents: read
+
+concurrency:
+  group: fyp-ideal-locked-${{ inputs.frozen_commit }}
+  cancel-in-progress: false
+
+env:
+  FYP_FROZEN_COMMIT: ${{ inputs.frozen_commit }}
+  FYP_FREEZE_MANIFEST: docs/FYP_IDEAL_FREEZE_20261120.json
+  PYTHONHASHSEED: '0'
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out the supplied frozen commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.frozen_commit }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Validate commit and install pinned dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$FYP_FROZEN_COMMIT" =~ ^[0-9a-f]{40}$ ]]
+          test "$(git rev-parse HEAD)" = "$FYP_FROZEN_COMMIT"
+          python -m pip install 'numpy==2.3.5'
+      - name: Extract the 144 frozen source graphs safely
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import tarfile
+          root = Path('data/fyp_locked_20261120')
+          expected = {f'{family}/{i:03d}.rudy' for family in ('ring', 'torus') for i in range(72)}
+          with tarfile.open(root/'sources.tar.gz', 'r:gz') as archive:
+              members = archive.getmembers()
+              if len(members) != 144 or {m.name for m in members} != expected or any(not m.isfile() for m in members):
+                  raise RuntimeError('source archive must contain exactly the 144 registered regular files')
+              archive.extractall(root, filter='data')
+          PY
+      - name: Verify the committed executable freeze before opening held-out sources
+        shell: bash
+        run: |
+          python -m experiments.fyp_ideal_campaign \
+            --freeze "$FYP_FREEZE_MANIFEST" --freeze-commit "$FYP_FROZEN_COMMIT" --verify-freeze
+          python -m experiments.fyp_ideal_sources --verify
+      - name: Fetch held-out sources once after the freeze and hash all six official sources
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          import json
+          import os
+          import urllib.request
+          from experiments.fyp_ideal_sources import ANCHORS, VIEWED_SOURCE_HASHES
+          root = Path('data/biqmac/raw/ising')
+          root.mkdir(parents=True, exist_ok=True)
+          rows = []
+          for anchor in ANCHORS:
+              name = anchor['name']
+              path = root/name
+              url = 'https://biqmac.aau.at/library/mac/ising/' + name
+              if name in VIEWED_SOURCE_HASHES:
+                  if not path.is_file():
+                      raise RuntimeError('viewed official source missing from executable freeze: ' + name)
+                  status = 'KNOWN_VIEWED_HASH_VERIFIED'
+              else:
+                  if '_6666' not in name or path.exists():
+                      raise RuntimeError('unexpected held-out source name or preexisting held-out file')
+                  with urllib.request.urlopen(url, timeout=120) as response:
+                      payload = response.read()
+                  if not payload:
+                      raise RuntimeError('empty official source download: ' + name)
+                  with path.open('xb') as stream:
+                      stream.write(payload)
+                  status = 'FIRST_POST_FREEZE_FETCH_HASH'
+              payload = path.read_bytes()
+              digest = hashlib.sha256(payload).hexdigest()
+              if name in VIEWED_SOURCE_HASHES and digest != VIEWED_SOURCE_HASHES[name]:
+                  raise RuntimeError('viewed official source hash changed: ' + name)
+              rows.append({'graph': name, 'url': url, 'bytes': len(payload), 'sha256': digest,
+                           'hash_status': status})
+          provenance = {'status': 'POST_FREEZE_OFFICIAL_SOURCES_HASHED',
+                        'frozen_commit': os.environ['FYP_FROZEN_COMMIT'], 'graphs': rows}
+          (root/'post_freeze_source_manifest.json').write_text(
+              json.dumps(provenance, sort_keys=True, indent=2) + '\n', encoding='utf-8')
+          print('Six official sources saved and hashed after the committed freeze gate.')
+          PY
+      - name: Share the single official-source acquisition with all shards
+        uses: actions/upload-artifact@v4
+        with:
+          name: fyp-ideal-official-${{ inputs.frozen_commit }}
+          path: data/biqmac/raw/ising/
+          if-no-files-found: error
+          retention-days: 90
+
+  shards:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: true
+      max-parallel: 6
+      matrix:
+        include:
+          - {shard: ring-000-011, kind: generated, family: 0, start: 0, stop: 12}
+          - {shard: ring-012-023, kind: generated, family: 0, start: 12, stop: 24}
+          - {shard: ring-024-035, kind: generated, family: 0, start: 24, stop: 36}
+          - {shard: ring-036-047, kind: generated, family: 0, start: 36, stop: 48}
+          - {shard: ring-048-059, kind: generated, family: 0, start: 48, stop: 60}
+          - {shard: ring-060-071, kind: generated, family: 0, start: 60, stop: 72}
+          - {shard: torus-000-011, kind: generated, family: 1, start: 0, stop: 12}
+          - {shard: torus-012-023, kind: generated, family: 1, start: 12, stop: 24}
+          - {shard: torus-024-035, kind: generated, family: 1, start: 24, stop: 36}
+          - {shard: torus-036-047, kind: generated, family: 1, start: 36, stop: 48}
+          - {shard: torus-048-059, kind: generated, family: 1, start: 48, stop: 60}
+          - {shard: torus-060-071, kind: generated, family: 1, start: 60, stop: 72}
+          - {shard: anchor-0, kind: anchor, anchor: 0}
+          - {shard: anchor-1, kind: anchor, anchor: 1}
+          - {shard: anchor-2, kind: anchor, anchor: 2}
+          - {shard: anchor-3, kind: anchor, anchor: 3}
+          - {shard: anchor-4, kind: anchor, anchor: 4}
+          - {shard: anchor-5, kind: anchor, anchor: 5}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.frozen_commit }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Install pinned dependencies
+        run: python -m pip install 'numpy==2.3.5'
+      - name: Extract the frozen source archive
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import tarfile
+          root = Path('data/fyp_locked_20261120')
+          expected = {f'{family}/{i:03d}.rudy' for family in ('ring', 'torus') for i in range(72)}
+          with tarfile.open(root/'sources.tar.gz', 'r:gz') as archive:
+              members = archive.getmembers()
+              if len(members) != 144 or {m.name for m in members} != expected or any(not m.isfile() for m in members):
+                  raise RuntimeError('unexpected source archive members')
+              archive.extractall(root, filter='data')
+          PY
+      - uses: actions/download-artifact@v4
+        with:
+          name: fyp-ideal-official-${{ inputs.frozen_commit }}
+          path: data/biqmac/raw/ising/
+      - name: Verify shared official-source hashes
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          import json
+          import os
+          root = Path('data/biqmac/raw/ising')
+          manifest = json.loads((root/'post_freeze_source_manifest.json').read_text())
+          assert manifest['frozen_commit'] == os.environ['FYP_FROZEN_COMMIT']
+          assert len(manifest['graphs']) == 6
+          for graph in manifest['graphs']:
+              payload = (root/graph['graph']).read_bytes()
+              assert hashlib.sha256(payload).hexdigest() == graph['sha256']
+              assert len(payload) == graph['bytes']
+          PY
+      - name: Execute the registered generated shard
+        if: matrix.kind == 'generated'
+        env:
+          FYP_FAMILY: ${{ matrix.family }}
+          FYP_START: ${{ matrix.start }}
+          FYP_STOP: ${{ matrix.stop }}
+        shell: bash
+        run: |
+          python -m experiments.fyp_ideal_campaign \
+            --freeze "$FYP_FREEZE_MANIFEST" --freeze-commit "$FYP_FROZEN_COMMIT" \
+            --family "$FYP_FAMILY" --start "$FYP_START" --stop "$FYP_STOP"
+      - name: Execute the registered official anchor, reusing archived first-block runs
+        if: matrix.kind == 'anchor'
+        env:
+          FYP_ANCHOR: ${{ matrix.anchor }}
+        shell: bash
+        run: |
+          python -m experiments.fyp_ideal_campaign \
+            --freeze "$FYP_FREEZE_MANIFEST" --freeze-commit "$FYP_FROZEN_COMMIT" \
+            --anchor-index "$FYP_ANCHOR"
+      - name: Preserve the raw shard without reading quality summaries
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fyp-ideal-shard-${{ inputs.frozen_commit }}-${{ matrix.shard }}
+          path: results/fyp_ideal_20261120/
+          if-no-files-found: warn
+          retention-days: 90
+
+  merge-and-report:
+    needs: [prepare, shards]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.frozen_commit }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - name: Install pinned analysis dependencies
+        run: python -m pip install 'numpy==2.3.5'
+      - name: Extract the frozen source archive
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import tarfile
+          root = Path('data/fyp_locked_20261120')
+          expected = {f'{family}/{i:03d}.rudy' for family in ('ring', 'torus') for i in range(72)}
+          with tarfile.open(root/'sources.tar.gz', 'r:gz') as archive:
+              members = archive.getmembers()
+              if len(members) != 144 or {m.name for m in members} != expected or any(not m.isfile() for m in members):
+                  raise RuntimeError('unexpected source archive members')
+              archive.extractall(root, filter='data')
+          PY
+      - uses: actions/download-artifact@v4
+        with:
+          name: fyp-ideal-official-${{ inputs.frozen_commit }}
+          path: data/biqmac/raw/ising/
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: fyp-ideal-shard-${{ inputs.frozen_commit }}-*
+          path: _fyp_shard_artifacts/
+          merge-multiple: false
+      - name: Merge exactly 18 artifacts, rejecting differing duplicate paths
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import os
+          import shutil
+          source = Path('_fyp_shard_artifacts')
+          prefix = 'fyp-ideal-shard-' + os.environ['FYP_FROZEN_COMMIT'] + '-'
+          shards = {f'{family}-{i:03d}-{i+11:03d}' for family in ('ring', 'torus') for i in range(0,72,12)}
+          shards |= {f'anchor-{i}' for i in range(6)}
+          if {p.name for p in source.iterdir()} != {prefix+s for s in shards}:
+              raise RuntimeError('expected all 12 generated and six anchor artifacts')
+          destination = Path('results/fyp_ideal_20261120')
+          for artifact in sorted(source.iterdir()):
+              for path in sorted(artifact.rglob('*')):
+                  if not path.is_file():
+                      continue
+                  target = destination/path.relative_to(artifact)
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  if target.exists() and target.read_bytes() != path.read_bytes():
+                      raise RuntimeError('differing duplicate artifact path: ' + str(target))
+                  if not target.exists():
+                      shutil.copyfile(path, target)
+          target = destination/'provenance'/'post_freeze_source_manifest.json'
+          target.parent.mkdir(parents=True, exist_ok=True)
+          shutil.copyfile('data/biqmac/raw/ising/post_freeze_source_manifest.json', target)
+          print('All 18 raw artifacts merged; no quality summaries have been inspected.')
+          PY
+      - name: Verify complete counts, unique keys, source hashes and reference pools
+        shell: bash
+        run: |
+          python -m experiments.fyp_ideal_campaign \
+            --freeze "$FYP_FREEZE_MANIFEST" --freeze-commit "$FYP_FROZEN_COMMIT" --verify-all
+      - name: Analyze the complete fixed ideal campaign and stop at the checkpoint
+        shell: bash
+        run: python -m experiments.fyp_ideal_analysis --analyse results/fyp_ideal_20261120
+      - name: Publish the single verified result artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: fyp-ideal-checkpoint-${{ inputs.frozen_commit }}
+          path: results/fyp_ideal_20261120/
+          if-no-files-found: error
+          retention-days: 90

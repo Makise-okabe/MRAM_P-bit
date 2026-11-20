@@ -1,0 +1,100 @@
+{
+  "finished_at_utc": "2026-11-20T16:34:26.279596+00:00",
+  "freeze_commit": "d217ab54fc41a3a84d6a500f3ab0f3aa433059dd",
+  "shard_results": [
+    {
+      "returncode": 0,
+      "seconds": 52.020019116000185,
+      "shard": "anchor-0"
+    },
+    {
+      "returncode": 0,
+      "seconds": 74.05355331700048,
+      "shard": "anchor-1"
+    },
+    {
+      "returncode": 0,
+      "seconds": 46.75151953199929,
+      "shard": "anchor-2"
+    },
+    {
+      "returncode": 0,
+      "seconds": 48.81125163800061,
+      "shard": "anchor-3"
+    },
+    {
+      "returncode": 0,
+      "seconds": 47.52474550000079,
+      "shard": "anchor-4"
+    },
+    {
+      "returncode": 0,
+      "seconds": 47.12680060400089,
+      "shard": "anchor-5"
+    },
+    {
+      "returncode": 0,
+      "seconds": 531.6926451840009,
+      "shard": "generated-0-000-011"
+    },
+    {
+      "returncode": 0,
+      "seconds": 523.1193430849999,
+      "shard": "generated-0-012-023"
+    },
+    {
+      "returncode": 0,
+      "seconds": 528.2860627029986,
+      "shard": "generated-0-024-035"
+    },
+    {
+      "returncode": 0,
+      "seconds": 539.9140886489986,
+      "shard": "generated-0-036-047"
+    },
+    {
+      "returncode": 0,
+      "seconds": 521.0690483470007,
+      "shard": "generated-0-048-059"
+    },
+    {
+      "returncode": 0,
+      "seconds": 524.6254415790008,
+      "shard": "generated-0-060-071"
+    },
+    {
+      "returncode": 0,
+      "seconds": 330.6289006099996,
+      "shard": "generated-1-000-011"
+    },
+    {
+      "returncode": 0,
+      "seconds": 331.1873530539997,
+      "shard": "generated-1-012-023"
+    },
+    {
+      "returncode": 0,
+      "seconds": 337.3064626430005,
+      "shard": "generated-1-024-035"
+    },
+    {
+      "returncode": 0,
+      "seconds": 335.4526342780009,
+      "shard": "generated-1-036-047"
+    },
+    {
+      "returncode": 0,
+      "seconds": 350.5536767470003,
+      "shard": "generated-1-048-059"
+    },
+    {
+      "returncode": 0,
+      "seconds": 337.56421461100035,
+      "shard": "generated-1-060-071"
+    }
+  ],
+  "shards": 18,
+  "status": "COMPLETE_PENDING_GLOBAL_VERIFICATION",
+  "wall_seconds": 929.3766808399996,
+  "workers": 6
+}

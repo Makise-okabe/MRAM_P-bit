@@ -1,0 +1,56 @@
+{
+  "ring": {
+    "diagnostic_fallback": false,
+    "k_cert": 1,
+    "lowest_tested_certified_FP": "fp5",
+    "lowest_tested_certified_INT": "int6",
+    "matched_reference": "ref64",
+    "offset_run_authorized": false,
+    "qualification": {
+      "fp5": "PASS",
+      "fp6": "PASS",
+      "int5": "FAIL",
+      "int6": "PASS",
+      "int7": "PASS",
+      "int8": "PASS"
+    },
+    "selected_FP": "fp5",
+    "selected_INT": "int6",
+    "selected_pair_bounds": {
+      "high": 0.19520832781893352,
+      "low": -0.05600258079433962,
+      "method": "registered_direct_contrast",
+      "pairwise_NI": true
+    },
+    "smaller_unresolved_FP": [],
+    "smaller_unresolved_INT": [],
+    "true_minimum_claim": "not inferred from a lowest certified choice"
+  },
+  "torus": {
+    "diagnostic_fallback": false,
+    "k_cert": 0,
+    "lowest_tested_certified_FP": "fp5",
+    "lowest_tested_certified_INT": "int5",
+    "matched_reference": "ref64",
+    "offset_run_authorized": false,
+    "qualification": {
+      "fp5": "PASS",
+      "fp6": "PASS",
+      "int5": "PASS",
+      "int6": "PASS",
+      "int7": "PASS",
+      "int8": "PASS"
+    },
+    "selected_FP": "fp5",
+    "selected_INT": "int5",
+    "selected_pair_bounds": {
+      "high": 0.18930816642129467,
+      "low": -0.31579850819176264,
+      "method": "conservative_difference_of_simultaneous_bounds",
+      "pairwise_NI": true
+    },
+    "smaller_unresolved_FP": [],
+    "smaller_unresolved_INT": [],
+    "true_minimum_claim": "not inferred from a lowest certified choice"
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "schema": "fyp-policy-device-20261121-v1",
+  "status": "LOCKED_BEFORE_ANY_STAGE_A_OR_B_OUTCOME",
+  "prior_ideal_executable_freeze": "d217ab54fc41a3a84d6a500f3ab0f3aa433059dd",
+  "prior_ideal_archive": "results/fyp_ideal_20261120/raw_archives/archive_registry.json",
+  "original_protocol": "docs/FYP_STUDY_LOCK_20261120.md",
+  "source_blob_sha1": {
+    "experiments/fyp_policy_device_20261121.py": "feec151b8518720ebaf8cf0212742b895a877fee",
+    "experiments/fyp_ideal_solver.py": "c9091e8876d348f4e735988d1affdfdaca8899b9",
+    "experiments/fyp_output_device_solver.py": "bd40b19dbe0d6d0c844d61a1afa7fa9d5a22331b",
+    "experiments/fyp_tail_probe.py": "51195f0c7e61830493df0ac6a3e45e758d9262ae",
+    "experiments/fyp_ideal_analysis.py": "aa9702134ee5656d65f3b162146ec8c6dd5de23a",
+    "experiments/fyp_ideal_sources.py": "ab66e1127eb1dc4f35e879551cce3f180b3d0bde",
+    "experiments/m1_precision_codebooks.py": "0fa83c06345c02ce7a3178c9ff2db5b6426c2779",
+    ".github/workflows/fyp-policy-device-locked.yml": "b448dbff2ffaa87c36c4c25d5964188622f3b756",
+    "docs/FYP_STUDY_LOCK_20261120.md": "b55ed05e212969d4cf487d8b8ba69c2a5eec5cc6"
+  },
+  "buffer_k": 16,
+  "bootstrap_resamples": 500000,
+  "alpha_buffer": 0.01,
+  "alpha_device": 0.01,
+  "bonferroni_two_sided_quantile": "1-alpha/(2*number_of_registered_contrasts)",
+  "tolerances_pp": [
+    0.25,
+    0.5,
+    1
+  ],
+  "independent_units": "72 generated graphs per family, or graph-bank pairs for Stage B",
+  "stage_a": {
+    "scope": "144 generated graphs; main records only; 64 paired seeds x 7 formats per graph",
+    "formats": [
+      "ref64",
+      "fp5",
+      "fp6",
+      "int5",
+      "int6",
+      "int7",
+      "int8"
+    ],
+    "archived_traces": 64512,
+    "replay_only": true,
+    "parity_keys": [
+      "seed",
+      "attempted_updates",
+      "actual_flips",
+      "improvements",
+      "returned_original_cut",
+      "final_original_cut",
+      "returned_represented_energy",
+      "final_represented_energy",
+      "returned_state_hex",
+      "V",
+      "M",
+      "R",
+      "R_last",
+      "V_state_hex",
+      "M_state_hex",
+      "checkpoints"
+    ],
+    "buffer_policy": "Top 16 DISTINCT lowest represented energy states; earliest first-visit tie order; original-cut host rescore after running; passive with zero RNG changes",
+    "registered_contrasts": "Six candidate minus matched FP64 buffer extra loss in each family",
+    "alpha": 0.01,
+    "reference_denominator": "Frozen graph-specific B_g from independent FP64 reference and candidate pool; not a proven optimum",
+    "no_rerun_of_first_block": true,
+    "anchors": "descriptive missing (no buffer measurements)"
+  },
+  "stage_b": {
+    "selected": {
+      "ring": [
+        "ref64",
+        "fp5",
+        "int6"
+      ],
+      "torus": [
+        "ref64",
+        "fp5",
+        "int5"
+      ]
+    },
+    "arms": {
+      "ring": [
+        "ref64",
+        "fp5",
+        "int6",
+        "fp6"
+      ],
+      "torus": [
+        "ref64",
+        "fp5",
+        "int5",
+        "fp6",
+        "int6"
+      ]
+    },
+    "offset_halfspan": 0.8,
+    "gain": 1,
+    "bank": "One persistent 100-device uniform logit bank per generated graph, NumPy PCG64DXSM SeedSequence([20261120,930,family,index])",
+    "seeds": "The exact same 64 main solver seeds as ideal Stage A; paired across arms and response conditions",
+    "registered_contrasts": "FP-INT, FP-FP64, INT-FP64 per family (6 total), alpha_device 0.01",
+    "registered_runs": 27648,
+    "additional_descriptive_runs": 13824,
+    "total_runs": 41472,
+    "comparisons": "No changed trajectory budget, scale, source graph, response profile or output policy",
+    "full_nonideality_statement": "Offsets are assumed logit sensitivity conditions, not physically measured MTJ residuals",
+    "no_gain_variation": true,
+    "no_hardware_work": true
+  },
+  "stop_conditions": [
+    "any original source/archive hash mismatch",
+    "any exact archive-vs-replay legacy field mismatch",
+    "any zero-offset solver parity mismatch",
+    "any missing run key",
+    "any invalid studentization must remain unresolved"
+  ],
+  "analysis_evidence_levels": {
+    "registered": "Stage A twelve candidate-to-FP64 buffer-policy contrasts and Stage B six offset contrasts only",
+    "descriptive": "Additional FP6 and INT6 arms, search/selection mechanism shifts, tie counts, top-K recovery, heterogeneity"
+  }
+}

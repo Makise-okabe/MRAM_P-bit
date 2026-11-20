@@ -1,0 +1,122 @@
+# E0-A: bounded two-CAL FP64 schedule diagnostic — protocol freeze (12 November 2026)
+
+**Status: code + predeclared pilot design committed; on-host preflight, on-host `--freeze`, and 80 FP64 trial runs are NOT yet performed.** This is a deliberately narrow new solver-calibration pilot, explicitly requested after M5/M6 closure, not a retroactive modification of those held-out studies.
+
+## Decision addressed
+
+At 500 sweeps / 50,000 attempted asynchronous updates on 100 spins, does a **source-field-calibrated geometric inverse-temperature schedule** reduce reference FP64 original-weight Max-Cut gap and early freezing compared with the **unchanged previously used linear schedule**, on two already-viewed calibration graphs? Is FP64 near the proposed 1% mean optimum-gap target at the same budget? Do not assume an answer.
+
+Old M5/M6 and CAL quantization results remain an intact **historical short-budget condition**. Do not silently replace their reference curves or retrospectively change quality screens.
+
+## Graphs and immutable source references
+
+- **CAL only**: `ising2.5-100_5555` (dense) and `t2g10_5555` (sparse). Each is 100 vertices, previously viewed.
+- Local graph directory: `data/biqmac/raw/ising/`.
+- Published official optimum and source SHA256 must both match `docs/BIQMAC_OFFICIAL_OPTIMA_2007.json`. The source references presently record the dense optimum **2,460,049** and sparse optimum **6,049,461**.
+- No graph downloads or access to any `_6666` or `_7777` source. No newly selected format, field width, devices or Max-Cut instances.
+
+## Fixed pilot comparisons
+
+| Design parameter | Frozen choice |
+|---|---|
+| Solver representation | **FP64 reference only**, symmetric `J=-w`, zero diagonal/bias, no device variation |
+| Graphs | 2 CAL only |
+| Schedules | Legacy linear `beta_G*(0.5+1.5t)`; geometric uphill-calibrated `beta_start*(beta_end/beta_start)^t` |
+| Budget | **50,000 attempted updates per run** (500 sweeps), identical for both schedules |
+| Paired seeds | 20 per graph and schedule; `20261112 + 100000*graph_index + k`, `k=0..19` |
+| New full solver evaluations | **2 graphs × 2 schedules × 20 seeds = 80 runs** |
+| Checkpoints (read-only in each run) | After 5k, 15k, 30k and 50k attempts; these are **not** independently retuned budget runs |
+| Trace bins | 10 non-overlapping bins of 5k attempts each |
+| Primary endpoint | Original-source-weight optimum gap at 50k and paired geometric-minus-legacy difference, per CAL graph |
+| Other outcomes | Conditional uphill acceptance by trace bin; total flip rate by bin; fraction of returned solutions within 1% optimum gap; early best-cut improvement |
+| Uncertainty | 4,000 deterministic paired seed-bootstrap resamples per graph/checkpoint |
+| Target | **Exploratory** mean FP64 gap ≤1% on both CAL graphs; failure triggers a separately frozen larger-budget study, not an ad hoc pilot extension |
+| Code | `experiments/e0_fp64_two_cal_pilot.py` |
+| Results | `results/e0_fp64_two_cal_20261112/` |
+
+**Why uphill acceptance rather than unconditional flips on random states?** At zero bias, a random independent spin agrees or disagrees with the local field with equal probability, so the unconditional expected heat-bath flip probability is exactly **0.5 at any finite beta**, after averaging the two initial spin signs. Thus a 40%-unconditional-flip starting condition cannot calibrate temperature. Instead record positive-energy change `DeltaE=2*s_i*H_i>0` for candidate spin flips on a fixed set of 80 unbiased random FP64 spin states per graph. Select `beta_start` to yield mean **conditional uphill flip probability 0.4**, and `beta_end` to yield **0.001**, both computed as `mean(1/(1+exp(beta*DeltaE)))` over these strictly positive `DeltaE` proposals. Unconditional random-state flip is NOT the target. These field-only calibrations require no solver evaluations or score labels, and are saved in `protocol.json`.
+
+One beta normalization `beta_G=1/(mean|w|*sqrt(mean_degree))` comes from the original CAL graph, and the same graph/profile is used for every paired seed. No beta schedule is tailored to each solution-quality result.
+
+## Engineering and statistical controls
+
+- Use `--selftest` on a tiny synthetic graph before freezing: three exact legacy linear-solver parity checks plus geometric trace test. Failed parity = STOP.
+- Run `--freeze` on CAL source data ONLY after `--selftest`. Writes protocol with all solver/dependency SHA256 values, original source graph hashes, seeds, source-field-derived `beta_start/end`, target uphill probabilities and protocol status. No E0 solver runs during freeze.
+- Inspect printed hot/cold beta and `results/e0_fp64_two_cal_20261112/protocol.json` before execution. If suspicious, STOP and document the amendment *before* the first pilot solver run.
+- `--execute` fails closed if current source/code/protocol differs from frozen JSON. It refuses to overwrite existing run CSVs. The solver uses exactly the same `random.Random(seed)` draws for old and new schedules, so differences are paired.
+- At every checkpoint, retain the **earliest lowest represented energy** state; for FP64 this corresponds to the original cut. Original-weight scoring is evaluation-only and does not drive acceptance/schedule choice.
+- Report absolute mean gap and **paired** geometric-minus-legacy mean gap CI; do not declare equivalence from an interval crossing zero. Twenty solver seeds per graph are not 20 graph instances.
+- Use CAL performance only to choose whether a wider budget is necessary. Do not re-open old held-out graphs to select the schedule. Schedule/budget for new width studies requires a separate prospective protocol.
+- Archived M5/M6 nonideal STT-MRAM results are historical at their original solver operating point. This E0 diagnostic studies neither gain nor offset, and it is **not** a measured device result.
+- A two-graph **pilot** is deliberately smaller than the full multi-instance E0 described in Claude's roadmap; it does not yet establish general convergence or authorize other graph families.
+
+## Host commands (execution not yet performed)
+
+```bash
+cd "$HOME/MRAM_Pbit_M0" || exit 1
+git fetch origin
+git switch research/m4-gain-fusion-20261107
+git pull --ff-only
+source "$HOME/.venvs/mram-pbit-h2/bin/activate"
+
+python3 -m experiments.e0_fp64_two_cal_pilot --selftest
+python3 -m experiments.e0_fp64_two_cal_pilot --freeze
+
+cat results/e0_fp64_two_cal_20261112/protocol.json
+
+# Only after comparing printed/recorded uphill calibration and
+# explicitly proceeding under this frozen protocol:
+# python3 -m experiments.e0_fp64_two_cal_pilot --execute
+```
+
+After full completion, audit 80 unique run keys, 320 checkpoint rows, 800 trace-bin rows, **16 summary rows total** (2 graphs × 2 schedules × 4 checkpoints), 8 paired difference rows and frozen source/code SHA matches, then archive the raw output and summarize. **Do not start FP8/INT8 yet.**
+
+## Proposed later thesis metric, distinct from E0
+
+Once E0 establishes the solver operating point, propose to Prof Fong a primary endpoint `k=b*(INT)-b*(FP)` bits saved per undirected coefficient at a **prospectively agreed equal-quality criterion**, where `b*` is the minimum certified useful width. `Delta=0.5` percentage points is a **proposed** tolerance, not a rule approved by Prof Fong or validated by the current studies. New width, device-population and hardware protocols remain unopened until E0 results and project scope are reviewed. For untested INT7, use the separately frozen symmetric signed codebook/RTL extension; it is not currently implemented by the frozen 4/5/6/8-bit pool.
+
+## Dated observation: user-reported E0 execution (15 Nov 2026; archival audit pending)
+
+The user ran the frozen E0 pilot on `schrodinger02` after successful synthetic solver parity and on-host `--freeze`. The console reported all four 20-seed cells completed (80/80 runs), E0 exit status 0, and no held-out access. **This is a terminal-output closeout pending raw CSV/manifest archival and independent post-run verification; it does not retroactively modify this frozen prospective protocol.**
+
+| CAL graph | Legacy linear 50k gap (95% seed-bootstrap CI) | New geometric-uphill 50k gap (95% seed-bootstrap CI) |
+|---|---|---|
+| `ising2.5-100_5555` | 4.713% [3.950, 5.436] | 4.388% [3.699, 5.112] |
+| `t2g10_5555` | 3.607% [2.944, 4.286] | 3.887% [3.239, 4.541] |
+
+The geometric schedule improves the *sample mean* on the dense CAL by about **0.325 pp** but worsens the sparse CAL by **0.280 pp**. Equal-graph mean gap is 4.160% for linear and 4.138% for geometric, so the average improvement is only ~0.023 pp. **No CAL condition reaches the proposed 1% mean-gap target.** This comparison alone does not establish geometric superiority: the direct paired geometric-minus-linear CIs must be taken from the original `paired_schedule_contrasts.csv`. The source/manifest audit and actual time-resolved acceptance diagnostics must also pass before deciding on a separately frozen longer-budget experiment.
+
+**New read-only post-run audit utility:** [`scripts/e0_audit_existing_results.py`](../scripts/e0_audit_existing_results.py). It compares frozen code/protocol hashes, run files, unique keys, all checkpoints, paired CSV values and first/last trace-bin flip and uphill acceptance. Execute on the host with `python3 scripts/e0_audit_existing_results.py` after pulling this research branch. It launches **zero solver runs**.
+
+The archived M5/M6 500-sweep data remain historical and unchanged; no wider-format or fresh-held-out work is authorized by these E0 results.
+
+## Dated audit closeout (15 Nov 2026; code and original experimental records unchanged)
+
+The second host report confirms **E0 READ-ONLY AUDIT COMPLETE — PASS**, without additional solver runs. The audit verified the frozen protocol and all code-file hashes, 80 unique solver rows, 320 checkpoint rows, 800 acceptance-trace bins, 16 quality summary rows, eight paired contrasts, original optimum scoring, and run/trace consistency.
+
+**Matched geometric-minus-linear final gap at 50,000 attempted updates:**
+- Dense CAL: **−0.3249 pp**, paired 95% CI **[−1.1834, +0.5333]**.
+- Sparse CAL: **+0.2799 pp**, paired 95% CI **[−0.5662, +1.0839]**.
+- Neither interval excludes zero. Equal-graph average improvement is ~0.023 pp, descriptive only; neither schedule attained the exploratory 1% mean-optimum-gap goal.
+
+**Observed first/last 5,000-update spin-flip rates:**
+- Dense linear 0.0867 / 0.0234; geometric 0.4366 / 0.0010.
+- Sparse linear 0.3343 / 0.0833; geometric 0.4400 / 0.0015.
+
+**Observed first/last 5,000-update conditional uphill acceptance:**
+- Dense linear 0.0429 / 0.0119; geometric 0.3390 / 0.0005.
+- Sparse linear 0.2213 / 0.0441; geometric 0.3426 / 0.0008.
+
+At the sparse 30,000-update checkpoint geometric was better than linear by −3.1272 pp (paired CI [−4.3419, −1.9218]), but by 50,000 updates the difference was inconclusive; schedule ranking is budget-dependent. This does not establish a universally superior schedule nor prove convergence.
+
+**Decision:** E0 solver-calibration exploration is **closed**. Retain the historical **linear, 50,000 attempted updates (500 sweeps)** reference as a fixed and not-proven-converged experimental operating point, subject to Prof Fong's confirmation for the new precision study. Keep E0's 1% mean gap aspiration distinct from the **proposed +0.5 percentage-point paired upper-CI additional gap relative to same-budget, same-response FP64** for minimum-width selection. The +0.5 criterion is not supervisor-approved and should not be retroactively used to redefine M5/M6's frozen gates.
+
+**GitHub archival boundary:** The local data have passed the host audit. The original E0 CSV/JSON output directory still needs to be committed from `schrodinger02` and its remote hashes verified. This document does not assert that a terminal audit alone is a GitHub raw-data archive.
+
+**Next authorization gate:** agree with Prof Fong on (1) linear 50k budget and (2) +0.5 pp additional gap tolerance. Only then design the narrow width comparison with prospective graph/seed selection, explicit width candidates, confidence bound and capped sample budget. No new solver runs are authorized by this closeout.
+
+## GitHub archive closeout (15 Nov 2026)
+
+**Raw-data GitHub archive confirmed:** the original host-side E0 output directory has been pushed to [`results/e0_fp64_two_cal_20261112/`](../results/e0_fp64_two_cal_20261112) on this research branch, with commit head after push `bdeaa67`. A follow-up remote lookup confirmed the frozen `protocol.json`, `manifest.json`, all 80 `run_rows.csv` records, 320 `checkpoint_rows.csv` records, 800 `trace_rows.csv` records, 16 `pilot_summary.csv` rows and 8 `paired_schedule_contrasts.csv` rows. The manifest records the protocol, raw-run, trace, checkpoint and contrast SHA256 hashes; the on-host read-only audit already checked these before upload. This dated addendum supersedes earlier pending-upload wording while leaving the original experimental design and its results unchanged.
+
+**E0 status: CLOSED and archived.** No further schedule search is planned. Next prerequisite for a new width protocol is supervisor agreement on the linear 50k operating point and the proposed +0.5 pp paired upper-CI additional-gap margin relative to FP64 under matching response conditions.

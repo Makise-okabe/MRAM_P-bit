@@ -1,0 +1,28 @@
+{
+  "anchors": 6,
+  "core_contrasts": 18,
+  "files": {
+    "RESULTS.md": "fe465b3785b6de2a61cab332a2fea5a06ecda176ffa2e06f54595f8cf458ade5",
+    "R_last_differences.csv": "8d5d802dea49045985b0f92ad352a9fe26f1334eb6ba7547ae80d98af0459f79",
+    "analysis_registry.json": "261c3c0c82b89a073311651430a9e23a769d50e6d97b0e36833dc740d8573c00",
+    "anchor_contrasts.svg": "61e35761778db5a5a9ec1dde2e24ced4a274c65fedad6a21e8c8a06d17f754e3",
+    "anchor_contrasts_descriptive.csv": "e3f4b92a6e55301c8edf85cec028f3222fa1f10dccd8e3a5556dabd7f63c8fe3",
+    "anchor_quality_spread.csv": "60163ed4af3f5d13c464e34fb2074be32012753eb041139e23da4a0a4e671bc2",
+    "anchor_spread.csv": "9b29d86bf751f88a9d27addf0b03d58f45610cdfc9e5d61fe5c5d41ea1873a81",
+    "core_contrasts.csv": "659a001f34c7bee630494a1a506d6103fd3824e3ea100532808ddb13efa316ab",
+    "core_contrasts.svg": "d7715373c5b6ed60e664defe8f3c476619c793b1b0bb9c7d9a1e2658fefb2ab4",
+    "family_quality_mechanism.csv": "1694d321f8e38c33f1d11584e7dc4280792cc488737a66543bae2e3265de6ccf",
+    "graph_contrasts.csv": "e7e087e66583e89ab2af3bda0cb41cf29281232225078452a5e41af12d9da7c4",
+    "graph_quality_mechanism.csv": "dd026d639cf9f1d957834abae32a896426d0ebacb1e13b7105fd7360503c2b9b",
+    "mechanism_contrasts.csv": "d9a0798a7046cc170ff62b73d29dcc96556c98581dde5ee7af754a2304a30e0c",
+    "mechanism_contrasts.svg": "32cd7a24c557c2066176ab418cfc9030c580d13aaebfdff1200e33f1a335c5c2",
+    "mechanism_correlations.csv": "226ca5db35d868018baf89a701ddc9ed36c8540a74c1823c92131c79690ee97f",
+    "selected_pairs.json": "23a2f394bfb990a5e81acfebbd1184441bbfbe90e83fcf13747b5bc6b3571b71"
+  },
+  "generated_graphs": 144,
+  "graphs_per_family": 72,
+  "numpy_version": "2.3.5",
+  "offset_executed": false,
+  "resamples": 500000,
+  "scope": "IDEAL_ONLY_CHECKPOINT"
+}

@@ -68,7 +68,12 @@ def build_e2_assumption(n: int) -> dict:
     return model
 
 
-def validate_device_model(model: dict, n: int) -> None:
+def validate_device_model(model: dict, n: int, *,
+                          offset_limit: float = OFFSET_LOGIT_HALFSPAN) -> None:
+    # Legacy E2 gate stays at +/-0.10 unless caller explicitly passes
+    # a separately declared assumed logit-offset envelope.
+    if not math.isfinite(offset_limit) or offset_limit < 0 or offset_limit > 1.6:
+        raise ValueError("invalid explicit E2 offset envelope")
     if model.get("evidence_level") != EVIDENCE or model.get("n_devices") != n:
         raise ValueError("not the frozen E2 population")
     gain = model.get("per_device_gain")
@@ -77,7 +82,7 @@ def validate_device_model(model: dict, n: int) -> None:
         raise ValueError("dimension mismatch")
     if any(not math.isfinite(x) or x <= 0 for x in gain) or any(not math.isfinite(x) for x in offset):
         raise ValueError("invalid device gain/offset")
-    if any(abs(g-1) > GAIN_HALFSPAN+1e-12 for g in gain) or any(abs(z) > OFFSET_LOGIT_HALFSPAN+1e-12 for z in offset):
+    if any(abs(g-1) > GAIN_HALFSPAN+1e-12 for g in gain) or any(abs(z) > offset_limit+1e-12 for z in offset):
         raise ValueError("assumed bounded envelope violated")
 
 
@@ -92,7 +97,8 @@ def e2_probability(beta: float, field: float, gain: float, offset_logit: float) 
     return logistic(gain * (2 * beta * field) + offset_logit)
 
 
-def solve_with_response(graph, rep, beta: float, updates: int, seed: int, model: dict) -> dict:
+def solve_with_response(graph, rep, beta: float, updates: int, seed: int, model: dict, *,
+                        offset_limit: float = OFFSET_LOGIT_HALFSPAN) -> dict:
     """Mirror M1 linear solver except for its single probability expression.
 
     Same RNG sequence per format/seed. No device draws in solver loop.
@@ -100,7 +106,7 @@ def solve_with_response(graph, rep, beta: float, updates: int, seed: int, model:
     """
     if updates < 1 or beta <= 0:
         raise ValueError("positive budget and beta required")
-    validate_device_model(model, graph.n)
+    validate_device_model(model, graph.n, offset_limit=offset_limit)
     gain = model["per_device_gain"]
     offset = model["per_device_offset_logit"]
     rng = random.Random(seed)

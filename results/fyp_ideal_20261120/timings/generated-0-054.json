@@ -1,0 +1,13 @@
+{
+  "family": 0,
+  "fidelity_seconds": 2.4258625139991636,
+  "index": 54,
+  "kind": "generated",
+  "new_runs": 576,
+  "prepare_seconds": 1.1282233330002782,
+  "python": "3.12.14",
+  "reused_runs": 0,
+  "scope": "engineering timing only",
+  "solver_seconds": 40.84292779700081,
+  "total_seconds": 44.566387773000315
+}
