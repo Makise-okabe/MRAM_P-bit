@@ -1,4 +1,4 @@
-name: FYP report figures and PDF
+name: FYP thesis figures and PDF verification
 on:
   push:
     branches: [main]
@@ -6,64 +6,66 @@ on:
       - main.tex
       - references.bib
       - 'report/maxcut/**'
-      - scripts/plot_report_figures.py
+      - 'report/history/**'
+      - scripts/make_thesis_figures.py
       - .github/workflows/report-figures-and-build.yml
   workflow_dispatch:
-
 permissions:
-  contents: write
-
+  contents: read
 jobs:
   report:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
-      - name: Checkout the authoritative report repository
+      - name: Checkout pinned report commit
         uses: actions/checkout@v4
         with:
-          persist-credentials: true
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+          persist-credentials: false
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-
-      - name: Install plotting dependency
-        run: python -m pip install 'matplotlib>=3.8,<4'
-
-      - name: Draw all five figures from committed calibration tables
-        run: python scripts/plot_report_figures.py --out report/figures
-
-      - name: Verify five visible PNG and vector PDF figures
+          python-version: '3.12'
+      - name: Install deterministic plotting environment
+        run: python -m pip install 'numpy==2.3.5' 'matplotlib==3.10.7' 'pillow>=11,<13'
+      - name: Generate thesis figures from pinned registered archives
+        run: python scripts/make_thesis_figures.py --out report/figures
+      - name: Inspect artifact existence, legibility and nonblank image dimensions
         shell: bash
         run: |
           set -euo pipefail
-          test "$(find report/figures -maxdepth 1 -name '*.png' | wc -l)" -eq 5
-          test "$(find report/figures -maxdepth 1 -name '*.pdf' | wc -l)" -eq 5
-          find report/figures -maxdepth 1 -type f -size +1000c -print
-
-      - name: Upload actual rendered figure files to this repository
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f report/figures/*.png report/figures/*.pdf
-          if ! git diff --cached --quiet; then
-            git commit -m "Render five FYP report figures as actual PDF and PNG files"
-            git push origin HEAD:main
-          fi
-
-      - name: Compile the report from main.tex
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image, ImageStat
+          root = Path("report/figures")
+          names = [f"F{i:02d}" for i in range(1,11)] + ["F12"]
+          for name in names:
+              matches = sorted(root.glob(f"{name}_*.png"))
+              if len(matches) != 1:
+                  raise RuntimeError(f"{name}: expected one scientific figure, found {matches}")
+              p = matches[0]
+              pdf = p.with_suffix(".pdf")
+              if not pdf.exists() or pdf.stat().st_size < 1000:
+                  raise RuntimeError(f"{name}: vector output missing or tiny")
+              with Image.open(p) as im:
+                  if im.width < 1000 or im.height < 300:
+                      raise RuntimeError(f"{name}: rendering too small {im.size}")
+                  bands = ImageStat.Stat(im.convert("RGB")).stddev
+                  if max(bands) < 10:
+                      raise RuntimeError(f"{name}: likely blank image")
+              print(f"Rendered preview: {p.name} bytes={p.stat().st_size}")
+          if list(root.glob("F11_*.png")):
+              raise RuntimeError("No Stage B archive supplied; F11 must not exist")
+          PY
+      - name: Compile report with BibTeX
         uses: xu-cheng/latex-action@v4
         with:
           root_file: main.tex
-
-      - name: Make compiled PDF available
+      - name: Upload PDF and figure previews for manual scientific review
         uses: actions/upload-artifact@v4
         with:
-          name: FYP-coupling-matrix-report
+          name: FYP-thesis-review-pdf-and-figures
           path: |
             main.pdf
-            report/figures/*.png
-            report/figures/*.pdf
+            report/figures/F*.png
+            report/figures/F*.pdf
           if-no-files-found: error
+          retention-days: 90
