@@ -122,20 +122,65 @@ def source_graphs():
 
 
 def weights_distribution(out, graphs, quality):
-    fig, axes = plt.subplots(1, 2, figsize=(11.3, 4.5), sharey=False)
-    for ax, fam in zip(axes, ("ring", "torus")):
-        weights = np.array([abs(w) for _, _, w in graphs[fam] if w], dtype=float)
-        ax.hist(np.log10(weights), bins=32, color=COLOUR["ref"], alpha=.75)
-        ax.set(xlabel="log10(|source weight|)", ylabel="Number of original edges",
-               title=f"{fam.capitalize()} (source graph 000)")
-        tidy(ax)
-        means = [r for r in quality if r["kind"] == "generated" and r["family"] == fam and
-                 r["graph"] == f"{fam}_000" and r["representation"] in ("fp5","fp6","int6","int7")]
-        notes = "; ".join(f'{r["representation"].upper()}: {int(r["nonzero_count"])} kept' for r in means)
-        ax.text(.02, .97, notes, transform=ax.transAxes, va="top", fontsize=7.5,
-                bbox={"facecolor":"white","alpha":.8, "edgecolor":"none"})
-    fig.suptitle("The ring contains a far broader weak-weight tail; format support depends on the codebook",
-                 fontsize=11)
+    """Use the identical stored-J codebooks and source-MSE scale fits as the experiment."""
+    from experiments.m1_precision_codebooks import fit_global_scale, levels
+    fig, axes = plt.subplots(2, 2, figsize=(12.3, 7.2),
+                             height_ratios=[2.8, 1.5], sharex="col")
+    names = ("fp5", "fp6", "int6", "int7")
+    markers = ("|", "|", "|", "|")
+    for col, fam in enumerate(("ring", "torus")):
+        histogram, lattice = axes[0, col], axes[1, col]
+        source = tuple(-float(w) for _, _, w in graphs[fam])
+        weights = np.array([abs(w) for w in source if w != 0.0], dtype=float)
+        row_minmax = []
+        def get_levels(fmt):
+            family = "fp" if fmt.startswith("fp") else "int"
+            bits = int(fmt[-1])
+            scale, _ = fit_global_scale(source, family, bits)
+            code = (np.array(levels(bits)[1:], dtype=float)
+                    if family == "fp"
+                    else np.arange(1, 2**(bits-1), dtype=float))
+            return scale * code
+        for row, fmt in enumerate(names):
+            positive = get_levels(fmt)
+            threshold = float(positive[0] / 2.0)
+            if threshold <= 0 or not np.isfinite(threshold):
+                raise ValueError("Invalid codebook zero threshold")
+            xlevels = np.log10(positive)
+            yy = 3 - row
+            lattice.scatter(xlevels, [yy]*len(xlevels), color=colour(fmt),
+                            marker=markers[row], linewidths=1.3, s=160,
+                            alpha=.66, zorder=3)
+            lattice.scatter([np.log10(threshold)], [yy], color=colour(fmt),
+                            marker="v", edgecolors="white", linewidths=.6, s=65, zorder=4)
+            histogram.axvline(np.log10(threshold), color=colour(fmt), alpha=.4,
+                              lw=1, ls="--")
+            row_minmax.append(np.log10(threshold))
+        histogram.hist(np.log10(weights), bins=38, color=COLOUR["ref"], alpha=.72)
+        histogram.set(ylabel="Source coefficients / bin",
+                      title=f"{fam.capitalize()}: graph 000")
+        tidy(histogram)
+        lattice.set_yticks([3,2,1,0], [x.upper() for x in names])
+        lattice.set_ylim(-.6,3.6)
+        lattice.set_xlabel("log10(|coupling|), original source-weight units")
+        lattice.grid(axis="x", alpha=.18)
+        lattice.spines[["top","right"]].set_visible(False)
+        extent = np.log10(weights)
+        histogram.set_xlim(min(np.min(extent), *row_minmax)-.22,
+                           max(np.max(extent), *row_minmax)+.22)
+        summary = [r for r in quality if r["kind"]=="generated"
+                   and r["family"]==fam and r["graph"]==f"{fam}_000"
+                   and r["representation"] in names]
+        desc = "  |  ".join(f'{r["representation"].upper()}: {int(r["nonzero_count"])} kept'
+                            for r in summary)
+        histogram.text(.02, .97, desc, transform=histogram.transAxes,
+                       va="top", fontsize=7.8,
+                       bbox={"facecolor":"white","edgecolor":"none","alpha":.92})
+    fig.suptitle("One shared source-fitted scale; FP and INT retain different weak weights",
+                 fontsize=12, weight="bold")
+    fig.text(.5,.01,"Rug ticks are actual nonzero representable levels; triangles mark zero-rounding thresholds. Each format is fitted separately using source MSE.",
+             ha="center",fontsize=8.2)
+    fig.subplots_adjust(top=.9,bottom=.1,hspace=.12,wspace=.18)
     save(fig, out, "F02_weight_histograms")
 
 
@@ -245,26 +290,41 @@ def retained_vs_loss(out, quality):
     save(fig, out, "F07_retained_vs_selection")
 
 
-def tail_intervention(out, graph_summary):
-    arms = ["fp6","fp6_mask","int6_tail","int6"]
-    ring = [r for r in graph_summary if r["family"]=="ring" and r["representation"] in arms]
-    fig, axes = plt.subplots(1,3,figsize=(13.7,4.8))
-    for ax, metric, label in zip(axes,
-                                ("Rz_pp","extra_pp","minimum_distinct_states"),
-                                ("Selection Rz (pp)","Total extra loss (pp)","Distinct minimum-energy states")):
-        for i, arm in enumerate(arms):
-            vals = np.asarray([f(r,metric) for r in ring if r["representation"]==arm])
-            if len(vals) != 24:
-                raise ValueError("Weak-tail graph data incomplete")
-            mean = vals.mean()
-            lower = 1.96 * vals.std(ddof=1)/np.sqrt(len(vals))
-            ax.bar(i,mean,color=colour(arm),alpha=.76)
-            ax.errorbar([i],[mean],yerr=[[lower],[lower]],fmt="none",color="#222",capsize=3)
-        ax.set_xticks(range(len(arms)),[a.upper().replace("_","\n") for a in arms],fontsize=8)
-        ax.set(ylabel=label)
+def tail_intervention(out, graph_summary, confirmatory):
+    """Registered 2x2 manipulation: base family x weak-tail presence.
+
+    Error bars here are explicitly descriptive normal graph-SE, not the
+    registered one-sided bootstrap-t intervals (printed from their CSV).
+    """
+    arm = {"FP6": ("fp6_mask", "fp6"), "INT6": ("int6", "int6_tail")}
+    ring = [r for r in graph_summary if r["family"]=="ring"]
+    fig, axes = plt.subplots(1,3,figsize=(13.4,4.8))
+    for ax,metric,label in zip(axes,("Rz_pp","extra_pp","minimum_distinct_states"),
+                               ("Selection Rz (pp)","Total extra loss (pp)",
+                                "Mean tied minimum-energy states")):
+        for parent, (absent, present) in arm.items():
+            means, errors = [], []
+            for name in (absent,present):
+                values = np.array([f(r,metric) for r in ring if r["representation"]==name])
+                if len(values) != 24:
+                    raise ValueError("Weak-tail 2x2 requires exactly 24 independent ring graphs per arm")
+                means.append(float(np.mean(values)))
+                errors.append(float(1.96*np.std(values, ddof=1)/np.sqrt(24)))
+            ax.errorbar([0,1],means,yerr=errors,marker="o",
+                        lw=1.8,capsize=3,color=colour(parent.lower()),label=parent)
+        ax.set_xticks([0,1],["Absent","Present"])
+        ax.set(xlim=(-.1,1.1), xlabel="Weak FP6-value tail",ylabel=label)
+        ax.legend(frameon=False,fontsize=9)
         tidy(ax)
-    fig.suptitle("Registered tail intervention changes selection; other panels descriptive (95% normal-SE bars)",
-                 fontsize=11)
+    registered = {r["contrast"]:r for r in confirmatory if r["family"] == "ring"}
+    if set(registered) != {"C1","C2"}:
+        raise ValueError("Prespecified C1/C2 register missing")
+    claims = "  ".join(f'{name}: +{f(registered[name], "mean"):.4f} pp, lower +{f(registered[name], "low"):.4f}'
+                      for name in ("C1","C2"))
+    fig.suptitle("Weak-tail presence reduces ring selection loss; registered C1/C2 supported",fontsize=11)
+    fig.text(.5,.025,claims+" pp (registered); plotted whiskers = descriptive ±1.96 graph SE.",
+             ha="center",fontsize=8)
+    fig.subplots_adjust(bottom=.25,top=.84,wspace=.36)
     save(fig, out, "F08_weak_tail")
 
 
@@ -379,6 +439,7 @@ def main():
     graph_contrasts=read_csv(IDEAL+"graph_contrasts.csv")
     anchors=read_csv(IDEAL+"anchor_contrasts_descriptive.csv")
     weak=read_csv(TAIL+"graph_summary.csv")
+    weak_confirmatory=read_csv(TAIL+"confirmatory.csv")
     selected=read_json(IDEAL+"selected_pairs.json")
     graphs=source_graphs()
     stage_a=checkpoint_json("stage_a_certification.json")
@@ -390,7 +451,7 @@ def main():
     width_ladder(args.out,selected,stage_a)
     mechanisms(args.out,family)
     retained_vs_loss(args.out,quality)
-    tail_intervention(args.out,weak)
+    tail_intervention(args.out,weak,weak_confirmatory)
     output_policy(args.out,weak)
     heterogeneity(args.out,graph_contrasts,anchors)
     evidence_map(args.out)
