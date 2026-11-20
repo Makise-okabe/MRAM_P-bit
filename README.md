@@ -25,6 +25,10 @@ Generated-instance contrasts use a fixed-pool best-observed feasible cut referen
 
 Method choices are owned by the student and justified in methods. The protocol records the uncertainty, comparison set and stopping conditions. A positive bits-saved result is one possible contribution alongside an equal-width quality benefit or supported integer sufficiency.
 
+## First viewed-dense block (20 Nov lock)
+
+**COMPLETE: 1,280 unique ideal-response trajectories**, source and archived deterministic parity checked. Two fixed viewed Biq Mac dense instances, raw FP5/INT6 versus beta/a with paired calibration-change test. See [results, figures and frozen provenance](results/fyp_first_block_20261120/RESULTS.md). These are software results, not physical STT-MRAM measurements or family-level width selection.
+
 ## Completed E0 and EX1 evidence
 
 E0 is closed. Its geometric schedule did not establish a final-quality improvement, so the 50,000-update linear reference is retained as a finite-budget operating point. [E0 archive](https://github.com/Makise-okabe/MRAM_P-bit/tree/research/m4-gain-fusion-20261107/results/e0_fp64_two_cal_20261112)
