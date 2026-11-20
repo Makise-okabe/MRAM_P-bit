@@ -1,3 +1,11 @@
+# FYP decision feedback — current study locked 20 November 2026
+
+Follow the [current study lock](FYP_STUDY_LOCK_20261120.md) and [roadmap](ROADMAP_LOCKED_2026-11-06.md). It incorporates the student's Round 2 amendments and supersedes the historical pending gates below. FP representation remains the main subject. Generated-instance precision results, one joint graph/offset validation and memory-inclusive costs form the current study.
+
+The methodological choices and +0.5 pp tolerance are student-owned. The new results are prospective. Completed source archives and their original claims are preserved. The immediate task is the bounded 1,280-run block after logger/analysis verification.
+
+## Historical feedback records
+
 # FYP Decision Feedback Loop — current lock, 8 November 2026
 
 **The user has LOCKED one joint research question:** coupling precision (design choice) × STT-MRAM p-bit switching nonideality (physical condition), evaluated on original Biq Mac weighted Max-Cut.

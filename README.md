@@ -1,35 +1,35 @@
-# STT-MRAM p-bit FYP — Coupling Precision × Device Nonidealities
+# Low-order FP coupling matrices for STT-MRAM p-bits
 
-**Research scope LOCKED, amended 12 November 2026:** [authoritative roadmap including the newer E0 allowance](docs/ROADMAP_LOCKED_2026-11-06.md) · [evidence rules](docs/RESEARCH_PROTOCOL.md).
+## Study locked on 20 November 2026
 
-### EX1 exploratory width study completed, audited and archived (15 Nov 2026)
+The [current study plan](docs/FYP_STUDY_LOCK_20261120.md) is authoritative. It incorporates the Round 2 review and six amendments, including INT7, generated-instance response validation and the dense-array cost baseline. Older next-step restrictions in historical notes are superseded by this plan.
 
-The [E0 FP64 solver audit](docs/E0_FP64_TWO_CAL_PILOT_FREEZE_20261112.md) is **complete, raw-archived and closed**. The original **linear 50,000-update** reference is retained without a claim of convergence. No further annealing schedule search is planned.
+**Research question.** How do low-order FP representations of J change local fields, p-bit switching responses and weighted Max-Cut quality under specified STT-MRAM nonidealities, and when is the implementation cost worthwhile?
 
-The user has now authorized a single **exploratory** [EX1 frozen protocol](docs/EX1_M5_FP5_INT8_EXPLORATORY_PROTOCOL_20261115.md) and [runner](experiments/ex1_m5_fp5_int8_exploratory.py): FP5 E2M2 and INT8, 24 paired seeds each, original d=0 dense M5 graph already viewed, **48 new runs maximum**, reusing the archived 72 FP64/FP6/INT6 rows with strict hash validation. First run synthetic `--selftest` and read-only `--preflight`, then `--freeze` before any `--execute`. **EX1 CLOSED:** FP5 24/24 + INT8 24/24 new runs and the original M5 gate PASS. The [original EX1 protocol, 48 new records, paired contrasts and manifest are archived here](results/ex1_m5_fp5_int8_20261115). No further EX1 solver runs. No INT7, new graph, seed top-up or new device condition is authorized.
+**In plain English.** Store the same problem using several small-number encodings. Run the same p-bit solver with each encoding, check the answer on the original problem, explain where quality is lost, then test the useful choices with imperfect p-bit responses and count their memory and logic costs.
 
-The archived primary CSV reports mean FP5 gap 3.9827%, FP6 3.8169%, INT6 4.6029%, INT8 4.0412% on the viewed dense M5, d=0, 24 paired seeds; at +0.5 pp only FP6 is preliminarily noninferior, other three are inconclusive. INT8's coefficient MSE is far below FP6 but does not imply a better observed final gap. Direct paired differences versus FP6 from the archived summary are FP5 +0.166 pp [−0.380,+0.720], INT6 +0.786 pp [+0.310,+1.271], INT8 +0.224 pp [−0.253,+0.690]. FP5 and INT8 differences remain inconclusive. These results do not establish minimum width or a universal savings claim. **No further solver runs authorized as part of EX1.**
+| Part | Locked choice |
+| --- | --- |
+| Candidates | FP5, FP6, INT5, INT6, INT7, INT8 and FP64 |
+| Main instances | 72 generated ring + 72 generated torus graphs, 100 spins, 64 paired seeds |
+| Official anchors | Six Biq Mac cases, 128 paired seeds per candidate |
+| Controller | Existing 50,000-update linear random-site solver |
+| Graph scale | 100000, with the documented ring normalization factor |
+| Quality tolerance | +0.5 pp primary, +0.25/+1.0 sensitivity |
+| Device validation | One persistent offset bank per generated graph, delta uniform in [-0.8,0.8], selected FP/INT plus FP64 |
+| Hardware | Dense fixed all-to-all array primary, sparse layouts as sensitivity |
 
-The +0.5 and +1.0 pp paired upper-CI extra-gap margins are exploration-only sensitivity checks, **not certification of minimum useful width or an approved physical requirement**. Confirmatory graph split, familywise uncertainty, sample cap and width decision will need a separate prospective design after EX1 is interpreted. No supervisor approval is required merely to perform this bounded viewed-graph exploration.
+Generated-instance contrasts use a fixed-pool best-observed feasible cut reference and are labelled accordingly. Official anchors retain published-optimum gaps. The reference is not assumed within 1% of the unknown optimum. Adding INT7 and its direct FP6 comparison gives **18 core confirmatory contrasts**, plus six device contrasts.
 
-**Prospective FYP endpoint (not yet demonstrated):** minimum useful bit width `b*` at agreed equal Max-Cut quality; `k=b*(INT)-b*(FP)` storage bits saved per coupling; then assess whether physically grounded, independently drawn STT-MRAM p-bit gain/offset populations change `k`. A +0.5 pp margin is still a supervisor discussion item, not the retrospective M5/M6 +1 pp screen.
+**Next implementation work.** Integrate trajectory logging and verify unchanged solver outputs. Test the analysis script, then run the bounded **1,280-run viewed-dense block**. Freeze executable sources before the independent main campaign and official _6666 access. The INT7 extension has four passing targeted tests and 600 legacy scalar/scale parity checks. New ensemble/device outcomes are still prospective. The complete planned workload is 116,480 unique runs, including the first block.
 
-**One question, two axes:** Which low-order coupling representation preserves useful weighted-Max-Cut solution quality under specified STT-MRAM p-bit switching nonidealities, and is its implementation cost worthwhile?
+Method choices are owned by the student and justified in methods. The protocol records the uncertainty, comparison set and stopping conditions. A positive bits-saved result is one possible contribution alongside an equal-width quality benefit or supported integer sufficiency.
 
-- **Design choice:** existing low-order FP coupling precision, with matched INT controls and retained/optional BFP support.
-- **Physical condition:** gain and offset variation, studied separately.
-- **Task:** original Biq Mac Mac weighted Max-Cut.
-- **Outcome:** precision × device-quality regime maps, a conditional precision-selection rule, held-out validation and one supporting cost table.
+## Completed E0 and EX1 evidence
 
-## Frozen execution scope
+E0 is closed. Its geometric schedule did not establish a final-quality improvement, so the 50,000-update linear reference is retained as a finite-budget operating point. [E0 archive](https://github.com/Makise-okabe/MRAM_P-bit/tree/research/m4-gain-fusion-20261107/results/e0_fp64_two_cal_20261112)
 
-Two 100-spin CAL instances (ising2.5-100_5555, t2g10_5555) and two designated held-outs: dense ising2.5-100_7777 (M5 complete) and sparse t2g10_7777 (M6 complete, host integrity audit passed). Initial primary formats: FP/INT 4/5/6 bits + FP64; existing 8-bit variants under the declared six-bit-failure/uncertainty rule. Retain BFP results; optional BFP6 adds no new representation search.
-
-Keep 50,000 attempted updates, frozen linear beta, 24 paired trials per cell, symmetric J=-w, h=0, represented-energy retention and original-weight scoring. Study gain and offset in separate slices; no gain × offset × contrast grid.
-
-**Previously planned:** the already authored gain-only dense-CAL pilot, then interpret its first regime plot. It reuses matching ideal data and requires 624 new runs; no result is claimed merely because code/tests exist. See the roadmap for the staged campaign and corrected run counts.
-
-**Hardware expansion is frozen.** Existing RTL/Sky130 results provide bounded cost evidence. Genus/library repair, old Spectre searches, new processor/DAC/ADC work, other benchmarks and new solvers are not prerequisites.
+EX1 is also closed and archived. Its viewed-dense d=0 means were FP5 3.9827%, FP6 3.8169%, INT6 4.6029% and INT8 4.0412%. These exploratory observations do not establish minimum required width. Historical M5/M6 screening rules keep their original meaning. [EX1 archive](https://github.com/Makise-okabe/MRAM_P-bit/tree/research/m4-gain-fusion-20261107/results/ex1_m5_fp5_int8_20261115)
 
 ## Evidence already established
 
