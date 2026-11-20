@@ -15,7 +15,7 @@
 \title{\vspace{-1em}\bfseries Low-Order Floating-Point Representations of\\
 Ising Coupling Matrices for STT-MRAM p-Bit Optimization}
 \author{Du Yanzhang\\Electrical Engineering Final-Year Project\\Supervisor: Prof.\ Kelvin Fong}
-\date{Completed CAL study and two held-out validations --- 10 November 2026}
+\date{Completed evidence and prospective study locked --- 20 November 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -51,18 +51,19 @@ further convert each local field into a switching probability,
 making the useful precision \emph{response- and workload-dependent}.
 Numerical coefficient error alone is not the desired endpoint.
 
-\noindent\textbf{Current research question and prospective endpoint.}
-\emph{Under specified STT-MRAM p-bit switching responses,
-when can low-order floating-point coupling encodings
-match weighted Max-Cut solution quality using fewer
-stored coefficient bits than integer encodings?}
-The completed M5/M6 studies test the narrower
-format--field--response--quality relationship at
-a fixed 500-sweep operating point; a future
-equal-quality minimum-width endpoint, whose
-threshold must be agreed and frozen in advance,
-is defined separately in
-Section~\ref{sec:prospective-design}.
+\noindent\textbf{Current research question and locked prospective study.}
+\emph{How do low-order floating-point representations of the
+coupling matrix $J$ affect local fields, stochastic p-bit responses
+and weighted Max-Cut solution quality under specified STT-MRAM
+nonidealities, and when do those effects justify implementation cost?}
+The engineering outcomes include quality at equal width,
+a named lower-width replacement and supported integer sufficiency.
+The completed M5/M6 studies provide conditional evidence at the
+fixed 50,000-update operating point. The independently replicated
+prospective study was locked by the student on 20 November 2026,
+with the candidate set, response assumptions, tolerance and
+uncertainty rules specified in Section~\ref{sec:prospective-design}.
+The new campaign remains prospective.
 
 \section{Prior art and scientific contribution boundary}
 Hizzani et al.\ show that coupling errors may deepen local
