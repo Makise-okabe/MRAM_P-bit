@@ -85,3 +85,5 @@ The [sparse M6 frozen protocol](docs/M6_SPARSE_HELDOUT_PROTOCOL_20261110.md) pas
 The frozen 2x2 mechanism experiment completed 18,432 unique trajectories on 48 fresh graphs. Both registered ring contrasts were supported: removing the accurate FP6 tail raised selection loss by 0.07562 pp (98.75% one-sided lower bound 0.04719), and restoring the tail to INT6 reduced it by 0.09132 pp (lower bound 0.06210). See [the full checkpoint report](results/fyp_tail_probe_20261121/RESULTS.md) and [registered contrasts](results/fyp_tail_probe_20261121/analysis/confirmatory.csv).
 
 The workspace failure required a disclosed replay of the same fixed keys on GitHub Actions; inaccessible local outputs were not pooled. The subsequent ignored-directory archive error was repaired from the existing artifact with zero additional solver calls. All raw bundles and source hashes are archived. Offset, gain and hardware work remain stopped at the requested checkpoint.
+
+Read [the interpretation, limits and output-buffer findings](docs/FYP_WEAK_TAIL_CHECKPOINT_20261121.md) alongside the frozen tables. The main experiment is stopped at the requested mechanism checkpoint.
