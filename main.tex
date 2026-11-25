@@ -22,33 +22,27 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-This thesis evaluates whether low-order floating-point (FP) codes for the
-symmetric Ising coupling matrix can preserve useful stochastic optimisation
-quality more efficiently than integer (INT) codes. Its fixed-budget software
-p-bit controller solves original signed weighted Max-Cut and separates
-search/access loss from represented-energy output-selection loss.
-
-On 72 independently generated graphs per family, the lowest certified
-representations under a $+0.5$ percentage-point family-mean
-non-inferiority tolerance are FP5/INT6 for heavy-tailed rings and
-FP5/INT5 for periodic torus graphs. In a separate registered weak-tail
-intervention, masking weak FP6 coefficients increases output-selection
-loss by $0.0756$ percentage points; restoring those coefficients to
-INT6 decreases it by $0.0913$ percentage points. The differences have
-positive corrected one-sided lower confidence bounds. Search recovery,
-top-16 original-objective rescoring and format-level mechanisms are
-distinguished as descriptive evidence. An official hard ring instance
-provides a counterexample to any individual-instance width guarantee.
-
-Full-ensemble passive-buffer certification passed exact parity on all 64,512
-main trajectories and certified FP5 and INT5 on both families under the
-buffered policy, removing the unbuffered ring's one-bit difference.
-A separate registered persistent-offset validation completed 41,472 model
-trajectories and all six corrected device-condition contrasts passed
-the $+0.5$ percentage-point tolerance. The dominant descriptive
-ideal-to-offset changes were in search access rather than output selection.
-These conditions are synthetic logit offsets, not physical measurements.
-No full-chip power benefit or universal FP superiority is claimed.
+Reducing coupling precision lowers nominal storage in stochastic Ising
+machines, but a smaller representation can alter both the states visited
+during search and the solution selected for return. We evaluate low-order
+floating-point (FP) and integer (INT) coupling codes for weighted Max-Cut
+using a fixed-budget STT-MRAM-inspired p-bit controller that separates
+search access from output selection. At a family-mean non-inferiority
+tolerance of $+0.5$ percentage points relative to FP64, the lowest
+certified tested widths are FP5 and INT6 on heavy-tailed rings, but FP5
+and INT5 on periodic torus graphs, with 72 independently generated
+instances per family. A registered intervention confirms that removing
+weak FP6 couplings increases ring output-selection loss, while restoring
+those couplings to INT6 reduces it. Yet a passive top-16 candidate
+buffer with host-side original-objective rescoring certifies FP5 and
+INT5 on both families, eliminating the ring's one-bit advantage under
+the ideal response model. All six registered non-inferiority contrasts
+also pass under a specified synthetic persistent logit-offset condition.
+An official hard ring instance illustrates why family-mean certification
+does not guarantee individual-instance quality. These results identify
+the output policy, alongside the coupling distribution and response
+model, as a determinant of the useful precision; full-system hardware
+cost remains to be evaluated.
 \end{abstract}
 \tableofcontents
 
