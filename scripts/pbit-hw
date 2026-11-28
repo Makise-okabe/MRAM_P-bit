@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Launch the existing NUS CentOS7/bose01 environment for digital HW work.
+# Install: install -m 700 scripts/pbit-hw "$HOME/bin/pbit-hw"
+# Run from the login host; no simulations or synthesis are started here.
+set -euo pipefail
+REPO="$HOME/MRAM_Pbit_M0"
+LAUNCHER="$HOME/bin/mram"
+test -d "$REPO"
+test -x "$LAUNCHER"
+if [ "$(hostname -s)" = bose01 ] || [ -n "${SINGULARITY_CONTAINER:-}" ] || [ -n "${APPTAINER_CONTAINER:-}" ]; then
+    echo "Already on compute node/in container; exit to login host before launching." >&2
+    exit 1
+fi
+export USER="$(id -un)"
+export LOGNAME="$USER"
+export GENUS_HOME=/apps/eda/cadence/GENUS152
+export SINGULARITYENV_USER="$USER"
+export SINGULARITYENV_LOGNAME="$LOGNAME"
+export SINGULARITYENV_GENUS_HOME="$GENUS_HOME"
+export SINGULARITYENV_PREPEND_PATH="$GENUS_HOME/bin${SINGULARITYENV_PREPEND_PATH:+:$SINGULARITYENV_PREPEND_PATH}"
+export SINGULARITYENV_HW01_DIR="$REPO/results/hw01_20261128T172900Z"
+export SINGULARITYENV_HW01_SYNTH="$SINGULARITYENV_HW01_DIR/genus_fixed.S7YAkc"
+echo "HW workbench: $REPO"
+echo "Entering existing bose01 container; no experiments started."
+exec "$LAUNCHER" "$REPO"
