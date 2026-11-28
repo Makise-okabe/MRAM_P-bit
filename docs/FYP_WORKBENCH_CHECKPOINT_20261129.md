@@ -20,15 +20,29 @@ Student-reported NUS server output, 29 November SGT: three Genus 15.22 synthesis
 
 FP5 vs INT6: +32 area units (+1.17% from rounded reports), -4950 triangular stored bits (-16.65% including scale). Illustrative linear memory-area break-even 32/4950 = 0.00646 area units/bit, excluding memory peripherals, address/control and routing; not a measured memory macro or total chip area. Row difference accounts for total difference at displayed precision. INT5 has less mapped logic than FP5 at equal storage width. All 558 generated RTL cases passed in Xcelium 23.09-s008 according to the student's terminal output (FP5 166/166, INT5 164/164, INT6 228/228). The original testbenches and RTL were used with the simulator default timescale set to 1ns/1ps; the initial elaboration failed only on missing timescales and was superseded by the successful run. This verifies the specified arithmetic test suite, not exhaustive system-level behavior or equivalence of mapped netlists. No new Max-Cut solver runs. No claim of device-aware cost optimality.
 
-Local evidence directory relative to workbench: `results/hw01_20261128T172900Z`; successful synthesis subdirectory `genus_fixed.S7YAkc`. Original RTL, testbenches, manifests and synthesis reports were archived at [results/hw01_20261129_archive](../results/hw01_20261129_archive) in commit `d8347e3e9117bc6f5fa28c94a2285f3726569015`; student terminal output reports all 24 archived-file hashes passed. The successful RTL simulation is in local subdirectory `rtl_verify_fixed.i0U5UH`; its raw logs remain local and need a separate evidence archive.
+Local evidence directory relative to workbench: `results/hw01_20261128T172900Z`; successful synthesis subdirectory `genus_fixed.S7YAkc`. Original RTL, testbenches, manifests and synthesis reports were archived at [results/hw01_20261129_archive](../results/hw01_20261129_archive) in commit `d8347e3e9117bc6f5fa28c94a2285f3726569015`; student terminal output reports all 24 archived-file hashes passed. The successful RTL simulation is in local subdirectory `rtl_verify_fixed.i0U5UH`; its raw logs remain local; the pass markers, verification CSV and local-log hashes were archived in commit `dc34f72dc5d9be4143f104f58c8f64a68a544ca4`.
 
 Archived timing reports were inspected directly: FP5 and INT6 each report 7.229 ns data path and +2.730 ns setup slack; INT5 reports 7.021 ns and +2.938 ns. All three reported setup checks meet the common 10 ns constraint. These are pre-layout, typical-corner, wireload-based results for the reported path, not full timing sign-off.
 
 The historical archive STATUS.txt is a snapshot taken before RTL simulation; this checkpoint supersedes its pending labels.
 
+## HW02-A — offline conditional cost integration COMPLETE
+
+Archived [results](../results/hw02a_20261129/RESULTS.md) in commit `72c9e8beee4354431a6fd197c028991d0b598af8`. Student terminal output confirms all output hashes pass; archived result table, break-even table and manifest inspected directly. Sixteen registered candidate-to-FP64 contrasts imported, 486 conditional selection rows, zero new solver/RTL/EDA runs. Figures not generated (optional plotting dependency); CSVs retained.
+
+At +0.5 pp relative tolerance, dense triangular storage and illustrative 0.5 square micrometres/bit, conditional least logic-plus-memory proxy among qualified HW01 candidates:
+
+| Regime/policy | Ring | Torus |
+|---|---|---|
+| Ideal original | FP5 | INT5 |
+| Ideal top-16 | INT5 | INT5 |
+| Assumed persistent offset, original | FP5 | INT5 |
+
+Offset-stage unregistered contrasts remain unknown, not failed. Within-format top-16 host overhead is accounted for separately, not included in an area estimate; cross-policy winners cannot be inferred. Break-even FP5 vs INT6 effective bit-area proxy: 0.006465 dense triangular, 0.003232 duplicated, 0.08 torus CSR/bitmap. All values are sensitivity assumptions; physical memory, addressing, routing, controller and gain/offset circuitry unimplemented. Relative family-average tolerance is not an absolute quality gate or individual-instance guarantee. No final device-aware choice certified. No new runs until review of the next study step.
+
 ## Resume
 
 - Python: existing `pbit` shortcut on login node; no Genus needed.
 - Hardware: installed `pbit-hw` shortcut (launcher fix commit `24010f0`) verified by student to start Genus 15.22 directly on bose01. Xcelium executable: `/apps/eda/cadence/XCELIUM23-09-008/tools/bin/xrun`; use `-64bit -sv -timescale 1ns/1ps -top tb` for HW01. Avoid login-host legacy library and license network failures.
-- Next work: archive the successful RTL verification evidence without rerunning tests; then integrate matched memory/access cost and output-policy assumptions with existing quality evidence. In parallel obtain measured data; device–precision map awaits physical parameters.
+- Next work: review HW02-A assumptions, freeze an absolute quality gate before measured-device testing, and obtain measured response data. Device–precision map awaits physical parameters. Figures can be rendered from the archived CSVs without reruns. No more experiments tonight.
 - No new device simulations. No repeated solver or synthesis runs without a specific justification. No report/main branch edits in this checkpoint.
