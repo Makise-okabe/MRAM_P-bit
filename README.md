@@ -1,5 +1,9 @@
 # Low-order FP coupling matrices for STT-MRAM p-bits
 
+## Current workbench — 29 November 2026
+
+Read the [post-CA2 checkpoint and resume instructions](docs/FYP_WORKBENCH_CHECKPOINT_20261129.md) first. DEV01 is closed (PDK parameter-source NO-GO; stochasticity inconclusive, switching mismatch unconfirmed). HW01 matched FP5/INT5/INT6 logic synthesis is reported complete on Nangate45; functional RTL verification and original-artifact archive remain pending. This dated checkpoint records the subsequent student authorization and supersedes older stop notices for that specific work. Measured device data is pending; no more Spectre work is authorized.
+
 ## Study locked on 20 November 2026
 
 The [current study plan](docs/FYP_STUDY_LOCK_20261120.md) is authoritative. It incorporates the Round 2 review and six amendments, including INT7, generated-instance response validation and the dense-array cost baseline. Older next-step restrictions in historical notes are superseded by this plan.
