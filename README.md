@@ -2,7 +2,7 @@
 
 ## Current workbench — 29 November 2026
 
-Read the [post-CA2 checkpoint and resume instructions](docs/FYP_WORKBENCH_CHECKPOINT_20261129.md) first. DEV01 is closed (PDK parameter-source NO-GO; stochasticity inconclusive, switching mismatch unconfirmed). HW01 matched FP5/INT5/INT6 logic synthesis is reported complete on Nangate45; functional RTL verification and original-artifact archive remain pending. This dated checkpoint records the subsequent student authorization and supersedes older stop notices for that specific work. Measured device data is pending; no more Spectre work is authorized.
+Read the [post-CA2 checkpoint and resume instructions](docs/FYP_WORKBENCH_CHECKPOINT_20261129.md) first. DEV01 is closed (PDK parameter-source NO-GO; stochasticity inconclusive, switching mismatch unconfirmed). HW01 matched FP5/INT5/INT6 logic synthesis, 558-case RTL suite, reported setup timing review and evidence archive are complete. HW02-A offline conditional cost integration is complete ([results](results/hw02a_20261129/RESULTS.md)); physical memory and absolute-quality gating remain open. This dated checkpoint records the subsequent student authorization and supersedes older stop notices for that specific work. Measured device data is pending; no more Spectre work is authorized.
 
 ## Study locked on 20 November 2026
 
