@@ -1,0 +1,4 @@
+format,logic_area_um2,cells,data_path_ns,setup_slack_ns,rtl_cases_passed,coefficient_bits,accumulator_bits,dense_triangular_bits,dense_row_duplicated_bits,torus_csr_bits,torus_bitmap_bits
+fp5,2760.0,1460,7.229,2.73,166,5,13,24782,49532,5741,11932
+int5,2503.0,1335,7.021,2.938,164,5,12,24782,49532,5741,11932
+int6,2728.0,1426,7.229,2.73,228,6,13,29732,59432,6141,12332

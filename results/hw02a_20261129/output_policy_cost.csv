@@ -1,0 +1,9 @@
+topology,original_weight_bits_assumed,candidate_capacity,candidate_state_payload_bits,host_original_weight_payload_bits,candidate_transfer_payload_upper_bits,host_edge_evaluations_upper_bound,additional_buffer_payload_vs_k1_bits,scope
+dense_capacity,32,1,100,158400,100,4950,0,"One output event; metadata, scores and control excluded"
+dense_capacity,32,16,1600,158400,1600,79200,1500,"One output event; metadata, scores and control excluded"
+dense_capacity,64,1,100,316800,100,4950,0,"One output event; metadata, scores and control excluded"
+dense_capacity,64,16,1600,316800,1600,79200,1500,"One output event; metadata, scores and control excluded"
+torus_degree4,32,1,100,6400,100,200,0,"One output event; metadata, scores and control excluded"
+torus_degree4,32,16,1600,6400,1600,3200,1500,"One output event; metadata, scores and control excluded"
+torus_degree4,64,1,100,12800,100,200,0,"One output event; metadata, scores and control excluded"
+torus_degree4,64,16,1600,12800,1600,3200,1500,"One output event; metadata, scores and control excluded"
