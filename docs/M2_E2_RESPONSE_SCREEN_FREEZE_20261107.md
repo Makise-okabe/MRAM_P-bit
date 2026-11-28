@@ -1,5 +1,7 @@
 # M2 E2 response screening freeze — 7 November 2026
 
+> **Historical six-bit combined-response screen.** The [8 November locked roadmap](ROADMAP_LOCKED_2026-11-06.md) now controls the research campaign. Preserve this source/model record, but do not launch its 288-run command as the precision-regime study. The current first scientific gate is the separately authored gain-only E2-GAIN-01 pilot; it is followed by gain/offset slices under the new lock.
+
 **Decision: GO for one bounded E2 *sensitivity* screen, not an E3 device-performance claim.** The research objective remains the original Biq Mac Mac weighted Max-Cut quality versus full hardware/whole-solution cost of low-order symmetric FP/INT/BFP `J` coefficients. Device-response interaction is a diagnostic, not a prerequisite for FP value or a reason to tune the solver. Benchmark/solver/scale/codebooks are frozen.
 
 ## Source/model gate outcome

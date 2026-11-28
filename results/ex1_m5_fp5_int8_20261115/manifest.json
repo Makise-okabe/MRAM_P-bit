@@ -1,0 +1,10 @@
+{
+  "baseline_archive_sha256": "ac373aa4d4e28855f03d9f6b5a5d71598536bf69727c583ea345d00d90680040",
+  "baseline_solver_runs_reused": 72,
+  "exploratory_summary_sha256": "6ee4570c2fee670cd94974d7d702eeee43fc9bdcda2fa8369c5125ccc15909bb",
+  "frozen_protocol_sha256": "609c4e9d6fdaf64939ed3a6f051b643abd90ff4957b0f65959fd7811d98e8938",
+  "new_runs_sha256": "7deaff9b2eefaff367cd92b39d7ba6b8c6f644387b61e739600570d038a3c7c5",
+  "new_solver_runs": 48,
+  "scope": "viewed M5 graph, d=0 only; not independent evidence for b*/k",
+  "status": "EX1_VIEWED_M5_EXPLORATORY_48_RUNS_COMPLETE"
+}

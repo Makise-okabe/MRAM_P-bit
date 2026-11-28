@@ -1,0 +1,8 @@
+{
+  "edge_count": 200,
+  "graph": "t2g10_7777",
+  "graph_sha256": "8f7dc4e791eb4893f7b7114b6ac51d29f37f652645ba58a22e3cd29b709fd4ef",
+  "n": 100,
+  "official_optimum": 6509837,
+  "source_url": "https://biqmac.aau.at/library/mac/ising/t2g10_7777"
+}

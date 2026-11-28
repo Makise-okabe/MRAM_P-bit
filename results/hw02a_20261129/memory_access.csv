@@ -1,0 +1,7 @@
+format,access_model,updates,terms_per_update,coefficient_payload_bits,neighbor_index_payload_bits,row_pointer_payload_bits,spin_operand_bits,assumption
+fp5,dense_serial,50000,99,24750000,0,0,4950000,Logical payload; address/control excluded
+fp5,torus_csr_4_neighbors,50000,4,1000000,1400000,900000,200000,Two row-pointer reads; sparse scheduler unsynthesized
+int5,dense_serial,50000,99,24750000,0,0,4950000,Logical payload; address/control excluded
+int5,torus_csr_4_neighbors,50000,4,1000000,1400000,900000,200000,Two row-pointer reads; sparse scheduler unsynthesized
+int6,dense_serial,50000,99,29700000,0,0,4950000,Logical payload; address/control excluded
+int6,torus_csr_4_neighbors,50000,4,1200000,1400000,900000,200000,Two row-pointer reads; sparse scheduler unsynthesized

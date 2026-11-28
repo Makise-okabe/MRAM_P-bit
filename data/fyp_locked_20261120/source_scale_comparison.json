@@ -1,0 +1,104 @@
+{
+  "generated_distributions": {
+    "ring": {
+      "max_abs_weight": {
+        "maximum": 290819.0,
+        "mean": 188551.86111111112,
+        "median": 183550.0,
+        "minimum": 137395.0,
+        "n": 72,
+        "q25": 168847.75,
+        "q75": 199044.5,
+        "sd": 28053.86771923984
+      },
+      "zero_count": {
+        "maximum": 101.0,
+        "mean": 75.23611111111111,
+        "median": 75.0,
+        "minimum": 59.0,
+        "n": 72,
+        "q25": 67.0,
+        "q75": 81.25,
+        "sd": 8.949770719473344
+      }
+    },
+    "torus": {
+      "max_abs_weight": {
+        "maximum": 385279.0,
+        "mean": 287462.8333333333,
+        "median": 287736.0,
+        "minimum": 223512.0,
+        "n": 72,
+        "q25": 267052.0,
+        "q75": 308093.75,
+        "sd": 32205.030465248838
+      },
+      "zero_count": {
+        "maximum": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "n": 72,
+        "q25": 0.0,
+        "q75": 0.0,
+        "sd": 0.0
+      }
+    }
+  },
+  "official_6666_files_opened": false,
+  "scope": "source-only; no solver outcomes or instance selection",
+  "viewed_official_sources": [
+    {
+      "effective_nonzero_edges": 4881,
+      "family": 0,
+      "family_name": "ring",
+      "graph": "ising2.5-100_5555",
+      "max_abs_weight": 239752,
+      "n": 100,
+      "raw_edge_count": 4950,
+      "sha256": "c8fa3ce4df1997b89aad6199525a66e55699c259680483b62cc5fd3cfc1e316e",
+      "sum_abs_weights": 6922411,
+      "sum_weights": -158427,
+      "zero_count": 69
+    },
+    {
+      "effective_nonzero_edges": 4869,
+      "family": 0,
+      "family_name": "ring",
+      "graph": "ising2.5-100_7777",
+      "max_abs_weight": 220276,
+      "n": 100,
+      "raw_edge_count": 4950,
+      "sha256": "109e1ed2edc71d5f43d623367410d9257a72662d665c7a0c71af4cdd8babaf99",
+      "sum_abs_weights": 7480500,
+      "sum_weights": 808608,
+      "zero_count": 81
+    },
+    {
+      "effective_nonzero_edges": 200,
+      "family": 1,
+      "family_name": "torus",
+      "graph": "t2g10_5555",
+      "max_abs_weight": 294541,
+      "n": 100,
+      "raw_edge_count": 200,
+      "sha256": "c742b78ebdebb47ad7146bffd657d42fab814a7fa82c4a17942b37f2f7fa96cb",
+      "sum_abs_weights": 15939018,
+      "sum_weights": -834802,
+      "zero_count": 0
+    },
+    {
+      "effective_nonzero_edges": 200,
+      "family": 1,
+      "family_name": "torus",
+      "graph": "t2g10_7777",
+      "max_abs_weight": 301004,
+      "n": 100,
+      "raw_edge_count": 200,
+      "sha256": "8f7dc4e791eb4893f7b7114b6ac51d29f37f652645ba58a22e3cd29b709fd4ef",
+      "sum_abs_weights": 15379109,
+      "sum_weights": 11523,
+      "zero_count": 0
+    }
+  ]
+}

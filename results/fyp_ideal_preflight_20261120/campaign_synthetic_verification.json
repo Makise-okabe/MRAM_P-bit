@@ -1,0 +1,15 @@
+{
+  "details": "test_deterministic_gzip_and_hash_tamper (tests.test_fyp_ideal_campaign.TestIdealCampaign.test_deterministic_gzip_and_hash_tamper) ... ok\ntest_freeze_must_be_committed_and_hashes_match (tests.test_fyp_ideal_campaign.TestIdealCampaign.test_freeze_must_be_committed_and_hashes_match) ... ok\ntest_mock_bundle_pool_counts_and_completed_resume (tests.test_fyp_ideal_campaign.TestIdealCampaign.test_mock_bundle_pool_counts_and_completed_resume) ... ok\ntest_registered_counts_and_disjoint_streams (tests.test_fyp_ideal_campaign.TestIdealCampaign.test_registered_counts_and_disjoint_streams) ... ok\ntest_reuse_preserves_original_payload_and_missing_latest (tests.test_fyp_ideal_campaign.TestIdealCampaign.test_reuse_preserves_original_payload_and_missing_latest) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.317s\n\nOK\n",
+  "numpy": "2.3.5",
+  "python": "3.12.14",
+  "scope": "Mock-only campaign orchestration, synthetic committed git freeze, sealed-byte and reuse tests; no campaign solver runs",
+  "source_sha256": {
+    "experiments/fyp_ideal_analysis.py": "21011277b4d06f4e6a1cb08d701c3e904f8bc6e99191cee442a63655e872c761",
+    "experiments/fyp_ideal_campaign.py": "d4cf82315b04e8fb02909877d026e60bfb4c6b1ab42073a371fa0dac2f6d01d6",
+    "experiments/fyp_ideal_solver.py": "0255aac10e9fac4eeaf0274603e9985fadc90cc772db1f9986bd71efecb4a6fc",
+    "experiments/fyp_ideal_sources.py": "22bc55013270d4a0bf40e5f4411de01ee77de4f14cf88546440597d77dfc7f72",
+    "tests/test_fyp_ideal_campaign.py": "fe683905a941408f165b4d670fd2151c83219cac4630716e1c831850b58a919d"
+  },
+  "status": "PASS",
+  "tests_run": 5
+}

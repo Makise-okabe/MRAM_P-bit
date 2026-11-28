@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560">
+<rect width="1200" height="560" fill="white"/>
+<text x="40" y="42" font-family="Arial" font-size="23" font-weight="bold">Where the original-optimum gap is lost</text>
+<text x="40" y="67" font-family="Arial" font-size="13">Mean trajectory decomposition, 128 paired seeds per graph; each bar sums to returned gap.</text>
+<line x1="100" y1="460.0" x2="1160" y2="460.0" stroke="#e0e0e0"/>
+<text x="87" y="464.0" font-family="Arial" font-size="12" text-anchor="end">0.00</text>
+<line x1="100" y1="390.0" x2="1160" y2="390.0" stroke="#e0e0e0"/>
+<text x="87" y="394.0" font-family="Arial" font-size="12" text-anchor="end">1.29</text>
+<line x1="100" y1="320.0" x2="1160" y2="320.0" stroke="#e0e0e0"/>
+<text x="87" y="324.0" font-family="Arial" font-size="12" text-anchor="end">2.57</text>
+<line x1="100" y1="250.0" x2="1160" y2="250.0" stroke="#e0e0e0"/>
+<text x="87" y="254.0" font-family="Arial" font-size="12" text-anchor="end">3.86</text>
+<line x1="100" y1="180.0" x2="1160" y2="180.0" stroke="#e0e0e0"/>
+<text x="87" y="184.0" font-family="Arial" font-size="12" text-anchor="end">5.15</text>
+<line x1="100" y1="110.0" x2="1160" y2="110.0" stroke="#e0e0e0"/>
+<text x="87" y="114.0" font-family="Arial" font-size="12" text-anchor="end">6.44</text>
+<rect x="118" y="185.22" width="88" height="274.78" fill="#4573a3"/>
+<rect x="118" y="170.59" width="88" height="14.63" fill="#e0a13c"/>
+<rect x="118" y="148.81" width="88" height="21.78" fill="#a75b65"/>
+<text x="162" y="481" font-family="Arial" font-size="13" text-anchor="middle">5555 R</text>
+<text x="162" y="500" font-family="Arial" font-size="13" text-anchor="middle">FP5</text>
+<rect x="248" y="189.85" width="88" height="270.15" fill="#4573a3"/>
+<rect x="248" y="186.79" width="88" height="3.06" fill="#e0a13c"/>
+<rect x="248" y="174.35" width="88" height="12.44" fill="#a75b65"/>
+<text x="292" y="481" font-family="Arial" font-size="13" text-anchor="middle">5555 R</text>
+<text x="292" y="500" font-family="Arial" font-size="13" text-anchor="middle">INT6</text>
+<rect x="378" y="183.16" width="88" height="276.84" fill="#4573a3"/>
+<rect x="378" y="167.71" width="88" height="15.45" fill="#e0a13c"/>
+<rect x="378" y="147.50" width="88" height="20.21" fill="#a75b65"/>
+<text x="422" y="481" font-family="Arial" font-size="13" text-anchor="middle">5555 C</text>
+<text x="422" y="500" font-family="Arial" font-size="13" text-anchor="middle">FP5</text>
+<rect x="508" y="188.14" width="88" height="271.86" fill="#4573a3"/>
+<rect x="508" y="185.17" width="88" height="2.97" fill="#e0a13c"/>
+<rect x="508" y="172.81" width="88" height="12.36" fill="#a75b65"/>
+<text x="552" y="481" font-family="Arial" font-size="13" text-anchor="middle">5555 C</text>
+<text x="552" y="500" font-family="Arial" font-size="13" text-anchor="middle">INT6</text>
+<rect x="638" y="249.31" width="88" height="210.69" fill="#4573a3"/>
+<rect x="638" y="248.29" width="88" height="1.02" fill="#e0a13c"/>
+<rect x="638" y="241.98" width="88" height="6.31" fill="#a75b65"/>
+<text x="682" y="481" font-family="Arial" font-size="13" text-anchor="middle">7777 R</text>
+<text x="682" y="500" font-family="Arial" font-size="13" text-anchor="middle">FP5</text>
+<rect x="768" y="227.79" width="88" height="232.21" fill="#4573a3"/>
+<rect x="768" y="226.15" width="88" height="1.65" fill="#e0a13c"/>
+<rect x="768" y="223.00" width="88" height="3.15" fill="#a75b65"/>
+<text x="812" y="481" font-family="Arial" font-size="13" text-anchor="middle">7777 R</text>
+<text x="812" y="500" font-family="Arial" font-size="13" text-anchor="middle">INT6</text>
+<rect x="898" y="247.32" width="88" height="212.68" fill="#4573a3"/>
+<rect x="898" y="246.25" width="88" height="1.07" fill="#e0a13c"/>
+<rect x="898" y="239.78" width="88" height="6.46" fill="#a75b65"/>
+<text x="942" y="481" font-family="Arial" font-size="13" text-anchor="middle">7777 C</text>
+<text x="942" y="500" font-family="Arial" font-size="13" text-anchor="middle">FP5</text>
+<rect x="1028" y="227.64" width="88" height="232.36" fill="#4573a3"/>
+<rect x="1028" y="226.03" width="88" height="1.61" fill="#e0a13c"/>
+<rect x="1028" y="222.90" width="88" height="3.14" fill="#a75b65"/>
+<text x="1072" y="481" font-family="Arial" font-size="13" text-anchor="middle">7777 C</text>
+<text x="1072" y="500" font-family="Arial" font-size="13" text-anchor="middle">INT6</text>
+<rect x="220" y="523" width="17" height="17" fill="#4573a3"/>
+<text x="243" y="537" font-family="Arial" font-size="13">not visited</text>
+<rect x="480" y="523" width="17" height="17" fill="#e0a13c"/>
+<text x="503" y="537" font-family="Arial" font-size="13">represented-selection</text>
+<rect x="740" y="523" width="17" height="17" fill="#a75b65"/>
+<text x="763" y="537" font-family="Arial" font-size="13">earliest ties</text>
+</svg>

@@ -1,0 +1,50 @@
+{
+  "experiment": "HW02-A",
+  "status": "OFFLINE_PROXY_INTEGRATION_COMPLETE",
+  "source_commit": "dc34f72dc5d9be4143f104f58c8f64a68a544ca4",
+  "source_hashes": {
+    "results/fyp_ideal_20261120/analysis/core_contrasts.csv": "659a001f34c7bee630494a1a506d6103fd3824e3ea100532808ddb13efa316ab",
+    "results/fyp_policy_device_20261121/analysis/stage_a_certification.json": "adfba0457fb8dbd970a30c534619dae9ae7df04b244c9bfaa1a9e8d0ee95a5d8",
+    "results/fyp_policy_device_20261121/analysis/stage_b_device_contrasts.json": "2cb1ddb9a63530f7e7f2b1b8be6e4d75db8b9a86c387d8f42f0d17a1cd311816",
+    "results/hw01_20261129_archive/fp5/area.rpt": "4fa398c3ee641cd2f6c8dee9d71fa722ee188ab4f17625c1b3d7d181ce97855a",
+    "results/hw01_20261129_archive/fp5/synthesis_status.txt": "a9744394c92526c3867d5e79a524b86a57a8b6039902c5ee8d0bd1005718ec01",
+    "results/hw01_20261129_archive/fp5/timing.rpt": "502305950ccb1ef0046d95a11fe4c0ccd4d1a36f80e3b9147d18c5403e056963",
+    "results/hw01_20261129_archive/int5/area.rpt": "7dbb4e5b72a1ad79a1e0879844ecb51b81ee6f0998b7eb3cb4d2c04227cf552a",
+    "results/hw01_20261129_archive/int5/synthesis_status.txt": "63ca644858d4aad0524f42666c2b984a4168b6ac2fd52129de07306016e24213",
+    "results/hw01_20261129_archive/int5/timing.rpt": "a54b5aeafbdef49ec8bc858922eee44da188195e308478c5859d719762648ef4",
+    "results/hw01_20261129_archive/int6/area.rpt": "174c6f5f73de7262ba5ee921988c40051a7c934ea3190e05c7114e90b3d833d2",
+    "results/hw01_20261129_archive/int6/synthesis_status.txt": "34ec9c253df9157f1bac1c310e03cd877099a297266dd95ee2a2b359b499a878",
+    "results/hw01_20261129_archive/int6/timing.rpt": "58d7c48fd58d29b234c86f950aa0ec8c3d83c6e1dfdde700a5e5d814cff2ec9c",
+    "results/hw01_20261129_archive/manifest.json": "dd7c614ced100a9c806089f2d64f4421f4a6c245b162fce38077300ecbe130b7",
+    "results/hw01_20261129_archive/memory_cost.csv": "5beaed6985ea04a26895c32c289067bee1009b1f22124594e155cd2188cc251a",
+    "results/hw01_20261129_archive/rtl_verification/verification.csv": "143e424c77dc9796eb3bd18200af97fdb52c314b56a00a518bcb75c4ff0ac07d"
+  },
+  "analysis_script_sha256": "76e1843513f93ea99edc2518faf807918a2b2c3bbfd2e0a9c86807b0a1e63606",
+  "N": 100,
+  "updates": 50000,
+  "margins_pp": [
+    0.25,
+    0.5,
+    1.0
+  ],
+  "area_per_bit_assumptions": [
+    0,
+    0.005,
+    0.01,
+    0.05,
+    0.1,
+    0.25,
+    0.5,
+    1,
+    2
+  ],
+  "quality_contrasts": 16,
+  "selection_rows": 486,
+  "rtl_simulations": 0,
+  "spectre_simulations": 0,
+  "genus_runs": 0,
+  "maxcut_solver_runs": 0,
+  "physical_memory_macro": false,
+  "absolute_quality_gate_applied": false,
+  "figure_status": "NOT_GENERATED"
+}

@@ -1,0 +1,348 @@
+{
+  "archive_unchanged": true,
+  "registry": {
+    "alpha_core": 0.04,
+    "anchor_seed_sequences": "[20261120,940,family,2,anchor_label_index]; labels 5555=0,6666=1,7777=2",
+    "core": [
+      {
+        "contrast": "fp6-int6",
+        "family": "ring",
+        "left": "fp6",
+        "right": "int6"
+      },
+      {
+        "contrast": "fp5-int6",
+        "family": "ring",
+        "left": "fp5",
+        "right": "int6"
+      },
+      {
+        "contrast": "fp6-int7",
+        "family": "ring",
+        "left": "fp6",
+        "right": "int7"
+      },
+      {
+        "contrast": "fp5-ref64",
+        "family": "ring",
+        "left": "fp5",
+        "right": "ref64"
+      },
+      {
+        "contrast": "fp6-ref64",
+        "family": "ring",
+        "left": "fp6",
+        "right": "ref64"
+      },
+      {
+        "contrast": "int5-ref64",
+        "family": "ring",
+        "left": "int5",
+        "right": "ref64"
+      },
+      {
+        "contrast": "int6-ref64",
+        "family": "ring",
+        "left": "int6",
+        "right": "ref64"
+      },
+      {
+        "contrast": "int7-ref64",
+        "family": "ring",
+        "left": "int7",
+        "right": "ref64"
+      },
+      {
+        "contrast": "int8-ref64",
+        "family": "ring",
+        "left": "int8",
+        "right": "ref64"
+      },
+      {
+        "contrast": "fp6-int6",
+        "family": "torus",
+        "left": "fp6",
+        "right": "int6"
+      },
+      {
+        "contrast": "fp5-int6",
+        "family": "torus",
+        "left": "fp5",
+        "right": "int6"
+      },
+      {
+        "contrast": "fp6-int7",
+        "family": "torus",
+        "left": "fp6",
+        "right": "int7"
+      },
+      {
+        "contrast": "fp5-ref64",
+        "family": "torus",
+        "left": "fp5",
+        "right": "ref64"
+      },
+      {
+        "contrast": "fp6-ref64",
+        "family": "torus",
+        "left": "fp6",
+        "right": "ref64"
+      },
+      {
+        "contrast": "int5-ref64",
+        "family": "torus",
+        "left": "int5",
+        "right": "ref64"
+      },
+      {
+        "contrast": "int6-ref64",
+        "family": "torus",
+        "left": "int6",
+        "right": "ref64"
+      },
+      {
+        "contrast": "int7-ref64",
+        "family": "torus",
+        "left": "int7",
+        "right": "ref64"
+      },
+      {
+        "contrast": "int8-ref64",
+        "family": "torus",
+        "left": "int8",
+        "right": "ref64"
+      }
+    ],
+    "core_count_per_family": 9,
+    "core_count_total": 18,
+    "core_seed_sequences": {
+      "ring": [
+        20261120,
+        940,
+        0
+      ],
+      "torus": [
+        20261120,
+        940,
+        1
+      ]
+    },
+    "descriptive": {
+      "R_last_missing": "not reconstructed or zero-filled for reused first-block rows",
+      "Rz_sign_caveat": "Rz is nonnegative by definition; its sign is not mechanism evidence",
+      "alpha_from_core": 0,
+      "contrasts": [
+        {
+          "left": "fp5",
+          "right": "int6",
+          "rz_prediction": "positive"
+        },
+        {
+          "left": "fp6",
+          "right": "int7",
+          "rz_prediction": "positive"
+        },
+        {
+          "left": "fp6",
+          "right": "int6",
+          "rz_prediction": "none"
+        }
+      ],
+      "endpoints": [
+        "Rz difference",
+        "access A difference",
+        "graph sign counts",
+        "SD of graph means",
+        "median within-graph standard error",
+        "per-candidate Spearman(Rz/A,probability_mae/field_rms/zeroed_weight_mass_fraction)",
+        "signed R_last-R"
+      ],
+      "interval": "ordinary two-sided 95% bootstrap-t, whole-graph-vector resampling",
+      "no_direction": [
+        "fp6-int6"
+      ]
+    },
+    "descriptive_seed_sequences": {
+      "ring": [
+        20261120,
+        940,
+        0,
+        1
+      ],
+      "torus": [
+        20261120,
+        940,
+        1,
+        1
+      ]
+    },
+    "deterministic_equality": "requires external algebraic/kernel proof; observed zero variance alone is unresolved",
+    "one_tail_q": 0.0011111111111111111,
+    "primary_margin_pp": 0.5,
+    "quantile": "numpy linear",
+    "reference": "B_g=max(0,V) over exactly 128 reference and 7*64 main trajectories",
+    "resamples": 500000,
+    "resampling_unit": "whole graph vector; no nested seed resampling",
+    "rng": "PCG64DXSM",
+    "sensitivity_margins_pp": [
+      0.25,
+      1.0
+    ]
+  },
+  "results": [
+    {
+      "bad_resamples": 0,
+      "contrast": "fp5-int6",
+      "graph": "ising2.5-100_5555",
+      "high": 0.7489637197849746,
+      "labels": {
+        "benefit_at_least_margin_ruled_out": true,
+        "estimated_benefit_gt_margin": false,
+        "interval_status": "FINITE",
+        "non_inferior": false,
+        "noninferiority_unresolved": true,
+        "penalty_exceeds_tolerance": false,
+        "practically_equivalent": false,
+        "qualification": "UNRESOLVED",
+        "statistical_inferiority": true,
+        "statistical_superiority": false,
+        "true_benefit_gt_margin": false
+      },
+      "low": 0.1856611295624343,
+      "mean": 0.4697064087951096,
+      "metric": "extra_gap",
+      "n": 128,
+      "q": 0.025,
+      "resamples": 500000,
+      "scope": "DESCRIPTIVE_FIXED_VIEWED_GRAPH_SEED_BOOTSTRAP_SMOKE_ONLY",
+      "se": 0.1425073216170129,
+      "status": "OK"
+    },
+    {
+      "bad_resamples": 0,
+      "contrast": "fp5-int6",
+      "graph": "ising2.5-100_5555",
+      "high": 0.3524408186243806,
+      "low": -0.18312786801196734,
+      "mean": 0.08526697537325474,
+      "mechanism_inference": "DESCRIPTIVE_ONLY_NO_QUALIFICATION_LABEL_OR_CORE_ALPHA",
+      "metric": "access_A",
+      "n": 128,
+      "q": 0.025,
+      "resamples": 500000,
+      "scope": "DESCRIPTIVE_FIXED_VIEWED_GRAPH_SEED_BOOTSTRAP_SMOKE_ONLY",
+      "se": 0.1352322599557379,
+      "status": "OK"
+    },
+    {
+      "bad_resamples": 0,
+      "contrast": "fp5-int6",
+      "graph": "ising2.5-100_5555",
+      "high": 0.46984135415652895,
+      "low": 0.30476410405413745,
+      "mean": 0.3844394334218546,
+      "mechanism_inference": "DESCRIPTIVE_ONLY_NO_QUALIFICATION_LABEL_OR_CORE_ALPHA",
+      "metric": "selection_Rz",
+      "n": 128,
+      "q": 0.025,
+      "resamples": 500000,
+      "scope": "DESCRIPTIVE_FIXED_VIEWED_GRAPH_SEED_BOOTSTRAP_SMOKE_ONLY",
+      "se": 0.04156841150831599,
+      "status": "OK"
+    },
+    {
+      "R_last_missing_raw_records": 384,
+      "contrast": "fp5-int6",
+      "fp5_Rz_pp": 0.6695490364216322,
+      "graph": "ising2.5-100_5555",
+      "int6_Rz_pp": 0.2851096029997776,
+      "metric": "Rz_means",
+      "scope": "DESCRIPTIVE_FIXED_VIEWED_GRAPH_POINT_VALUES"
+    },
+    {
+      "bad_resamples": 0,
+      "contrast": "fp5-int6",
+      "graph": "ising2.5-100_7777",
+      "high": -0.14244382377108955,
+      "labels": {
+        "benefit_at_least_margin_ruled_out": false,
+        "estimated_benefit_gt_margin": false,
+        "interval_status": "FINITE",
+        "non_inferior": true,
+        "noninferiority_unresolved": false,
+        "penalty_exceeds_tolerance": false,
+        "practically_equivalent": false,
+        "qualification": "PASS",
+        "statistical_inferiority": false,
+        "statistical_superiority": true,
+        "true_benefit_gt_margin": false
+      },
+      "low": -0.5543637803326182,
+      "mean": -0.3491623472822256,
+      "metric": "extra_gap",
+      "n": 128,
+      "q": 0.025,
+      "resamples": 500000,
+      "scope": "DESCRIPTIVE_FIXED_VIEWED_GRAPH_SEED_BOOTSTRAP_SMOKE_ONLY",
+      "se": 0.10395727641192197,
+      "status": "OK"
+    },
+    {
+      "bad_resamples": 0,
+      "contrast": "fp5-int6",
+      "graph": "ising2.5-100_7777",
+      "high": -0.19405324333427273,
+      "low": -0.5990256324149408,
+      "mean": -0.39569917720465153,
+      "mechanism_inference": "DESCRIPTIVE_ONLY_NO_QUALIFICATION_LABEL_OR_CORE_ALPHA",
+      "metric": "access_A",
+      "n": 128,
+      "q": 0.025,
+      "resamples": 500000,
+      "scope": "DESCRIPTIVE_FIXED_VIEWED_GRAPH_SEED_BOOTSTRAP_SMOKE_ONLY",
+      "se": 0.10215452105057655,
+      "status": "OK"
+    },
+    {
+      "bad_resamples": 0,
+      "contrast": "fp5-int6",
+      "graph": "ising2.5-100_7777",
+      "high": 0.08574613311927537,
+      "low": 0.0073052247077087865,
+      "mean": 0.04653682992242577,
+      "mechanism_inference": "DESCRIPTIVE_ONLY_NO_QUALIFICATION_LABEL_OR_CORE_ALPHA",
+      "metric": "selection_Rz",
+      "n": 128,
+      "q": 0.025,
+      "resamples": 500000,
+      "scope": "DESCRIPTIVE_FIXED_VIEWED_GRAPH_SEED_BOOTSTRAP_SMOKE_ONLY",
+      "se": 0.0198108308781104,
+      "status": "OK"
+    },
+    {
+      "R_last_missing_raw_records": 384,
+      "contrast": "fp5-int6",
+      "fp5_Rz_pp": 0.13476767497316566,
+      "graph": "ising2.5-100_7777",
+      "int6_Rz_pp": 0.08823084505073991,
+      "metric": "Rz_means",
+      "scope": "DESCRIPTIVE_FIXED_VIEWED_GRAPH_POINT_VALUES"
+    }
+  ],
+  "solver_runs": 0,
+  "source_file_hashes": {
+    "DECISION_LABEL_ADDENDUM.md": "517a600e3b7f4435a1e237e1f3d5dc61519ceea34428d7b3f7c5ade59f9e4a33",
+    "RESULTS.md": "b0b3914e9bfabe6e5e39f02e9df6a64a08d0c05043101c730eb648e4702ef84b",
+    "common_state_fidelity.csv": "299203e8928aff8dd813ff4c483b585ebb30ce536ae4ce40c5ee9b68c829cfdd",
+    "fidelity.jsonl": "e899c821421d498d2c220856cd7439e831d24c76552cb29235b9aff88f70d4f6",
+    "frozen_settings.json": "7b91ec6a1839f0b23f903f86d43c28314b438362919562155ec22b0fc3166d5f",
+    "manifest.json": "915246db0a1ea451580f1353808c62025b841d202a4da154b3b71717335989e5",
+    "paired_contrasts.csv": "50db301808369a64068111d95be8b2d9d865de80b111c89d44d89584ab6c849a",
+    "quality_calibration.svg": "109e2be55c8ccd0b1930cc0beb709f4c86243a8c343a76ce22b4332656e1ab45",
+    "quality_summary.csv": "ab706b3cf7f972ee141fbf625831eca62c2385771f9393a4c5578f0e9e10083f",
+    "records.jsonl": "5146df3096376a74aa5e9538cdec6319f1044185c153af88234898852f16e0a0",
+    "trajectory_components.csv": "1f8356f910e146b29e975cafb593d282e280c47c7a7afb798351667a555bceb5",
+    "trajectory_loss.svg": "102f05e21b31ed3f1a0f6b7cc106eae5c06c5caa7b69c74bd403d3f3f537fe42"
+  },
+  "status": "PASS"
+}

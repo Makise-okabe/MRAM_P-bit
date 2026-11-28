@@ -1,0 +1,5 @@
+layout,fp5_logic_overhead_um2,fp5_bits_saved_vs_int6,fp5_storage_saving_pct,break_even_area_per_bit_um2
+dense_triangular,32.0,4950,16.648728642540025,0.006464646464646465
+dense_duplicated,32.0,9900,16.657692825413918,0.0032323232323232323
+torus_csr,32.0,400,6.513597134017261,0.08
+torus_bitmap,32.0,400,3.243593902043464,0.08

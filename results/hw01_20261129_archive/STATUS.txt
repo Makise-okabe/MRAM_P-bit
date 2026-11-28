@@ -1,0 +1,8 @@
+Codebook verification: PASS
+RTL test cases generated: 558
+RTL functional simulation: PENDING
+Genus synthesis: PASS 3/3
+Timing review: PENDING
+Technology: Nangate45
+Physical memory macro: NOT IMPLEMENTED
+DEV01: CLOSED

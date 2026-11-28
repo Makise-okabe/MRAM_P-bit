@@ -1,0 +1,14 @@
+{
+  "additional_independent_observations": 0,
+  "cloud_unique_trajectories": 18432,
+  "github_run_id": "44797500337",
+  "github_run_url": "https://github.com/Makise-okabe/MRAM_P-bit/actions/runs/44797500337",
+  "local_completed_bundles_observed": 19,
+  "local_environment_status": "failed",
+  "local_final_count": null,
+  "local_outputs_in_analysis": false,
+  "local_trajectories_observed_complete": 7296,
+  "reason": "exec-server protocol error: failed to query executor configuration capabilities",
+  "same_prescribed_keys_reexecuted": true,
+  "scientific_freeze_unchanged": "54c06ff593c8acded95f7e4ce6f04a347c6164f7"
+}

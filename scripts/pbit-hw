@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# Launch the existing NUS container with Genus configured at its final entry.
+# Does not change the original mram launcher or execute experiments.
+set -euo pipefail
+REPO="$HOME/MRAM_Pbit_M0"
+LAUNCHER="$HOME/bin/mram"
+test -d "$REPO"
+test -x "$LAUNCHER"
+if [ "$(hostname -s)" = bose01 ] || [ -n "${SINGULARITY_CONTAINER:-}" ] || [ -n "${APPTAINER_CONTAINER:-}" ]; then
+    echo "Exit to login host before launching." >&2
+    exit 1
+fi
+TEMP=$(mktemp "$HOME/bin/.pbit-hw-container.XXXXXX")
+trap 'rm -f "$TEMP"' EXIT
+python3 - "$LAUNCHER" "$TEMP" <<'PY'
+from pathlib import Path
+import sys
+src = Path(sys.argv[1]).read_text()
+marker = "exec /apps/containers/scripts/edaenv_rhel7/version/loadenv_v1_1.sh -shell"
+if src.count(marker) != 1:
+    raise SystemExit("STOP: mram launcher changed; cannot safely inject environment.")
+prefix = """export GENUS_HOME=/apps/eda/cadence/GENUS152
+export USER="$(id -un)"
+export LOGNAME="$USER"
+export SINGULARITYENV_USER="$USER"
+export SINGULARITYENV_LOGNAME="$LOGNAME"
+export SINGULARITYENV_GENUS_HOME="$GENUS_HOME"
+export SINGULARITYENV_PREPEND_PATH="$GENUS_HOME/bin:${SINGULARITYENV_PREPEND_PATH:-}"
+export SINGULARITYENV_HW01_DIR="$HOME/MRAM_Pbit_M0/results/hw01_20261128T172900Z"
+export SINGULARITYENV_HW01_SYNTH="$SINGULARITYENV_HW01_DIR/genus_fixed.S7YAkc"
+"""
+Path(sys.argv[2]).write_text(src.replace(marker, prefix+marker))
+PY
+bash -n "$TEMP"
+echo "Entering bose01 with Genus environment; no experiments started."
+bash "$TEMP" "$REPO"

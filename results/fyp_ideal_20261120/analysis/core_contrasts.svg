@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1150" height="801" viewBox="0 0 1150 801">
+<rect width="1150" height="801" fill="white"/>
+<text x="28" y="35" font-family="sans-serif" font-size="22" font-weight="bold">Registered ideal-response contrasts</text>
+<text x="28" y="59" font-family="sans-serif" font-size="13">Simultaneous bootstrap-t bounds; generated B_g shortfall differences (pp)</text>
+<line x1="350.0" x2="350.0" y1="80" y2="761" stroke="#ddd"/>
+<text x="350.0" y="784" text-anchor="middle" font-family="sans-serif" font-size="12">-1.00</text>
+<line x1="510.0" x2="510.0" y1="80" y2="761" stroke="#ddd"/>
+<text x="510.0" y="784" text-anchor="middle" font-family="sans-serif" font-size="12">-0.50</text>
+<line x1="670.0" x2="670.0" y1="80" y2="761" stroke="#666"/>
+<text x="670.0" y="784" text-anchor="middle" font-family="sans-serif" font-size="12">+0.00</text>
+<line x1="830.0" x2="830.0" y1="80" y2="761" stroke="#ddd"/>
+<text x="830.0" y="784" text-anchor="middle" font-family="sans-serif" font-size="12">+0.50</text>
+<line x1="990.0" x2="990.0" y1="80" y2="761" stroke="#ddd"/>
+<text x="990.0" y="784" text-anchor="middle" font-family="sans-serif" font-size="12">+1.00</text>
+<text x="28" y="104" font-family="sans-serif" font-size="13">ring fp6-int6</text>
+<line x1="574.6597127100684" x2="654.9820088947289" y1="100" y2="100" stroke="#226e94" stroke-width="3"/>
+<circle cx="615.6575192889402" cy="100" r="4" fill="#163b53"/>
+<text x="1004" y="104" font-family="sans-serif" font-size="10">PASS</text>
+<text x="28" y="141" font-family="sans-serif" font-size="13">ring fp5-int6</text>
+<line x1="652.0791741458113" x2="732.4666649020587" y1="137" y2="137" stroke="#226e94" stroke-width="3"/>
+<circle cx="695.085979164601" cy="137" r="4" fill="#163b53"/>
+<text x="1004" y="141" font-family="sans-serif" font-size="10">PASS</text>
+<text x="28" y="178" font-family="sans-serif" font-size="13">ring fp6-int7</text>
+<line x1="627.4393168274992" x2="696.4996670987354" y1="174" y2="174" stroke="#226e94" stroke-width="3"/>
+<circle cx="662.4724468945407" cy="174" r="4" fill="#163b53"/>
+<text x="1004" y="178" font-family="sans-serif" font-size="10">PASS</text>
+<text x="28" y="215" font-family="sans-serif" font-size="13">ring fp5-ref64</text>
+<line x1="730.4267524687668" x2="817.4355543969148" y1="211" y2="211" stroke="#226e94" stroke-width="3"/>
+<circle cx="769.9814829198012" cy="211" r="4" fill="#163b53"/>
+<text x="1004" y="215" font-family="sans-serif" font-size="10">PASS</text>
+<text x="28" y="252" font-family="sans-serif" font-size="13">ring fp6-ref64</text>
+<line x1="662.9806206764763" x2="717.6845553738864" y1="248" y2="248" stroke="#226e94" stroke-width="3"/>
+<circle cx="690.5530230441403" cy="248" r="4" fill="#163b53"/>
+<text x="1004" y="252" font-family="sans-serif" font-size="10">PASS</text>
+<text x="28" y="289" font-family="sans-serif" font-size="13">ring int5-ref64</text>
+<line x1="842.773490751956" x2="948.5478853081609" y1="285" y2="285" stroke="#226e94" stroke-width="3"/>
+<circle cx="890.6794194494698" cy="285" r="4" fill="#163b53"/>
+<text x="1004" y="289" font-family="sans-serif" font-size="10">FAIL</text>
+<text x="28" y="326" font-family="sans-serif" font-size="13">ring int6-ref64</text>
+<line x1="714.2145946251429" x2="779.6880782547562" y1="322" y2="322" stroke="#226e94" stroke-width="3"/>
+<circle cx="744.8955037552003" cy="322" r="4" fill="#163b53"/>
+<text x="1004" y="326" font-family="sans-serif" font-size="10">PASS</text>
+<text x="28" y="363" font-family="sans-serif" font-size="13">ring int7-ref64</text>
+<line x1="675.5958126609133" x2="721.1716692730914" y1="359" y2="359" stroke="#226e94" stroke-width="3"/>
+<circle cx="698.0805761495997" cy="359" r="4" fill="#163b53"/>
+<text x="1004" y="363" font-family="sans-serif" font-size="10">PASS</text>
+<text x="28" y="400" font-family="sans-serif" font-size="13">ring int8-ref64</text>
+<line x1="672.4370863131223" x2="698.9684201186211" y1="396" y2="396" stroke="#226e94" stroke-width="3"/>
+<circle cx="684.3524446496406" cy="396" r="4" fill="#163b53"/>
+<text x="1004" y="400" font-family="sans-serif" font-size="10">PASS</text>
+<text x="28" y="437" font-family="sans-serif" font-size="13">torus fp6-int6</text>
+<line x1="661.8816160652841" x2="721.2637642606772" y1="433" y2="433" stroke="#226e94" stroke-width="3"/>
+<circle cx="692.9072710661517" cy="433" r="4" fill="#163b53"/>
+<text x="1004" y="437" font-family="sans-serif" font-size="10">PASS</text>
+<text x="28" y="474" font-family="sans-serif" font-size="13">torus fp5-int6</text>
+<line x1="657.5059699066695" x2="733.2543124504678" y1="470" y2="470" stroke="#226e94" stroke-width="3"/>
+<circle cx="695.3691579958474" cy="470" r="4" fill="#163b53"/>
+<text x="1004" y="474" font-family="sans-serif" font-size="10">PASS</text>
+<text x="28" y="511" font-family="sans-serif" font-size="13">torus fp6-int7</text>
+<line x1="670.5383675900191" x2="734.6102026224156" y1="507" y2="507" stroke="#226e94" stroke-width="3"/>
+<circle cx="700.6429950147099" cy="507" r="4" fill="#163b53"/>
+<text x="1004" y="511" font-family="sans-serif" font-size="10">PASS</text>
+<text x="28" y="548" font-family="sans-serif" font-size="13">torus fp5-ref64</text>
+<line x1="664.3813582517722" x2="746.0872570349779" y1="544" y2="544" stroke="#226e94" stroke-width="3"/>
+<circle cx="700.3798855488151" cy="544" r="4" fill="#163b53"/>
+<text x="1004" y="548" font-family="sans-serif" font-size="10">PASS</text>
+<text x="28" y="585" font-family="sans-serif" font-size="13">torus fp6-ref64</text>
+<line x1="667.3714929395509" x2="728.0723244581509" y1="581" y2="581" stroke="#226e94" stroke-width="3"/>
+<circle cx="697.9179986191195" cy="581" r="4" fill="#163b53"/>
+<text x="1004" y="585" font-family="sans-serif" font-size="10">PASS</text>
+<text x="28" y="622" font-family="sans-serif" font-size="13">torus int5-ref64</text>
+<line x1="685.5086437801637" x2="765.4368808731363" y1="618" y2="618" stroke="#226e94" stroke-width="3"/>
+<circle cx="722.6883438021089" cy="618" r="4" fill="#163b53"/>
+<text x="1004" y="622" font-family="sans-serif" font-size="10">PASS</text>
+<text x="28" y="659" font-family="sans-serif" font-size="13">torus int6-ref64</text>
+<line x1="645.2703392486737" x2="704.6681169711782" y1="655" y2="655" stroke="#226e94" stroke-width="3"/>
+<circle cx="675.0107275529678" cy="655" r="4" fill="#163b53"/>
+<text x="1004" y="659" font-family="sans-serif" font-size="10">PASS</text>
+<text x="28" y="696" font-family="sans-serif" font-size="13">torus int7-ref64</text>
+<line x1="645.0869438307033" x2="689.6340788851164" y1="692" y2="692" stroke="#226e94" stroke-width="3"/>
+<circle cx="667.2750036044097" cy="692" r="4" fill="#163b53"/>
+<text x="1004" y="696" font-family="sans-serif" font-size="10">PASS</text>
+<text x="28" y="733" font-family="sans-serif" font-size="13">torus int8-ref64</text>
+<line x1="644.2888688860221" x2="689.0609430004656" y1="729" y2="729" stroke="#226e94" stroke-width="3"/>
+<circle cx="666.2723575897669" cy="729" r="4" fill="#163b53"/>
+<text x="1004" y="733" font-family="sans-serif" font-size="10">PASS</text>
+</svg>

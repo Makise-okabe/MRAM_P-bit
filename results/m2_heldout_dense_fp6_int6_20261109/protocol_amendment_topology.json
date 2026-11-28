@@ -1,0 +1,17 @@
+{
+  "amended_script_sha256": "b26ca0f60909855b37d80962de7de64ca33de17288b3d32e6eab2b0a91f8c4af",
+  "amendment_type": "topology_zero_weight_validation_only",
+  "hypotheses_changed": false,
+  "offset_model_changed": false,
+  "original_protocol_sha256": "859e0bb240f88c2ffb26c8922020c3de86fc09c344b3ff257703c6a3a54ebaba",
+  "original_script_sha256": "679ddda6e9e403adef94717389aa69c1984ca3c1ced63e05e678bb781f2df963",
+  "quantizer_changed": false,
+  "reason": "Original topology check confused raw edges with retained nonzero edges.",
+  "seed_rule_changed": false,
+  "simulation_runs_before_amendment": 0,
+  "solver_changed": false,
+  "source_graph_sha256": "109e1ed2edc71d5f43d623367410d9257a72662d665c7a0c71af4cdd8babaf99",
+  "source_nonzero_edges": 4869,
+  "source_raw_edges": 4950,
+  "source_zero_sum_edges": 81
+}

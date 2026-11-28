@@ -1,0 +1,38 @@
+{
+  "experiment": "HW01",
+  "N": 100,
+  "terms_per_row": 99,
+  "formats": {
+    "fp5": {
+      "bits": 5,
+      "fp": 1,
+      "max": 28,
+      "acc": 13
+    },
+    "int5": {
+      "bits": 5,
+      "fp": 0,
+      "max": 15,
+      "acc": 12
+    },
+    "int6": {
+      "bits": 6,
+      "fp": 0,
+      "max": 31,
+      "acc": 13
+    }
+  },
+  "clock_ns": 10,
+  "test_cases": {
+    "fp5": 166,
+    "int5": 164,
+    "int6": 228
+  },
+  "source_m4_sha256": "f651b87978d845a806d37e1cc1c2b51705751319f1892346c365f4af44f5860f",
+  "generated_rtl_sha256": "c5ee8e7a45c243978e45ecf637647569f9c75635d6bdeed4d9a77a523d5929fd",
+  "scale_bits": 32,
+  "fp5_scale_factor": 0.25,
+  "storage_primary": "dense triangular",
+  "physical_device_simulations": 0,
+  "maxcut_solver_runs": 0
+}

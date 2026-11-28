@@ -1,0 +1,141 @@
+{
+  "control_count": 21,
+  "controls": [
+    {
+      "graph": "ising2.5-100_7777",
+      "representation": "ref64",
+      "result": "EXACT",
+      "seed": 20661201
+    },
+    {
+      "graph": "ising2.5-100_7777",
+      "representation": "ref64",
+      "result": "EXACT",
+      "seed": 20661202
+    },
+    {
+      "graph": "ising2.5-100_7777",
+      "representation": "ref64",
+      "result": "EXACT",
+      "seed": 20661203
+    },
+    {
+      "graph": "ising2.5-100_7777",
+      "representation": "fp6",
+      "result": "EXACT",
+      "seed": 20661201
+    },
+    {
+      "graph": "ising2.5-100_7777",
+      "representation": "fp6",
+      "result": "EXACT",
+      "seed": 20661202
+    },
+    {
+      "graph": "ising2.5-100_7777",
+      "representation": "fp6",
+      "result": "EXACT",
+      "seed": 20661203
+    },
+    {
+      "graph": "ising2.5-100_7777",
+      "representation": "int6",
+      "result": "EXACT",
+      "seed": 20661201
+    },
+    {
+      "graph": "ising2.5-100_7777",
+      "representation": "int6",
+      "result": "EXACT",
+      "seed": 20661202
+    },
+    {
+      "graph": "ising2.5-100_7777",
+      "representation": "int6",
+      "result": "EXACT",
+      "seed": 20661203
+    },
+    {
+      "graph": "ising2.5-100_5555",
+      "representation": "ref64",
+      "result": "EXACT",
+      "seed": 20261112
+    },
+    {
+      "graph": "ising2.5-100_5555",
+      "representation": "ref64",
+      "result": "EXACT",
+      "seed": 20261113
+    },
+    {
+      "graph": "t2g10_5555",
+      "representation": "ref64",
+      "result": "EXACT",
+      "seed": 20361112
+    },
+    {
+      "graph": "t2g10_5555",
+      "representation": "ref64",
+      "result": "EXACT",
+      "seed": 20361113
+    },
+    {
+      "graph": "ising2.5-100_5555",
+      "representation": "ref64",
+      "result": "EXACT",
+      "seed": 3000000000000
+    },
+    {
+      "graph": "ising2.5-100_5555",
+      "representation": "ref64",
+      "result": "EXACT",
+      "seed": 3000000000001
+    },
+    {
+      "graph": "ising2.5-100_5555",
+      "representation": "int6",
+      "result": "EXACT",
+      "seed": 3000000000000
+    },
+    {
+      "graph": "ising2.5-100_5555",
+      "representation": "int6",
+      "result": "EXACT",
+      "seed": 3000000000001
+    },
+    {
+      "graph": "ising2.5-100_7777",
+      "representation": "ref64",
+      "result": "EXACT",
+      "seed": 3000000020000
+    },
+    {
+      "graph": "ising2.5-100_7777",
+      "representation": "ref64",
+      "result": "EXACT",
+      "seed": 3000000020001
+    },
+    {
+      "graph": "ising2.5-100_7777",
+      "representation": "int6",
+      "result": "EXACT",
+      "seed": 3000000020000
+    },
+    {
+      "graph": "ising2.5-100_7777",
+      "representation": "int6",
+      "result": "EXACT",
+      "seed": 3000000020001
+    }
+  ],
+  "freeze_commit": "54c06ff593c8acded95f7e4ce6f04a347c6164f7",
+  "freeze_sha256": "f4e6121e8b3caa3653702268e36d25c063decf8e1ce91eece4f32a37252bab29",
+  "fresh_solver_outcomes_inspected": false,
+  "runtime": {
+    "numpy": "2.3.5",
+    "platform": "Linux-7.0.0-1020-azure-x86_64-with-glibc2.43",
+    "python": "3.12.16"
+  },
+  "status": "PASS",
+  "workflow_run_id": "44797500337"
+}

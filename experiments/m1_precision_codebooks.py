@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Frozen GLOBAL 4/5/6/8-bit scalar coupling formats for Biq Mac E1.
+"""GLOBAL coupling formats with the legacy E1 roster and prospective INT7.
 
 Software element codebooks and symmetric-source-only scale fitting.
 Not bit-true accumulator, STT-MTJ voltage response, full hardware macro,
@@ -24,6 +24,8 @@ from experiments.m1_coupling_formats import fp_positive_levels
 WIDTHS = (4, 5, 6, 8)
 FP_LAYOUTS = {4:(2,1), 5:(2,2), 6:(3,2), 8:(4,3)}
 FAMILIES = ("fp", "int", "bfp")
+# Keep the legacy all-family sweep roster fixed. INT7 is a separate study choice.
+SUPPORTED_WIDTHS = {"fp": WIDTHS, "int": (4, 5, 6, 7, 8), "bfp": WIDTHS}
 SCALE_POLICY = "source_mse_loggrid_v1"
 GLOBAL_ONLY = True
 
@@ -51,7 +53,7 @@ def levels(width: int) -> tuple[float, ...]:
 
 
 def scalar_quantize(value: float, family: str, width: int, scale: float) -> float:
-    if family not in FAMILIES or width not in WIDTHS:
+    if width not in SUPPORTED_WIDTHS.get(family, ()):
         raise ValueError("unknown family or width")
     if not math.isfinite(value) or not math.isfinite(scale) or scale <= 0:
         raise ValueError("nonfinite coefficient or invalid scale")
@@ -149,7 +151,7 @@ def fit_global_scale(values: tuple[float, ...] | list[float], family: str, width
     coefficient error then smaller scale; no Max-Cut objective/optimum
     is consulted. Source graph includes no implicit zero edges.
     """
-    if family not in FAMILIES or width not in WIDTHS:
+    if width not in SUPPORTED_WIDTHS.get(family, ()):
         raise ValueError("invalid format")
     if not values or not all(math.isfinite(v) for v in values):
         raise ValueError("empty/nonfinite source")
@@ -169,7 +171,7 @@ def fit_global_scale(values: tuple[float, ...] | list[float], family: str, width
 
 
 def describe_codebook(family: str, width: int) -> dict:
-    if family not in FAMILIES or width not in WIDTHS:
+    if width not in SUPPORTED_WIDTHS.get(family, ()):
         raise ValueError("invalid format")
     data = {
         "family": family, "width": width,

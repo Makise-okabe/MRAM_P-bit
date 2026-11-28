@@ -1,0 +1,77 @@
+name: FYP first viewed-dense 1280-run locked block
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  viewed-dense-block:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned statistics dependency
+        run: python -m pip install 'numpy==2.3.5'
+      - name: Compile and execute synthetic solver/analysis parity tests
+        run: |
+          python -m py_compile experiments/fyp_first_block_20261120.py experiments/fyp_first_block_stats.py
+          python -m unittest discover -s tests -p 'test_fyp_first_block.py' -v
+          python -m unittest discover -s tests -p 'test_m1_int7_precision.py' -v
+      - name: Download only the two viewed official Biq Mac original files
+        run: |
+          set -euo pipefail
+          mkdir -p data/biqmac/raw/ising
+          for name in ising2.5-100_5555 ising2.5-100_7777; do
+            if [ ! -e "data/biqmac/raw/ising/$name" ]; then
+              curl --fail --location --retry 3 --connect-timeout 30 --max-time 300 "https://biqmac.aau.at/library/mac/ising/$name" -o "data/biqmac/raw/ising/$name"
+            fi
+          done
+          printf '%s  %s\n' \
+            'c8fa3ce4df1997b89aad6199525a66e55699c259680483b62cc5fd3cfc1e316e' data/biqmac/raw/ising/ising2.5-100_5555 \
+            '109e1ed2edc71d5f43d623367410d9257a72662d665c7a0c71af4cdd8babaf99' data/biqmac/raw/ising/ising2.5-100_7777 | sha256sum --check
+      - name: Frozen source and archived deterministic replay gate (before new data)
+        run: python -m experiments.fyp_first_block_20261120 --freeze
+      - name: Execute exactly 1280 unique runs, analyze, and draw figures
+        run: python -m experiments.fyp_first_block_20261120 --run --analyse
+      - name: Update status and archive verified complete results
+        run: |
+          set -euo pipefail
+          test -s results/fyp_first_block_20261120/manifest.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          m=json.loads(Path('results/fyp_first_block_20261120/manifest.json').read_text())
+          assert m['status']=='FIRST_VIEWED_DENSE_1280_COMPLETE'
+          assert m['total_unique_solver_runs']==1280
+          p=Path('README.md')
+          s=p.read_text()
+          marker='## Completed E0 and EX1 evidence'
+          block=('## First viewed-dense block (20 Nov lock)\n\n'
+                 '**COMPLETE: 1,280 unique ideal-response trajectories**, source and archived deterministic parity checked. '
+                 'Two fixed viewed Biq Mac dense instances, raw FP5/INT6 versus beta/a with paired calibration-change test. '
+                 'See [results, figures and frozen provenance](results/fyp_first_block_20261120/RESULTS.md). '
+                 'These are software results, not physical STT-MRAM measurements or family-level width selection.\n\n')
+          if block not in s:
+              assert marker in s
+              p.write_text(s.replace(marker,block+marker,1))
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f results/fyp_first_block_20261120 README.md
+          git commit -m "Archive locked first viewed-dense block: 1280 verified runs"
+          git push origin HEAD:research/m4-gain-fusion-20261107
+      - name: Preserve partial or complete logs as Actions artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fyp-first-block-20261120
+          path: results/fyp_first_block_20261120/
+          if-no-files-found: warn
+          retention-days: 30

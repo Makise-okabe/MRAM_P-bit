@@ -1,0 +1,3 @@
+contrast,left,right,metric,family,graphs,n,mean,se,low,high,status,q,resamples,bad_resamples,decision,one_sided_alpha,bound_reading
+C1,fp6_mask,fp6,Rz_pp,ring,24,24,0.07561915250496419,0.014886713410493206,0.04718797275009118,0.1334867796083177,OK,0.0125,500000,0,SUPPORTED,0.0125,low is the confirmatory 98.75% one-sided lower bound; high shown for context
+C2,int6,int6_tail,Rz_pp,ring,24,24,0.09131511385683844,0.015059343333214624,0.06209801397271488,0.14488408005165437,OK,0.0125,500000,0,SUPPORTED,0.0125,low is the confirmatory 98.75% one-sided lower bound; high shown for context

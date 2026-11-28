@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1150" height="579" viewBox="0 0 1150 579">
+<rect width="1150" height="579" fill="white"/>
+<text x="28" y="35" font-family="sans-serif" font-size="22" font-weight="bold">Descriptive access and selection differences</text>
+<text x="28" y="59" font-family="sans-serif" font-size="13">Ordinary graph-resampled 95% intervals; no core alpha allocated</text>
+<line x1="350.0" x2="350.0" y1="80" y2="539" stroke="#ddd"/>
+<text x="350.0" y="562" text-anchor="middle" font-family="sans-serif" font-size="12">-1.00</text>
+<line x1="510.0" x2="510.0" y1="80" y2="539" stroke="#ddd"/>
+<text x="510.0" y="562" text-anchor="middle" font-family="sans-serif" font-size="12">-0.50</text>
+<line x1="670.0" x2="670.0" y1="80" y2="539" stroke="#666"/>
+<text x="670.0" y="562" text-anchor="middle" font-family="sans-serif" font-size="12">+0.00</text>
+<line x1="830.0" x2="830.0" y1="80" y2="539" stroke="#ddd"/>
+<text x="830.0" y="562" text-anchor="middle" font-family="sans-serif" font-size="12">+0.50</text>
+<line x1="990.0" x2="990.0" y1="80" y2="539" stroke="#ddd"/>
+<text x="990.0" y="562" text-anchor="middle" font-family="sans-serif" font-size="12">+1.00</text>
+<text x="28" y="104" font-family="sans-serif" font-size="13">ring fp5-int6 Rz_pp</text>
+<line x1="677.6241103856288" x2="692.9262013223679" y1="100" y2="100" stroke="#226e94" stroke-width="3"/>
+<circle cx="683.957940025065" cy="100" r="4" fill="#163b53"/>
+<text x="1004" y="104" font-family="sans-serif" font-size="10">DESCRIPTIVE_POSITIVE</text>
+<text x="28" y="141" font-family="sans-serif" font-size="13">ring fp5-int6 A_pp</text>
+<line x1="655.3580427575068" x2="704.7419492935876" y1="137" y2="137" stroke="#226e94" stroke-width="3"/>
+<circle cx="681.128039139536" cy="137" r="4" fill="#163b53"/>
+<text x="1004" y="141" font-family="sans-serif" font-size="10">NO_DIRECTION_PREDICTED</text>
+<text x="28" y="178" font-family="sans-serif" font-size="13">ring fp6-int7 Rz_pp</text>
+<line x1="652.4597044471229" x2="659.2170607970261" y1="174" y2="174" stroke="#226e94" stroke-width="3"/>
+<circle cx="656.3762003439748" cy="174" r="4" fill="#163b53"/>
+<text x="1004" y="178" font-family="sans-serif" font-size="10">DESCRIPTIVE_OPPOSITE</text>
+<text x="28" y="215" font-family="sans-serif" font-size="13">ring fp6-int7 A_pp</text>
+<line x1="654.7299814395446" x2="697.5745220611982" y1="211" y2="211" stroke="#226e94" stroke-width="3"/>
+<circle cx="676.0962465505659" cy="211" r="4" fill="#163b53"/>
+<text x="1004" y="215" font-family="sans-serif" font-size="10">NO_DIRECTION_PREDICTED</text>
+<text x="28" y="252" font-family="sans-serif" font-size="13">ring fp6-int6 Rz_pp</text>
+<line x1="620.103133012738" x2="633.0776906777044" y1="248" y2="248" stroke="#226e94" stroke-width="3"/>
+<circle cx="627.2026099567429" cy="248" r="4" fill="#163b53"/>
+<text x="1004" y="252" font-family="sans-serif" font-size="10">NO_DIRECTION_PREDICTED</text>
+<text x="28" y="289" font-family="sans-serif" font-size="13">ring fp6-int6 A_pp</text>
+<line x1="634.0508111620711" x2="682.4489770649336" y1="285" y2="285" stroke="#226e94" stroke-width="3"/>
+<circle cx="658.4549093321973" cy="285" r="4" fill="#163b53"/>
+<text x="1004" y="289" font-family="sans-serif" font-size="10">NO_DIRECTION_PREDICTED</text>
+<text x="28" y="326" font-family="sans-serif" font-size="13">torus fp5-int6 Rz_pp</text>
+<line x1="675.4485569740536" x2="678.5493746263992" y1="322" y2="322" stroke="#226e94" stroke-width="3"/>
+<circle cx="676.9262240028388" cy="322" r="4" fill="#163b53"/>
+<text x="1004" y="326" font-family="sans-serif" font-size="10">DESCRIPTIVE_POSITIVE</text>
+<text x="28" y="363" font-family="sans-serif" font-size="13">torus fp5-int6 A_pp</text>
+<line x1="664.7610946208222" x2="712.0120984958895" y1="359" y2="359" stroke="#226e94" stroke-width="3"/>
+<circle cx="688.4429339930084" cy="359" r="4" fill="#163b53"/>
+<text x="1004" y="363" font-family="sans-serif" font-size="10">NO_DIRECTION_PREDICTED</text>
+<text x="28" y="400" font-family="sans-serif" font-size="13">torus fp6-int7 Rz_pp</text>
+<line x1="675.0620268429623" x2="677.1553870604067" y1="396" y2="396" stroke="#226e94" stroke-width="3"/>
+<circle cx="675.9392453582047" cy="396" r="4" fill="#163b53"/>
+<text x="1004" y="400" font-family="sans-serif" font-size="10">DESCRIPTIVE_POSITIVE</text>
+<text x="28" y="437" font-family="sans-serif" font-size="13">torus fp6-int7 A_pp</text>
+<line x1="675.4962780885028" x2="715.6521046070928" y1="433" y2="433" stroke="#226e94" stroke-width="3"/>
+<circle cx="694.7037496565052" cy="433" r="4" fill="#163b53"/>
+<text x="1004" y="437" font-family="sans-serif" font-size="10">NO_DIRECTION_PREDICTED</text>
+<text x="28" y="474" font-family="sans-serif" font-size="13">torus fp6-int6 Rz_pp</text>
+<line x1="669.5886664851291" x2="672.3298565642831" y1="470" y2="470" stroke="#226e94" stroke-width="3"/>
+<circle cx="670.9276926863249" cy="470" r="4" fill="#163b53"/>
+<text x="1004" y="474" font-family="sans-serif" font-size="10">NO_DIRECTION_PREDICTED</text>
+<text x="28" y="511" font-family="sans-serif" font-size="13">torus fp6-int6 A_pp</text>
+<line x1="673.1112728369612" x2="709.6887013049318" y1="507" y2="507" stroke="#226e94" stroke-width="3"/>
+<circle cx="691.9795783798268" cy="507" r="4" fill="#163b53"/>
+<text x="1004" y="511" font-family="sans-serif" font-size="10">NO_DIRECTION_PREDICTED</text>
+</svg>

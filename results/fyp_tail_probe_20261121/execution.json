@@ -1,0 +1,300 @@
+{
+  "freeze_commit": "54c06ff593c8acded95f7e4ce6f04a347c6164f7",
+  "graphs": [
+    {
+      "family": "ring",
+      "index": 0,
+      "records": 384,
+      "seconds": 71.10991621100001
+    },
+    {
+      "family": "ring",
+      "index": 1,
+      "records": 384,
+      "seconds": 68.498113683
+    },
+    {
+      "family": "ring",
+      "index": 2,
+      "records": 384,
+      "seconds": 70.63319526500001
+    },
+    {
+      "family": "ring",
+      "index": 3,
+      "records": 384,
+      "seconds": 59.518571130999995
+    },
+    {
+      "family": "ring",
+      "index": 4,
+      "records": 384,
+      "seconds": 67.062889747
+    },
+    {
+      "family": "ring",
+      "index": 5,
+      "records": 384,
+      "seconds": 68.668713161
+    },
+    {
+      "family": "ring",
+      "index": 6,
+      "records": 384,
+      "seconds": 71.387951732
+    },
+    {
+      "family": "ring",
+      "index": 7,
+      "records": 384,
+      "seconds": 65.528029988
+    },
+    {
+      "family": "ring",
+      "index": 8,
+      "records": 384,
+      "seconds": 71.368091959
+    },
+    {
+      "family": "ring",
+      "index": 9,
+      "records": 384,
+      "seconds": 72.239069608
+    },
+    {
+      "family": "ring",
+      "index": 10,
+      "records": 384,
+      "seconds": 64.15869231
+    },
+    {
+      "family": "ring",
+      "index": 11,
+      "records": 384,
+      "seconds": 74.32369579099999
+    },
+    {
+      "family": "ring",
+      "index": 12,
+      "records": 384,
+      "seconds": 67.66685614
+    },
+    {
+      "family": "ring",
+      "index": 13,
+      "records": 384,
+      "seconds": 69.587861554
+    },
+    {
+      "family": "ring",
+      "index": 14,
+      "records": 384,
+      "seconds": 66.88770806300002
+    },
+    {
+      "family": "ring",
+      "index": 15,
+      "records": 384,
+      "seconds": 63.492080561999984
+    },
+    {
+      "family": "ring",
+      "index": 16,
+      "records": 384,
+      "seconds": 71.090436176
+    },
+    {
+      "family": "ring",
+      "index": 17,
+      "records": 384,
+      "seconds": 75.50649126599998
+    },
+    {
+      "family": "ring",
+      "index": 18,
+      "records": 384,
+      "seconds": 73.73398732199999
+    },
+    {
+      "family": "ring",
+      "index": 19,
+      "records": 384,
+      "seconds": 72.08965102100001
+    },
+    {
+      "family": "ring",
+      "index": 20,
+      "records": 384,
+      "seconds": 67.38201327500002
+    },
+    {
+      "family": "ring",
+      "index": 21,
+      "records": 384,
+      "seconds": 71.28495657200003
+    },
+    {
+      "family": "ring",
+      "index": 22,
+      "records": 384,
+      "seconds": 66.45353745700001
+    },
+    {
+      "family": "ring",
+      "index": 23,
+      "records": 384,
+      "seconds": 71.57290899200001
+    },
+    {
+      "family": "torus",
+      "index": 0,
+      "records": 384,
+      "seconds": 38.550323539999965
+    },
+    {
+      "family": "torus",
+      "index": 1,
+      "records": 384,
+      "seconds": 45.85253227700002
+    },
+    {
+      "family": "torus",
+      "index": 2,
+      "records": 384,
+      "seconds": 40.223949224999956
+    },
+    {
+      "family": "torus",
+      "index": 3,
+      "records": 384,
+      "seconds": 42.070772116
+    },
+    {
+      "family": "torus",
+      "index": 4,
+      "records": 384,
+      "seconds": 38.362226867000004
+    },
+    {
+      "family": "torus",
+      "index": 5,
+      "records": 384,
+      "seconds": 40.15140121500002
+    },
+    {
+      "family": "torus",
+      "index": 6,
+      "records": 384,
+      "seconds": 38.473136974
+    },
+    {
+      "family": "torus",
+      "index": 7,
+      "records": 384,
+      "seconds": 40.45975427600001
+    },
+    {
+      "family": "torus",
+      "index": 8,
+      "records": 384,
+      "seconds": 36.21305989399997
+    },
+    {
+      "family": "torus",
+      "index": 9,
+      "records": 384,
+      "seconds": 40.681273180000005
+    },
+    {
+      "family": "torus",
+      "index": 10,
+      "records": 384,
+      "seconds": 42.64738447299999
+    },
+    {
+      "family": "torus",
+      "index": 11,
+      "records": 384,
+      "seconds": 41.34242432899998
+    },
+    {
+      "family": "torus",
+      "index": 12,
+      "records": 384,
+      "seconds": 43.41390070099999
+    },
+    {
+      "family": "torus",
+      "index": 13,
+      "records": 384,
+      "seconds": 43.14153764100001
+    },
+    {
+      "family": "torus",
+      "index": 14,
+      "records": 384,
+      "seconds": 34.974126678000005
+    },
+    {
+      "family": "torus",
+      "index": 15,
+      "records": 384,
+      "seconds": 40.192593226999975
+    },
+    {
+      "family": "torus",
+      "index": 16,
+      "records": 384,
+      "seconds": 37.430307304999985
+    },
+    {
+      "family": "torus",
+      "index": 17,
+      "records": 384,
+      "seconds": 41.83761170700001
+    },
+    {
+      "family": "torus",
+      "index": 18,
+      "records": 384,
+      "seconds": 39.07887812399997
+    },
+    {
+      "family": "torus",
+      "index": 19,
+      "records": 384,
+      "seconds": 40.78589502
+    },
+    {
+      "family": "torus",
+      "index": 20,
+      "records": 384,
+      "seconds": 38.30307044599999
+    },
+    {
+      "family": "torus",
+      "index": 21,
+      "records": 384,
+      "seconds": 37.13683797199997
+    },
+    {
+      "family": "torus",
+      "index": 22,
+      "records": 384,
+      "seconds": 35.01963084899995
+    },
+    {
+      "family": "torus",
+      "index": 23,
+      "records": 384,
+      "seconds": 26.934472056000004
+    }
+  ],
+  "numpy": "2.3.5",
+  "platform": "Linux-7.0.0-1020-azure-x86_64-with-glibc2.43",
+  "python": "3.12.16",
+  "status": "COMPLETE_PENDING_ANALYSIS",
+  "trajectories": 18432,
+  "wall_seconds": 442.948534575,
+  "workers": 6
+}

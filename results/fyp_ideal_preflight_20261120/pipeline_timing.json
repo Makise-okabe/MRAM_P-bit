@@ -1,0 +1,80 @@
+{
+  "graphs": [
+    {
+      "four_checkpoint_six_candidate_fidelity_seconds": 0.03354580799896212,
+      "graph": "ising2.5-100_7777",
+      "graph_sha256": "109e1ed2edc71d5f43d623367410d9257a72662d665c7a0c71af4cdd8babaf99",
+      "load_seconds": 0.017774410000129137,
+      "logged_solver_seconds": {
+        "fp5": 0.05825648499921954,
+        "fp6": 0.054412531999332714,
+        "int5": 0.05449446400052693,
+        "int6": 0.05387638399952266,
+        "int7": 0.054977352998321294,
+        "int8": 0.053814412000065204,
+        "ref64": 0.05336112700024387
+      },
+      "prepare_seconds": {
+        "fp5": 0.17964376999952947,
+        "fp6": 0.18472458299947903,
+        "int5": 0.16155519200037816,
+        "int6": 0.1415631099989696,
+        "int7": 0.14623722800024552,
+        "int8": 0.14623750899954757,
+        "ref64": 0.004326580999986618
+      },
+      "quality_inspected_or_retained": false,
+      "seed": 20661201,
+      "serialize_compress_seconds": 0.0007615240010636626,
+      "seven_records_bytes": 8759,
+      "seven_records_gzip_bytes": 1284,
+      "write_seconds": 0.0002922650000982685
+    },
+    {
+      "four_checkpoint_six_candidate_fidelity_seconds": 0.0032899870002438547,
+      "graph": "t2g10_5555",
+      "graph_sha256": "c742b78ebdebb47ad7146bffd657d42fab814a7fa82c4a17942b37f2f7fa96cb",
+      "load_seconds": 0.0005976899992674589,
+      "logged_solver_seconds": {
+        "fp5": 0.03821804399922257,
+        "fp6": 0.037298826000551344,
+        "int5": 0.03810109000005468,
+        "int6": 0.038185384999451344,
+        "int7": 0.03705245899982401,
+        "int8": 0.03821287600112555,
+        "ref64": 0.03774769399933575
+      },
+      "prepare_seconds": {
+        "fp5": 0.007593966000058572,
+        "fp6": 0.007986439000887913,
+        "int5": 0.006240310000066529,
+        "int6": 0.006425886000215542,
+        "int7": 0.006519335000120918,
+        "int8": 0.006375581000611419,
+        "ref64": 0.00013297799887368456
+      },
+      "quality_inspected_or_retained": false,
+      "seed": 20261112,
+      "serialize_compress_seconds": 0.00032074699993245304,
+      "seven_records_bytes": 8718,
+      "seven_records_gzip_bytes": 1467,
+      "write_seconds": 0.0003959599998779595
+    }
+  ],
+  "numpy": "2.3.5",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "python": "3.12.14",
+  "samples_per_graph_candidate": 1,
+  "scope": "Viewed-source engineering timing only; no main-campaign outcomes",
+  "source_sha256": {
+    "experiments/biqmac_maxcut.py": "b372b7d81e2ae406f223e1bd025373696fe3d3b4cbb9591d53b3fff917305f9d",
+    "experiments/fyp_first_block_20261120.py": "ffbaf666d4cb96cc6235c19e4f9e2ef267f2e2d66948302dcd6b1b17e38e9ced",
+    "experiments/fyp_ideal_solver.py": "0255aac10e9fac4eeaf0274603e9985fadc90cc772db1f9986bd71efecb4a6fc",
+    "experiments/m0_ising_math.py": "b6b74fd0d068d856be7dc720b6e6430ccde2ba174597ec39cbaff925b1f2e7bb",
+    "experiments/m1_biqmac_ideal_pilot.py": "1c58a5b97d5e481d837fcdf1c94d9ea051c03f3ba2a17148ee3760b80ac6e0dc",
+    "experiments/m1_biqmac_reference_quality_gate.py": "c6c5fcec5b1299d6d0ebfe96d7e51cecf2cbf02fe51bd5736ed264b2c03f744c",
+    "experiments/m1_precision_codebooks.py": "e6c323804417830747fc6d2db1eda046dd8b48e5b70bb497c8b095754cf4cf6f",
+    "tests/test_fyp_ideal_solver.py": "267c8701fb272b36106a2b2dbae898a2b9168b8502ad6d5051811a698904278c"
+  },
+  "updates": 50000
+}

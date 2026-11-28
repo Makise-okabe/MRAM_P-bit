@@ -1,0 +1,308 @@
+{
+  "arms": [
+    "ref64",
+    "fp6",
+    "int6",
+    "fp6_mask",
+    "int6_tail",
+    "int6_keep"
+  ],
+  "bundles": [
+    {
+      "family": "ring",
+      "index": 0,
+      "manifest_sha256": "da6c372f92b51fa615c89f4533fa62944a12d05d1030d9f0713c1596dd102c05",
+      "records": 384
+    },
+    {
+      "family": "ring",
+      "index": 1,
+      "manifest_sha256": "47a617d13f98f2f17b02a00058e43e24f23cd6539eca6efdade039023288f382",
+      "records": 384
+    },
+    {
+      "family": "ring",
+      "index": 2,
+      "manifest_sha256": "905a0ac93729c3143cd5e756346d92c58521817a76617fcd2766c3bc473dce3f",
+      "records": 384
+    },
+    {
+      "family": "ring",
+      "index": 3,
+      "manifest_sha256": "52f4c6063bf6f0ca87f13b06487520c465392231fab7fa34116e1c4f0db3e3f8",
+      "records": 384
+    },
+    {
+      "family": "ring",
+      "index": 4,
+      "manifest_sha256": "fb544cd59618add5f52de00d607140c2225de8c377abb5326b57c52d09c48053",
+      "records": 384
+    },
+    {
+      "family": "ring",
+      "index": 5,
+      "manifest_sha256": "2d58c74c124546df9a3542af7d542f56a239c2da127967595be819cf3ef3e2f4",
+      "records": 384
+    },
+    {
+      "family": "ring",
+      "index": 6,
+      "manifest_sha256": "115b0215a2daec0796aa15ff82196d75d52a9091c423f06e90fcc96406b55eb1",
+      "records": 384
+    },
+    {
+      "family": "ring",
+      "index": 7,
+      "manifest_sha256": "adf3a994732b291e57da4ff66749642dca9eb2e4d11ec0fb240b6e6a5668a158",
+      "records": 384
+    },
+    {
+      "family": "ring",
+      "index": 8,
+      "manifest_sha256": "111c61f31d0840e4e7bd4c69bf562e970b086072cdc327d2d3b7ac2b6cceaa9c",
+      "records": 384
+    },
+    {
+      "family": "ring",
+      "index": 9,
+      "manifest_sha256": "148820e8ce3b771a72505aa217684411c5a9453e9187335e2486391d2fb7030b",
+      "records": 384
+    },
+    {
+      "family": "ring",
+      "index": 10,
+      "manifest_sha256": "aee1c050d62992d748c55173978657efc78aad155ef088392a5f9951a871d1d0",
+      "records": 384
+    },
+    {
+      "family": "ring",
+      "index": 11,
+      "manifest_sha256": "9a550a814da016a36a9ab5e069a4f1a103506b0cf06e71c5affbec7cc71b5d43",
+      "records": 384
+    },
+    {
+      "family": "ring",
+      "index": 12,
+      "manifest_sha256": "088459c22a743f907aa59dcf7e35025d9a6ab97085b0d30a1c432238db20dbb6",
+      "records": 384
+    },
+    {
+      "family": "ring",
+      "index": 13,
+      "manifest_sha256": "d7ff5cc4fd81fab8a4c07f1e914af6cc5bbdae32bc6ecce447d37b457664f98a",
+      "records": 384
+    },
+    {
+      "family": "ring",
+      "index": 14,
+      "manifest_sha256": "c2c2744c8b26935ebc9471ad29a4e674138191feb21add1e72a9300264cbd6ad",
+      "records": 384
+    },
+    {
+      "family": "ring",
+      "index": 15,
+      "manifest_sha256": "0086a5e2cea4541a28df4c3a37fe7928e500725f8e80539c195168e6a080dc3f",
+      "records": 384
+    },
+    {
+      "family": "ring",
+      "index": 16,
+      "manifest_sha256": "2361b0648e3ab5b10e356db45b7223f3c5837bdd6332d2bfa39245aed261da0f",
+      "records": 384
+    },
+    {
+      "family": "ring",
+      "index": 17,
+      "manifest_sha256": "419374659b33d63d391fba69965ce58b27b94fdfaf575c1f9d6ae1268f31a0b8",
+      "records": 384
+    },
+    {
+      "family": "ring",
+      "index": 18,
+      "manifest_sha256": "ef39a6a2f0f4687004f66dedab29e89bb10a0ba574828fa8d0140ee67188c9bb",
+      "records": 384
+    },
+    {
+      "family": "ring",
+      "index": 19,
+      "manifest_sha256": "d7f2a9c8ceca9a5a3b18b052232f41f1ce4da75be2eaded22802101a33008112",
+      "records": 384
+    },
+    {
+      "family": "ring",
+      "index": 20,
+      "manifest_sha256": "4de67aaab0b9b343a42ec307ae91959a70aea84ce9030495731739e043c26f60",
+      "records": 384
+    },
+    {
+      "family": "ring",
+      "index": 21,
+      "manifest_sha256": "6668f789e92f2760a41d33b49880167117eec7a46e6f78c109ab93950d5d5937",
+      "records": 384
+    },
+    {
+      "family": "ring",
+      "index": 22,
+      "manifest_sha256": "51f0b98dd662e772d153e907385c87767f17b49e248bd4d886005674a611286d",
+      "records": 384
+    },
+    {
+      "family": "ring",
+      "index": 23,
+      "manifest_sha256": "846c03153f87cae65cc1ae45255343c0db694427da0d97d0851864ee99aacf3a",
+      "records": 384
+    },
+    {
+      "family": "torus",
+      "index": 0,
+      "manifest_sha256": "cb9b65644b1531e9c2ce92b7e1fb76f13da455c740be1398a191c32b0f45d9b6",
+      "records": 384
+    },
+    {
+      "family": "torus",
+      "index": 1,
+      "manifest_sha256": "8d204fe0674f2346619dd915f7c90ada4d5c8aef6f067951e2328ee8ae031d34",
+      "records": 384
+    },
+    {
+      "family": "torus",
+      "index": 2,
+      "manifest_sha256": "2ddd3568b924216397dac468b75951621d7134a43e59fc6317953a3191902582",
+      "records": 384
+    },
+    {
+      "family": "torus",
+      "index": 3,
+      "manifest_sha256": "b4d89b9f3c44de13a159a9df7bc2ef60a077b59b20cf464c9793ee370dda5d22",
+      "records": 384
+    },
+    {
+      "family": "torus",
+      "index": 4,
+      "manifest_sha256": "fd6db61c26f1e3b7cfb0e59d3a1f31230c23ae0a4397c5556480d355f26bfb22",
+      "records": 384
+    },
+    {
+      "family": "torus",
+      "index": 5,
+      "manifest_sha256": "eea23665d80897a970f25cd02afd8f717f7873aaf82e84ae8172648836436f21",
+      "records": 384
+    },
+    {
+      "family": "torus",
+      "index": 6,
+      "manifest_sha256": "2c551fcf029e03a765299b06b133f160ef4bc44969e31a78c36718c10a1ee593",
+      "records": 384
+    },
+    {
+      "family": "torus",
+      "index": 7,
+      "manifest_sha256": "caeee6011d7d7dcc9f8ad37432f4ed1b107c7301d6ff03718497e88a7e0c583d",
+      "records": 384
+    },
+    {
+      "family": "torus",
+      "index": 8,
+      "manifest_sha256": "eefbcd073b53fb52012102b19e0df3fa112516c0c01d859467abe0392280875d",
+      "records": 384
+    },
+    {
+      "family": "torus",
+      "index": 9,
+      "manifest_sha256": "81f855a183f4f950347b149e424e8ea424e3eeb72bf8e1ae7849594997c4a243",
+      "records": 384
+    },
+    {
+      "family": "torus",
+      "index": 10,
+      "manifest_sha256": "f92f92d579be613ac605fefe98c2a658d5739400951b7081c6dfa04a08f5d6a0",
+      "records": 384
+    },
+    {
+      "family": "torus",
+      "index": 11,
+      "manifest_sha256": "b0667b24af97aa7e025936bbdf42d8df3d230797940f6ed27c9bea8e42be27c4",
+      "records": 384
+    },
+    {
+      "family": "torus",
+      "index": 12,
+      "manifest_sha256": "db2a53d8d9b81445e852f494a5f7954e7ddd5c7f7ba60d9979ab7daa29d95217",
+      "records": 384
+    },
+    {
+      "family": "torus",
+      "index": 13,
+      "manifest_sha256": "afbb43b20d87d1bed3e84ad4803eb5aca856f527a3721943d1726cea473d5842",
+      "records": 384
+    },
+    {
+      "family": "torus",
+      "index": 14,
+      "manifest_sha256": "232421a336fa4a23019bfbc6ec06832dcfacd414e78b12bbf8cd0bff142f09eb",
+      "records": 384
+    },
+    {
+      "family": "torus",
+      "index": 15,
+      "manifest_sha256": "781b950b5c0cc59b130bb41971df480f23be8af08b1e862c57c80667214e1b2f",
+      "records": 384
+    },
+    {
+      "family": "torus",
+      "index": 16,
+      "manifest_sha256": "74b128e901921d68e8998135b5fca8c3500da0382ac26ed17cf73c809db558d5",
+      "records": 384
+    },
+    {
+      "family": "torus",
+      "index": 17,
+      "manifest_sha256": "e48e8d076403ffc84298531d2a66b668280e3e6246e67a8c69c48b0832d70a04",
+      "records": 384
+    },
+    {
+      "family": "torus",
+      "index": 18,
+      "manifest_sha256": "a4dd710888ec96a991c165058e735e93177d0e5510719407789b22593f1505fd",
+      "records": 384
+    },
+    {
+      "family": "torus",
+      "index": 19,
+      "manifest_sha256": "df24f45594f3afb6b984b713f5d55e04313a10bf6181e11a6254029f05dea165",
+      "records": 384
+    },
+    {
+      "family": "torus",
+      "index": 20,
+      "manifest_sha256": "f0951189c4130decf74d38c927f51fd5fb14110d8fbcfa0eb6ffc95a98de4b5d",
+      "records": 384
+    },
+    {
+      "family": "torus",
+      "index": 21,
+      "manifest_sha256": "3498873bef4282ac9ffa6f516f66f35c88209425374059402a2a0ec6581b4e1d",
+      "records": 384
+    },
+    {
+      "family": "torus",
+      "index": 22,
+      "manifest_sha256": "cb07244db98aa83fcf6f403bebce37b2f03e9089a2c62263203aa7876c68b88a",
+      "records": 384
+    },
+    {
+      "family": "torus",
+      "index": 23,
+      "manifest_sha256": "495e1e0754d48d698294826180570d0a128a9f14988438bf323a20b953a7af95",
+      "records": 384
+    }
+  ],
+  "freeze_commit": "54c06ff593c8acded95f7e4ce6f04a347c6164f7",
+  "gain": 1.0,
+  "graphs": 48,
+  "offset": 0.0,
+  "offset_executed": false,
+  "raw_records": 18432,
+  "seeds_per_arm": 64,
+  "status": "PASS"
+}

@@ -1,0 +1,33 @@
+name: E0 FP64 two-CAL pilot preflight (synthetic only)
+
+on:
+  push:
+    branches: ['research/m4-gain-fusion-20261107']
+    paths:
+      - 'experiments/e0_fp64_two_cal_pilot.py'
+      - '.github/workflows/e0-fp64-pilot-selftest.yml'
+      - 'experiments/m1_biqmac_reference_quality_gate.py'
+      - 'experiments/m1_biqmac_ideal_pilot.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  e0-synthetic-parity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile E0 and existing FP64 solver sources
+        run: |
+          python -m py_compile experiments/e0_fp64_two_cal_pilot.py experiments/m1_biqmac_ideal_pilot.py experiments/m1_biqmac_reference_quality_gate.py
+      - name: Exact synthetic legacy parity plus geometric trace test
+        run: python -m experiments.e0_fp64_two_cal_pilot --selftest
+      - name: Check neither CAL nor held-out raw graph data required in CI
+        run: |
+          test ! -e results/e0_fp64_two_cal_20261112/run_rows.csv
+          test ! -e data/biqmac/raw/ising/t2g10_7777
+          test ! -e data/biqmac/raw/ising/ising2.5-100_7777

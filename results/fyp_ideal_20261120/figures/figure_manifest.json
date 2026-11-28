@@ -1,0 +1,12 @@
+{
+  "files": {
+    "core_contrasts.png": "32fa727c25369d094e79130ea6305a62516aa3e33f81a2a03567f4510a23a570",
+    "mechanism_contrasts.png": "7a77d5bbd0b7b0dfe857c3e2100eeba3133a2a52d16424865e1c5b2f220dbcbf"
+  },
+  "inputs": {
+    "core_contrasts.csv": "659a001f34c7bee630494a1a506d6103fd3824e3ea100532808ddb13efa316ab",
+    "mechanism_contrasts.csv": "d9a0798a7046cc170ff62b73d29dcc96556c98581dde5ee7af754a2304a30e0c"
+  },
+  "matplotlib": "3.10.8",
+  "scope": "presentation derived from frozen registered tables; no new inference"
+}

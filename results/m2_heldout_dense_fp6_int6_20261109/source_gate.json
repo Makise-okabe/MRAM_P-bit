@@ -1,0 +1,8 @@
+{
+  "edge_count": 4869,
+  "graph": "ising2.5-100_7777",
+  "graph_sha256": "109e1ed2edc71d5f43d623367410d9257a72662d665c7a0c71af4cdd8babaf99",
+  "n": 100,
+  "official_optimum": 3363230,
+  "source_url": "https://biqmac.aau.at/library/mac/ising/ising2.5-100_7777"
+}

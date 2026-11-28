@@ -1,0 +1,32 @@
+name: EX1 FP5/INT8 viewed-M5 exploratory synthetic preflight
+
+on:
+  push:
+    branches: ['research/m4-gain-fusion-20261107']
+    paths:
+      - 'experiments/ex1_m5_fp5_int8_exploratory.py'
+      - '.github/workflows/ex1-fp5-int8-selftest.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ex1-synthetic:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile new script and frozen dependencies
+        run: |
+          python -m py_compile experiments/ex1_m5_fp5_int8_exploratory.py
+          python -m py_compile experiments/m2_heldout_dense_sixbit.py
+          python -m py_compile experiments/m1_precision_codebooks.py
+      - name: EX1 four-spin source-independent parity
+        run: python -m experiments.ex1_m5_fp5_int8_exploratory --selftest
+      - name: No solver outputs or original graph downloads
+        run: |
+          test ! -e results/ex1_m5_fp5_int8_20261115/new_runs.csv
+          test ! -e data/biqmac/raw/ising/ising2.5-100_7777
