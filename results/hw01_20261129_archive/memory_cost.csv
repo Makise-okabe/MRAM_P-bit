@@ -1,0 +1,4 @@
+format,coefficient_bits,accumulator_bits,dense_triangular_bits,dense_row_duplicated_bits,torus_csr_bits,torus_bitmap_bits
+fp5,5,13,24782,49532,5741,11932
+int5,5,12,24782,49532,5741,11932
+int6,6,13,29732,59432,6141,12332
